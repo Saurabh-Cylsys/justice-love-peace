@@ -119,9 +119,9 @@ export class WebHomeComponent implements OnInit, OnDestroy {
 
 
    async ngOnInit(): Promise<void> {
-
    await this.webService.getSpeakers().subscribe((data:any) => {
       this.slides = data;
+      this.speakersList = this.webService.confirmedSpeakersList; // Move this inside the subscription
     });
     // fetch('assets/speakers.json')
     //   .then(response => {
@@ -145,7 +145,6 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     });
 
     console.log('home');
-    this.speakersList = this.webService.confirmedSpeakersList;
     this.SharedService.headerIcon = this._router.routerState.snapshot.url;
 
     this.updateCountdown();
