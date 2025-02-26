@@ -6,7 +6,7 @@ import { WebRoutingModule } from './web-routing.module';
 import { WebHomeComponent } from './web-home/web-home.component';
 import { WebMainComponent } from './web-main/web-main.component';
 import { SharedModule } from '../../../app/shared/shared.module';
-import { WorldPeacekeepersMovementComponent } from './world-peacekeepers-movement/world-peacekeepers-movement.component';
+// import { WorldPeacekeepersMovementComponent } from './world-peacekeepers-movement/world-peacekeepers-movement.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { IntlInputPhoneModule } from 'intl-input-phone';
 import { QRCodeModule } from 'angularx-qrcode';

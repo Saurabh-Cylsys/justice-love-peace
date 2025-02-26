@@ -1,0 +1,122 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* .sec {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    color: #777;
+    background: #f9f9f9;
+    letter-spacing: 2px;
+  }
+  
+  .sec:nth-child(odd) {
+    background: #ddd;
+  } */
+
+.navbarDots {
+  position: fixed;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.navbarDots ul {
+  /* list-style: none; */
+  padding: 0;
+  margin: 0;
+}
+
+.navbarDots ul li {
+  /* width: 220px; */
+  position: relative;
+  text-align: left;
+}
+
+.navbarDots ul li::marker {
+  display: none;
+}
+
+.navbarDots ul li .dot {
+  color: #fff;
+  display: block;
+  padding: 0 0;
+  text-decoration: none;
+}
+
+.navbarDots ul li .dot span {
+  display: inline-block;
+  background: #005a93;
+  letter-spacing: 1px;
+  padding: 0 25px;
+  margin-left: 30px;
+  border-radius: 3px;
+  transform: translateX(30px);
+  display: none;
+  text-decoration: none;
+}
+
+.navbarDots ul li .dot:hover span {
+  transform: translateX(0px);
+  display: block;
+}
+
+/* .navbarDots ul li .dot span::before {
+  content: "";
+  position: absolute;
+  right: auto;
+  left: 0;
+  transform: translate(-7px, -50%);
+  border-left: 7px solid #005a93;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  display: block;
+} */
+
+.navbarDots ul li .dot::before,
+.navbarDots ul li .dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  display: block;
+  transition: 0.2s ease-out;
+}
+
+.navbarDots ul li .dot::before {
+  height: 8px;
+  width: 8px;
+  border: 2px solid #fff;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: gray;
+}
+
+.navbarDots ul li .dot.active::before,
+.navbarDots ul li .dot:hover::before {
+  border-color: #fff;
+  background: #005a93;
+}
+
+.navbarDots ul li .dot::after {
+  height: 15px;
+  width: 15px;
+  border: 2px solid #fff;
+  left: -3px;
+  transform: translateY(-50%) scale(0);
+  background-color: #005a93;
+}
+
+.navbarDots ul li .dot.active::after,
+.navbarDots ul li .dot:hover::after {
+  transform: translateY(-50%) scale(1);
+}
+
+::-webkit-details-marker {
+  display: none;
+}

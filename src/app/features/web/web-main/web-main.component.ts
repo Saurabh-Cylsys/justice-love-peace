@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import * as AOS  from 'aos';
+// import * as AOS  from 'aos';
 // declare var AOS:any;
 
 @Component({
@@ -13,10 +13,10 @@ export class WebMainComponent {
   url : any;
 
   ngOnInit(): void {
-    AOS.init({
-      duration: 1200,
+  //   AOS.init({
+  //     duration: 1200,
 
-  })
+  // })
   console.log("web main");
   console.log("router", this.router.url);
   this.url = this.router.url;

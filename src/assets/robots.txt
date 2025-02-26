@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /the-summit/private/
+Allow: /
+
+Sitemap: https://justice-love-peace.com/assets/sitemap.xml

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
-import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { ApiEndpointsService } from '../../../../app/core/services/api-endpoints.service';
+import { ApiHttpService } from '../../../../app/core/services/api-http.service';
 import { Observable, of, Subject } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

@@ -1,0 +1,940 @@
+:root,
+[data-bs-theme="light"] {
+  --gradient5: linear-gradient(180deg, #ffffff00 22%, #004e8a87 100%);
+}
+@media (min-width: 320px){
+  #p5 .card {
+    font-size: 14px
+  }
+  .index .section1 {
+    background: url(../images/index/bannermob.gif);
+    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    height: 79.4vh; /* Keeps the height relative to the viewport */
+  }
+
+  .main-body .scroll {
+    min-height: 90vh;
+  }
+  #ts4,
+  #p2,
+  #p4,
+  #dc2,
+  #ts3 .scroll {
+    min-height: 50vh;
+  }
+  #p1 {
+    min-height: 30vh;
+  }
+  .timeline-content {
+    gap: 4rem;
+    padding: 0 0 0 9rem;
+  }
+  #p5 .card {
+    font-size: 14px;
+  }
+  .chairmanCenter,
+  .chairmanCenter h2 {
+    text-align: center !important;
+  }
+  .index .section1 {
+    background: url(../images/index/bannermob.gif);
+    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 67vh; /* Keeps the height relative to the viewport */
+  }
+}
+
+/* Add media queries for finer control on smaller devices */
+
+
+@media (min-width: 375px) {
+  .index .section1 {
+    background: url(../images/index/bannermob.gif);
+    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 79vh; /* Keeps the height relative to the viewport */
+  }
+}
+
+/* Small screens (phones) */
+@media (min-width: 425px) {
+  #ts4,
+  #p2,
+  #p4,
+  #dc2,
+  #ts3 .scroll {
+    min-height: 50vh;
+  }
+  #p1 {
+    min-height: 30vh;
+  }
+  .main-body .scroll {
+    min-height: 100vh;
+  }
+  .index .section1 {
+    background: url(../images/index/bannermob.gif);
+    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 90vh; /* Keeps the height relative to the viewport */
+  }
+}
+
+
+/* Medium screens (tablets) */
+@media (min-width: 768px) {
+  .main-body .scroll {
+    min-height: 50vh;
+  }
+  .index .section1 {
+    background-image: url(../images/index/banner.gif);
+    /* background-size: 90% 100%; */
+    background-size: 85% 100%;
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 60vh; /* Keeps the height relative to the viewport */
+  }
+
+  .index .section2 .mainCard .cardP {
+    font-size: 14px;
+  }
+
+  .timeline-content {
+    gap: 4rem;
+    padding: 0 0 0 11.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-body .scroll {
+    min-height: 88vh;
+  }
+  .timeline-content {
+    gap: 4rem;
+    padding: 0 0 0 11.5rem;
+  }
+  .chairmanCenter,
+  .chairmanCenter h2 {
+    text-align: start !important;
+  }
+
+  #ts3 .carousel-item {
+    min-height: 65vh;
+  }
+  .index .section1 {
+    background-image: url(../images/index/banner.gif);
+    /* background-size: 90% 100%; */
+    background-size: 85% 100%;
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 85vh; /* Keeps the height relative to the viewport */
+  }
+}
+
+@media (min-width: 1440px) {
+  .index .section1 .logo {
+    position: relative;
+    top: -50px;
+    /* left: -50px;  */
+  }
+  .index .section1 {
+    background-image: url(../images/index/banner.gif);
+    /* background-size: 90% 100%; */
+    background-size: 85% 100%;
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 95vh; /* Keeps the height relative to the viewport */
+  }
+}
+
+
+/* max-width */
+@media (max-width: 1440px) {
+  .index .section1 .logo {
+    position: relative;
+    top: -50px;
+    /* left: -50px;  */
+  }
+  .head ul li a,
+  .head ul li .dropbtn {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1228.8px) {
+  .head ul li a,
+  .head ul li .dropbtn {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1024px) {
+  .head ul li a,
+  .head ul li .dropbtn {
+    font-size: 10px;
+  }
+  .index .section2 .mainCard .cardP {
+    font-size: 12px;
+  }
+  .awards .section7 .card .card-body h3 {
+    font-size: 17px;
+  }
+  .index .section7 p {
+    font-size: 14px;
+  }
+  .confirmation table tr th:nth-child(2), .confirmation table tr td:nth-child(2) {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .confirmation table tr th:nth-child(2), .confirmation table tr td:nth-child(2) {
+    width: 15rem;
+  }
+  #dc3 p {
+    font-size: 14px;
+  }
+
+  .index .section1 .bgColor {
+    background: var(--gradient5);
+  }
+
+  .index .section1 .logo {
+    position: relative;
+    /* top: -50px; */
+  }
+  .index .section4 img {
+    margin: 0 0 0;
+  }
+
+  /* .index .section1 .tableBox {
+    left: 0;
+    position: relative;
+  } */
+
+  .navbarDots {
+    display: none;
+  }
+  .index .section7 table td ul li:nth-child(2) {
+    font-size: 9.57px;
+    font-weight: 600;
+    line-height: 19.21px;
+  }
+
+  .cardMain .card-body {
+    padding: 10px;
+  }
+
+  /* .timeline-content {
+    justify-content: end;
+  } */
+  .second-image {
+    right: 0%;
+    top: 74%;
+    width: 60%;
+  }
+  /* .speakers img {
+    width: auto;
+  } */
+
+ 
+  .partner_carousel ul li img {
+    width: 100%;
+  }
+
+  .awards .section7 .card .card-body ul {
+    display: block;
+  }
+  .scroll p {
+    font-size: 15px !important;
+  }
+
+  .index .section7 p {
+    font-size: 13px;
+    /* font-size: 12px; */
+    line-height: 20px;
+  }
+
+  .index .section7 .date h3 {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .index .section1 .tableBox table tr td p {
+    font-size: 12px;
+  }
+
+  .index .section5 h2,
+  .index .section5 h1,
+  .index .section6 h2,
+  .index .section6 h1,
+  .index .section9 h2 {
+    font-size: 22px;
+  }
+  .index .section1 .cardMain h5 {
+    font-size: 14px;
+    color: #000;
+  }
+
+  .index .section1 .cardMain .col-4 h6 {
+    font-size: 10px;
+  }
+  .index .section1 .cardMain .col-4 h6 span {
+    font-size: 16px;
+  }
+  .index .section7 h1 {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 40.6px;
+  }
+  .timeline h2,
+  .timeline h3 {
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline .event {
+    font-size: 12px;
+  }
+
+  :root {
+    --dotborder: -2px;
+    --spacing: 20px;
+  }
+
+  .index .section7 table td ul li:nth-child(1) {
+    font-size: 25px;
+  }
+  .index .section7 h2 {
+    font-size: 20px;
+  }
+  .invited table {
+    font-size: 10px;
+  }
+  .contact-info ul li {
+    font-size: 16px;
+  }
+  .yT {
+    height: 322px;
+  }
+
+  .chairman {
+    border-bottom: 1px solid #0000005c;
+    padding-block: 15px;
+    /* margin: 0; */
+  }
+  .awards .section7 .lastP {
+    font-size: 15px;
+  }
+  .index .section7 label {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .footerLinks p {
+    font-size: 14px;
+    /* font-weight: 600; */
+  }
+  .footerLinks h1 {
+    font-size: 16px;
+  }
+  .footerLinks ol li {
+    font-size: 14px;
+  }
+  .footerLinks ul li span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .footerLinks h2,
+  .delegate-form h3 {
+    font-size: 16px;
+  }
+
+  .delegate-form h2 {
+    font-size: 20px;
+  }
+  .delegate-form form h6 {
+    font-size: 16px;
+  }
+  .pix {
+    height: 100px;
+    width: 100px;
+  }
+  .pix2 {
+    top: -103px;
+  }
+  /* .cpImg{
+    height: auto;
+  } */
+  /* .contact-info{
+    height: 110%;
+  } */
+  .helpline {
+    font-size: 18px !important;
+  }
+
+  .count {
+    width: 25px;
+    height: 25px;
+  }
+
+  .footerLinks ul li {
+    font-size: 14px;
+  }
+
+  .contact-info h3,
+  .contact-info p {
+    font-size: 12px !important;
+  }
+  .indexSec2 h2,
+  .indexSec2 h1 {
+    font-size: 13px !important;
+    line-height: 28.52px !important;
+    margin-top: 10px;
+  }
+
+  .indexSec2 ul {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: justify;
+  }
+
+  .indexSec2 p {
+    line-height: 25px;
+  }
+
+  .index .section1 .cardMain {
+    /* background-color: #005a9394; */
+    background-color: #edffae73;
+    border: 1px solid #005a93;
+    box-shadow: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+  .organiserUL ul {
+    font-size: 12px;
+    margin: 0 0 15px;
+  }
+  .percent28 ul li,
+  .offcanvas ul li a.btn-success {
+    font-size: 12px;
+  }
+  .offcanvas ul li a.btn-success {
+    font-weight: 600;
+  }
+
+  .awards .section4 h1 {
+    font-size: 24px;
+  }
+
+  #dc11 ul li h4 {
+    font-size: 14px;
+  }
+  .cpImg {
+    height: 370px;
+  }
+  .bgModal .modal-content .badgeModal {
+    font-size: 11px;
+  }
+
+  #cc1 {
+    height: auto;
+  }
+
+  .speakersProfile .modal-header h1.fs-5,
+  .speakersProfile .modal-header p {
+    font-size: 12px !important;
+  }
+  .mobCarousal {
+    width: 170px;
+    display: block;
+    border: 1px solid;
+    height: 170px;
+    border-radius: 100%;
+    margin: auto;
+  }
+  .speakersProfile .modal-content .modal-body p {
+    text-align: left;
+  }
+
+  #p4 h3 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 90.16px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+  #p4 p {
+    font-size: 18px !important;
+    font-weight: 400;
+    line-height: 20.4px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+  /* #dc1, #dc3, #dc4{
+      height: 35vh;
+    } */
+
+  .speakers .editYear {
+    font-size: 15px;
+  }
+
+  .index .section7 {
+    background-image: var(--gradient3);
+  }
+  .btnText {
+    font-size: 12px;
+  }
+
+  .confirmation table {
+    font-size: 12px;
+  }
+
+  .confirmation table tr th:nth-child(2) {
+    /* background-color: #446aa0; */
+    /* width: 12rem; */
+    display: block;
+  }
+
+  .confirmation table tr td span {
+    width: 15rem;
+    display: block;
+  }
+
+  .index .section2 .mainCard .card {
+    height: auto;
+  }
+
+  /* #ts4{
+    height: 50vh;
+  } */
+  .indexSec2 ul li {
+    text-align: left;
+  }
+  .event_day {
+    padding-inline: 0;
+    margin-inline: 0;
+  }
+  .index .section7 .location {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .head ul li a,
+  .head ul li .dropbtn,
+  .head form,
+  .head form a {
+    padding: 10px 2px;
+    font-size: 8px;
+    font-weight: 600;
+  }
+}
+@media (max-width: 425px) {
+
+  .index .section1 .bgColor {
+    background: var(--gradient5);
+  }
+
+  .index .section1 .logo {
+    position: relative;
+    /* top: -50px; */
+  }
+  .index .section4 img {
+    margin: 0 0 0;
+  }
+  .scroll p {
+    font-size: 12px;
+  }
+  /* .index .section1 .tableBox {
+    left: 0;
+    position: relative;
+  } */
+
+  .navbarDots {
+    display: none;
+  }
+  .index .section7 table td ul li:nth-child(2) {
+    font-size: 9.57px;
+    font-weight: 600;
+    line-height: 19.21px;
+  }
+
+  .cardMain .card-body {
+    padding: 10px;
+  }
+
+  .second-image {
+    right: 0%;
+    top: 74%;
+    width: 60%;
+  }
+  /* .speakers img {
+    width: auto;
+  } */
+
+  /* .partner_carousel .carousel-item ul {
+    display: block;
+  } */
+  .partner_carousel ul li img {
+    width: 100%;
+  }
+
+  .awards .section7 .card .card-body ul {
+    display: block;
+  }
+
+  .index .section7 p {
+    font-size: 16px !important;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .index .section7 .date h3 {
+    text-align: center;
+  }
+
+  .index .section1 .tableBox table tr td p {
+    font-size: 12px;
+  }
+
+  .index .section5 h2,
+  .index .section6 h2,
+  .index .section6 h1,
+  .index .section9 h2 {
+    font-size: 18px;
+  }
+  .index .section6 h1{
+    line-height: 30px;
+  }
+  .index .section1 .cardMain h5 {
+    font-size: 14px;
+    color: #000;
+  }
+
+  .index .section1 .cardMain .col-4 h6 {
+    font-size: 10px;
+  }
+  .index .section1 .cardMain .col-4 h6 span {
+    font-size: 16px;
+  }
+  .index .section7 h1 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40.6px;
+    text-align: center;
+  }
+  .timeline h2,
+  .timeline h3 {
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline .event {
+    font-size: 12px;
+  }
+
+  :root {
+    --dotborder: -2px;
+    --spacing: 20px;
+  }
+
+  .index .section7 table td ul li:nth-child(1) {
+    font-size: 25px;
+  }
+  .index .section7 h2 {
+    font-size: 20px;
+  }
+  .invited table {
+    font-size: 10px;
+  }
+  .contact-info ul li {
+    font-size: 16px;
+  }
+  .yT {
+    height: 322px;
+  }
+
+  .chairman {
+    border-bottom: 1px solid #0000005c;
+    padding-block: 15px;
+    /* margin: 0; */
+  }
+  .awards .section7 .lastP {
+    font-size: 15px;
+  }
+  .index .section7 label {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .footerLinks p {
+    font-size: 14px;
+    /* font-weight: 600; */
+  }
+  .footerLinks h1 {
+    font-size: 16px;
+  }
+  .footerLinks ol li {
+    font-size: 14px;
+  }
+  .footerLinks ul li span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .footerLinks h2,
+  .delegate-form h3 {
+    font-size: 16px;
+  }
+
+  .delegate-form h2 {
+    font-size: 20px;
+  }
+  .delegate-form form h6 {
+    font-size: 16px;
+  }
+  .pix {
+    height: 100px;
+    width: 100px;
+  }
+  .pix2 {
+    top: -103px;
+  }
+  /* .cpImg{
+    height: auto;
+  } */
+  /* .contact-info{
+    height: 110%;
+  } */
+  .helpline {
+    font-size: 18px !important;
+  }
+
+  .count {
+    width: 25px;
+    height: 25px;
+  }
+
+  .footerLinks ul li {
+    font-size: 14px;
+  }
+
+  .contact-info h3,
+  .contact-info p {
+    font-size: 12px !important;
+  }
+  .indexSec2 h2 {
+    font-size: 13px !important;
+    line-height: 28.52px !important;
+    margin-top: 10px;
+  }
+
+  .indexSec2 ul {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: justify;
+  }
+
+  .indexSec2 p {
+    line-height: 25px;
+  }
+
+  .index .section1 .cardMain {
+    /* background-color: #005a9394; */
+    background-color: #edffae73;
+    border: 1px solid #005a93;
+    box-shadow: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+  .organiserUL ul {
+    font-size: 12px;
+    margin: 0 0 15px;
+  }
+  .percent28 ul li,
+  .offcanvas ul li a.btn-success {
+    font-size: 12px;
+  }
+  .offcanvas ul li a.btn-success {
+    font-weight: 600;
+  }
+
+  .awards .section4 h1 {
+    font-size: 24px;
+  }
+
+  #dc11 ul li h4 {
+    font-size: 14px;
+  }
+  .cpImg {
+    height: 370px;
+  }
+  .bgModal .modal-content .badgeModal {
+    font-size: 11px;
+  }
+
+  #cc1 {
+    height: auto;
+  }
+
+  .speakersProfile .modal-header h1.fs-5,
+  .speakersProfile .modal-header p {
+    font-size: 12px !important;
+  }
+  .mobCarousal {
+    width: 170px;
+    display: block;
+    border: 1px solid;
+    height: 170px;
+    border-radius: 100%;
+    margin: auto;
+  }
+  .speakersProfile .modal-content .modal-body p {
+    text-align: left;
+  }
+
+  #p4 h3 {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 90.16px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+  #p4 p {
+    font-size: 16px !important;
+    font-weight: 400;
+    line-height: 20.4px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+  /* #dc1, #dc3, #dc4{
+      height: 35vh;
+    } */
+
+  .speakers .editYear {
+    font-size: 15px;
+  }
+
+  .index .section7 {
+    background-image: var(--gradient3);
+  }
+  .btnText {
+    font-size: 12px;
+  }
+
+  .confirmation table {
+    font-size: 12px;
+  }
+
+  .confirmation table tr th:nth-child(2) {
+    /* background-color: #446aa0; */
+    width: 12rem;
+    /* display: block; */
+  }
+
+  .confirmation table tr td span {
+    width: 15rem;
+    display: block;
+  }
+
+  .index .section2 .mainCard .card {
+    height: auto;
+  }
+
+  #p5 .card .card-header {
+    border-bottom: none;
+    font-size: 16px;
+  }
+  /* .timeline-content {
+  justify-content: end;
+} */
+}
+
+@media (max-width: 375px) {
+  .scroll p {
+    font-size: 12px;
+  }
+  .pix {
+    height: 100px;
+    width: 100px;
+  }
+  .preview {
+    font-size: 11px;
+  }
+  .preview img {
+    width: 80px;
+    height: 80px;
+  }
+  .cpImg {
+    height: 340px;
+  }
+  .pix {
+    height: 100px;
+    width: 100px;
+  }
+  .pix2 {
+    top: -103px;
+  }
+  .bgModal .modal-content .badgeModal {
+    font-size: 11px;
+  }
+  /* #dc1, #dc3, #dc4{
+    height: 28vh;
+  } */
+  /* .timeline-content {
+    justify-content: end;
+} */
+}
+
+@media (max-width: 320px) {
+  .scroll p {
+    font-size: 12px;
+  }
+  .index .section1 .tableBox table tr td p {
+    font-size: 10px;
+  }
+
+  .pix {
+    height: 80px;
+    width: 80px;
+  }
+
+  .cpImg {
+    height: 300px;
+  }
+
+  .pix2 {
+    position: absolute;
+    top: -127px;
+    top: -100px;
+  }
+  .bgModal .modal-content .badgeModal {
+    font-size: 10px;
+  }
+  /* #dc1, #dc3, #dc4{
+    height: 28vh;
+  } */
+  /* .timeline-content {
+    justify-content: end;
+} */
+}
