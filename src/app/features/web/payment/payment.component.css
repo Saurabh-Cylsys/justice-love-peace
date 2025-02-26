@@ -1,0 +1,14 @@
+.payment-success-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .success-icon {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  

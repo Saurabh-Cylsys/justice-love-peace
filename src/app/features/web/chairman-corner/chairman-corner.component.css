@@ -1,0 +1,28 @@
+ul{
+  list-style: none;
+  /* padding: 0; */
+}
+ul li{
+  line-height: 2rem;
+  margin: 20px 0;
+}
+a{
+  text-decoration: none;
+}
+
+.chairman li{
+  line-height: 1rem;
+  margin: 0 0;
+  font-size: 12px;
+}
+
+.chairman li img {
+  width: 100px;
+}
+.chairman li .chairmanImg {
+  width: 29px;
+}
+
+.border-color {
+  border-color: #128940;
+}

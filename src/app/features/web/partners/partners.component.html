@@ -1,0 +1,1380 @@
+<nav class="navbarDots">
+  <ul>
+    <li>
+      <a [routerLink]="['/partners']" class="dot active" data-scroll="p1">
+        <span>Corporate Partners</span>
+      </a>
+    </li>
+    <!-- <li>
+      <a
+        [routerLink]="['/partners']"
+        fragment="p2"
+        class="dot"
+        data-scroll="p2"
+      >
+        <span>Invited Corporate Partners </span>
+      </a>
+    </li> -->
+    <li>
+      <a
+        [routerLink]="['/partners']"
+        fragment="p3"
+        class="dot"
+        data-scroll="p3"
+      >
+        <span>Causes we Support</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['/partners']"
+        fragment="p4"
+        class="dot"
+        data-scroll="p4"
+      >
+        <span>Event, Media & PR Agency</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['/partners']"
+        fragment="p5"
+        class="dot"
+        data-scroll="p5"
+      >
+        <span>Service Partners</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="main-body">
+  <section id="p1" class="section section7 scroll position-relative py-lg-0 py-md-5">
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
+      <div class="row align-items-center justify-content-center h-100">
+        <div class="col-md-12" *ngIf="isMobileView">
+          <div class="row">
+            <div class="col-md-12">
+              <img loading="eager"
+              src="assets/UIComponents/images/partners/12collaterals.png"
+              alt="attach image"
+             class="col-12"
+            />
+            </div>
+            <!-- <div class="col-12 text-center mx-auto pb-3">
+              <img loading="eager"
+                src="assets/UIComponents/images/partners/marketing.svg"
+                alt="attach image"
+                width="90%"
+              />
+            </div>
+            <div class="col-6 my-lg-5 text-center mx-auto">
+              <img loading="eager"
+                src="assets/UIComponents/images/theme/theme1.png"
+                alt="attach image"
+                width="80px"
+              />
+
+              <p class="text-center">
+                Logo present in 28 <br />
+                parts of the venue
+              </p>
+            </div>
+            <div class="col-6 my-lg-5 text-center mx-auto">
+              <img loading="eager"
+                src="assets/UIComponents/images/theme/theme2.png"
+                alt="attach image"
+                width="80px"
+              />
+
+              <p class="text-center">
+                1 stall out of <br />
+                28 stalls
+              </p>
+            </div>
+            <div class="col-6 my-lg-5 text-center mx-auto">
+              <img loading="eager"
+                src="assets/UIComponents/images/theme/theme3.png"
+                alt="attach image"
+                width="80px"
+              />
+
+              <p class="text-center">
+                PR by one of the world's <br />
+                largest PR agencies
+              </p>
+            </div>
+            <div class="col-6 my-lg-5 text-center mx-auto">
+              <img loading="eager"
+                src="assets/UIComponents/images/theme/theme4.png"
+                alt="attach image"
+                width="80px"
+              />
+
+              <p class="text-center">
+                2 double rooms at the <br />
+                venue hotel for 2 nights
+              </p>
+            </div>
+            <div class="col-6 my-lg-5 text-center mx-auto">
+              <img loading="eager"
+                src="assets/UIComponents/images/theme/theme5.png"
+                alt="attach image"
+                width="80px"
+              />
+
+              <p class="text-center">
+                4 free event <br />
+                passes
+              </p>
+            </div>
+            <div class="col-6 my-lg-5 text-center mx-auto">
+              <img loading="eager"
+                src="assets/UIComponents/images/theme/theme6.png"
+                alt="attach image"
+                width="80px"
+              />
+
+              <p class="text-center">
+                Ofﬂine & online <br />
+                media publicity
+              </p>
+            </div>
+            <div class="col-12 my-lg-5 text-center mx-auto">
+              <img loading="eager"
+                src="assets/UIComponents/images/theme/theme7.png"
+                alt="attach image"
+                width="80px"
+              />
+
+              <p class="text-center">
+                PR to be given pre, during, & post event (PR video will be
+                played for total 7 minutes anytime between 8 AM to 11 PM during
+                the event)
+              </p>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="col-md-12" *ngIf="!isMobileView">
+          <div class="row">
+            <div class="col-md-12">
+              <img loading="eager"
+                    src="assets/UIComponents/images/partners/12collaterals.png"
+                    alt="attach image"
+                   class="col-md-12 col-6 p-5"
+                  />
+            </div>
+            <!-- <div class="col-md">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="">
+                  <img loading="eager"
+                    src="assets/UIComponents/images/theme/theme1.png"
+                    alt="attach image"
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    Logo present in 28 <br />
+                    parts of the venue
+                  </p>
+                </li>
+                <li class="my-5">
+                  <img loading="eager"
+                    src="assets/UIComponents/images/theme/theme2.png"
+                    alt="attach image"
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    1 stall out of <br />
+                    28 stalls
+                  </p>
+                </li>
+                <li class="">
+                  <img loading="eager"
+                    src="assets/UIComponents/images/theme/theme3.png"
+                    alt="attach image"
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    PR by one of the world's <br />
+                    largest PR agencies
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-5">
+              <ul
+                class="p-0 text-center list-unstyled d-flex flex-column align-items-center justify-content-around h-100"
+              >
+                <li>
+                  <img loading="eager"
+                    src="assets/UIComponents/images/partners/marketing.svg"
+                    alt="attach image"
+                    width="90%"
+                  />
+                </li>
+                <li class="">
+                  <img loading="eager"
+                    src="assets/UIComponents/images/theme/theme7.png"
+                    alt="attach image"
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    PR to be given pre, during, & post event (PR video will be
+                    played for <br />
+                    total 7 minutes anytime between 8 AM to 11 PM during the
+                    event)
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="">
+                  <img loading="eager"
+                    src="assets/UIComponents/images/theme/theme4.png"
+                    alt="attach image"
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    2 double rooms at the <br />
+                    venue hotel for 2 nights
+                  </p>
+                </li>
+                <li class="my-5">
+                  <img loading="eager"
+                    src="assets/UIComponents/images/theme/theme5.png"
+                    alt="attach image"
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    4 free event <br />
+                    passes
+                  </p>
+                </li>
+                <li class="">
+                  <img loading="eager"
+                    src="assets/UIComponents/images/theme/theme6.png"
+                    alt="attach image"
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    Ofﬂine & online <br />
+                    media publicity
+                  </p>
+                </li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <img loading="eager"
+      src="assets/UIComponents/images/watermark.png"
+      alt="attach image"
+      class="position-absolute"
+      style="left: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img loading="eager"
+      src="assets/UIComponents/images/watermark.png"
+      alt="attach image"
+      class="position-absolute"
+      style="left: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
+  </section>
+  <section id="p2" class="section5 p-lg-5 py-5 partner_carousel scroll">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h1>Invited Corporate Partners</h1>
+        </div>
+        <div
+          class="col-12 py-4 partner_carousel d-lg-block d-md-block d-none"
+          *ngIf="!isMobileView"
+        >
+          <div
+            id="carouselExampleSlidesOnly"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486067.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486068.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486069.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486070.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486071.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486072.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486073.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486074.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486075.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486076.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486077.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486078.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486079.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486080.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486081.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486082.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486083.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486084.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486085.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486086.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486087.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486088.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486089.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486090.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486091.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486092.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486093.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486094.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486095.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486096.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486097.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486098.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486099.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486100.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486101.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486102.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486103.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486104.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486105.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486106.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486107.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486108.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486109.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486110.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486111.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-12" *ngIf="isMobileView">
+          <div
+            id="partner_carousel"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#partner_carousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#partner_carousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#partner_carousel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#partner_carousel"
+                data-bs-slide-to="3"
+                aria-label="Slide 4"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#partner_carousel"
+                data-bs-slide-to="4"
+                aria-label="Slide 5"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486067.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486068.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486069.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486070.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486071.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486072.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486073.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486074.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486075.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486076.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486077.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486078.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486079.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486080.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486081.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486082.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486083.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486084.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486085.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486086.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486087.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486088.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486089.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486090.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486091.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486092.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486093.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486094.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486095.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486096.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486097.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486098.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486099.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486100.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486101.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486102.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486103.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486104.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486105.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486106.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486107.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486108.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486109.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486110.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img loading="eager"
+                          
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486111.svg"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="p3" class="section section9 py-lg-0 py-md-5">
+    <div class="container-fluid">
+      <div
+        class="row align-items-center justify-content-center h-100 percent28"
+      >
+        <div class="col-md-12 pt-md-0 pt-5" *ngIf="isMobileView">
+          <ul class="p-0 text-center list-unstyled">
+            <li>
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/28.svg"
+                alt="attach image"
+                class="col-7"
+              />
+            </li>
+          </ul>
+        </div>
+        <div class="col-md col-6">
+          <ul class="p-0 text-center list-unstyled">
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/1svg.svg"
+                alt="attach image"
+              />
+              <p>7 Peace Cafees</p>
+            </li>
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/2svg.svg"
+                alt="attach image"
+              />
+              <p>
+                7 Peace Value Messages on <br />
+                Social Media for full year
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-5" *ngIf="!isMobileView">
+          <ul class="p-0 text-center list-unstyled">
+            <li>
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/28.svg"
+                alt="attach image"
+                class="col-7"
+              />
+            </li>
+          </ul>
+        </div>
+        <div class="col-md col-6">
+          <ul class="p-0 text-center list-unstyled">
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/3svg.svg"
+                alt="attach image"
+              />
+              <p>7 Peace Symbols Sculpture</p>
+            </li>
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/4svg.svg"
+                alt="attach image"
+              />
+              <p>7 Peace Songs</p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 text-center position-relative">
+          <a
+            href="assets/UIComponents/files/Peace_Cafee.pdf"
+            class="btn btn-success position-absolute"
+            target="_blank"
+            style="
+              left: 0;
+              right: 0;
+              width: max-content;
+              margin: auto;
+              z-index: 1;
+            "
+            >More About Peace Cafees</a
+          >
+          <hr />
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mt-5">
+      <div
+        class="row align-items-center justify-content-center h-100 percent28"
+      >
+        <div class="col-md-12" *ngIf="isMobileView">
+          <ul class="p-0 text-center list-unstyled">
+            <li>
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/2.8.svg"
+                alt="attach image"
+                class="col-6"
+              />
+            </li>
+            <li class="my-lg-5" *ngIf="!isMobileView">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/7.png"
+                alt="attach image"
+              />
+              <p>
+                TRAINING YOUTH FOR <br />
+                HIGHER SKILLS
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg col-md-6 col-6">
+          <ul class="p-0 text-center list-unstyled">
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/1.png"
+                alt="attach image"
+              />
+              <p>
+                EARLY CHILDHOOD <br />
+                DEVELOPMENT
+              </p>
+            </li>
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/2.png"
+                alt="attach image"
+              />
+              <p>
+                EDUCATION FOR THE <br />
+                GIRL CHILD
+              </p>
+            </li>
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/3.png"
+                alt="attach image"
+              />
+              <p>
+                IMPROVING THE QUALITY OF <br />
+                EDUCATION AND LEARNING
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-5" *ngIf="!isMobileView">
+          <ul class="p-0 text-center list-unstyled">
+            <li>
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/2.8.svg"
+                alt="attach image"
+                class="col-6"
+              />
+            </li>
+            <li class="my-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/7.png"
+                alt="attach image"
+              />
+              <p>
+                TRAINING YOUTH FOR <br />
+                HIGHER SKILLS
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg col-md-6 col-6">
+          <ul class="p-0 text-center list-unstyled">
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/4.png"
+                alt="attach image"
+              />
+              <p>
+                BUILDING SCHOOLS WITH FOCUS <br />
+                ON HEALTH AND NUTRITION
+              </p>
+            </li>
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/5.png"
+                alt="attach image"
+              />
+              <p>
+                SECONDARY EDUCATION IN <br />
+                DEVELOPING COUNTRIES
+              </p>
+            </li>
+            <li class="my-lg-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/6.png"
+                alt="attach image"
+              />
+              <p>
+                IMPROVING LITERACY BY <br />
+                CREATING LIBRARIES
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-5" *ngIf="isMobileView">
+          <ul class="p-0 text-center list-unstyled">
+            <li class="my-5">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/7.png"
+                alt="attach image"
+              />
+              <p>
+                TRAINING YOUTH FOR <br />
+                HIGHER SKILLS
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="p4" class="section section9 scroll py-lg-5 py-md-5 py-5">
+    <div class="container-fluid h-100">
+      <div class="row">
+        <!-- <div class="col-md-12 text-center">
+    <h2>Event, Media & PR Agency</h2>
+  </div> -->
+        <div class="col-md-12 text-center my-lg-5">
+          <!-- <img loading="eager"
+            
+            src="assets/UIComponents/images/partnerBg4.svg"
+            alt="attach image"
+            width="100%"
+            height="100%"
+          /> -->
+          <img loading="eager"
+            src="assets/UIComponents/images/index/global justice summit.png"
+            alt="attach image"
+            class="col-md-2 col-7"
+          />
+        </div>
+        <div class="col-md-12 text-center">
+          <h3>EXTENSIVE PR</h3>
+          <img loading="lazy" src="assets/UIComponents/images/partners/apco.png" alt="acpo" class="col-md-2 col-5 mb-4">
+          <p>
+            BY ONE OF THE WORLD’S TOP
+            PR AGENCIES
+          </p>
+        </div>
+
+        <!-- <div class="col-md-12">
+    <h3 class="text-center">WORLD’S LARGEST PR AGENCY</h3>
+  </div> -->
+      </div>
+    </div>
+  </section>
+  <section id="p5" class="section section9 p-lg-5 scroll">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center p-lg-5">
+          <h2>SERVICE PARTNERS</h2>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-2">
+          <div class="card">
+            <div class="card-header">Hotels Nearby</div>
+            <div class="card-body p-0">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/sp1.png"
+                alt="attach image"
+                width="100%"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-2">
+          <div class="card">
+            <div class="card-header">Taxi Rentals</div>
+            <div class="card-body p-0">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/sp2.png"
+                alt="attach image"
+                width="100%"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-2">
+          <div class="card">
+            <div class="card-header">Visa Assistance</div>
+            <div class="card-body p-0">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/sp3.png"
+                alt="attach image"
+                width="100%"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-2">
+          <div class="card">
+            <div class="card-header">Concierge Services</div>
+            <div class="card-body p-0">
+              <img loading="eager"
+                
+                src="assets/UIComponents/images/partners/sp4.png"
+                alt="attach image"
+                width="100%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

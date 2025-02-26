@@ -1,0 +1,43 @@
+
+<div *ngIf="isPaymentStatus == 'complete'" class="col-md-7 text-center">
+  <img loading="eager" src="assets/UIComponents/images/paymentmode/payment-success.svg" width="100%" alt="attach image" class="img-fluid">
+
+  <button class="btn text-center btn-success my-3 cursor-pointer" (click)="redirectToHome()">Go to Home Page</button>
+<!-- <div class="card">
+  <div class="background-pattern"></div>
+  <div class="checkmark">✔</div>
+  <h1>Yeah! </h1>
+  <h2><span class="emoji">🎉</span> Payment Successful</h2>
+  <p>
+    <span class="globe-icon">🌍</span>
+    Thank You for Joining the Global Justice, Love & Peace Summit
+  </p>
+</div>
+<button class="done-button">Done</button> -->
+</div>
+<div *ngIf="isPaymentStatus == 'failed'" class="col-md-7">
+  <img loading="eager" src="assets/UIComponents/images/paymentmode/payment-failed.svg" width="100%" alt="attach image" class="img-fluid">
+
+
+
+</div>
+
+
+<!-- <div class="payment-success-container">
+    <h1>Payment Successful</h1>
+    <img loading="eager" *ngIf="isPaymentStatus == 'success'" src="assets/UIComponents/images/paymentmode/success-icon.png " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
+    <img loading="eager" *ngIf="isPaymentStatus == 'failed'" src="assets/UIComponents/images/paymentmode/red-cross.png " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
+    <img loading="eager" *ngIf="isPaymentStatus == 'pending'" src="assets/UIComponents/images/paymentmode/warning_orange.svg " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
+    <p *ngIf="isPaymentStatus == 'success'">Your payment for delegate registration has been successfully processed.</p>
+</div> -->
+
+<!-- <button  type="button"
+class="btn btn-success text-white text-center" (click)="redirectToDashboard()">Go to home</button> -->
+
+<!-- <div *ngIf="isPaymentSuccessful">
+    <p>Payment successful! Thank you for your purchase. You have been registered.</p>
+  </div>
+
+  <div *ngIf="isPaymentError">
+    <p>Error: {{ errorMessage }}</p>
+  </div> -->

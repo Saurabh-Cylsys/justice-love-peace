@@ -1,0 +1,56 @@
+.custom-list{
+  border-left: none;
+}
+
+.border-bottom{
+  border-color: #005B94 !important;
+  border-bottom-style: dotted !important;
+}
+.committeeRow p{
+  font-size: clamp(14px, 1.5vw, 20px) !important;
+  color: #005B94 !important;
+}
+
+.section4 h2{
+font-weight: 700;
+font-size: clamp(20px, 2vw, 27px);
+line-height: 34.78px;
+letter-spacing: 0%;
+text-align: center;
+color: #128940;
+border: 1px dotted #128940;
+border-radius: 10px;
+padding: 10px;
+width: clamp(300px, 50%, 500px);
+margin: 0 auto;
+}
+
+.section4 .card{
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCE7B0 100%);
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;
+border-top-width: 1px;
+border-right-width: 1px;
+border-left-width: 1px;
+
+}
+
+.section4 .card .card-header{
+  background-color: transparent;
+}
+
+.section4 .card .card-header p{
+  color: #128940;
+  font-weight: 700;
+  font-size: clamp(16px, 1.5vw, 20px);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.section4 .card .card-body ul{
+  list-style-type: disc;
+}
+.section4 .card .card-body ul li{
+  line-height: 1.7;
+}

@@ -1,0 +1,653 @@
+<!-- modal start -->
+<div
+  class="modal fade"
+  id="international_committee"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">
+            INTERNATIONAL RELATIONS COMMITTEE
+          </h1>
+          <a href="mailto:international@justice-love-peace.com"
+            >international&#64;justice-love-peace.com</a
+          >
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Country Name</th>
+                    <th>Peacekeeper Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of data">
+                    <td>{{ row.No }}</td>
+                    <td>{{ row.Country_Name }}</td>
+                    <td>{{ row.Peacekeeper_Name }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal end -->
+
+<main class="index delegate-form" style="position: relative; z-index: 1">
+  <form [formGroup]="contactUsForm" (ngSubmit)="submitData()">
+    <section class="section7 p-lg-5 position-relative">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row mb-lg-0 mb-3">
+              <div class="col-md-12 text-center my-3">
+                <a
+                  class="mx-2"
+                  href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit
+                  "
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/fb.svg"
+                    alt="attach image"
+                /></a>
+                <a
+                  class="mx-2"
+                  href="https://www.instagram.com/globaljusticelovepeacesummit/
+                  "
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/insta.svg"
+                    alt="attach image"
+                /></a>
+                <a
+                  class="mx-2"
+                  href="https://www.youtube.com/@GlobalJusticeLovePeaceSummit/videos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/youtube.svg"
+                    alt="attach image"
+                /></a>
+                <a
+                  class="mx-2"
+                  href="https://wa.me/919324064978"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/whatsApp.svg"
+                    alt="attach image"
+                /></a>
+                <a
+                  class="mx-2"
+                  href="https://www.linkedin.com/company/global-justice-love-peace-summit-2025/posts/?feedView=all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/linkedIn.svg"
+                    alt="attach image"
+                /></a>
+              </div>
+
+              <div class="col-md-12">
+                <div class="contact-info">
+                  <div class="contactBg p-3 h-100">
+                    <!-- <h2 class="text-white">Contact Information</h2> -->
+                    <ul class="p-0 mb-lg-0 mb-5">
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3 class="helpline mb-3">
+                              Helpline :
+                              <a
+                                href="tel:+971543257125"
+                                style="text-decoration: none; color: #fff"
+                                >+971 54 325 7125
+                              </a>
+                            </h3>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3>Secretariat: (All Queries)</h3>
+                            <p>
+                              <img
+                                loading="eager"
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+
+                              Nikunj Chirde
+                              <a
+                                href="tel:+919324064978"
+                                style="text-decoration: none; color: #fff"
+                                >+91 9324064978 </a
+                              >(INDIA)
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3>Delegates: (Peacekeepers)</h3>
+                            <p>
+                              <img
+                                loading="eager"
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+                              Taiyzun S <a
+                                href="tel:+919820000882"
+                                style="text-decoration: none; color: #fff"
+                                >+91 9820000882
+                              </a>
+                              (INDIA)
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3>Speakers: (Peace Ambassadors )</h3>
+                            <p>
+                              <img
+                                loading="eager"
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+                              Rajesh Abraham
+                              <a
+                                href="tel:+6597781279"
+                                style="text-decoration: none; color: #fff"
+                                >+ 65 97781279</a
+                              >
+                              (SINGAPORE)
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3>
+                              Individual, Organisation or Corporate Partners:
+                              (Peace Patrons)
+                            </h3>
+                            <p>
+                              <img
+                                loading="eager"
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+                              Farhat
+                              <a
+                                href="tel:+919820093869"
+                                style="text-decoration: none; color: #fff"
+                                >+91 9820093869</a
+                              >
+                              (INDIA)
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3>Travel, Hotel, Car, Concierge:</h3>
+                            <p>
+                              <img
+                                loading="eager"
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+                              Prajeep MC
+                              <a
+                                href="tel:+971585576540"
+                                style="text-decoration: none; color: #fff"
+                                >+ 971 585576540</a
+                              >
+                              (UAE)
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3>International Relations:</h3>
+                            <p>
+                              <img
+                                loading="eager"
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+                              Jason Temasfieldt
+                              <a
+                                href="tel:+36703591816"
+                                style="text-decoration: none; color: #fff"
+                                >+36 703591816</a
+                              >
+                              (HUNGARY)
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
+                            <h3>Emergency Number:</h3>
+                            <p>
+                              <img
+                                loading="eager"
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+                              Bindu Nair
+                              <a
+                                href="tel:+971508722803"
+                                style="text-decoration: none; color: #fff"
+                                >+971 508722803</a
+                              >
+                              (UAE)
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-6 mt-4">
+                          <button
+                            class="btn btn-success w-100 text-center"
+                            data-bs-toggle="modal"
+                            data-bs-target="#international_committee"
+                          >
+                            International Committee
+                          </button>
+                        </div>
+                        <div class="col-md-6 text-end mt-4">
+                          <a
+                            class="btn btn-success  w-100 text-center"
+                            [routerLink]="['working-committee']"
+                          >
+                            Working Committees
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 px-lg-5 contactUs">
+            <div class="row g-2">
+              <div class="col-md-12 mb-4">
+                <h2>Contact Us</h2>
+                <p class="text-center" *ngIf="!isMobileView">
+                  We are here to help and answer any questions that you might
+                  have.<br />
+                  Feel free to share your queries here. Look forward to hearing
+                  from you.
+                </p>
+                <p class="text-center" *ngIf="isMobileView">
+                  We are here to help and answer any questions that you might
+                  have. Feel free to share your queries here. Look forward to
+                  hearing from you.
+                </p>
+              </div>
+              <div class="mb-4 col-md-4">
+                <div class="">
+                  <!-- <select
+                    name="nametitle[1]"
+                    id="nametitle1"
+                    class="form-control"
+                    required
+                    data-error="Please select option"
+                    formControlName="title"
+                  >
+                    <option selected value="" disabled>
+                      --Please select--
+                    </option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Dr.">Dr.</option>
+                    <option value="Prof.">Prof.</option>
+                    <option value="Capt.">Capt.</option>
+                    <option value="Hon">Hon</option>
+                    <option value="Lord">Lord</option>
+                  </select>
+                  <label for="title">Title</label> -->
+                  <label class="col-md-12 no-padding px-0" for="nametitle1"
+                    >Title
+                    <!-- <span
+                      class="form-label-span"
+                      style="color: #ff0000"
+                    >
+                      *</span
+                    > -->
+                  </label>
+                  <input
+                    type="text"
+                    name="fname[1]"
+                    id="fname1"
+                    placeholder="Enter title"
+                    class="form-control p-0"
+                    (paste)="onPaste($event)"
+                    (keypress)="ValidateAlpha($event)"
+                    [maxlength]="10"
+                    data-error="Please select option"
+                    formControlName="title"
+                    (input)="onInput($event, 'title')"
+                  />
+
+                  <!-- <div
+                    *ngIf="
+                      getcontrol('title')?.errors &&
+                      getcontrol('title')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('title')?.errors?.['required']"
+                      >Title is required</small
+                    >
+                  </div> -->
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="mb-4 col-md-4">
+                <div class="">
+                  <label for="FirstName" class="p-0">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control p-0"
+                    id="FirstName"
+                    formControlName="firstName"
+                    name="firstName"
+                    placeholder="Enter first name"
+                    required
+                    value=""
+                    (input)="onInput($event, 'firstName')"
+                  />
+
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      getcontrol('firstName')?.errors &&
+                      getcontrol('firstName')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('firstName')?.errors?.['required']"
+                      >First name is required</small
+                    >
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="mb-4 col-md-4">
+                <div class="">
+                  <label for="LastName" class="px-0">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control p-0"
+                    formControlName="lastName"
+                    name="lastName"
+                    id="LastName"
+                    required
+                    placeholder="Enter last name"
+                    value=""
+                    (input)="onInput($event, 'lastName')"
+                  />
+
+                  <div
+                    *ngIf="
+                      getcontrol('lastName')?.errors &&
+                      getcontrol('lastName')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('lastName')?.errors?.['required']"
+                      >Last name is required</small
+                    >
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+
+              <div class="mb-4 col-md-6">
+                <label for="mobileNomber" class="px-0">Phone Number</label>
+                <div class="form-floating">
+                  <ngx-intl-tel-input
+                    type="tel"
+                    class="custom-width-container"
+                    [preferredCountries]="[
+                      CountryISO.India,
+                      CountryISO.UnitedStates,
+                      CountryISO.UnitedKingdom
+                    ]"
+                    [enableAutoCountrySelect]="false"
+                    [enablePlaceholder]="false"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[
+                      SearchCountryField.Iso2,
+                      SearchCountryField.Name
+                    ]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.India"
+                    [maxLength]="12"
+                    [phoneValidation]="true"
+                    [separateDialCode]="true"
+                    [(ngModel)]="mobile_number"
+                    formControlName="phoneNumber"
+                    name="phoneNumber"
+                    (keydown)="onMobileKeyDown($event, mobile_number)"
+                    (keypress)="keyPressNumbers($event, mobile_number)"
+                  ></ngx-intl-tel-input>
+                  <small class="text-danger" *ngIf="mobile_numberVal">
+                    (Country code + Mobile number) will be 7 to 15 digits based
+                    on country.
+                  </small>
+                  <!-- <input
+                    type="tel"
+                    class="form-control"
+                    formControlName="phoneNumber"
+                    name="mobile_number[1]"
+                    id="mobileNomber"
+                    (keypress)="keyPressNumbers($event)"
+                    required
+                    placeholder=""
+                    pattern=".{8,12}"
+                    minlength="10"
+                    maxlength="15"
+                    value=""
+                  /> -->
+
+                  <!-- <div class="help-block with-errors"></div> -->
+                  <div
+                    *ngIf="
+                      getcontrol('phoneNumber')?.errors &&
+                      getcontrol('phoneNumber')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('phoneNumber')?.errors?.['required']"
+                      >Mobile number is required</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        !mobile_numberVal &&
+                        getcontrol('phoneNumber')?.invalid &&
+                        getcontrol('phoneNumber')?.touched
+                      "
+                    >
+                      {{ getPhoneErrorMessage() }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="">
+                  <label for="email" class="px-0">Email</label>
+                  <input
+                    type="email"
+                    class="form-control p-0"
+                    id="email"
+                    placeholder="Enter email"
+                    pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                    formControlName="email"
+                    required
+                    (keydown)="onKeyDown($event, mobile_number)"
+                    name="email"
+                    value=""
+                    (input)="onInput($event, 'email')"
+                  />
+
+                  <div class="help-block with-errors"></div>
+                  <div
+                    *ngIf="
+                      getcontrol('email')?.errors && getcontrol('email')?.dirty
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('email')?.errors?.['required'] && getcontrol('email')?.touched"
+                      >Email is required.</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('email')?.errors?.['email']"
+                      >Please enter valid email address.</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('email')?.errors?.['pattern']"
+                    >
+                      Please match the required email format.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="mb-4 col-md-3">
+                <div class="form-floating">
+                  <select
+                    formControlName="countryCode"
+                    class="form-control"
+                    required
+                    data-error="Please enter code"
+                  >
+                    <option selected value="" disabled>
+                      --Please select--
+                    </option>
+                    <option
+                      *ngFor="let code of code; let j = index"
+                      [value]="code.country_mobile_code"
+                    >
+                      {{ code.country_mobile_code }}
+                    </option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="mb-4 col-md-12">
+                <div class="form-group">
+                  <label for="question">Your Query</label>
+                  <textarea
+                    type="text"
+                    class="form-control position-relative"
+                    placeholder="Write your query"
+                    value=""
+                    formControlName="yourQuestion"
+                    name="yourQuestion"
+                    id="question"
+                    maxlength="500"
+                    style="
+                      border: 1px dotted;
+                      border-radius: 10px !important;
+                      min-height: 20vh;
+                      z-index: 1;
+                    "
+                  >
+                  </textarea>
+                </div>
+              </div>
+              <div class="mb-4 col-md-12 text-center">
+                <button
+                  type="submit"
+                  class="btn btn-success p-2 w-50 text-center position-relative"
+                  style="z-index: 1"
+                  [disabled]="this.contactUsForm.invalid"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        loading="eager"
+        src="assets/UIComponents/images/watermark.png"
+        alt="attach image"
+        class="position-absolute"
+        style="right: 0; bottom: 0; width: 10rem; z-index: -1"
+        *ngIf="isMobileView"
+      />
+      <img
+        loading="eager"
+        src="assets/UIComponents/images/watermark.png"
+        alt="attach image"
+        class="position-absolute"
+        style="right: 0; bottom: 0; width: 20rem; z-index: -1"
+        *ngIf="!isMobileView"
+      />
+    </section>
+  </form>
+</main>
