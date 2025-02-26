@@ -3,19 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { WebHeaderComponent } from './components/web-header/web-header.component';
 import { WebFooterComponent } from './components/web-footer/web-footer.component';
 
-
 const routes: Routes = [
-
   {
-    path: 'webheader', 
-    component: WebFooterComponent,
-
-    children:[
-      {path:'webheader',component:WebHeaderComponent},
-      // {path:'register',component:},
+    path: 'webheader',
+    component: WebHeaderComponent,
+    children: [
       { path: 'footer', component: WebFooterComponent },
-      // {path:'reset-password',component:ResetPasswordComponent},
-      {path:'', redirectTo:'/webheader', pathMatch:'full'}
+      { path: '', redirectTo: 'footer', pathMatch: 'full' }
     ]
   }
 ];

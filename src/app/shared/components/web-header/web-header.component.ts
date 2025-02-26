@@ -2,8 +2,10 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } fro
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { SharedService } from '../../../../app/shared/services/shared.service';
-import { Location } from '@angular/common';
+import { Location, DOCUMENT } from '@angular/common';
 import { environment } from '../../../../environments/environment';
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-web-header',
@@ -69,15 +71,19 @@ export class WebHeaderComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollY = window.scrollY;
-    this.isScrolled = scrollY > 50; // Change logo size after 50px of scroll
+    if (isPlatformBrowser(this.platformId)) {
+      const scrollY = window.scrollY;
+      this.isScrolled = scrollY > 50; // Change logo size after 50px of scroll
+    }
   }
   constructor(
     public _router: Router,
     private _activeRouter: ActivatedRoute,
     private SharedService: SharedService,
     private location: Location,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document
   ) {}
   ngOnInit(): void {
     this.checkWindowSize();
@@ -276,12 +282,14 @@ export class WebHeaderComponent implements OnInit {
   }
 
   checkWindowSize(): void {
-    if (window.innerWidth <= 900) {
-      this.SharedService.isMobileView.next(true);
-      this.isMobileView = true;
-    } else {
-      this.SharedService.isMobileView.next(false);
-      this.isMobileView = false;
+    if (isPlatformBrowser(this.platformId)) {
+      if (window.innerWidth <= 900) {
+        this.SharedService.isMobileView.next(true);
+        this.isMobileView = true;
+      } else {
+        this.SharedService.isMobileView.next(false);
+        this.isMobileView = false;
+      }
     }
   }
 

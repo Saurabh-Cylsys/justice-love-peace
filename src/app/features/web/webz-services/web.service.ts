@@ -5,6 +5,8 @@ import { Observable, of, Subject } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -17,19 +19,24 @@ export class WebService {
 
   constructor(
     private _apiHttpService: ApiHttpService,
-    private _apiEndpointsService: ApiEndpointsService,private http: HttpClient
+    private _apiEndpointsService: ApiEndpointsService,
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   getSpeakers(): Observable<any[]> {
-    const cachedData = localStorage.getItem(this.SPEAKERS_CACHE_KEY);
+    let cachedData: string | null = null;
+    if (isPlatformBrowser(this.platformId)) {
+      cachedData = localStorage.getItem(this.SPEAKERS_CACHE_KEY);
 
-    if (cachedData) {
-      const { timestamp, data } = JSON.parse(cachedData);
+      if (cachedData) {
+        const { timestamp, data } = JSON.parse(cachedData);
 
-      // 1. Check if cache is still valid
-      if (Date.now() - timestamp < this.CACHE_EXPIRATION) {
-        console.log('Serving from cache');
-        return of(data); // Return cached data
+        // 1. Check if cache is still valid
+        if (Date.now() - timestamp < this.CACHE_EXPIRATION) {
+          console.log('Serving from cache');
+          return of(data); // Return cached data
+        }
       }
     }
 
