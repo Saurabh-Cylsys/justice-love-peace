@@ -1,0 +1,705 @@
+<div class="index main-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 p-0">
+        <section class="mainSec">
+          <div class="container-fluid section1 position-relative">
+            <div class="row justify-content-between bgColor h-100">
+              <!-- <div
+                class="col-lg-2 col-md-2 col-2 position-relative"
+                *ngIf="!isMobileView"
+              >
+                <img
+                  loading="eager"
+                  src="assets/UIComponents/images/logo.gif"
+                  alt="attach images"
+                  class="logo"
+                  id="logo"
+                  width="100%"
+                />
+              </div> -->
+              <div
+                class="col-lg-4 col-md-6 col-12 text-center px-lg-5 mt-lg-0 mt-lg-4 ms-auto"
+              >
+                <div class="card cardMain">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12" *ngIf="!isMobileView">
+                        <h5>12th -13th April, 2025</h5>
+                        <p>DEC at Dubai Expo City</p>
+                      </div>
+                      <div class="col-12" *ngIf="isMobileView">
+                        <h5>12th - 13th April 2025</h5>
+                        <p class="text-dark"><b>DEC at Dubai Expo City</b></p>
+                      </div>
+                      <div class="col-4">
+                        <div class="card">
+                          <div class="card-body p-1">
+                            <h6>
+                              <span id="days">{{ days }}</span> <br />
+                              Days
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="card">
+                          <div class="card-body p-1">
+                            <h6>
+                              <span id="hours">{{ hours }}</span> <br />
+                              Hours
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="card">
+                          <div class="card-body p-1">
+                            <h6>
+                              <span id="minutes">{{ minutes }}</span> <br />
+                              Minutes
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 tableBox">
+                <div class="row">
+                  <div class="col-lg-9 col-md-9">
+                    <table class="table m-0">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h6>2800</h6>
+                            <p>Delegates <span>(PeaceKeepers)</span></p>
+                          </td>
+                          <td class="">
+                            <h6>28</h6>
+                            <p>Peace Menus (Per meal)</p>
+                          </td>
+                          <td>
+                            <h6>28</h6>
+                            <p>
+                              Awards
+                              <span
+                                >(Global Justice, Love & Peace Champions)</span
+                              >
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <h6>2.8%</h6>
+                            <p>Revenue to Dubai Cares</p>
+                          </td>
+                          <td>
+                            <h6>28</h6>
+                            <p>Networking Tables</p>
+                          </td>
+                          <td>
+                            <h6>28%</h6>
+                            <p>Profits to the I-am-PeaceKeeper Movement</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section6 scroll">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-md-12 text-center">
+                <h1 class="col-xl-6 col-md-12 mx-auto">
+                  Chairman, Global Justice, Love & Peace Summit Dr. Huzaifa
+                  khorakiwala
+                </h1>
+              </div>
+              <div class="col-xl-8 text-center mt-5">
+                <!-- <iframe
+                  class="yT col-xl-12 col-md-12 col-12"
+                  src="https://www.youtube.com/embed/TRgcLU_S-9o"
+                  title="ET Interview"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  style="border-radius: 10px"
+                ></iframe> -->
+                <img src="assets/UIComponents/images/chairman.webp" alt="et_now" class="col-md-5">
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section6 p-lg-5 speakers indexSec2">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="" *ngIf="!isMobileView">
+                  SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
+                  JUSTICE, LOVE & <br />
+                  PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL 2025
+                </h2>
+                <h2 class="" *ngIf="isMobileView">
+                  SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
+                  JUSTICE, LOVE & PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL
+                  2025
+                </h2>
+                <h6 class="editYear">UPDATED AS OF JANUARY 28th, 2025</h6>
+              </div>
+              <div class="col-md-12">
+                <div class="table-responsive confirmation px-md-0">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="text-dark">Sl. No.</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Credentials</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of speakersList; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ row.Name }}</td>
+                        <td>{{ row.Country }}</td>
+                        <td>
+                          <span>{{ row.Credentials }}</span>
+                        </td>
+                      </tr>
+
+                      <!-- <tr *ngFor="let row of data">
+                        <td>{{ row.S_No }}</td>
+                        <td>{{ row.Name }}</td>
+                        <td>{{ row.Country }}</td>
+                        <td>{{ row.Credentials }}</td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-12">
+                <h2 class="">Will Join Online</h2>
+              </div>
+              <div class="col-md-12">
+                <div class="table-responsive confirmation px-md-0">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="text-dark">Sl. No.</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Credentials</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of joinOnline">
+                        <td>{{ row.S_No }}</td>
+                        <td>{{ row.Name }}</td>
+                        <td>{{ row.Country }}</td>
+                        <td>
+                          <span>{{ row.Credentials }}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-12" *ngIf="!isMobileView">
+                <h2 class="">Profiles of Confirmed Speakers</h2>
+
+                <div class="row d-lg-flex d-md-none">
+                  <div class="col-lg-3 col-md">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li><span>A.</span> 11 Nobel Peace Laureates</li>
+                      <li><span>B.</span> 10 Royalty</li>
+                      <li><span>C.</span> 3 Heads of State</li>
+                      <li><span>D.</span> 9 Religious Leaders</li>
+                      <li><span>E.</span> 5 Industrialist (Business)</li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-md">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li><span>F.</span> 6 Sports Champions</li>
+                      <li><span>G.</span> 1 Artist</li>
+                      <li><span>H.</span> 3 Chief Justices</li>
+                      <li><span>I.</span> 2 Attorney Generals</li>
+                      <li><span>J.</span> 2 Judge</li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-md">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li><span>K.</span> 12 Film Stars, Glamour</li>
+                      <li><span>L.</span> 3 Politicians</li>
+                      <li><span>M.</span> 4 Beauty Queen</li>
+                      <li><span>N.</span> 5 Social Activist</li>
+                      <li><span>O.</span> 2 Ex-Head of State</li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-md">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li><span>P.</span> 2 Academician</li>
+                      <li><span>Q.</span> 12 Others</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row d-lg-none d-md-flex">
+                  <div class="col-md-6">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li><span>A.</span> 11 Nobel Peace Laureates</li>
+                      <li><span>B.</span> 10 Royalty</li>
+                      <li><span>C.</span> 3 Heads of State</li>
+                      <li><span>D.</span> 9 Religious Leaders</li>
+                      <li><span>E.</span> 5 Industrialist (Business)</li>
+                      <li><span>F.</span> 6 Sports Champions</li>
+                      <li><span>G.</span> 1 Artist</li>
+                      <li><span>H.</span> 3 Chief Justices</li>
+                      <li><span>I.</span> 2 Attorney Generals</li>
+                      <li><span>J.</span> 2 Judge</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li><span>K.</span> 12 Film Stars, Glamour</li>
+                      <li><span>L.</span> 3 Politicians</li>
+                      <li><span>M.</span> 4 Beauty Queen</li>
+                      <li><span>N.</span> 5 Social Activist</li>
+                      <li><span>O.</span> 2 Ex-Head of State</li>
+                      <li><span>P.</span> 2 Academician</li>
+                      <li><span>Q.</span> 12 Others</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12" *ngIf="isMobileView">
+                <h2 class="">Profiles of Confirmed Speakers</h2>
+
+                <ul class="my-lg-3">
+                  <li><span>A.</span> 11 Nobel Peace Laureates</li>
+                  <li><span>B.</span> 10 Royalty</li>
+                  <li><span>C.</span> 3 Heads of State</li>
+                  <li><span>D.</span> 9 Religious Leaders</li>
+                  <li><span>E.</span> 5 Industrialist (Business)</li>
+                </ul>
+                <ul class="my-lg-3">
+                  <li><span>F.</span> 6 Sports Champions</li>
+                  <li><span>G.</span> 1 Artist</li>
+                  <li><span>H.</span> 3 Chief Justices</li>
+                  <li><span>I.</span> 2 Attorney Generals</li>
+                  <li><span>J.</span> 2 Judge</li>
+                </ul>
+                <ul class="my-lg-3">
+                  <li><span>K.</span> 12 Film Stars, Glamour</li>
+                  <li><span>L.</span> 3 Politicians</li>
+                  <li><span>M.</span> 4 Beauty Queen</li>
+                  <li><span>N.</span> 5 Social Activist</li>
+                  <li><span>O.</span> 2 Ex-Head of State</li>
+                </ul>
+                <ul class="my-lg-3">
+                  <li><span>P.</span> 2 Academician</li>
+                  <li><span>Q.</span> 12 Others</li>
+                </ul>
+                <!-- <p class="my-md-0 m-2">
+                (His Excellency Jose Manuel Ramos-Horta falls in both the categories
+                : Nobel Peace Laureate as well as Head of State)
+              </p> -->
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="container mt-3">
+            <div class="row">
+              <div class="col-12 organiserUL">
+                <ul class="list-unstyled">
+                  <li>
+                    &#64; the organisers only consider a FINAL CONFIRMATION, if
+                    it is a WRITTEN CONFIRMATION
+                  </li>
+                </ul>
+                <ul class="list-unstyled">
+                  <li>
+                    &#64; the conﬁrmations listed above have been put according
+                    to alphabetical order of the name
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section6 p-lg-5 speakers indexSec2">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="speakers-container">
+                  <h2>SPEAKERS (PEACE AMBASSADORS)</h2>
+                  <swiper
+                    [effect]="'cards'"
+                    [grabCursor]="true"
+                    [navigation]="true"
+                    [autoplay]="{ delay: 3000, disableOnInteraction: false }"
+                    class="mySwiper d-lg-block d-md-none d-none"
+                  >
+                    <ng-template swiperSlide *ngFor="let slide of slides">
+                      <div class="mycard">
+                        <img
+                          [src]="slide.path"
+                          class="speaker-image"
+                          loading="lazy"
+                        />
+                      </div>
+                    </ng-template>
+                  </swiper>
+
+                  <swiper
+                    [grabCursor]="true"
+                    [navigation]="true"
+                    [autoplay]="{ delay: 3000, disableOnInteraction: false }"
+                    class="mySwiper d-lg-none d-md-block d-block"
+                  >
+                    <ng-template swiperSlide *ngFor="let slide of slides">
+                      <div class="mycard">
+                        <img [src]="slide.path" class="speaker-image" />
+                      </div>
+                    </ng-template>
+                  </swiper>
+                  <button
+                    class="see-all-button btn btn-success mb-4"
+                    data-bs-toggle="modal"
+                    data-bs-target="#seeAllSpeakers"
+                  >
+                    See all Speakers
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section6 p-lg-5 indexSec2">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="speakers-container">
+                  <h2>OUR Peace Collaborators</h2>
+                </div>
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc1.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc2.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc3.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc4.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc5.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc6.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc7.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc8.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc9.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc10.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc11.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc12.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc13.webp" alt="pc" width="100%">
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="section7 scroll p-lg-5 py-4 h-auto position-relative"
+          id="event1"
+        >
+          <div
+            class="container-fluid h-100"
+            style="position: relative; z-index: 1"
+          >
+            <div class="row h-100">
+              <div class="col-12" *ngIf="!isMobileView">
+                <div
+                  class="d-lg-flex align-items-center justify-content-between"
+                >
+                  <div class="date">
+                    <h3>12th -13th <span>April, 2025</span></h3>
+                    <!-- <h5>10:00 AM - 11:00 PM</h5> -->
+                  </div>
+                  <h4 class="location">
+                    <a
+                      href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
+                      style="text-decoration: none"
+                      target="_blank"
+                      >DEC at Dubai Expo City</a
+                    >
+                  </h4>
+                </div>
+                <div
+                  class="progress mb-4 mt-0"
+                  role="progressbar"
+                  aria-label="Basic example"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div class="progress-bar" style="width: 25%"></div>
+                </div>
+              </div>
+              <div
+                class="col-lg-6 col-md-12 col-12 text-lg-start text-center text-md-center"
+              >
+                <!-- <label for="" class="mb-3">SCHEDULE</label> -->
+                <h1
+                  class="mb-3 col-lg-6 text-lg-start text-center text-md-center"
+                >
+                  SCHEDULE AND AGENDA
+                </h1>
+                <p
+                  class="mb-3 col-lg-6 text-lg-start text-center text-md-center"
+                >
+                  A representation of the event planning of Global Summit
+                </p>
+
+                <button (click)="downloadPDF()" class="btn btn-success p-md-3">
+                  DOWNLOAD SCHEDULE
+                </button>
+              </div>
+              <div class="col-12" *ngIf="isMobileView">
+                <div
+                  class="d-lg-flex d-md-flex align-items-center justify-content-between"
+                >
+                  <div class="date">
+                    <h3>12th -13th <span>April, 2025</span></h3>
+                    <!-- <h5>10:00 AM - 11:00 PM</h5> -->
+                  </div>
+                  <h4 class="location">
+                    <a
+                      href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
+                      style="text-decoration: none"
+                      target="_blank"
+                      >DEC at Dubai Expo City</a
+                    >
+                  </h4>
+                </div>
+                <div
+                  class="progress mb-4 mt-0"
+                  role="progressbar"
+                  aria-label="Basic example"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div class="progress-bar" style="width: 25%"></div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="row">
+                  <div class="col-12">
+                    <h4 class="event_day">Day 1 - 12th April 2025</h4>
+                    <div class="timeline-content">
+                      <ul class="timeline">
+                        <li
+                          class="event"
+                          [attr.data-date]="event.time"
+                          [attr.data-count]="i + 1"
+                          *ngFor="let event of events_day1; let i = index"
+                        >
+                          <h3
+                            class="fw-bold"
+                            [innerHTML]="event.title | customePipe"
+                          ></h3>
+                        </li>
+                        <!-- <li class="event" data-date="8:00 AM-10:00 AM">
+                          Registration
+                        </li>
+                        <li class="event" data-date="10:00 AM-10:30 AM">
+                          Opening Session
+                        </li>
+                        <li class="event" data-date="10:00 AM-10:30 AM">
+                          Opening Session
+                        </li> -->
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="collapse" id="collapseExample">
+                      <h4 class="event_day mt-3">Day 2 - 13th April 2025</h4>
+                      <div class="timeline-content">
+                        <ul class="timeline">
+                          <!-- <li
+                            class="event"
+                            [attr.data-date]="event.time"
+                            [attr.data-count]="i + 1"
+                            *ngFor="
+                              let event of events_day2 ;
+                              let i = index
+                            "
+                          >
+                            <h3 class="fw-bold">{{ event.title }}</h3>
+                          </li> -->
+                          <li
+                            class="event"
+                            [attr.data-date]="event.time"
+                            [attr.data-count]="i + 1"
+                            *ngFor="let event of events_day2; let i = index"
+                          >
+                            <h3
+                              class="fw-bold"
+                              [innerHTML]="event.title | customePipe"
+                            ></h3>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p class="d-inline-flex gap-1">
+                      <button
+                        class="btn bg-transparent"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample"
+                        aria-expanded="false"
+                        aria-controls="collapseExample"
+                        (click)="showMore(!isVisibleCount ? true : false)"
+                      >
+                        <b style="color: rgba(3, 192, 75, 0.623)">{{
+                          isVisibleCount == false ? "See More..." : "Less..."
+                        }}</b>
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img
+            loading="eager"
+            src="assets/UIComponents/images/watermark.png"
+            alt="attach images"
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            loading="eager"
+            src="assets/UIComponents/images/watermark.png"
+            alt="attach images"
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
+        </section>
+        <section class="section8 p-lg-5 venueBg">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 py-4 position-relative">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14468.262766930835!2d55.14619827991436!3d24.963879512209243!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f7338b24a8025%3A0x73aeb1ba0572c81b!2sDubai%20Exhibition%20Centre!5e0!3m2!1sen!2sin!4v1734696351405!5m2!1sen!2sin"
+                  width="100%"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+
+                <img
+                  loading="eager"
+                  src="assets/UIComponents/images/index/GHD.png"
+                  alt="Second Image"
+                  class="position-absolute second-image col-md-4"
+                />
+              </div>
+
+              <div class="col-md-5 col-12 py-4 text-center mb-lg-5">
+                <h2
+                  class="text-white"
+                  style="font-size: 22px; font-weight: 400; text-align: left"
+                >
+                  Click
+                  <a
+                    href="https://www.google.com/maps/dir//Dubai+Exhibition+Centre+-+Lehbab+Street+-+Dubai+-+United+Arab+Emirates/@24.962624,55.147418,1503m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3e5f7338b24a8025:0x73aeb1ba0572c81b!2m2!1d55.147418!2d24.9626236?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="
+                      text-decoration: none;
+                      color: white;
+                      font-weight: bold;
+                    "
+                    ><span style="text-decoration: underline">here</span></a
+                  >
+                  to find the route to reach the venue.
+                </h2>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal start here -->
+<!-- Button trigger modal -->
+<!-- <button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#nadir"
+>
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+
+<div
+  class="modal fade"
+  id="seeAllSpeakers"
+  tabindex="-1"
+  aria-labelledby="seeAllSpeakersLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 text-end">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="col-md-3 py-3" *ngFor="let slide of slides">
+            <div class="card">
+              <div class="card-body p-0">
+                <img [src]="slide.path" class="speaker-image" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

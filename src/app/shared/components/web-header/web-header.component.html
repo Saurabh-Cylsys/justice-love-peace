@@ -1,0 +1,743 @@
+<!-- offcanvas start -->
+<div
+  class="offcanvas offcanvas-start"
+  data-bs-scroll="true"
+  data-bs-backdrop="false"
+  tabindex="-1"
+  id="offcanvasScrolling"
+  aria-labelledby="offcanvasScrollingLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+      <!-- Offcanvas with body scrolling -->
+    </h5>
+    <button
+      type="button"
+      class="btn-close btn-close-white"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body mt-5">
+    <ul class="m-0">
+      <li>
+        <a
+          routerLink="['/home']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Home</a
+        >
+      </li>
+    </ul>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne"
+            aria-expanded="false"
+            aria-controls="flush-collapseOne"
+          >
+            <a
+              routerLink="['/the-summit']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+            >
+              The Summit</a
+            >
+          </button>
+        </h2>
+        <div
+          id="flush-collapseOne"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of summitLinks">
+                <!-- (click)="refreshPage('summit',link.fragment)" -->
+
+                <a
+                  routerLink="['/the-summit']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo"
+            aria-expanded="false"
+            aria-controls="flush-collapseTwo"
+          >
+            <a
+              routerLink="['/partners']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >Partners</a
+            >
+          </button>
+        </h2>
+        <div
+          id="flush-collapseTwo"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of partnersLinks">
+                <a
+                  routerLink="['/partners']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree"
+            aria-expanded="false"
+            aria-controls="flush-collapseThree"
+          >
+            <a
+              routerLink="['/awards']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >Awards</a
+            >
+          </button>
+        </h2>
+        <div
+          id="flush-collapseThree"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul class="awardLink">
+              <li *ngFor="let link of awardsLinks">
+                <a
+                  routerLink="['/awards']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+              <!-- <li>
+                <a
+                  routerLink="['/committee']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                >
+                  Committee
+                </a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseFour"
+            aria-expanded="false"
+            aria-controls="flush-collapseFour"
+          >
+            <a
+              routerLink="['/world-peacekeepers-movement']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >I-am-Peacekeeper Movement</a
+            >
+          </button>
+        </h2>
+        <div
+          id="flush-collapseFour"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of peacekeeperLinks">
+                <a
+                  routerLink="['/world-peacekeepers-movement']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseFive"
+            aria-expanded="false"
+            aria-controls="flush-collapseFive"
+          >
+            <a
+              routerLink="['/DownloadCenter']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >Download Center</a
+            >
+          </button>
+        </h2>
+        <div
+          id="flush-collapseFive"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of downloadLinks">
+                <a
+                  routerLink="['/DownloadCenter']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+              <!-- <li>
+                <a routerLink="['/download-applications']" data-bs-dismiss="offcanvas"
+                >
+                  Download Mobile Application
+                </a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li>
+        <a
+          routerLink="['/chairman-corner']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+        >
+          Chairman’s Corner</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="['/contact-us']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Contact Us</a
+        >
+      </li>
+      <li style="display: flex">
+        <a
+          type="btn"
+          class="btn btn-success"
+          routerLink="['/download-brochure']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Download Brochure</a
+        >
+        <a
+          type="btn"
+          class="btn btn-success ms-2"
+          (click)="navigateUrl()"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Register As a Delegate</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- offcanvas end -->
+
+<!-- header start -->
+<header
+  class="head"
+  [class.hide-logo]="_router.url === '/home' || _router.url === '/'"
+  *ngIf="!isMobileView"
+>
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <!-- <div class="col-md-1" *ngIf="!isHomePage">
+        <a
+          class="navbar-brand logo"
+          routerLink="['/home']"
+        >
+          <img loading="eager"
+            src="assets/UIComponents/images/logo.gif"
+            alt="attach image"
+            class="col-md-10"
+          />
+        </a>
+      </div> -->
+
+      <div
+        class="col-md-1 col-1 position-relative"
+        *ngIf="!isMobileView"
+        >
+        <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+      <a
+          class="navbar-brand logo"
+          routerLink="['/home']"
+          *ngIf="!isHomePage"
+        >
+        <img
+          loading="eager"
+          src="assets/UIComponents/images/logo.gif"
+          alt="attach images"
+          width="80%"
+
+        />
+        </a>
+        <img
+          loading="eager"
+          src="assets/UIComponents/images/logo.gif"
+          alt="attach images"
+          id="logo"
+          *ngIf="isHomePage"
+          />
+          <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+      </div>
+      <div class="col-md">
+        <ul
+          class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
+        >
+          <!-- <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="['/home']">Home</a>
+          </li> -->
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            routerLinkActiveOptions="{ exact: true }"
+          >
+            <a class="nav-link" routerLink="['/']">Home</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <div class="hover-dropdown">
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                routerLink="['/the-summit']"
+              >
+                The Summit
+              </button>
+              <div class="hover-dropdown-content">
+                <!-- <a
+                  *ngFor="let link of summitLinks"
+                  routerLink="['/the-summit']"
+                  [fragment]="link.fragment || undefined"
+                >
+                  {{ link.label }}
+                </a> -->
+                <a *ngFor="let link of summitLinks" (click)="navigateToSection(link.fragment)" routerLink="['/the-summit']" id="{{ link.fragment }}">
+                  {{ link.label }}
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <div class="hover-dropdown">
+              <button class="dropbtn" routerLink="['/partners']">
+                Partners
+              </button>
+              <div class="hover-dropdown-content">
+                <a
+                  *ngFor="let link of partnersLinks"
+                  routerLink="['/partners']"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="hover-dropdown" routerLinkActive="active">
+              <button
+                class="dropbtn"
+                routerLink="['/awards']"
+                routerLinkActive="active"
+              >
+                Awards
+              </button>
+              <div class="hover-dropdown-content awardLink">
+                <a
+                  *ngFor="let link of awardsLinks"
+                  routerLink="['/awards']"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+                <!-- <a
+                  routerLink="['/committee']"
+                >
+                  Committee
+                </a> -->
+              </div>
+            </div>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <div class="hover-dropdown">
+              <button
+                class="dropbtn"
+                routerLink="['/world-peacekeepers-movement']"
+              >
+                I-am-Peacekeeper Movement
+              </button>
+              <div class="hover-dropdown-content">
+                <a
+                  *ngFor="let link of peacekeeperLinks"
+                  routerLink="['/world-peacekeepers-movement']"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <div class="hover-dropdown">
+              <button class="dropbtn" routerLink="['/DownloadCenter']">
+                Download Center
+              </button>
+              <div class="hover-dropdown-content">
+                <button
+                  class="btn btn-success"
+                  routerLink="['/download-brochure']"
+                  style="
+                    font-size: 14px;
+                    margin: 0 0;
+                    text-align: center;
+                    width: 100%;
+                    border-radius: 0;
+                  "
+                >
+                  Download Brochure
+                </button>
+                <a
+                  *ngFor="let link of downloadLinks"
+                  routerLink="['/DownloadCenter']"
+                  (click)="navigateToSection(link.fragment)"
+                  id="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+                <!-- <a routerLink="['/download-applications']"
+                >
+                  Download Mobile Application
+                </a> -->
+              </div>
+            </div>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <div class="hover-dropdown">
+              <a
+                class="nav-link"
+                routerLinkActive="active"
+                routerLink="['/chairman-corner']"
+                >Chairman’s Corner</a
+              >
+            </div>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="['/contact-us']"
+              >Contact Us</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <form class="d-flex justify-content-end" role="search">
+          <!-- routerLink="['/delegate-registration']" -->
+          <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
+            >Register As a Delegate</a
+          >
+          <!-- <select
+            name=""
+            id=""
+            class="form-select w-auto bg-transparent text-white"
+          >
+            <option value="">Eng</option>
+          </select> -->
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            style="
+              border: 1px solid #fff;
+              border-radius: 5px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-flow: column wrap;
+            "
+            data-bs-toggle="tooltip"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Download Brochures"
+            routerLink="['/download-brochure']"
+            >Lang <br /><img
+              loading="eager"
+              src="assets/UIComponents/images/download.svg"
+              alt="attach image"
+              class="w-50"
+          /></a>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<header *ngIf="isMobileView">
+  <nav class="navbar navbar-expand-lg p-0">
+    <div class="container-fluid">
+      <a
+        class="navbar-brand logo"
+        routerLink="['/home']"
+        style="width: 100px"
+      >
+        <img
+          loading="eager"
+          src="assets/UIComponents/images/logo.gif"
+          alt="attach image"
+          class="col-lg-12 col-md-12 col-6"
+        />
+      </a>
+      <button
+        class="navbar-toggler border-white list"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling"
+        aria-controls="offcanvasScrolling"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="bi bi-list text-white"></i>
+      </button>
+      <!-- <div class="collapse navbar-collapse py-3" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="['/home']"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+
+            <div class="hover-dropdown">
+              <button class="dropbtn" routerLink="['/the-summit']">
+                The Summit
+              </button>
+              <div class="hover-dropdown-content">
+                <a routerLink="['/the-summit']">Highlights of summit</a>
+                <a routerLink="['/the-summit']" fragment="2">Chairman</a>
+
+                <a routerLink="['/the-summit']" fragment="4">Speakers</a>
+
+                <a routerLink="['/the-summit']" fragment="8">Delegates</a>
+                <a routerLink="['/the-summit']" fragment="9"
+                  >Goals of Summit</a
+                >
+                <a routerLink="['/the-summit']" fragment="10">Agenda</a>
+                <a routerLink="['/the-summit']" fragment="11"
+                  >Structured networking</a
+                >
+                <a routerLink="['/the-summit']" fragment="12">Venue</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="hover-dropdown">
+              <button class="dropbtn" routerLink="['/partners']">
+                Partners
+              </button>
+              <div class="hover-dropdown-content">
+                <a routerLinkActive="active" routerLink="['/partners']"
+                  >Corporate Partner</a
+                >
+
+                <a routerLink="['/partners']" fragment="3"
+                  >Causes we Support</a
+                >
+                <a routerLink="['/partners']" fragment="5"
+                  >Event, Media & PR Agency</a
+                >
+                <a routerLink="['/partners']" fragment="7"
+                  >Service Partners</a
+                >
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+
+            <div class="hover-dropdown">
+              <button
+                class="dropbtn"
+                routerLink="['/awards']"
+                routerLinkActive="active"
+              >
+                Awards
+              </button>
+              <div class="hover-dropdown-content">
+                <a routerLink="['/awards']">Award Categories</a>
+                <a routerLink="['/awards']" fragment="2"
+                  >Awards Research Committee</a
+                >
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="hover-dropdown">
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                routerLink="['/world-peacekeepers-movement']"
+              >
+                I-am-Peacekeeper Movement
+              </button>
+              <div class="hover-dropdown-content">
+                <a routerLink="['/world-peacekeepers-movement']"
+                  >The Movement</a
+                >
+                <a routerLink="['/world-peacekeepers-movement']" fragment="2"
+                  >I am Peacekeeper</a
+                >
+                <a routerLink="['/world-peacekeepers-movement']" fragment="3"
+                  >Sign Up Now</a
+                >
+                <a routerLink="['/world-peacekeepers-movement']" fragment="4"
+                  >7 Peace Values</a
+                >
+                <a routerLink="['/world-peacekeepers-movement']" fragment="5"
+                  >Song and Graphics</a
+                >
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="hover-dropdown">
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                routerLink="['/DownloadCenter']"
+              >
+                Download Center
+              </button>
+              <div class="hover-dropdown-content">
+                <button
+                  class="btn btn-success"
+                  style="
+                    font-size: 14px;
+                    margin: 10px 0;
+                    text-align: center;
+                    width: 100%;
+                  "
+                >
+                  Download Brochure
+                </button>
+                <a routerLink="['/DownloadCenter']">Mission & Pledge</a>
+                <a routerLink="['/DownloadCenter']" fragment="dc2"
+                  >The Summit of 28</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc3"
+                  >The Number 28</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc4"
+                  >7 Pillars of Justice</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc5"
+                  >7 causes of world conflict</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc6"
+                  >7 quotes of inner peace</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc7"
+                  >28 gems of world peace</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc8"
+                  >We are One</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc9"
+                  >Chairs for Delegates</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc10"
+                  >28 Poems</a
+                >
+                <a routerLink="['/DownloadCenter']" fragment="dc11"
+                  >28 Sayings</a
+                >
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="['/contact-us']"
+              >Contact Us</a
+            >
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <a
+            type="btn"
+            class="btn btn-success me-2"
+            (click)="navigateUrl()"
+            >Register As a Delegate</a
+          >
+          <select name="" id="" class="">
+            <option value="">Eng</option>
+          </select>
+        </form>
+      </div> -->
+    </div>
+  </nav>
+</header>
+
+<!-- header end -->
