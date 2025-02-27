@@ -20,8 +20,8 @@ export class DownloadCenterComponent {
     @Inject(DOCUMENT) private document: Document
   ) {}
   ngOnInit(): void {
-    // this.setMetaTags();
-    // this.setCanonicalUrl('https://www.justice-love-peace.com/DownloadCenter');
+    this.setMetaTags();
+    this.setCanonicalUrl('https://www.justice-love-peace.com/DownloadCenter');
     AOS.init({
       duration: 1200,
     });
@@ -55,67 +55,34 @@ export class DownloadCenterComponent {
   onResize(event: any): void {
     this.checkWindowSize();
   }
-  // setMetaTags(): void {
-    
-  //   this.titleService.setTitle(
-  //     'Download Center | Global Justice, Love, and Peace Summit 2025'
-  //   );
+  setMetaTags(): void {
+    this.titleService.setTitle('Download Center | Global Justice, Love, and Peace Summit 2025');
 
-    
-  //   this.metaService.addTags([
-  //     {
-  //       name: 'description',
-  //       content:
-  //         'Access essential resources, materials, and documents related to the Justice, Love, and Peace Movement. Download brochures, event details, and more to stay informed and engaged with our global initiatives.',
-  //     },
-  //     {
-  //       name: 'keywords',
-  //       content:
-  //         'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
-  //     },
-  //     {
-  //       property: 'og:title',
-  //       content:
-  //         'Download Center | Global Justice, Love, and Peace Summit 2025',
-  //     },
-  //     {
-  //       property: 'og:description',
-  //       content:
-  //         'Access essential resources, materials, and documents related to the Justice, Love, and Peace Movement. Download brochures, event details, and more to stay informed and engaged with our global initiatives.',
-  //     },
-  //     {
-  //       property: 'og:image',
-  //       content:
-  //         'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
-  //     },
-  //     {
-  //       property: 'og:url',
-  //       content: 'https://www.justice-love-peace.com/DownloadCenter',
-  //     },
-  //     {
-  //       property: 'og:type',
-  //       content: 'website',
-  //     },
-  //     {
-  //       property: 'og:site_name',
-  //       content: 'Global Justice, Love and Peace Summit | Dubai',
-  //     },
-  //   ]);
-  // }
+    this.metaService.addTags([
+      {
+        name: 'description',
+        content: "Access essential resources, materials, and documents related to the Justice, Love, and Peace Movement. Download brochures, event details, and more to stay informed and engaged with our global initiatives."
+      },
+      {
+        property: 'og:title',
+        content: 'Download Center | Global Justice, Love, and Peace Summit 2025'
+      },
+      {
+        property: 'og:description',
+        content: "Access essential resources, materials, and documents related to the Justice, Love, and Peace Movement. Download brochures, event details, and more to stay informed and engaged with our global initiatives."
+      },
+      
+    ]);
+  }
+  setCanonicalUrl(url: string): void {
+    const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
+    if (existingLink) {
+      this.renderer.removeChild(this.document.head, existingLink);
+    }
 
-  // setCanonicalUrl(url: string): void {
-    
-  //   const existingLink: HTMLLinkElement | null = this.document.querySelector(
-  //     'link[rel="canonical"]'
-  //   );
-  //   if (existingLink) {
-  //     this.renderer.removeChild(this.document.head, existingLink);
-  //   }
-
-    
-  //   const link: HTMLLinkElement = this.renderer.createElement('link');
-  //   this.renderer.setAttribute(link, 'rel', 'canonical');
-  //   this.renderer.setAttribute(link, 'href', url);
-  //   this.renderer.appendChild(this.document.head, link);
-  // }
+    const link: HTMLLinkElement = this.renderer.createElement('link');
+    this.renderer.setAttribute(link, 'rel', 'canonical');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.appendChild(this.document.head, link);
+  }
 }

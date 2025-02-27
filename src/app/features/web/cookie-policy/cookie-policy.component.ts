@@ -16,70 +16,37 @@ constructor(
   ) {}
 
   ngOnInit(): void {
-    // this.setMetaTags();
-    // this.setCanonicalUrl('https://www.justice-love-peace.com/cookie-policy');
+    this.setMetaTags();
+    this.setCanonicalUrl('https://www.justice-love-peace.com/cookie-policy');
   }
-  // setMetaTags(): void {
-    
-  //   this.titleService.setTitle(
-  //     'Cookie Policy | Global Justice, Love, and Peace Summit 2025'
-  //   );
+  setMetaTags(): void {
+    this.titleService.setTitle('Cookie Policy | Global Justice, Love, and Peace Summit 2025');
 
-    
-  //   this.metaService.addTags([
-  //     {
-  //       name: 'description',
-  //       content:
-  //         'Learn about the use of cookies on the Global Justice, Love, and Peace Summit 2025 website. Understand how we collect and manage your data to enhance your browsing experience.',
-  //     },
-  //     {
-  //       name: 'keywords',
-  //       content:
-  //         'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
-  //     },
-  //     {
-  //       property: 'og:title',
-  //       content:
-  //         'Cookie Policy | Global Justice, Love, and Peace Summit 2025',
-  //     },
-  //     {
-  //       property: 'og:description',
-  //       content:
-  //         'Learn about the use of cookies on the Global Justice, Love, and Peace Summit 2025 website. Understand how we collect and manage your data to enhance your browsing experience.',
-  //     },
-  //     {
-  //       property: 'og:image',
-  //       content:
-  //         'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
-  //     },
-  //     {
-  //       property: 'og:url',
-  //       content: 'https://www.justice-love-peace.com/cookie-policy',
-  //     },
-  //     {
-  //       property: 'og:type',
-  //       content: 'website',
-  //     },
-  //     {
-  //       property: 'og:site_name',
-  //       content: 'Global Justice, Love and Peace Summit | Dubai',
-  //     },
-  //   ]);
-  // }
+    this.metaService.addTags([
+      {
+        name: 'description',
+        content: "Learn about the use of cookies on the Global Justice, Love, and Peace Summit 2025 website. Understand how we collect and manage your data to enhance your browsing experience."
+      },
+      {
+        property: 'og:title',
+        content: 'Cookie Policy | Global Justice, Love, and Peace Summit 2025'
+      },
+      {
+        property: 'og:description',
+        content: "Learn about the use of cookies on the Global Justice, Love, and Peace Summit 2025 website. Understand how we collect and manage your data to enhance your browsing experience."
+      },
+      
+    ]);
+  }
+  setCanonicalUrl(url: string): void {
+    const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
+    if (existingLink) {
+      this.renderer.removeChild(this.document.head, existingLink);
+    }
 
-  // setCanonicalUrl(url: string): void {
-    
-  //   const existingLink: HTMLLinkElement | null = this.document.querySelector(
-  //     'link[rel="canonical"]'
-  //   );
-  //   if (existingLink) {
-  //     this.renderer.removeChild(this.document.head, existingLink);
-  //   }
-
-    
-  //   const link: HTMLLinkElement = this.renderer.createElement('link');
-  //   this.renderer.setAttribute(link, 'rel', 'canonical');
-  //   this.renderer.setAttribute(link, 'href', url);
-  //   this.renderer.appendChild(this.document.head, link);
-  // }
+    const link: HTMLLinkElement = this.renderer.createElement('link');
+    this.renderer.setAttribute(link, 'rel', 'canonical');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.appendChild(this.document.head, link);
+  }
 }

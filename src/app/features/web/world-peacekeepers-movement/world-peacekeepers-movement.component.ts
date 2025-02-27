@@ -117,7 +117,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private ngxService: NgxUiLoaderService,
     private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
-    private renderer : Renderer2
+    private renderer : Renderer2,
+    private titleService: Title,
+    private metaService: Meta,
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
@@ -142,10 +144,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.setMetaTags();
-    // this.setCanonicalUrl(
-    //   'https://www.justice-love-peace.com/world-peacekeepers-movement'
-    // );
+    this.setMetaTags();
+    this.setCanonicalUrl(
+      'https://www.justice-love-peace.com/world-peacekeepers-movement'
+    );
 
     this.checkWindowSize();
     this.getAllCountrycode();
@@ -962,4 +964,34 @@ onDateChange(event: string): void {
     }
   }
 
+  setMetaTags(): void {
+    this.titleService.setTitle('World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai');
+
+    this.metaService.addTags([
+      {
+        name: 'description',
+        content: "Join the World Peacekeepers Movement, a global initiative forming the world's largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world."
+      },
+      {
+        property: 'og:title',
+        content: 'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai'
+      },
+      {
+        property: 'og:description',
+        content: "Join the World Peacekeepers Movement, a global initiative forming the world's largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world."
+      },
+      
+    ]);
+  }
+  setCanonicalUrl(url: string): void {
+    const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
+    if (existingLink) {
+      this.renderer.removeChild(this.document.head, existingLink);
+    }
+
+    const link: HTMLLinkElement = this.renderer.createElement('link');
+    this.renderer.setAttribute(link, 'rel', 'canonical');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.appendChild(this.document.head, link);
+  }
 }
