@@ -22,7 +22,7 @@
     <ul class="m-0">
       <li>
         <a
-          routerLink="['/home']"
+          [routerLink]="['/home']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Home</a
@@ -41,7 +41,7 @@
             aria-controls="flush-collapseOne"
           >
             <a
-              routerLink="['/the-summit']"
+              [routerLink]="['/the-summit']"
               aria-label="Close"
               data-bs-dismiss="offcanvas"
             >
@@ -60,7 +60,7 @@
                 <!-- (click)="refreshPage('summit',link.fragment)" -->
 
                 <a
-                  routerLink="['/the-summit']"
+                  [routerLink]="['/the-summit']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
                   (click)="navigateToSection(link.fragment)"
@@ -84,7 +84,7 @@
             aria-controls="flush-collapseTwo"
           >
             <a
-              routerLink="['/partners']"
+              [routerLink]="['/partners']"
               aria-label="Close"
               data-bs-dismiss="offcanvas"
               >Partners</a
@@ -100,7 +100,7 @@
             <ul>
               <li *ngFor="let link of partnersLinks">
                 <a
-                  routerLink="['/partners']"
+                  [routerLink]="['/partners']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
                   (click)="navigateToSection(link.fragment)"
@@ -124,7 +124,7 @@
             aria-controls="flush-collapseThree"
           >
             <a
-              routerLink="['/awards']"
+              [routerLink]="['/awards']"
               aria-label="Close"
               data-bs-dismiss="offcanvas"
               >Awards</a
@@ -140,7 +140,7 @@
             <ul class="awardLink">
               <li *ngFor="let link of awardsLinks">
                 <a
-                  routerLink="['/awards']"
+                  [routerLink]="['/awards']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
                   (click)="navigateToSection(link.fragment)"
@@ -151,7 +151,7 @@
               </li>
               <!-- <li>
                 <a
-                  routerLink="['/committee']"
+                  [routerLink]="['/committee']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
                 >
@@ -173,7 +173,7 @@
             aria-controls="flush-collapseFour"
           >
             <a
-              routerLink="['/world-peacekeepers-movement']"
+              [routerLink]="['/world-peacekeepers-movement']"
               aria-label="Close"
               data-bs-dismiss="offcanvas"
               >I-am-Peacekeeper Movement</a
@@ -189,7 +189,7 @@
             <ul>
               <li *ngFor="let link of peacekeeperLinks">
                 <a
-                  routerLink="['/world-peacekeepers-movement']"
+                  [routerLink]="['/world-peacekeepers-movement']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
                   (click)="navigateToSection(link.fragment)"
@@ -213,7 +213,7 @@
             aria-controls="flush-collapseFive"
           >
             <a
-              routerLink="['/DownloadCenter']"
+              [routerLink]="['/DownloadCenter']"
               aria-label="Close"
               data-bs-dismiss="offcanvas"
               >Download Center</a
@@ -229,7 +229,7 @@
             <ul>
               <li *ngFor="let link of downloadLinks">
                 <a
-                  routerLink="['/DownloadCenter']"
+                  [routerLink]="['/DownloadCenter']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
                   (click)="navigateToSection(link.fragment)"
@@ -239,7 +239,7 @@
                 </a>
               </li>
               <!-- <li>
-                <a routerLink="['/download-applications']" data-bs-dismiss="offcanvas"
+                <a [routerLink]="['/download-applications']" data-bs-dismiss="offcanvas"
                 >
                   Download Mobile Application
                 </a>
@@ -252,7 +252,7 @@
     <ul>
       <li>
         <a
-          routerLink="['/chairman-corner']"
+          [routerLink]="['/chairman-corner']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
         >
@@ -261,7 +261,7 @@
       </li>
       <li>
         <a
-          routerLink="['/contact-us']"
+          [routerLink]="['/contact-us']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Contact Us</a
@@ -271,7 +271,7 @@
         <a
           type="btn"
           class="btn btn-success"
-          routerLink="['/download-brochure']"
+          [routerLink]="['/download-brochure']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Download Brochure</a
@@ -301,7 +301,7 @@
       <!-- <div class="col-md-1" *ngIf="!isHomePage">
         <a
           class="navbar-brand logo"
-          routerLink="['/home']"
+          [routerLink]="['/home']"
         >
           <img loading="eager"
             src="assets/UIComponents/images/logo.gif"
@@ -318,7 +318,7 @@
         <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
       <a
           class="navbar-brand logo"
-          routerLink="['/home']"
+          [routerLink]="['/home']"
           *ngIf="!isHomePage"
         >
         <img
@@ -343,14 +343,14 @@
           class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
         >
           <!-- <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="['/home']">Home</a>
+            <a class="nav-link" [routerLink]="['/home']">Home</a>
           </li> -->
           <li
             class="nav-item"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}"
           >
-            <a class="nav-link" routerLink="['/']">Home</a>
+            <a class="nav-link" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
@@ -364,12 +364,12 @@
               <div class="hover-dropdown-content">
                 <!-- <a
                   *ngFor="let link of summitLinks"
-                  routerLink="['/the-summit']"
+                  [routerLink]="['/the-summit']"
                   [fragment]="link.fragment || undefined"
                 >
                   {{ link.label }}
                 </a> -->
-                <a *ngFor="let link of summitLinks" (click)="navigateToSection(link.fragment)" routerLink="['/the-summit']" fragment="{{ link.fragment }}">
+                <a *ngFor="let link of summitLinks" (click)="navigateToSection(link.fragment)" [routerLink]="['/the-summit']" fragment="{{ link.fragment }}">
                   {{ link.label }}
                 </a>
               </div>
@@ -377,13 +377,13 @@
           </li>
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLink="['/partners']">
+              <button class="dropbtn" [routerLink]="['/partners']">
                 Partners
               </button>
               <div class="hover-dropdown-content">
                 <a
                   *ngFor="let link of partnersLinks"
-                  routerLink="['/partners']"
+                  [routerLink]="['/partners']"
                   (click)="navigateToSection(link.fragment)"
                   fragment="{{ link.fragment }}"
                 >
@@ -396,7 +396,7 @@
             <div class="hover-dropdown" routerLinkActive="active">
               <button
                 class="dropbtn"
-                routerLink="['/awards']"
+                [routerLink]="['/awards']"
                 routerLinkActive="active"
               >
                 Awards
@@ -404,14 +404,14 @@
               <div class="hover-dropdown-content awardLink">
                 <a
                   *ngFor="let link of awardsLinks"
-                  routerLink="['/awards']"
+                  [routerLink]="['/awards']"
                   (click)="navigateToSection(link.fragment)"
                   fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
                 <!-- <a
-                  routerLink="['/committee']"
+                  [routerLink]="['/committee']"
                 >
                   Committee
                 </a> -->
@@ -422,14 +422,14 @@
             <div class="hover-dropdown">
               <button
                 class="dropbtn"
-                routerLink="['/world-peacekeepers-movement']"
+                [routerLink]="['/world-peacekeepers-movement']"
               >
                 I-am-Peacekeeper Movement
               </button>
               <div class="hover-dropdown-content">
                 <a
                   *ngFor="let link of peacekeeperLinks"
-                  routerLink="['/world-peacekeepers-movement']"
+                  [routerLink]="['/world-peacekeepers-movement']"
                   (click)="navigateToSection(link.fragment)"
                   fragment="{{ link.fragment }}"
                 >
@@ -440,13 +440,13 @@
           </li>
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLink="['/DownloadCenter']">
+              <button class="dropbtn" [routerLink]="['/DownloadCenter']">
                 Download Center
               </button>
               <div class="hover-dropdown-content">
                 <button
                   class="btn btn-success"
-                  routerLink="['/download-brochure']"
+                  [routerLink]="['/download-brochure']"
                   style="
                     font-size: 14px;
                     margin: 0 0;
@@ -459,13 +459,13 @@
                 </button>
                 <a
                   *ngFor="let link of downloadLinks"
-                  routerLink="['/DownloadCenter']"
+                  [routerLink]="['/DownloadCenter']"
                   (click)="navigateToSection(link.fragment)"
                   fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
-                <!-- <a routerLink="['/download-applications']"
+                <!-- <a [routerLink]="['/download-applications']"
                 >
                   Download Mobile Application
                 </a> -->
@@ -477,7 +477,7 @@
               <a
                 class="nav-link"
                 routerLinkActive="active"
-                routerLink="['/chairman-corner']"
+                [routerLink]="['/chairman-corner']"
                 >Chairman’s Corner</a
               >
             </div>
@@ -486,7 +486,7 @@
             <a
               class="nav-link"
               routerLinkActive="active"
-              routerLink="['/contact-us']"
+              [routerLink]="['/contact-us']"
               >Contact Us</a
             >
           </li>
@@ -494,7 +494,7 @@
       </div>
       <div class="col-md-2">
         <form class="d-flex justify-content-end" role="search">
-          <!-- routerLink="['/delegate-registration']" -->
+          <!-- [routerLink]="['/delegate-registration']" -->
           <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
             >Register As a Delegate</a
           >
@@ -519,7 +519,7 @@
             data-bs-toggle="tooltip"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Download Brochures"
-            routerLink="['/download-brochure']"
+            [routerLink]="['/download-brochure']"
             >Lang <br /><img
               loading="eager"
               src="assets/UIComponents/images/download.svg"
@@ -536,7 +536,7 @@
     <div class="container-fluid">
       <a
         class="navbar-brand logo"
-        routerLink="['/home']"
+        [routerLink]="['/home']"
         style="width: 100px"
       >
         <img
