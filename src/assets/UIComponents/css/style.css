@@ -91,19 +91,18 @@ header .nav-item .nav-link.active {
 }
 
 .index .section1 {
-  background-image: url(../images/index/banner.gif);
+  /* background-image: url(../images/index/banner.gif); */
   /* background-size: 90% 100%; */
-  background-size: 85% 100%;
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat;
-  min-height: 90vh; /* Keeps the height relative to the viewport */
+  /* background-size: 85% 100%;
+  background-position: center; 
+  background-repeat: no-repeat; */
+  min-height: 100vh; 
 }
 
-.index .section1 .logo {
+ .logo {
+  transition: 0.4s;
   position: absolute;
-  /* top: -50px;
-  left: -80px; */
-  z-index: 999;
+  top: 0rem;
 }
 
 .index .section1 .cardMain {
