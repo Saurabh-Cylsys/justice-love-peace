@@ -28,6 +28,8 @@ import { SuccessComponent } from './success/success.component';
 import { VideoComponent } from './media/video/video.component';
 import { PhotosComponent } from './media/photos/photos.component';
 import { NewsPaperComponent } from './media/news-paper/news-paper.component';
+import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
+import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
 
 const routes: Routes = [
   {
@@ -177,6 +179,15 @@ const routes: Routes = [
       {
         path: 'media/news-paper',
         component: NewsPaperComponent,
+      },
+
+      {
+        path: 'speaker-details',
+        component: SpeakerDetailsComponent
+      },
+      {
+        path: 'speaker-details/:speakerId/:speakerName',
+        component: SpeakersProfileComponent
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },

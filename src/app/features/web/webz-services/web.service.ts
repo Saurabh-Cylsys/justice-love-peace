@@ -12,10 +12,10 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class WebService {
-
   private SPEAKERS_CACHE_KEY = 'speakers_cache_v1';
   private CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
   private SPEAKERS_URL = 'assets/speakers.json';
+  private API_BASE_URL = 'https://devglobaljusticeapis.cylsys.com/api/v1';
 
   constructor(
     private _apiHttpService: ApiHttpService,
@@ -59,6 +59,16 @@ export class WebService {
 
   private hasListChanged(oldList: any[], newList: any[]): boolean {
     return JSON.stringify(oldList) !== JSON.stringify(newList);
+  }
+
+  getSpeakersList(search: string = '', limit: string = '10', type: string = 'All'): Observable<any> {
+    const payload = {
+      p_search: search,
+      p_limit: limit,
+      p_type: type
+    };
+    
+    return this.http.post<any>(`${this.API_BASE_URL}/get_speaker_list`, payload);
   }
 
 

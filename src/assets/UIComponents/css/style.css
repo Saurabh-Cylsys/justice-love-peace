@@ -2505,6 +2505,88 @@ button:focus {
   min-height: 100vh;
 }
 
+.speaker-details select:after {
+  background-color: #004e8a;
+  height: 20px;
+  width: 20px;
+}
+.speaker-details input,
+.speaker-details input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--color6);
+}
+
+.speaker-details select,
+.speaker-details select:focus {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  border-color: var(--color6);
+}
+
+.speaker-details .card {
+  position: relative;
+  border-radius: 14.35px;
+  min-height: 30vh;
+}
+.speaker-details .card .card-header {
+  position: absolute;
+  height: 14vh;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  /* background-color: #bdc78c; */
+  border-radius: 14.35px 14.35px 0 0;
+  background: linear-gradient(180deg, #005b94 0%, #0573ba 100%);
+}
+
+.speaker-details .card .card-body {
+  position: relative;
+  padding: 20px 0 !important;
+}
+.speaker-details .card .card-body h5 {
+  font-weight: 700;
+  font-size: clamp(14px, 1.5vw, 18.1px);
+  line-height: 32.33px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color6);
+}
+.speaker-details .card .card-body .country {
+  font-weight: 700;
+  font-size: 15.06px;
+  line-height: 19.4px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color1);
+  margin: 0 0 2vh;
+}
+.speaker-details .card .card-body .credentials {
+  font-weight: 500;
+  font-size: 13.81px;
+  line-height: 17.78px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #8a8a8a;
+}
+
+.speaker-details .card .card-footer button {
+  background-color: transparent;
+  border: 1px solid #005b94;
+  color: #005b94;
+  border-radius: 14.35px;
+  /* width: 50%; */
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  margin: 0 auto;
+}
+
 .committee-list {
   list-style: none; /* Remove default list style */
   padding-left: 40px; /* Adjust padding for visibility */

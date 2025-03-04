@@ -385,13 +385,18 @@
                       </div>
                     </ng-template>
                   </swiper>
-                  <button
+                  <!-- <button
                     class="see-all-button btn btn-success mb-4"
                     data-bs-toggle="modal"
                     data-bs-target="#seeAllSpeakers"
                   >
                     See all Speakers
-                  </button>
+                  </button> -->
+                  <a [routerLink]="['/speaker-details']"
+                    class="see-all-button btn btn-success mb-4"
+                  >
+                    See all Speakers
+                  </a>
                 </div>
               </div>
             </div>

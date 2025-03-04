@@ -37,6 +37,8 @@ import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
+import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
 import { CommitteeComponent } from './committee/committee.component';
 import { VideoComponent } from './media/video/video.component';
 import { PhotosComponent } from './media/photos/photos.component';
@@ -76,6 +78,8 @@ import { NewsPaperComponent } from './media/news-paper/news-paper.component';
     PhotosComponent,
     ArticlesComponent,
     NewsPaperComponent,
+    SpeakerDetailsComponent,
+    SpeakersProfileComponent
   ],
   imports: [
     CommonModule,
