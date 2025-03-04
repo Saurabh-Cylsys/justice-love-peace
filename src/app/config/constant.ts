@@ -70,6 +70,6 @@ export class Constants {
 
 
 
-
+public readonly API_ENDPOINT_GET_AMBASSADOR : string = 'get_ambassador_by_code'
 
 }

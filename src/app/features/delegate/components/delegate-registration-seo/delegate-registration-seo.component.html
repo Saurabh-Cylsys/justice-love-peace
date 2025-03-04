@@ -1,0 +1,1252 @@
+<div
+  class="home page-template-default page page-id-208 wp-custom-logo wp-embed-responsive no-sidebar delegate-form"
+  style="position: relative; z-index: 1"
+>
+  <div class="page--wrap">
+    <div
+      class="innerpage-content-area-wrap pb-0 pt-0"
+      style="min-height: calc(100vh - 180px)"
+    >
+      <div class="fb-container p-0">
+        <div class="single-content-container">
+          <h1 class="pt-lg-4 text-center fw-600">Online Delegate Registration</h1>
+
+          <div class="clearfix"></div>
+          <div class="clearfix">
+            <div id="regformcontainer">
+              <div class="clearfix"></div>
+              <form
+                [formGroup]="registrationForm"
+                (ngSubmit)="submitData()"
+                autocomplete="off"
+              >
+                <div
+                  class="clearfix section7 p-lg-5 position-relative"
+                  style="z-index: 1"
+                >
+                  <div class="form-step-wrapper" id="formstep-1">
+                    <div class="panel panel-default reg-panel section_1">
+                      <div class="panel-body">
+                        <div id="common-field-row-con" class="row mx-0">
+                          <div
+                            id="common-fields-row1"
+                            class="common-fields-row clearfix"
+                          >
+                            <div class="common-field-container">
+                              <input
+                                type="hidden"
+                                name="registration_index[]"
+                                value="1"
+                              />
+                              <div class="row mb-3">
+                                <div class="col-md-12">
+                                  <h6 class="panel-heading">
+                                    Personal Information :
+                                  </h6>
+                                </div>
+                                <div
+                                  class="form-group fg-nametitle col-md-4 col-sm-4 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <!-- <select
+                                        name="nametitle[1]"
+                                        id="nametitle1"
+                                        class="form-control"
+                                        required
+                                        data-error="Please select option"
+                                        formControlName="title"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.title.errors
+                                        }"
+                                      >
+                                        <option selected value="" disabled>
+                                          --Please select--
+                                        </option>
+                                        <option value="Mr.">Mr.</option>
+                                        <option value="Mrs.">Mrs.</option>
+                                        <option value="Miss">Miss</option>
+                                        <option value="Ms.">Ms.</option>
+                                        <option value="Dr.">Dr.</option>
+                                        <option value="Prof.">Prof.</option>
+                                        <option value="Capt.">Capt.</option>
+                                        <option value="Hon">Hon</option>
+                                        <option value="Lord">Lord</option>
+                                      </select> -->
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="nametitle1"
+                                        >Title
+                                        <span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        >
+                                      </label>
+                                      <input
+                                        type="text"
+                                        name="title"
+                                        id="title"
+                                        #title
+                                        placeholder="Enter title"
+                                        class="form-control p-0"
+                                        [maxlength]="15"
+                                        (keypress)="validateAlpha($event)"
+                                        (paste)="onPaste($event)"
+                                        formControlName="title"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'title')"
+                                      />
+                                    </div>
+                                    <div
+                                      *ngIf="
+                                        getcontrol('title')?.errors &&
+                                        getcontrol('title')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('title')?.errors?.['required']"
+                                        >Title is required</small
+                                      >
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-fname col-md-4 col-sm-4 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="fname1"
+                                        >First Name<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+                                      <input
+                                        type="text"
+                                        name="fname[1]"
+                                        id="f_name"
+                                        #f_name
+                                        placeholder="Enter first name"
+                                        class="form-control p-0"
+                                        required
+                                        formControlName="first_name"
+                                        minlength="3"
+                                        maxlength="115"
+                                        (keypress)="validateAlpha($event)"
+                                        (paste)="onPaste($event)"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'first_name')"
+                                        [ngClass]="{
+                                          'text-danger':
+                                            submitted && f.first_name.errors
+                                        }"
+                                      />
+                                    </div>
+                                    <div
+                                      class="text-danger"
+                                      *ngIf="
+                                        getcontrol('first_name')?.errors &&
+                                        getcontrol('first_name')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('first_name')?.errors?.['required']"
+                                        >First name is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('first_name')?.errors?.['minlength']"
+                                        >First name must be at least 3
+                                        characters long.</small
+                                      >
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-4 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="lname1"
+                                        >Last Name<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+                                      <input
+                                        type="text"
+                                        name="lname[1]"
+                                        id="l_name"
+                                        placeholder="Enter last name"
+                                        class="form-control p-0"
+                                        required
+                                        formControlName="last_name"
+                                        #l_name
+                                        minlength="2"
+                                        maxlength="115"
+                                        (keypress)="validateAlpha($event)"
+                                        (paste)="onPaste($event)"
+                                        (keydown)="handleTabKey($event, 'dob')"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'last_name')"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.last_name.errors
+                                        }"
+                                      />
+                                    </div>
+                                    <div
+                                      *ngIf="
+                                        getcontrol('last_name')?.errors &&
+                                        getcontrol('last_name')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['required']"
+                                        >Last name is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['minlength']"
+                                        >Last name must be at least 3 characters
+                                        long.</small
+                                      >
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-4 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="lname1"
+                                        >DOB<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+
+                                      <input
+                                        type="text"
+                                        class="form-control p-0"
+                                        placeholder="Select Date of birth"
+                                        id="dob"
+                                        #dob
+                                        formControlName="dob"
+                                        [minDate]="minDate1"
+                                        [maxDate]="maxDate1"
+                                        (keydown)="disableManualInput($event)"
+                                        (ngModelChange)="onDateChange($event)"
+                                        (keydown.tab)="openDatepicker()"
+                                        bsDatepicker
+                                        [bsConfig]="{
+                                          isAnimated: true,
+                                          dateInputFormat: 'DD/MM/YYYY',
+                                          showWeekNumbers: false,
+                                          containerClass: colorTheme
+                                        }"
+                                        readonly
+                                      />
+
+                                      <div
+                                        *ngIf="
+                                          getcontrol('dob')?.errors &&
+                                          getcontrol('dob')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('dob')?.errors?.['required']"
+                                          >Date of birth is required</small
+                                        >
+                                      </div>
+                                    </div>
+
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-12">
+                                  <h6>Contact Information :</h6>
+                                </div>
+
+                                <div
+                                  class="form-group fg-mobile col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="row no-padding">
+                                    <div
+                                      class="form-group form-group-inner mobile-number"
+                                    >
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="mobile1"
+                                        >Mobile Number<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+                                      <div class="">
+                                        <ngx-intl-tel-input
+                                          class="custom-width-container"
+                                          [preferredCountries]="[
+                                            CountryISO.India,
+                                            CountryISO.UnitedStates,
+                                            CountryISO.UnitedKingdom
+                                          ]"
+                                          [enableAutoCountrySelect]="false"
+                                          [enablePlaceholder]="false"
+                                          [searchCountryFlag]="true"
+                                          [searchCountryField]="[
+                                            SearchCountryField.Iso2,
+                                            SearchCountryField.Name
+                                          ]"
+                                          [selectFirstCountry]="false"
+                                          [selectedCountryISO]="
+                                            CountryISO.India
+                                          "
+                                          [maxLength]="12"
+                                          [phoneValidation]="true"
+                                          name="mobile_number"
+                                          id="number_mobile1"
+                                          #number_mobile1
+                                          [separateDialCode]="true"
+                                          [(ngModel)]="mobile_number"
+                                          formControlName="mobile_number"
+                                          (paste)="onPasteMobileNumber($event)"
+                                          autocomplete="off"
+                                          (keydown)="
+                                            onMobileKeyDown(
+                                              $event,
+                                              mobile_number
+                                            )
+                                          "
+                                          (keypress)="
+                                            keyPressNumbers(
+                                              $event,
+                                              mobile_number
+                                            )
+                                          "
+                                        ></ngx-intl-tel-input>
+                                      </div>
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="mobile_numberVal"
+                                      >
+                                        (Country code + Mobile number) will be 7
+                                        to 15 digits based on country.
+                                      </small>
+                                      <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
+                                          long.</p> -->
+                                    </div>
+                                    <div
+                                      class="form-group form-group-inner mobile-number"
+                                    >
+                                      <div class="help-block with-errors"></div>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('mobile_number')?.errors &&
+                                          getcontrol('mobile_number')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                                          >Mobile number is required</small
+                                        >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="
+                                            !mobile_numberVal &&
+                                            getcontrol('mobile_number')
+                                              ?.invalid &&
+                                            getcontrol('mobile_number')?.touched
+                                          "
+                                        >
+                                          {{ getPhoneErrorMessage() }}
+                                        </small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="form-group fg-email col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="email1"
+                                        >Email Id<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+                                      <input
+                                        (input)="onInput($event, 'email_id')"
+                                        type="email"
+                                        name="email[1]"
+                                        id="email"
+                                        #email
+                                        placeholder="Enter your email"
+                                        class="form-control p-0"
+                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
+                                        required
+                                        (keydown)="onKeyDown($event, 'email')"
+                                        (paste)="onEmailPaste($event)"
+                                        maxlength="125"
+                                        autocomplete="off"
+                                        data-error="Please enter valid email id"
+                                        formControlName="email_id"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.email_id.errors
+                                        }"
+                                      />
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                    <div
+                                      *ngIf="
+                                        getcontrol('email_id')?.errors &&
+                                        getcontrol('email_id')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('email_id')?.errors?.['required']"
+                                        >Email is required.</small
+                                      >
+
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('email_id')?.errors?.['pattern']"
+                                        >Please enter valid email
+                                        address.</small
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="form-group fg-email col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profileurl"
+                                        >LinkedIn Profile</label
+                                      >
+                                      <input
+                                        type="text"
+                                        name=""
+                                        id="linkedIn"
+                                        placeholder="Enter linkedIn profile"
+                                        class="form-control p-0"
+                                        maxlength="100"
+                                        (keydown)="
+                                          onKeyDown($event, 'linkedin')
+                                        "
+                                        (paste)="
+                                          onPasteEvent($event, 'linkedin')
+                                        "
+                                        formControlName="linkedIn_profile"
+                                        autocomplete="off"
+                                      />
+                                    </div>
+                                    <!-- <div
+                                      *ngIf="
+                                        getcontrol('linkedIn_profile')
+                                          ?.errors &&
+                                        getcontrol('linkedIn_profile')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('linkedIn_profile')?.errors?.['pattern']"
+                                        >Please enter valid linkedIn URL.
+                                      </small>
+                                    </div> -->
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="form-group fg-email col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profileurl"
+                                        >Instagram ID</label
+                                      >
+                                      <input
+                                        type="text"
+                                        name=""
+                                        id="instagram_profile"
+                                        placeholder="Enter instagram ID"
+                                        class="form-control p-0"
+                                        (keydown)="onInstagramKeyDown($event)"
+                                        (paste)="onInstagramPaste($event)"
+                                        formControlName="instagram_profile"
+                                        autocomplete="off"
+                                        maxlength="100"
+                                      />
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                    <!-- <div
+                                      *ngIf="
+                                        getcontrol('instagram_profile')
+                                          ?.errors &&
+                                        getcontrol('instagram_profile')?.touched
+                                      "
+                                    >
+                                      <span
+                                        class="text-danger"
+                                        *ngIf="isInvalidInstagramProfile()"
+                                      >
+                                        Invalid Instagram profile URL.
+                                      </span>
+                                    </div> -->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-md-12">
+                                  <h6>Professional Information :</h6>
+                                </div>
+                                <div
+                                  class="form-group fg-lname col-md-6 col-sm-6 my-3"
+                                >
+                                  <!-- <label
+                                    class="col-md-12 no-padding"
+                                    for="profession1"
+                                    >Profession 1<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  > -->
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profession1"
+                                        >Profession 1<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+                                      <input
+                                        type="text"
+                                        name="profession_1"
+                                        id="profession1"
+                                        #profession1
+                                        placeholder="Enter profession 1"
+                                        class="form-control p-0"
+                                        (paste)="onProfessionPaste($event)"
+                                        required
+                                        formControlName="profession_1"
+                                        autocomplete="off"
+                                        maxlength="150"
+                                        (input)="onProfessionInput($event)"
+                                        minlength="2"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.profession_1.errors
+                                        }"
+                                      />
+                                    </div>
+                                    <div
+                                      *ngIf="
+                                        getcontrol('profession_1')?.errors &&
+                                        getcontrol('profession_1')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('profession_1')?.errors?.['required']"
+                                        >Profession is required</small
+                                      >
+
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('profession_1')?.errors?.['minlength']"
+                                        >Profession must be at least 2
+                                        characters long.</small
+                                      >
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-lname col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profession2"
+                                        >Profession 2 (if any)</label
+                                      >
+                                      <input
+                                        type="text"
+                                        name="profession_2"
+                                        id="profession2"
+                                        placeholder="Enter profession 2"
+                                        class="form-control p-0"
+                                        formControlName="profession_2"
+                                        (paste)="onProfessionPaste($event)"
+                                        maxlength="150"
+                                        autocomplete="off"
+                                        (input)="onProfession2Input($event)"
+                                        minlength="2"
+                                      />
+                                    </div>
+                                    <!-- <div
+                                      *ngIf="
+                                        getcontrol('last_name')?.errors &&
+                                        getcontrol('last_name')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['required']"
+                                        >Last name is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['minlength']"
+                                        >Last name must be at least 3 characters
+                                        long.</small
+                                      >
+                                    </div> -->
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-field_10 col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="field_10"
+                                        >Website</label
+                                      >
+                                      <input
+                                        type="text"
+                                        name="field_10"
+                                        id="field_10"
+                                        placeholder="Enter website URL"
+                                        class="form-control p-0"
+                                        (keydown)="onKeyDown($event, 'website')"
+                                        formControlName="website"
+                                        (input)="onInput($event, 'website')"
+                                        (paste)="
+                                          onPasteEvent($event, 'website')
+                                        "
+                                        autocomplete="off"
+                                        maxlength="200"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted &&
+                                            registrationForm.get('website')
+                                              .errors
+                                        }"
+                                      />
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                    <div
+                                      *ngIf="
+                                        getcontrol('website')?.errors &&
+                                        getcontrol('website')?.touched
+                                      "
+                                    >
+                                      <!-- <small class="text-danger" *ngIf="getcontrol('website')?.errors?.['required']"> Website Url
+                                                                          is required.</small> -->
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('website')?.errors?.['pattern']"
+                                        >Please enter valid URL.</small
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-lname col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="organization"
+                                        >Organization Name
+                                        <!-- <span
+                                        class="form-label-span"
+                                        style="color: #ff0000"
+                                      >
+                                        *</span >-->
+                                      </label>
+                                      <input
+                                        type="text"
+                                        name="organization_name"
+                                        id="organization"
+                                        placeholder="Enter organization name"
+                                        class="form-control p-0"
+                                        formControlName="organization_name"
+                                        maxlength="100"
+                                        (keypress)="validateAlpha($event)"
+                                        autocomplete="off"
+                                        (input)="
+                                          onInput($event, 'organization_name')
+                                        "
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted &&
+                                            f.organization_name.errors
+                                        }"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-md-12">
+                                  <h6>Address Details :</h6>
+                                </div>
+
+                                <div
+                                  class="form-group fg-field_3 col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <span class="required-icon"></span>
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="field_3"
+                                        >Address
+                                        <!-- <span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        > -->
+                                      </label>
+                                      <input
+                                        type="text"
+                                        name="address"
+                                        id="address"
+                                        placeholder="Enter address"
+                                        class="form-control p-0"
+                                        (keypress)="validateAddress($event)"
+                                        (paste)="onPasteAddress($event)"
+                                        maxlength="200"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'address')"
+                                        formControlName="address"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.address.errors
+                                        }"
+                                      />
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-field_3 col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <span class="required-icon"></span
+                                      ><label for="" class="p-0"
+                                        >Country<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        >
+                                      </label>
+                                      <!-- <input
+                                        type="text"
+                                        name="country"
+                                        id="country"
+                                        placeholder="Enter country"
+                                        class="form-control p-0"
+                                        required
+                                        formControlName="country"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'country')"
+                                        minlength="3"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.country.errors
+                                        }"
+                                      /> -->
+
+                                      <select
+                                        (change)="changeCountry($event)"
+                                        class="form-control p-0 form-select"
+                                        id="country"
+                                        formControlName="country"
+                                        #country
+                                        name="India"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.country.errors
+                                        }"
+                                      >
+                                        <option value="" disabled>
+                                          Select Country
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let country of countryData;
+                                            let j = index
+                                          "
+                                          [value]="country | json"
+                                        >
+                                          {{ country.name }}
+                                        </option>
+                                      </select>
+                                      <div class="help-block with-errors"></div>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('country')?.errors &&
+                                          getcontrol('country')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('country')?.errors?.['required']"
+                                          >Country is required.</small
+                                        >
+                                      </div>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-field_3 col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label for="" class="p-0"
+                                        >State/Province<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        >
+                                      </label>
+                                      <select
+                                        class="form-control p-0 form-select"
+                                        (change)="changeStates($event)"
+                                        id="state"
+                                        #state
+                                        formControlName="state"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.state.errors
+                                        }"
+                                      >
+                                        <option value="" disabled selected>
+                                          Select State
+                                        </option>
+
+                                        <option
+                                          *ngFor="
+                                            let state of statesData;
+                                            let j = index
+                                          "
+                                          [value]="state | json"
+                                        >
+                                          {{ state.name }}
+                                        </option>
+                                      </select>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('state')?.errors &&
+                                          getcontrol('state')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('state')?.errors?.['required']"
+                                          >State is required.</small
+                                        >
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 my-3 col-sm-6">
+                                  <div class="col-md-12 no-padding">
+                                    <div class="">
+                                      <label for="" class="p-0"
+                                        >City<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        >
+                                      </label>
+
+                                      <select
+                                        class="form-control p-0 form-select"
+                                        (change)="changeCity($event)"
+                                        id="city"
+                                        #city
+                                        formControlName="city"
+                                        value
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f['city'].errors
+                                        }"
+                                      >
+                                        <option selected value="" disabled>
+                                          Select City
+                                        </option>
+
+                                        <option
+                                          *ngFor="
+                                            let city of cityData;
+                                            let k = index
+                                          "
+                                          [value]="city | json"
+                                        >
+                                          {{ city.name }}
+                                        </option>
+                                      </select>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('city')?.errors &&
+                                          getcontrol('city')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('city')?.errors?.['required']"
+                                          >City is required.</small
+                                        >
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row g-2 mt-5">
+                                <div class="col-md-12">
+                                  <p class="refLabel col-md-8">
+                                    On submission of this form, you will be
+                                    redirected to the payment gateway page ,
+                                    where you can complete the payment of (USD
+                                    {{ this.referralCode ? 2604 : 2800 }}). You
+                                    will also receive the payment link on your
+                                    registered email.
+                                  </p>
+                                  <h6>Do you have a Reference code:</h6>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="">
+                                    <label
+                                      class="col-md-12 no-padding p-0"
+                                      for="profession2"
+                                      >Reference Number:</label
+                                    >
+                                    <input
+                                      type="text"
+                                      name="reference_no"
+                                      maxlength="50"
+                                      id="profession2"
+                                      placeholder="Enter reference no."
+                                      class="form-control p-0"
+                                      [readonly]="
+                                        this.referralCode
+                                          ? this.referralCode
+                                          : ''
+                                      "
+                                      formControlName="reference_no"
+                                      minlength="3"
+                                      autocomplete="off"
+                                      (input)="onInput($event, 'reference_no')"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row g-2 mt-3">
+                                <div class="col-md-12">
+                                  <h6>
+                                    What is your primary purpose of attending
+                                    this Summit? (Choose any 1)<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    >
+                                  </h6>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="row m-0">
+                                    <div class="form-check col-md-4 my-3 p-0">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending1"
+                                        value="0"
+                                        checked
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending1"
+                                      >
+                                        Gathering Knowledge
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3 p-0">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending2"
+                                        value="1"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending2"
+                                      >
+                                        Networking
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3 p-0">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending3"
+                                        value="2"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending3"
+                                      >
+                                        Speaker Profile
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3 p-0">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending4"
+                                        value="3"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending4"
+                                      >
+                                        Working for Peace
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3 p-0">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending5"
+                                        value="4"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending5"
+                                      >
+                                        Other
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row g-2 mt-3">
+                                <div class="col-md-12">
+                                  <h6>
+                                    Which of the 3 levers of the conference
+                                    interests you the most?<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    >
+                                  </h6>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="row m-0">
+                                    <div
+                                      class="form-check col-md-3 my-3"
+                                      *ngFor="
+                                        let interest of interests;
+                                        let i = index
+                                      "
+                                    >
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        [value]="interest.value"
+                                        (change)="onCheckboxChange($event)"
+                                        [checked]="
+                                          registrationForm
+                                            .get('conference_lever_interest')
+                                            ?.value?.includes(interest.value)
+                                        "
+                                        id="level{{ i + 1 }}"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        [for]="'level' + (i + 1)"
+                                      >
+                                        {{ interest.label }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div id="submit-wrapper" class="text-center my-3">
+                                <input
+                                  type="submit"
+                                  class="btn btn-success p-2 px-4"
+                                  value="Submit"
+                                  name="register"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/watermark.png"
+                    alt="attach image"
+                    class="position-absolute"
+                    style="right: 0; bottom: 0; width: 10rem; z-index: -1"
+                    *ngIf="isMobileView"
+                  />
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/watermark.png"
+                    alt="attach image"
+                    class="position-absolute"
+                    style="right: 0; bottom: 0; width: 20rem; z-index: -1"
+                    *ngIf="!isMobileView"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  *ngIf="showPopup"
+  [ngStyle]="{ display: display }"
+  class="modal"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog come-from-modal new_dialog1">
+    <div class="modal-content" style="height: 60vh">
+      <div class="modal-header p-0 border-0">
+        <button
+          type="button"
+          class="close btn text-white fs-4 ms-auto"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mb-5">
+        <div class="row">
+          <div>
+            <!-- <span class="m-4 font-weight-bold">
+              Thank you for registering at Global Justice, Love & Peace Summit
+            </span> -->
+            <p class="m-4" style="height: 36px; font-size: 15px; color: #ffff">
+              Thank you for your interest in attending the Global Justice Love &
+              Peace Summit on 12th - 13th April, 2025 at Dubai.
+
+              <br /><br />
+              You will receive an email response within the next 28 hours
+
+              <br />
+              <br />
+
+              Keep Smiling!
+              <br /><br />
+
+              <a class="text-white" href="mailto:help@justice-love-peace.com"
+                >help&#64;justice-love-peace.com</a
+              >
+            </p>
+
+            <!-- Registration screening is under process. Once validated,
+               you will be notified via email about the next steps. -->
+            <!-- <br /><br />
+              Regards,​
+              <br />
+              Global Justice, Love & Peace Summit Conference​ -->
+          </div>
+        </div>
+      </div>
+
+      <br />
+    </div>
+  </div>
+</div>

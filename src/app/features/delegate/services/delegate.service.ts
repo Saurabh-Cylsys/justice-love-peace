@@ -75,4 +75,8 @@ export class DelegateService {
 
     return this._apiHttpService.delete(this._apiEndpointsService.postPeaceDeleteAccEndpoint(queryParamsObj));
   }
+
+  getAmbassadorURL(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)
+  }
 }

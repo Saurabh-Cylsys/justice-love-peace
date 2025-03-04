@@ -27,4 +27,5 @@ export class ApiHttpService {
   public patch(url: string, data: any, options?: any) { 
     return this.http.patch(url, data, options); 
   }
+
 }
