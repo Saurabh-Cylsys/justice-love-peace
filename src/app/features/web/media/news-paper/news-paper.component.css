@@ -1,0 +1,28 @@
+.carousel-inner h2 {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 25.76px;
+  letter-spacing: 0%;
+  text-align: left;
+  color: #00000080;
+}
+
+article p {
+  font-weight: 500;
+  font-size: clamp(14px, 16px, 20px);
+  line-height: 25.76px;
+  letter-spacing: 0%;
+  text-align: justify;
+  color: #000000;
+}
+article p span {
+  font-weight: 700;
+}
+
+.card {
+  box-shadow: 0px 0px 4px 1px #0000000a;
+}
+
+img {
+  border-radius: 10px;
+}

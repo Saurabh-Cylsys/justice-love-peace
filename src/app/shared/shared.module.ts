@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';
 import { SharedRoutingModule } from './shared-routing.module';
 import { WebHeaderComponent } from './components/web-header/web-header.component';
 import { WebFooterComponent } from './components/web-footer/web-footer.component';
+import { MediaHeaderComponent } from './components/media-header/media-header.component';
 
 
 @NgModule({
   declarations: [
     WebHeaderComponent,
     WebFooterComponent,
+    MediaHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { WebFooterComponent } from './components/web-footer/web-footer.component
   exports: [
     WebHeaderComponent,
     WebFooterComponent,
+    MediaHeaderComponent,
     RouterModule
   ]
 })

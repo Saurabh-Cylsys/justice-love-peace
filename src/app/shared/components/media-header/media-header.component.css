@@ -1,0 +1,22 @@
+#media-header a{
+  color: #12100B4D;
+  font-weight: 500;
+  font-size: clamp(15px, 1.5vw, 25px);
+  line-height: 25px;
+  letter-spacing: 0%;
+}
+#media-header a:nth-child(1),#media-header a:nth-child(2){
+  border-right: 1px solid #C0C0BD;
+}
+#media-header a.active{
+  color: #128940;
+  font-weight: 700;
+  font-size: clamp(15px, 1.5vw, 25px);
+  line-height: 25px;
+  letter-spacing: 0%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 10%;
+  text-decoration-skip-ink: auto;
+  
+}

@@ -25,6 +25,9 @@ import { CommitteeComponent } from './committee/committee.component';
 import { PaymentMainComponent } from './payment-main/payment-main.component';
 import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './success/success.component';
+import { VideoComponent } from './media/video/video.component';
+import { PhotosComponent } from './media/photos/photos.component';
+import { NewsPaperComponent } from './media/news-paper/news-paper.component';
 
 const routes: Routes = [
   {
@@ -157,6 +160,23 @@ const routes: Routes = [
       {
         path: 'contact-us/working-committee',
         component: CommitteeComponent,
+      },
+
+      {
+        path: 'media/videos',
+        component: VideoComponent,
+      },
+      {
+        path: 'media/photos',
+        component: PhotosComponent,
+      },
+      // {
+      //   path: 'media/articles',
+      //   component: ArticlesComponent,
+      // },
+      {
+        path: 'media/news-paper',
+        component: NewsPaperComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },

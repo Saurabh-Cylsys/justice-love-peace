@@ -2117,16 +2117,29 @@ header .nav-item .nav-link.active {
   margin: 0;
 }
 
+
 .custom-list .justiceLogo::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/justiceLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "AJ" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.custom-list .justiceLogo:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .justiceLogo ul {
@@ -2143,9 +2156,9 @@ header .nav-item .nav-link.active {
   counter-increment: justice-counter;
   content: "J" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2201,13 +2214,25 @@ header .nav-item .nav-link.active {
 .custom-list .loveLogo::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/loveLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "AL" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.custom-list .loveLogo:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo ul {
   counter-reset: justice-counter; /* First counter starts at 1 */
@@ -2223,9 +2248,9 @@ header .nav-item .nav-link.active {
   counter-increment: justice-counter;
   content: "L" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2266,14 +2291,28 @@ header .nav-item .nav-link.active {
 .custom-list .peaceLogo::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/peaceLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "AP" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
 }
+
+.custom-list .peaceLogo:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
+}
+
 .custom-list .peaceLogo ul {
   counter-reset: justice-counter; /* First counter starts at 1 */
 }
@@ -2288,9 +2327,9 @@ header .nav-item .nav-link.active {
   counter-increment: justice-counter;
   content: "P" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2331,13 +2370,25 @@ header .nav-item .nav-link.active {
 .custom-list .lifetime::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/lifetimeLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "ALA" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.custom-list .lifetime:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .lifetime ul {

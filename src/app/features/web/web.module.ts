@@ -38,6 +38,10 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
 import { CommitteeComponent } from './committee/committee.component';
+import { VideoComponent } from './media/video/video.component';
+import { PhotosComponent } from './media/photos/photos.component';
+import { ArticlesComponent } from './media/articles/articles.component';
+import { NewsPaperComponent } from './media/news-paper/news-paper.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,10 @@ import { CommitteeComponent } from './committee/committee.component';
     PeacekeeperPreselectComponent,
     RequestAccountDeletionsComponent,
     CommitteeComponent,
+    VideoComponent,
+    PhotosComponent,
+    ArticlesComponent,
+    NewsPaperComponent,
   ],
   imports: [
     CommonModule,
