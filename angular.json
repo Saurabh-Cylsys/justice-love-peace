@@ -36,10 +36,20 @@
               "src/web.config"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "src/assets/UIComponents/css/bootstrap.min.css",
+              "src/assets/UIComponents/css/style.css",
+              "src/assets/UIComponents/css/font.css",
+              "src/assets/UIComponents/css/responsive.css",
+              "src/assets/UIComponents/css/slick.css",
+              "src/assets/UIComponents/css/timeline.css",
+              "src/assets/UIComponents/css/fullpage.css",
+              "src/assets/UIComponents/css/swiper-bundle.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/UIComponents/js/bootstrap.min.js",
+              "src/assets/UIComponents/js/script.js",
+              "src/assets/UIComponents/js/fullpage.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
