@@ -30,7 +30,7 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  min-width: 50%;
+  /* min-width: 50%; */
   width: 50%;
   margin: 0 auto;
 }
@@ -312,7 +312,7 @@ html {
   width: 9px;
   left: 11px;
   position: absolute;
-  top: 4px;
+  /* top: 4px; */
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
@@ -367,7 +367,7 @@ html {
 .global-justice .text-wrapper-6 {
   position: absolute;
   width: 12px;
-  top: 4px;
+  /* top: 4px; */
   left: 10px;
   font-weight: 400;
   color: #ffffff;
@@ -405,7 +405,7 @@ html {
   width: 13px;
   left: 10px;
   position: absolute;
-  top: 4px;
+  /* top: 4px; */
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
@@ -441,7 +441,7 @@ html {
   width: 14px;
   left: 9px;
   position: absolute;
-  top: 4px;
+  /* top: 4px; */
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
@@ -887,9 +887,9 @@ html {
   html {
     font-size: 14px;
   }
-  .global-justice {
+  /* .global-justice {
     width: 100%;
-  }
+  } */
 
   .global-justice .all-frames-wrapper {
     width: 100%;
