@@ -20,7 +20,7 @@ export class WebHeaderComponent implements OnInit {
   tinyURL : string = environment.tinyUrl;
 
   summitLinks = [
-    { label: 'Highlights of Summit', fragment: undefined },
+    { label: 'Highlights of Summit', fragment: 'ts1' },
     { label: 'Chairman', fragment: 'ts2' },
     { label: 'Speakers (Peace Ambassadors)', fragment: 'ts3' },
     { label: 'Delegates', fragment: 'ts4' },
@@ -31,25 +31,25 @@ export class WebHeaderComponent implements OnInit {
     { label: 'Venue', fragment: 'ts9' },
   ];
   partnersLinks = [
-    { label: 'Corporate Partners', fragment: undefined },
+    { label: 'Corporate Partners', fragment: 'p1' },
     { label: 'Causes we Support', fragment: 'p3' },
     { label: 'Event, Media & PR Agency', fragment: 'p4' },
     { label: 'Service Partners', fragment: 'p5' },
   ];
   awardsLinks = [
-    { label: 'Award Categories', fragment: undefined },
+    { label: 'Award Categories', fragment: 'aw1' },
     { label: 'Nominees', fragment: 'aw2' },
     { label: 'Awards Research Committee', fragment: 'aw3' },
   ];
   peacekeeperLinks = [
-    { label: 'Sign Up Now', fragment: undefined },
+    { label: 'Sign Up Now', fragment: 'pe1' },
     { label: 'The Movement', fragment: 'pe2' },
     { label: 'I am Peacekeeper', fragment: 'pe3' },
     { label: '7 Human Values', fragment: 'pe4' },
     { label: 'Song and Graphics', fragment: 'pe5' },
   ];
   downloadLinks = [
-    { label: 'Mission & Pledge', fragment: undefined },
+    { label: 'Mission & Pledge', fragment: 'dc1' },
     { label: 'The Summit of 28', fragment: 'dc2' },
     { label: 'The Number 28', fragment: 'dc3' },
     { label: '7 Pillars of Justice', fragment: 'dc4' },
@@ -62,7 +62,7 @@ export class WebHeaderComponent implements OnInit {
     { label: '28 Sayings', fragment: 'dc11' },
   ];
   chairmanLinks = [
-    { label: 'Videos', fragment: undefined },
+    { label: 'Videos', fragment: 'cc1' },
     { label: 'Messages', fragment: 'cc2' },
     { label: 'Songs', fragment: 'cc3' },
   ];

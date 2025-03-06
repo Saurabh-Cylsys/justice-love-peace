@@ -1544,6 +1544,11 @@ header .nav-item .nav-link.active {
 .iti .dropdown-menu.show {
   overflow: scroll;
   height: 50vh;
+  inset: auto !important;
+  padding-left: 10px !important;
+}
+.iti__country-list {
+  list-style: none;
 }
 
 .form-floating > .form-control-plaintext ~ label,
