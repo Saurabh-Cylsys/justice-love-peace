@@ -452,3 +452,210 @@
   border-color: #004d7a;
 
 }
+
+/* Base transitions for all interactive elements */
+.card, .btn, img, .table, .timeline li {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Card hover effects */
+.cardMain:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Image hover effects */
+img:hover {
+  transform: scale(1.02);
+}
+
+/* Button hover animation */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Table hover effects */
+.table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(189, 199, 140, 0.1);
+  transform: scale(1.01);
+}
+
+/* Timeline animations */
+.timeline li {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInLeft 0.5s ease forwards;
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Stagger the timeline items */
+.timeline li:nth-child(1) { animation-delay: 0.1s; }
+.timeline li:nth-child(2) { animation-delay: 0.2s; }
+.timeline li:nth-child(3) { animation-delay: 0.3s; }
+.timeline li:nth-child(4) { animation-delay: 0.4s; }
+.timeline li:nth-child(5) { animation-delay: 0.5s; }
+
+/* Section transitions */
+/* section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+} */
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger the sections */
+section:nth-child(1) { animation-delay: 0.1s; }
+section:nth-child(2) { animation-delay: 0.3s; }
+section:nth-child(3) { animation-delay: 0.5s; }
+section:nth-child(4) { animation-delay: 0.7s; }
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Card countdown animation */
+.card-body .card {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Speaker image hover effect */
+.speaker-image {
+  transition: all 0.5s ease;
+  filter: grayscale(20%);
+}
+
+.speaker-image:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Peace Collaborators logo animation */
+.peace_collaborators img {
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.peace_collaborators img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Navigation button animation */
+.swiper-button-next,
+.swiper-button-prev {
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #a3b573;
+  transform: scale(1.1);
+}
+
+/* See all Speakers button animation */
+.see-all-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.see-all-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.see-all-button:hover:before {
+  left: 100%;
+}
+
+/* Progress bar animation */
+.progress-bar {
+  transition: width 1.5s ease-in-out;
+  animation: progressAnimation 1.5s ease-in-out;
+}
+
+@keyframes progressAnimation {
+  from {
+    width: 0;
+  }
+}
+
+/* Map container animation */
+.second-image {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Download button animation */
+.btn-success {
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(18, 137, 64, 0.3);
+}
+
+/* Responsive animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+

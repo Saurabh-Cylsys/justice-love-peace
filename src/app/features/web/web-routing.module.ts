@@ -33,6 +33,7 @@ import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.co
 import { PeaceShopComponent } from './peace-shop/peace-shop.component';
 import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
 import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   {
@@ -204,6 +205,10 @@ const routes: Routes = [
       {
         path: 'peace-fashion',
         component: PeaceFashionComponent,
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },

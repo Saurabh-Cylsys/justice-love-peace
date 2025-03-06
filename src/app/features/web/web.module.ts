@@ -47,6 +47,7 @@ import { NewsPaperComponent } from './media/news-paper/news-paper.component';
 import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
 import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
 import { PeaceShopComponent } from './peace-shop/peace-shop.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { PeaceShopComponent } from './peace-shop/peace-shop.component';
     SpeakersProfileComponent,
     PeaceFashionComponent,
     PeaceMenuComponent,
-    PeaceShopComponent
+    PeaceShopComponent,
+    AboutUsComponent
   ],
   imports: [
     CommonModule,
