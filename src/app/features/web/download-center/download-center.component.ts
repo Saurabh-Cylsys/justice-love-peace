@@ -64,6 +64,10 @@ export class DownloadCenterComponent {
         content: "Access essential resources, materials, and documents related to the Justice, Love, and Peace Movement. Download brochures, event details, and more to stay informed and engaged with our global initiatives."
       },
       {
+        name: 'title',
+        content: "Download Center | Global Justice, Love, and Peace Summit 2025"
+      },
+      {
         property: 'og:title',
         content: 'Download Center | Global Justice, Love, and Peace Summit 2025'
       },

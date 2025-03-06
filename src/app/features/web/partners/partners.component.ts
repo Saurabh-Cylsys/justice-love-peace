@@ -61,6 +61,10 @@ export class PartnersComponent {
         content: "Meet the organizations and individuals collaborating with the Justice, Love, and Peace Movement to promote global harmony and equality. Discover our partners' contributions and join us in fostering a more peaceful world."
       },
       {
+        name: 'title',
+        content: "Our Partners | Global Justice, Love, and Peace Movement | Dubai"
+      },
+      {
         property: 'og:title',
         content: 'Our Partners | Global Justice, Love, and Peace Movement | Dubai'
       },

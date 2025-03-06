@@ -57,6 +57,10 @@ export class AwardsComponent {
         content: "Explore the prestigious awards conferred by the Justice, Love, and Peace Movement through a non-biased, merit-based process conducted by a 28-member global committee across 23 countries. Honoring individuals from all professions who have made a significant impact on society."
       },
       {
+        name: 'title',
+        content: "Awards | Global Justice, Love, and Peace Movement | Dubai"
+      },
+      {
         property: 'og:title',
         content: 'Awards | Global Justice, Love, and Peace Movement | Dubai'
       },

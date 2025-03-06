@@ -28,6 +28,10 @@ constructor(
         content: "Review the Privacy Policy for the Global Justice, Love, and Peace Summit 2025 in Dubai. Understand how we collect, use, and protect your personal information to ensure a secure and transparent experience."
       },
       {
+        name: 'title',
+        content: 'Privacy Policy | Global Justice, Love, and Peace Summit 2025'
+      },
+      {
         property: 'og:title',
         content: 'Privacy Policy | Global Justice, Love, and Peace Summit 2025'
       },

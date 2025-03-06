@@ -973,6 +973,10 @@ onDateChange(event: string): void {
         content: "Join the World Peacekeepers Movement, a global initiative forming the world's largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world."
       },
       {
+        name: 'title',
+        content: "World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai"
+      },
+      {
         property: 'og:title',
         content: 'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai'
       },

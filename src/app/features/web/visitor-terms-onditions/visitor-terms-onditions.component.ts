@@ -28,6 +28,10 @@ constructor(
         content: 'Review the Visitor Terms & Conditions for the Global Justice, Love, and Peace Summit 2025 in Dubai. Understand the guidelines and policies to ensure a safe and enjoyable experience at the event.'
       },
       {
+        name: 'title',
+        content: 'Visitor Terms & Conditions | Global Justice, Love, and Peace Summit 2025'
+      },
+      {
         property: 'og:title',
         content: 'Visitor Terms & Conditions | Global Justice, Love, and Peace Summit 2025'
       },

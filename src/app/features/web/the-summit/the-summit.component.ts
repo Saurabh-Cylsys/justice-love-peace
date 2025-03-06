@@ -193,6 +193,11 @@ export class TheSummitComponent implements OnInit {
         name: 'description',
         content: 'Join us at the Global Justice, Love, and Peace Summit 2025 in Dubai. Experience transformative sessions, network with global leaders, and be part of the movement for world peace.'
       },
+
+      {
+        name: 'title',
+        content: "The Summit | Global Justice, Love, and Peace Summit 2025"
+      },
       
       {
         property: 'og:title',

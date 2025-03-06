@@ -381,6 +381,10 @@ export class ContactUsComponent {
         content: "Reach out to the Justice, Love, and Peace Movement for inquiries, support, or collaboration opportunities. Our dedicated team is here to assist you in promoting global harmony and equality."
       },
       {
+        name: 'title',
+        content: 'Contact Us | Justice, Love, and Peace Movement'
+      },
+      {
         property: 'og:title',
         content: 'Contact Us | Justice, Love, and Peace Movement'
       },

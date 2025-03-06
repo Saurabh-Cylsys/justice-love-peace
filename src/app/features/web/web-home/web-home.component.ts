@@ -286,6 +286,10 @@ export class WebHomeComponent implements OnInit, OnDestroy {
         content: 'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!'
       },
       {
+        name: 'title',
+        content: 'Global Justice, Love and Peace Summit | Dubai'
+      },
+      {
         property: 'og:title',
         content: 'Global Justice, Love and Peace Summit | Dubai'
       },

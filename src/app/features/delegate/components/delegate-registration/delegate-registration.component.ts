@@ -1257,6 +1257,10 @@ export class DelegateRegistrationComponent {
         content: "Register now to participate as a delegate in the Global Justice, Love, and Peace Summit 2025 in Dubai. Join global leaders and visionaries in promoting equality, justice, and unity. Secure your spot today!"
       },
       {
+        name: 'title',
+        content: 'Delegate Registration | Global Justice, Love, and Peace Summit 2025'
+      },
+      {
         property: 'og:title',
         content: 'Delegate Registration | Global Justice, Love, and Peace Summit 2025'
       },

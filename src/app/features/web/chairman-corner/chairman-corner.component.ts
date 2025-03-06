@@ -65,6 +65,10 @@ export class ChairmanCornerComponent {
         content: "Explore insights and messages from the Chairman of the Justice, Love, and Peace Movement, guiding our mission to foster global harmony and equality. Stay informed about leadership perspectives and organizational developments."
       },
       {
+        name: 'title',
+        content: "Chairmans Corner | Global Justice, Love, and Peace Summit 2025"
+      },
+      {
         property: 'og:title',
         content: 'Chairmans Corner | Global Justice, Love, and Peace Summit 2025'
       },

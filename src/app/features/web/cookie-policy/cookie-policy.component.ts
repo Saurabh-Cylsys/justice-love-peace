@@ -28,6 +28,10 @@ constructor(
         content: "Learn about the use of cookies on the Global Justice, Love, and Peace Summit 2025 website. Understand how we collect and manage your data to enhance your browsing experience."
       },
       {
+        name: 'title',
+        content: 'Cookie Policy | Global Justice, Love, and Peace Summit 2025'
+      },
+      {
         property: 'og:title',
         content: 'Cookie Policy | Global Justice, Love, and Peace Summit 2025'
       },

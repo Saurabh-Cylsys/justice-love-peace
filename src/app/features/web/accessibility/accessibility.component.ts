@@ -28,6 +28,10 @@ constructor(
         content: "Learn about the accessibility features of the Global Justice, Love, and Peace Summit 2025 in Dubai. We provide accessible parking, entrances, seating areas, sign language interpretation, Braille materials, and live captioning to ensure an inclusive experience for all attendees."
       },
       {
+        name: 'title',
+        content: 'Accessibility Information | Global Justice, Love, and Peace Summit 2025'
+      },
+      {
         property: 'og:title',
         content: 'Accessibility Information | Global Justice, Love, and Peace Summit 2025'
       },
