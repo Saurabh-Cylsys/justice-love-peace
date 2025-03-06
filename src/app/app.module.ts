@@ -11,6 +11,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { Constants } from './config/constant';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { provideToastr } from 'ngx-toastr';
 
 // Add new class for global error handling
 export class GlobalErrorHandler implements ErrorHandler {
@@ -38,6 +39,11 @@ export class GlobalErrorHandler implements ErrorHandler {
   providers: [
     provideClientHydration(),
     provideAnimations(),
+    provideToastr({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     DatePipe,
     Constants,
     // Add the error handler provider

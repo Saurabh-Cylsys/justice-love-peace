@@ -43,7 +43,8 @@
               "src/assets/UIComponents/css/slick.css",
               "src/assets/UIComponents/css/timeline.css",
               "src/assets/UIComponents/css/fullpage.css",
-              "src/assets/UIComponents/css/swiper-bundle.css"
+              "src/assets/UIComponents/css/swiper-bundle.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "src/assets/UIComponents/js/bootstrap.min.js",

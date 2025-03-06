@@ -74,26 +74,25 @@ private getRouteData(): any {
 }
 
   ToastPopup(errorMsg: string, errorModule: string, errorType: string) {
+    const options = {
+      progressBar: true,
+      closeButton: true,
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      enableHtml: true
+    };
+
     switch (errorType) {
       case 'error':
-        this._toastr.error(errorMsg, errorModule, {
-          progressBar: true,
-        });
-
+        this._toastr.error(errorMsg, errorModule, options);
         break;
 
       case 'info':
-        this._toastr.info(errorMsg, errorModule, {
-          progressBar: true,
-        });
-
+        this._toastr.info(errorMsg, errorModule, options);
         break;
 
       case 'success':
-        this._toastr.success(errorMsg, errorModule, {
-          progressBar: true,
-        });
-
+        this._toastr.success(errorMsg, errorModule, options);
         break;
     }
   }
