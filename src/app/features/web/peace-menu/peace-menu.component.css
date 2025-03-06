@@ -1,0 +1,42 @@
+.peaceMenu{
+  min-height: 88vh;
+}
+.peaceMenu h1 {
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 50px);
+  line-height: 64.4px;
+  letter-spacing: 0%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: Auto;
+  text-decoration-skip-ink: auto;
+}
+.comingSoon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 34px;
+}
+.comingSoon img {
+  object-fit: cover;
+}
+.comingSoon h2{
+font-weight: 700;
+font-size: clamp(30px, 5vw, 90px);
+line-height: 115.92px;
+letter-spacing: -4%;
+background: linear-gradient(90deg, #005B94 0%, #128940 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.marqueeBg{
+  background-color: #005B94;
+  padding: 10px 0;
+}
+
+.marqueeBg marquee{
+  color: #fff;
+}

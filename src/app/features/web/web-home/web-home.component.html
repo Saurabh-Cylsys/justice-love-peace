@@ -36,7 +36,7 @@
                 </video>
               </div>
               <div
-                class="col-lg-4 col-md-6 col-12 text-center px-lg-5 mt-lg-0 mt-lg-4 ms-auto"
+                class="col-lg-4 col-md-6 col-12 text-center px-lg-5 mt-lg-0 mt-lg-4 ms-auto position-relative"
               >
                 <div class="card cardMain">
                   <div class="card-body">
@@ -80,6 +80,62 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="d-md-flex list-unstyled" *ngIf="!isMobileView">
+                      <li class="p-1">
+                        <a [routerLink]="['/peace-shop']">
+                          <img
+                            src="assets/UIComponents/images/peaceBtn1.png"
+                            alt=""
+                            class="col-12"
+                        /></a>
+                      </li>
+                      <li class="p-1">
+                        <a [routerLink]="['/peace-menu']">
+                        <img
+                          src="assets/UIComponents/images/peaceBtn2.png"
+                          alt=""
+                          class="col-12"
+                        /></a>
+                      </li>
+                      <li class="p-1">
+                        <a [routerLink]="['/peace-fashion']">
+                          <img
+                            src="assets/UIComponents/images/peaceBtn3.png"
+                            alt=""
+                            class="col-12"
+                        /></a>
+                      </li>
+                    </ul>
+                    <ul class="d-md-flex list-unstyled" *ngIf="isMobileView">
+                      <li class="p-1 text-end">
+                        <a [routerLink]="['/peace-shop']">
+                          <img
+                            src="assets/UIComponents/images/peaceShop.svg"
+                            alt=""
+                            width="35px"
+                        /></a>
+                      </li>
+                      <li class="p-1 text-end">
+                        <a [routerLink]="['/peace-menu']">
+                        <img
+                          src="assets/UIComponents/images/peaceMenu.svg"
+                          alt=""
+                          width="35px"
+                        /></a>
+                      </li>
+                      <li class="p-1 text-end">
+                        <a [routerLink]="['/peace-fashion']">
+                          <img
+                            src="assets/UIComponents/images/peaceFashion.svg"
+                            alt=""
+                            width="35px"
+                        /></a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -129,27 +185,36 @@
             </div>
           </div>
         </section>
-        <section class="section6 scroll">
-          <div class="container-fluid">
+        <section class="section6 chiefGuest">
+          <div class="container">
             <div class="row justify-content-center">
-              <div class="col-md-12 text-center">
+              <!-- <div class="col-md-12 text-center">
                 <h1 class="col-xl-6 col-md-12 mx-auto">
                   Chairman, Global Justice, Love & Peace Summit Dr. Huzaifa
                   khorakiwala
                 </h1>
+              </div> -->
+              <div class="col-md-6 text-center mt-5">
+                <img
+                  src="assets/UIComponents/images/chiefguest.webp"
+                  alt="et_now"
+                  class="col-8"
+                />
+                <p>Chief Guest</p>
+                <p>H.E. SHEIKH NAHAYAN MABARAK AL NAHAYAN</p>
+                <p>
+                  Cabinet Member, Minister of Tolerance and Co-existence, UAE
+                </p>
               </div>
-              <div class="col-xl-8 text-center mt-5">
-                <!-- <iframe
-                  class="yT col-xl-12 col-md-12 col-12"
-                  src="https://www.youtube.com/embed/TRgcLU_S-9o"
-                  title="ET Interview"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                  style="border-radius: 10px"
-                ></iframe> -->
-                <img src="assets/UIComponents/images/chairman.webp" alt="et_now" class="col-md-5">
+              <div class="col-md-6 text-center mt-5">
+                <img
+                  src="assets/UIComponents/images/chairman.webp"
+                  alt="et_now"
+                  class="col-8"
+                />
+                <p>Chairman</p>
+                <p>DR. HUZAIFA KHORAKIWALA</p>
+                <p>Global Justice, Love & Peace Summit</p>
               </div>
             </div>
           </div>

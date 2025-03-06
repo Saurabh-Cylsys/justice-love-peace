@@ -7,9 +7,13 @@
           <div class="overlap-group">
             <div class="div">
               <div class="text">
-                <h1 class="text-wrapper">{{ speaker.speaker_name }}</h1>
+                <h1 class="text-wrapper">{{ speaker.title_name }}</h1>
+                
                 <p class="p">
-                  {{ speaker.speaker_country }} :
+                  <span class="country" *ngIf="speaker.speaker_country">
+                    {{ formatCountry(speaker.speaker_country) }} :
+                  </span>
+                  <!-- {{ speaker.speaker_country }} : -->
                   {{ speaker.speaker_credentials }}
                 </p>
               </div>
@@ -27,7 +31,7 @@
               class="img"
               *ngIf="speaker.photo"
               [src]="speaker.photo"
-              alt="{{ speaker.speaker_name }} portrait"
+              alt="{{ speaker.title_name }} portrait"
             />
           </div>
           <div class="scroll">
@@ -43,7 +47,7 @@
         </div>
       </header>
       <section class="element-2">
-        <h2 class="text-wrapper-3">About {{ speaker.speaker_name }}</h2>
+        <h2 class="text-wrapper-3">About {{ speaker.title_name }}</h2>
         <div class="cards">
           <div class="element-3">
             <article class="frame-wrapper">
@@ -144,7 +148,7 @@
               *ngIf="speaker.photo"
               [src]="speaker.photo"
               class="image-2"
-              alt="{{ speaker.speaker_name }} at an event"
+              alt="{{ speaker.title_name }} at an event"
             />
           </div>
           <div class="col-7">
@@ -262,7 +266,7 @@
             Be Part of the Peace<br />keeper Movement!
           </h2>
           <p class="text-wrapper-10">
-            Feeling inspired by Dia Mirza's journey? Now it's your turn to make
+            Feeling inspired by {{ speaker.title_name }}'s journey? Now it's your turn to make
             an impact! Join the Global Justice, Love & Peace Summit as a
             Delegate and connect with 72 renowned speakers, network with 2,800
             Peacekeepers, and be part of exclusive VIP experiences. Register now

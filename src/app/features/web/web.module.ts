@@ -44,6 +44,9 @@ import { VideoComponent } from './media/video/video.component';
 import { PhotosComponent } from './media/photos/photos.component';
 import { ArticlesComponent } from './media/articles/articles.component';
 import { NewsPaperComponent } from './media/news-paper/news-paper.component';
+import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
+import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
+import { PeaceShopComponent } from './peace-shop/peace-shop.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { NewsPaperComponent } from './media/news-paper/news-paper.component';
     ArticlesComponent,
     NewsPaperComponent,
     SpeakerDetailsComponent,
-    SpeakersProfileComponent
+    SpeakersProfileComponent,
+    PeaceFashionComponent,
+    PeaceMenuComponent,
+    PeaceShopComponent
   ],
   imports: [
     CommonModule,

@@ -64,7 +64,13 @@
                   width="50%"
                 />
                 <h5 class="mt-3">{{ speaker.speaker_name }}</h5>
-                <p class="country">{{ speaker.speaker_country }}</p>
+                <!-- <p class="country">{{ speaker.speaker_country }}</p> -->
+                <p class="country" *ngIf="speaker.speaker_country">
+                  {{ formatCountry(speaker.speaker_country) }}
+                </p>
+                
+                
+                 
                 <p class="credentials">{{ speaker.speaker_credentials }}</p>
                 
               </div>
