@@ -2432,10 +2432,10 @@ header .nav-item .nav-link.active {
   counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 
-.awardLink a:nth-child(2) {
+/* .awardLink a:nth-child(2) {
   background-color: #3e8e41;
   color: var(--color2) !important;
-}
+} */
 
 img {
   max-width: 100%;
@@ -2445,18 +2445,48 @@ img {
 .timeline h3 span {
   color: var(--color1) !important;
 }
+.chairmanCenter h2 {
+  font-weight: 700 !important;
+  font-size: clamp(20px, 1.5vw, 35px) !important;
+  line-height: 100% !important;
+  letter-spacing: 0% !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+  color: var(--color2) !important;
+  white-space: nowrap;
+  text-align: center !important;
+}
+.chairmanCenter p {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 29px;
+  letter-spacing: 2%;
+  text-align: center;
+  color: #12100B !important;
+  ;
+}
+.chairmanCenter p a {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 29px;
+  letter-spacing: 2%;
+  text-align: center;
+  color: #ffffffb2 !important;
+  white-space: nowrap;
+}
 
-@media (min-width: 320px) {
+/* @media (min-width: 320px) {
   .chairmanCenter,
   .chairmanCenter h2 {
     text-align: center !important;
   }
-}
+} */
 @media (min-width: 1024px) {
-  .chairmanCenter,
+  /* .chairmanCenter,
   .chairmanCenter h2 {
     text-align: start !important;
-  }
+  } */
 
   #ts3 .carousel-item {
     min-height: 65vh;
@@ -2936,4 +2966,33 @@ button:focus {
   letter-spacing: 0%;
   text-align: center;
   color: #1e1e1e;
+}
+* Custom tooltip styles */
+.custom-tooltip {
+  --bs-tooltip-bg: var(--color3);
+  --bs-tooltip-color: white;
+  font-family: "din_proregular";
+  font-size: 14px;
+  padding: 8px;
+  --bs-tooltip-arrow-height: 0.5rem;
+  --bs-tooltip-arrow-width: 1rem;
+  --bs-tooltip-padding-y: 0.5rem;
+  --bs-tooltip-padding-x: 0.8rem;
+  --bs-tooltip-margin: 0.5rem 0 0 0;
+}
+
+/* Ensure the tooltip arrow points correctly when placed at the bottom */
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: var(--color3);
+}
+
+
+.card-chairman{
+  box-shadow: 0px -1px 3px 0px #00000040 inset;
+  border-radius: 10px;
+}
+
+.preCarousal .carousel-inner {
+  height: 100%;
+  border-radius: 20px;
 }

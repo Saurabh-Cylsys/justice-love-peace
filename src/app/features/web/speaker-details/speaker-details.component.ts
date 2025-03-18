@@ -80,7 +80,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
 
   loadSpeakers() {
     this.isLoading = true;
-    
+
     // Prepare the search text - if country is selected, include it in the search
     let searchQuery = this.searchText || '';
     if (this.selectedCountry) {
@@ -91,7 +91,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (response: any) => {
         if (response?.data) {
-            debugger
+
             // Map the API response data and filter out excluded countries
             const mappedData = response.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
@@ -102,18 +102,18 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
                 speaker_credentials: item.speaker_credentials || '',
                 profile_photo: item.photo_1 || ''
               }));
-            
+
             // Transform the mapped data into groups
             this.speakersList = this.transformSpeakerData(mappedData);
             this.originalSpeakersList = [...this.speakersList];
-            
+
             // Load countries from the initial data
             if (!this.countries.length) {
               this.loadCountries();
             }
 
             console.log(this.speakersList , 'list of speakers');
-            
+
           } else {
             this.speakersList = [];
             this.originalSpeakersList = [];
@@ -133,22 +133,22 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     // Group speakers into chunks of 4 speakers per group
     const groupSize = 4;
     const groups = [];
-    
+
     for (let i = 0; i < data.length; i += groupSize) {
       groups.push({
         speakers: data.slice(i, i + groupSize)
       });
     }
-    
+
     return groups;
   }
 
   loadCountries() {
     // Extract countries from nested speakers array
-    const allCountries = this.speakersList.flatMap(group => 
+    const allCountries = this.speakersList.flatMap(group =>
       group.speakers.map((speaker: Speaker) => speaker.speaker_country)
     );
-    
+
     // Get unique countries and sort them, excluding the specified countries
     this.countries = [...new Set(allCountries)]
       .filter(country => country && !this.excludedCountries.includes(country))

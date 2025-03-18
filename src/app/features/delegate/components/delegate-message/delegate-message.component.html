@@ -1,0 +1,87 @@
+<div class="confirmation-container">
+  <!-- Loading Indicator -->
+  <!-- <div *ngIf="loading" class="text-center p-5">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3 text-muted">Verifying your registration status...</p>
+  </div> -->
+
+  <!-- Error Message -->
+  <!-- <div *ngIf="!loading && errorMessage" class="alert alert-danger text-center">
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-outline-danger mt-3" (click)="proceedToPayment()">
+      Try Again
+    </button>
+  </div> -->
+
+  <!-- Success Message (For Paid Users) -->
+  <div class="card shadow-lg">
+    <div class="card-body text-center p-md-5">
+      <!-- Animated Success Checkmark -->
+      <div class="success-animation">
+        <div class="success-checkmark mb-4">
+          <div class="check-icon">
+            <span class="icon-line line-tip"></span>
+            <span class="icon-line line-long"></span>
+            <div class="icon-circle"></div>
+            <div class="icon-fix"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thank You Message -->
+      <h2 class="mt-4 text-success fade-in">Thank You for Registering!</h2>
+
+      <!-- Email Instructions -->
+      <div class="message-container fade-in-delayed">
+        <p class="lead text-muted mt-3">
+          Your registration has been successfully received and payment confirmed.
+        </p>
+        <p class="text-muted">
+          Please check your email for further instructions and confirmation details.
+          <br>
+          <small class="mt-2 d-block">
+            If you don't receive an email within a few minutes, please check your spam folder.
+          </small>
+        </p>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-info mt-4 fade-in-delayed p-2">
+        <p class="text-muted small">
+          For any questions, please contact us at:
+          <a href="mailto:help@justice-love-peace.com" class="text-white" style="white-space: nowrap;">
+            help&#64;justice-love-peace.com
+          </a>
+        </p>
+      </div>
+
+      <button class="btn text-center btn-success my-3 cursor-pointer" routerLink="/home">Go to Home Page</button>
+    </div>
+  </div>
+
+  <!-- Payment Required Message -->
+  <!-- <div *ngIf="!loading && !errorMessage && !hasAlreadyPaid" class="card shadow-lg">
+    <div class="card-body text-center p-5">
+      <div class="mb-4">
+        <i class="fas fa-info-circle text-primary" style="font-size: 3rem;"></i>
+      </div>
+      <h2 class="mt-4 text-primary">Complete Your Registration</h2>
+      <div class="message-container">
+        <p class="lead text-muted mt-3">
+          Thank you for your interest in the Global Justice, Love & Peace Summit.
+        </p>
+        <p class="text-muted">
+          To complete your registration, please proceed to the payment page.
+        </p>
+      </div>
+      <div class="mt-4">
+        <button class="btn btn-success btn-lg" (click)="proceedToPayment()">
+          Proceed to Payment
+        </button>
+      </div>
+    </div>
+  </div> -->
+</div>
+

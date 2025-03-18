@@ -37,21 +37,23 @@ export class WebHomeComponent implements OnInit, OnDestroy {
 
   joinOnline: any[] = [
     {
-      S_No: 1,
       Name: 'Jose Manuel Ramos Horta, His Excellency',
       Country: 'EAST TIMOR',
       Credentials:
         'President, East Timor & Nobel Peace Laureate, 1996',
     },
     {
-      S_No: 2,
       Name: 'Joseph Boakai, His Excellency',
       Country: 'LIBERIA',
       Credentials:
         'President of Liberia',
     },
     {
-      S_No: 3,
+      Name: 'Mata Amritanandamayi',
+      Country: 'INDIA',
+      Credentials: 'Chancellor of Amrita Vishwa Vidyapeetham',
+    },
+    {
       Name: 'Sri Sri Ravishankar, Gurudev',
       Country: 'INDIA',
       Credentials:

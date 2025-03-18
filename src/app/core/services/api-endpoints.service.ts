@@ -326,8 +326,43 @@ export class ApiEndpointsService {
       });
   }
 
+  public postCreateDelegateOnlineEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE);
+  }
+
+  public postVerifySessionOnlineEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION_ONLINE);
+  }
+
+  public postRegistrationOnlineEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE);
+  }
+
+  public postCreateDelegateOnlineMPEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP);
+  }
+
+  public getDataByTransactionIdEndpoint(transactionId:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID + '/' + transactionId);
+  }
+
+  public postVerifyPaymentStatusEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_PAYMENT_STATUS);
+  }
+  public postPreDelegateNominationEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION);
+  }
+
   public getAmbassadorURLEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_AMBASSADOR);
+  }
+
+  public postCreateDelegateOraftEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_DRAFT_DELEGATE);
+  }
+
+  public getCouponValidationEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VALIDATE_COUPON);
   }
 
 }

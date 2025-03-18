@@ -46,6 +46,7 @@ border-left-width: 1px;
   display: flex;
   align-items: baseline;
   gap: 10px;
+  text-transform: capitalize;
 }
 
 .section4 .card .card-body ul{

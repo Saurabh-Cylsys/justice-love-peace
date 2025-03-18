@@ -1,286 +1,283 @@
 <div class="section5">
-<main class="global-justice col-lg-6">
-  <div class="all-frames-wrapper shadow">
-    <div class="all-frames" *ngFor="let speaker of this.speakersDetails">
-      <header class="element">
-        <div class="overlap">
-          <div class="overlap-group">
-            <div class="div">
-              <div class="text">
-                <h1 class="text-wrapper">{{ speaker.title_name }}</h1>
-                
-                <p class="p">
-                  <span class="country" *ngIf="speaker.speaker_country">
-                    {{ formatCountry(speaker.speaker_country) }} :
-                  </span>
-                  <!-- {{ speaker.speaker_country }} : -->
-                  {{ speaker.speaker_credentials }}
-                </p>
-              </div>
-              <div class="ellipse" aria-hidden="true"></div>
-              <div class="ellipse-2" aria-hidden="true"></div>
-              <div class="ellipse-3" aria-hidden="true"></div>
-              <div class="ellipse-4" aria-hidden="true"></div>
-              <img
-                class="image"
-                src="assets/UIComponents/images/Logo_with_Date.svg"
-                alt="Logo"
-              />
-            </div>
-            <img
-              class="img"
-              *ngIf="speaker.photo"
-              [src]="speaker.photo"
-              alt="{{ speaker.title_name }} portrait"
-            />
-          </div>
-          <div class="scroll">
-            <p class="text-wrapper-2">Join Me</p>
-            <a
-              type="btn"
-              class="btn btn-success me-2"
-              (click)="navigateUrl()"
-              style="width: 150px; margin: -10px 0 0 0"
-              >Be a Delegate</a
-            >
-          </div>
-        </div>
-      </header>
-      <section class="element-2">
-        <h2 class="text-wrapper-3">About {{ speaker.title_name }}</h2>
-        <div class="cards">
-          <div class="element-3">
-            <article class="frame-wrapper">
-              <div class="frame">
-                <div class="group">
-                  <div class="div-wrapper">
-                    <span class="text-wrapper-4">1</span>
-                  </div>
+  <main class="global-justice col-lg-6">
+    <div class="all-frames-wrapper shadow">
+      <div class="all-frames" *ngFor="let speaker of this.speakersDetails">
+        <header class="element">
+          <div class="overlap">
+            <div class="overlap-group">
+              <div class="div">
+                <div class="text">
+                  <h1 class="text-wrapper">{{ speaker.title_name }}</h1>
+                  <p class="p">
+                    {{ speaker.speaker_country }} :
+                    {{ speaker.speaker_credentials }}
+                  </p>
                 </div>
-                <p class="text-wrapper-5">
-                  {{ speaker.speaker_details[0] }}
-                </p>
-              </div>
-            </article>
-            <article class="element-4">
-              <div class="frame-2">
-                <div class="group">
-                  <div class="overlap-group-2">
-                    <span class="text-wrapper-6">2</span>
-                  </div>
-                </div>
-                <p class="text-wrapper-5">
-                  {{ speaker.speaker_details[1] }}
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="element-3">
-            <article class="element-5">
-              <div class="frame-2">
-                <div class="group">
-                  <div class="overlap-group-3">
-                    <span class="text-wrapper-7">3</span>
-                  </div>
-                </div>
-                <p class="text-wrapper-5">
-                  {{ speaker.speaker_details[2] }}
-                </p>
-              </div>
-            </article>
-            <article class="element-6">
-              <div class="frame-2">
-                <div class="group">
-                  <div class="overlap-group-4">
-                    <span class="text-wrapper-8">4</span>
-                  </div>
-                </div>
-                <p class="text-wrapper-5">
-                  {{ speaker.speaker_details[3] }}
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="element-3">
-            <article class="element-7">
-              <div class="frame">
-                <div class="group">
-                  <div class="overlap-group-5">
-                    <span class="text-wrapper-6">5</span>
-                  </div>
-                </div>
-                <p class="text-wrapper-5">
-                  {{ speaker.speaker_details[4] }}
-                </p>
-              </div>
-            </article>
-            <article class="element-8">
-              <div class="frame-2">
-                <div class="group">
-                  <div class="overlap-group-6">
-                    <span class="text-wrapper-6">6</span>
-                  </div>
-                </div>
-                <p class="text-wrapper-5">
-                  {{ speaker.speaker_details[5] }}
-                </p>
-              </div>
-            </article>
-          </div>
-          <article class="element-9">
-            <div class="frame-3">
-              <div class="group">
-                <div class="overlap-group-7">
-                  <span class="text-wrapper-6">7</span>
-                </div>
-              </div>
-              <p class="acted-in-bollywood">
-                {{ speaker.speaker_details[6] }}
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-      <section class="element-10">
-        <div class="frame-4">
-          <div class="col-5">
-            <img
-              *ngIf="speaker.photo"
-              [src]="speaker.photo"
-              class="image-2"
-              alt="{{ speaker.title_name }} at an event"
-            />
-          </div>
-          <div class="col-7">
-            <h2 class="text-wrapper-9">Meet me at</h2>
-            <p class="the-global-justice">
-              the Global Justice, Love & Peace Summit 2025! I am a Peacekeeper.
-            </p>
-            <p class="the-global-justice">—join me in making a difference.</p>
-            <a type="btn" (click)="navigateUrl()" class="btn btn-success me-2"> Register now!</a>
-          </div>
-        </div>
-      </section>
-      <section class="card-wrapper">
-        <div class="card">
-          <div class="row align-items-center">
-            <div class="col-12">
-              <h2 class="share-with-your m-auto mb-3">
-                Share with your friends about this event.
-              </h2>
-            </div>
-            <div class="col-md-6">
-              <img
-                src="assets/UIComponents/images/share.svg"
-                alt="Share illustration"
-                class="img-fluid"
-                width="100%"
-              />
-            </div>
-            <div class="col-md-6 text-center">
-              <ul
-                style="
-                  display: flex;
-                  justify-content: space-around;
-                  list-style: none;
-                  padding: 0;
-                "
-              >
-                <li>
-                  <img
-                    src="assets/UIComponents/images/index/fb.svg"
-                    alt="Facebook"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="assets/UIComponents/images/index/insta.svg"
-                    alt="insta"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="assets/UIComponents/images/index/whatsapp.svg"
-                    alt="wa"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="assets/UIComponents/images/index/linkedIn.svg"
-                    alt="link"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="assets/UIComponents/images/index/telegram.svg"
-                    alt="tel"
-                  />
-                </li>
-              </ul>
-              <!-- <div class="input-group">
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  value="www.justice-love-peace.com"
+                <div class="ellipse" aria-hidden="true"></div>
+                <div class="ellipse-2" aria-hidden="true"></div>
+                <div class="ellipse-3" aria-hidden="true"></div>
+                <div class="ellipse-4" aria-hidden="true"></div>
+                <img
+                  class="image"
+                  src="assets/UIComponents/images/Logo_with_Date.svg"
+                  alt="Logo"
                 />
-              </div> -->
-              <div class="link-share">
-                <div class="link-container">
-                  <label for="link-input" class="link-label">Link</label>
-                  <div class="link-input-wrapper">
-                    <input
-                      type="text"
-                      id="link-input"
-                      class="link-input"
-                      value="{{this.speakersDetails[0].url}}"                      
-                      readonly
-                      #webQRcode
-                      aria-label="Link to share"
-                    />
-                    <button class="copy-button" (click)="
-                    copyInputMessage(webQRcode)
-                  " value="click to copy" aria-label="Copy link">
-                      <img class="copy-icon" src="assets/UIComponents/images/link.svg" alt="Copy icon" />
-                    </button>
+              </div>
+              <img
+                class="img"
+                *ngIf="speaker.photo"
+                [src]="speaker.photo"
+                alt="{{ speaker.title_name }} portrait"
+              />
+            </div>
+            <div class="scroll">
+              <p class="text-wrapper-2">Join Me</p>
+              <a
+                type="btn"
+                class="btn btn-success me-2"
+                (click)="navigateUrl()"
+                style="width: 150px; margin: -10px 0 0 0"
+                >Be a Delegate</a
+              >
+            </div>
+          </div>
+        </header>
+        <section class="element-2">
+          <h2 class="text-wrapper-3">About {{ speaker.title_name }}</h2>
+          <div class="cards">
+            <div class="element-3">
+              <article class="frame-wrapper">
+                <div class="frame">
+                  <div class="group">
+                    <div class="div-wrapper">
+                      <span class="text-wrapper-4">1</span>
+                    </div>
+                  </div>
+                  <p class="text-wrapper-5">
+                    {{ speaker.speaker_details[0] }}
+                  </p>
+                </div>
+              </article>
+              <article class="element-4">
+                <div class="frame-2">
+                  <div class="group">
+                    <div class="overlap-group-2">
+                      <span class="text-wrapper-6">2</span>
+                    </div>
+                  </div>
+                  <p class="text-wrapper-5">
+                    {{ speaker.speaker_details[1] }}
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="element-3">
+              <article class="element-5">
+                <div class="frame-2">
+                  <div class="group">
+                    <div class="overlap-group-3">
+                      <span class="text-wrapper-7">3</span>
+                    </div>
+                  </div>
+                  <p class="text-wrapper-5">
+                    {{ speaker.speaker_details[2] }}
+                  </p>
+                </div>
+              </article>
+              <article class="element-6">
+                <div class="frame-2">
+                  <div class="group">
+                    <div class="overlap-group-4">
+                      <span class="text-wrapper-8">4</span>
+                    </div>
+                  </div>
+                  <p class="text-wrapper-5">
+                    {{ speaker.speaker_details[3] }}
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="element-3">
+              <article class="element-7">
+                <div class="frame">
+                  <div class="group">
+                    <div class="overlap-group-5">
+                      <span class="text-wrapper-6">5</span>
+                    </div>
+                  </div>
+                  <p class="text-wrapper-5">
+                    {{ speaker.speaker_details[4] }}
+                  </p>
+                </div>
+              </article>
+              <article class="element-8">
+                <div class="frame-2">
+                  <div class="group">
+                    <div class="overlap-group-6">
+                      <span class="text-wrapper-6">6</span>
+                    </div>
+                  </div>
+                  <p class="text-wrapper-5">
+                    {{ speaker.speaker_details[5] }}
+                  </p>
+                </div>
+              </article>
+            </div>
+            <article class="element-9">
+              <div class="frame-3">
+                <div class="group">
+                  <div class="overlap-group-7">
+                    <span class="text-wrapper-6">7</span>
                   </div>
                 </div>
+                <p class="acted-in-bollywood">
+                  {{ speaker.speaker_details[6] }}
+                </p>
               </div>
-              <div class="col-12 mx-auto text-center mt-5 d-flex align-items-center justify-content-center">
-                <button
-                  #shareBtn
-                  class="btn btn-success d-flex align-items-center justify-content-around"
-                  (click)="shareContent()"
+            </article>
+          </div>
+        </section>
+        <section class="element-10">
+          <div class="frame-4">
+            <div class="col-5">
+              <img
+                *ngIf="speaker.photo"
+                [src]="speaker.photo"
+                class="image-2"
+                alt="{{ speaker.title_name }} at an event"
+              />
+            </div>
+            <div class="col-7">
+              <h2 class="text-wrapper-9">Meet me at</h2>
+              <p class="the-global-justice">
+                the Global Justice, Love & Peace Summit 2025! I am a Peacekeeper.
+              </p>
+              <p class="the-global-justice">—join me in making a difference.</p>
+              <a type="btn" (click)="navigateUrl()" class="btn btn-success me-2"> Register now!</a>
+            </div>
+          </div>
+        </section>
+        <section class="card-wrapper">
+          <div class="card">
+            <div class="row align-items-center">
+              <div class="col-12">
+                <h2 class="share-with-your m-auto mb-3">
+                  Share with your friends about this event.
+                </h2>
+              </div>
+              <div class="col-md-6">
+                <img
+                  src="assets/UIComponents/images/share.svg"
+                  alt="Share illustration"
+                  class="img-fluid"
+                  width="100%"
+                />
+              </div>
+              <div class="col-md-6 text-center">
+                <ul
+                  style="
+                    display: flex;
+                    justify-content: space-around;
+                    list-style: none;
+                    padding: 0;
+                  "
                 >
-                <img src="assets/UIComponents/images/share_icon.svg" alt="" style="width: 30%;">
-                  Share
-                </button>
+                  <li>
+                    <img
+                      src="assets/UIComponents/images/index/fb.svg"
+                      alt="Facebook"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src="assets/UIComponents/images/index/insta.svg"
+                      alt="insta"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src="assets/UIComponents/images/index/whatsapp.svg"
+                      alt="wa"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src="assets/UIComponents/images/index/linkedIn.svg"
+                      alt="link"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src="assets/UIComponents/images/index/telegram.svg"
+                      alt="tel"
+                    />
+                  </li>
+                </ul>
+                <!-- <div class="input-group">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    value="www.justice-love-peace.com"
+                  />
+                </div> -->
+                <div class="link-share">
+                  <div class="link-container">
+                    <label for="link-input" class="link-label">Link</label>
+                    <div class="link-input-wrapper">
+                      <input
+                        type="text"
+                        id="link-input"
+                        class="link-input"
+                        value="{{speakerShareUrl}}"                      
+                        readonly
+                        #webQRcode
+                        aria-label="Link to share"
+                      />
+                      <button class="copy-button" (click)="
+                      copyInputMessage(webQRcode)
+                    " value="click to copy" aria-label="Copy link">
+                        <img class="copy-icon" src="assets/UIComponents/images/link.svg" alt="Copy icon" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 mx-auto text-center mt-5 d-flex align-items-center justify-content-center">
+                  <button
+                    #shareBtn
+                    class="btn btn-success d-flex align-items-center justify-content-around"
+                    (click)="shareContent()"
+                  >
+                  <img src="assets/UIComponents/images/share_icon.svg" alt="" style="width: 30%;">
+                    Share
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="element-11">
-        <div class="frame-6">
-          <h2 class="be-part-of-the-peace">
-            Be Part of the Peace<br />keeper Movement!
-          </h2>
-          <p class="text-wrapper-10">
-            Feeling inspired by {{ speaker.title_name }}'s journey? Now it's your turn to make
-            an impact! Join the Global Justice, Love & Peace Summit as a
-            Delegate and connect with 72 renowned speakers, network with 2,800
-            Peacekeepers, and be part of exclusive VIP experiences. Register now
-            to engage in meaningful conversations, celebrate changemakers, and
-            contribute to a world of justice, love, and peace.
-          </p>
-          <p class="text-wrapper-10">
-            🚀 Some experiences are too powerful to miss—be there!
-          </p>
-        </div>
-        <a (click)="navigateUrl()" class="frame-7" role="button"
-          ><span class="text-wrapper-11">Register as a Delegate</span></a
-        >
-      </section>
+        </section>
+        <section class="element-11">
+          <div class="frame-6">
+            <h2 class="be-part-of-the-peace">
+              Be Part of the Peace<br />keeper Movement!
+            </h2>
+            <p class="text-wrapper-10">
+              Feeling inspired by {{ speaker.title_name }}'s journey? Now it's your turn to make
+              an impact! Join the Global Justice, Love & Peace Summit as a
+              Delegate and connect with 72 renowned speakers, network with 2,800
+              Peacekeepers, and be part of exclusive VIP experiences. Register now
+              to engage in meaningful conversations, celebrate changemakers, and
+              contribute to a world of justice, love, and peace.
+            </p>
+            <p class="text-wrapper-10">
+              🚀 Some experiences are too powerful to miss—be there!
+            </p>
+          </div>
+          <a (click)="navigateUrl()" class="frame-7" role="button"
+            ><span class="text-wrapper-11">Register as a Delegate</span></a
+          >
+        </section>
+      </div>
     </div>
-  </div>
-</main></div>
+  </main></div>
+  

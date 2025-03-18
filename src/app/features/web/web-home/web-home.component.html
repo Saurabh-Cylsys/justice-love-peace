@@ -84,11 +84,11 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <ul class="d-md-flex list-unstyled" *ngIf="!isMobileView">
+                    <ul class="d-flex list-unstyled">
                       <li class="p-1">
                         <a [routerLink]="['/peace-shop']">
                           <img
-                            src="assets/UIComponents/images/peaceBtn1.png"
+                            src="assets/UIComponents/images/peaceBtn1.svg"
                             alt=""
                             class="col-12"
                         /></a>
@@ -96,43 +96,17 @@
                       <li class="p-1">
                         <a [routerLink]="['/peace-menu']">
                         <img
-                          src="assets/UIComponents/images/peaceBtn2.png"
+                          src="assets/UIComponents/images/peaceBtn2.svg"
                           alt=""
                           class="col-12"
                         /></a>
                       </li>
                       <li class="p-1">
-                        <a [routerLink]="['/peace-fashion']">
+                        <a href="assets/UIComponents/files/agendaBook.pdf" target="_blank">
                           <img
-                            src="assets/UIComponents/images/peaceBtn3.png"
+                            src="assets/UIComponents/images/agendaBook.svg"
                             alt=""
                             class="col-12"
-                        /></a>
-                      </li>
-                    </ul>
-                    <ul class="d-md-flex list-unstyled" *ngIf="isMobileView">
-                      <li class="p-1 text-end">
-                        <a [routerLink]="['/peace-shop']">
-                          <img
-                            src="assets/UIComponents/images/peaceShop.svg"
-                            alt=""
-                            width="35px"
-                        /></a>
-                      </li>
-                      <li class="p-1 text-end">
-                        <a [routerLink]="['/peace-menu']">
-                        <img
-                          src="assets/UIComponents/images/peaceMenu.svg"
-                          alt=""
-                          width="35px"
-                        /></a>
-                      </li>
-                      <li class="p-1 text-end">
-                        <a [routerLink]="['/peace-fashion']">
-                          <img
-                            src="assets/UIComponents/images/peaceFashion.svg"
-                            alt=""
-                            width="35px"
                         /></a>
                       </li>
                     </ul>
@@ -151,14 +125,14 @@
                           </td>
                           <td class="">
                             <h6>28</h6>
-                            <p>Peace Menus (Per meal)</p>
+                            <p>28 Awards <span>(Pax Awards)</span></p>
                           </td>
                           <td>
                             <h6>28</h6>
                             <p>
-                              Awards
+                              28 Peace Menu 
                               <span
-                                >(Global Justice, Love & Peace Champions)</span
+                                >(28 Countries Menu Over 2 days)</span
                               >
                             </p>
                           </td>
@@ -233,7 +207,7 @@
                   JUSTICE, LOVE & PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL
                   2025
                 </h2>
-                <h6 class="editYear">UPDATED AS OF JANUARY 28th, 2025</h6>
+                <h6 class="editYear">UPDATED AS OF MARCH 16th, 2025</h6>
               </div>
               <div class="col-md-12">
                 <div class="table-responsive confirmation px-md-0">
@@ -281,8 +255,8 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let row of joinOnline">
-                        <td>{{ row.S_No }}</td>
+                      <tr *ngFor="let row of joinOnline; let i = index">
+                        <td>{{ i + 1 }}</td>
                         <td>{{ row.Name }}</td>
                         <td>{{ row.Country }}</td>
                         <td>
@@ -299,16 +273,16 @@
                 <div class="row d-lg-flex d-md-none">
                   <div class="col-lg-3 col-md">
                     <ul class="my-lg-3 d-block text-start">
-                      <li><span>A.</span> 11 Nobel Peace Laureates</li>
-                      <li><span>B.</span> 10 Royalty</li>
-                      <li><span>C.</span> 3 Heads of State</li>
-                      <li><span>D.</span> 9 Religious Leaders</li>
+                      <li><span>A.</span> 12 Nobel Peace Laureates</li>
+                      <li><span>B.</span> 11 Royalty</li>
+                      <li><span>C.</span> 4 Heads of State</li>
+                      <li><span>D.</span> 10 Religious Leaders</li>
                       <li><span>E.</span> 5 Industrialist (Business)</li>
                     </ul>
                   </div>
                   <div class="col-lg-3 col-md">
                     <ul class="my-lg-3 d-block text-start">
-                      <li><span>F.</span> 6 Sports Champions</li>
+                      <li><span>F.</span> 5 Sports Champions</li>
                       <li><span>G.</span> 1 Artist</li>
                       <li><span>H.</span> 3 Chief Justices</li>
                       <li><span>I.</span> 2 Attorney Generals</li>
@@ -327,19 +301,19 @@
                   <div class="col-lg-3 col-md">
                     <ul class="my-lg-3 d-block text-start">
                       <li><span>P.</span> 2 Academician</li>
-                      <li><span>Q.</span> 12 Others</li>
+                      <li><span>Q.</span> 13 Others</li>
                     </ul>
                   </div>
                 </div>
                 <div class="row d-lg-none d-md-flex">
                   <div class="col-md-6">
                     <ul class="my-lg-3 d-block text-start">
-                      <li><span>A.</span> 11 Nobel Peace Laureates</li>
-                      <li><span>B.</span> 10 Royalty</li>
-                      <li><span>C.</span> 3 Heads of State</li>
-                      <li><span>D.</span> 9 Religious Leaders</li>
+                      <li><span>A.</span> 12 Nobel Peace Laureates</li>
+                      <li><span>B.</span> 11 Royalty</li>
+                      <li><span>C.</span> 4 Heads of State</li>
+                      <li><span>D.</span> 10 Religious Leaders</li>
                       <li><span>E.</span> 5 Industrialist (Business)</li>
-                      <li><span>F.</span> 6 Sports Champions</li>
+                      <li><span>F.</span> 5 Sports Champions</li>
                       <li><span>G.</span> 1 Artist</li>
                       <li><span>H.</span> 3 Chief Justices</li>
                       <li><span>I.</span> 2 Attorney Generals</li>
@@ -354,7 +328,7 @@
                       <li><span>N.</span> 5 Social Activist</li>
                       <li><span>O.</span> 2 Ex-Head of State</li>
                       <li><span>P.</span> 2 Academician</li>
-                      <li><span>Q.</span> 12 Others</li>
+                      <li><span>Q.</span> 13 Others</li>
                     </ul>
                   </div>
                 </div>
@@ -363,14 +337,14 @@
                 <h2 class="">Profiles of Confirmed Speakers</h2>
 
                 <ul class="my-lg-3">
-                  <li><span>A.</span> 11 Nobel Peace Laureates</li>
-                  <li><span>B.</span> 10 Royalty</li>
-                  <li><span>C.</span> 3 Heads of State</li>
-                  <li><span>D.</span> 9 Religious Leaders</li>
+                  <li><span>A.</span> 12 Nobel Peace Laureates</li>
+                  <li><span>B.</span> 11 Royalty</li>
+                  <li><span>C.</span> 4 Heads of State</li>
+                  <li><span>D.</span> 10 Religious Leaders</li>
                   <li><span>E.</span> 5 Industrialist (Business)</li>
                 </ul>
                 <ul class="my-lg-3">
-                  <li><span>F.</span> 6 Sports Champions</li>
+                  <li><span>F.</span> 5 Sports Champions</li>
                   <li><span>G.</span> 1 Artist</li>
                   <li><span>H.</span> 3 Chief Justices</li>
                   <li><span>I.</span> 2 Attorney Generals</li>
@@ -385,7 +359,7 @@
                 </ul>
                 <ul class="my-lg-3">
                   <li><span>P.</span> 2 Academician</li>
-                  <li><span>Q.</span> 12 Others</li>
+                  <li><span>Q.</span> 13 Others</li>
                 </ul>
                 <!-- <p class="my-md-0 m-2">
                 (His Excellency Jose Manuel Ramos-Horta falls in both the categories
@@ -457,7 +431,8 @@
                   >
                     See all Speakers
                   </button> -->
-                  <a [routerLink]="['/speaker-details']"
+                  <a
+                    [routerLink]="['/speaker-details']"
                     class="see-all-button btn btn-success mb-4"
                   >
                     See all Speakers
@@ -472,53 +447,35 @@
             <div class="row justify-content-center">
               <div class="col-12">
                 <div class="speakers-container">
-                  <h2>OUR Peace Collaborators</h2>
+                  <h2>Our Peace Collaborators</h2>
                 </div>
               </div>
-              <!-- <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc1.webp" alt="pc" width="100%">
+              <div class="col-md-3 col-4 my-3">
+                <img
+                  src="assets/UIComponents/images/peace_collaborators/pc3.webp"
+                  alt="pc"
+                  width="100%"
+                />
               </div>
               <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc2.webp" alt="pc" width="100%">
-              </div> -->
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc3.webp" alt="pc" width="100%">
-              </div>
-              <!-- <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc4.webp" alt="pc" width="100%">
+                <img
+                  src="assets/UIComponents/images/peace_collaborators/pc12.webp"
+                  alt="pc"
+                  width="100%"
+                />
               </div>
               <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc5.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc6.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc7.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc8.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc9.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc10.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc11.webp" alt="pc" width="100%">
-              </div> -->
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc12.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc13.webp" alt="pc" width="100%">
+                <img
+                  src="assets/UIComponents/images/peace_collaborators/pc13.webp"
+                  alt="pc"
+                  width="100%"
+                />
               </div>
             </div>
           </div>
         </section>
         <section
-          class="section7 scroll p-lg-5 py-4 h-auto position-relative"
+          class="section7 scroll px-lg-5 pt-lg-4 pb-lg-0 py-4 h-auto position-relative"
           id="event1"
         >
           <div
@@ -718,7 +675,7 @@
                 />
               </div>
 
-              <div class="col-md-5 col-12 py-4 text-center mb-lg-5">
+              <div class="col-md-5 col-12 py-4 text-center">
                 <h2
                   class="text-white"
                   style="font-size: 22px; font-weight: 400; text-align: left"

@@ -1,0 +1,53 @@
+<!-- payment-failed.component.html -->
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card border-1 shadow-lg">
+      <div class="card-body text-center p-5">
+        <div class="failure-x mb-4">
+          <div class="x-icon">
+            <span class="icon-line line-left"></span>
+            <span class="icon-line line-right"></span>
+            <div class="icon-circle"></div>
+          </div>
+        </div>
+        <h2 class="card-title mb-3 text-danger">Payment Failed!</h2>
+        <p class="card-text text-muted">We were unable to process your payment.</p>
+
+        <div class="error-details mt-4 p-4 bg-light rounded">
+          <h4 class="mb-4 text-danger">Error Details</h4>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Error Message:</strong>
+                <span>{{ errorMessage || 'Payment processing error' }}</span>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Transaction ID:</strong>
+                <span>{{ transactionId || 'Not available' }}</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Error Code:</strong>
+                <span class="text-danger">{{ errorCode || 'Unknown' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-muted">Please try again or contact support if the problem persists.</p>
+
+        <div class="mt-4">
+          <button class="btn btn-danger btn-lg px-5 me-2" (click)="retryPayment()">
+            Retry Payment
+          </button>
+          <button class="btn btn-outline-secondary btn-lg px-5" (click)="cancelPayment()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

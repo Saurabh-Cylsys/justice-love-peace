@@ -74,25 +74,26 @@ private getRouteData(): any {
 }
 
   ToastPopup(errorMsg: string, errorModule: string, errorType: string) {
-    const options = {
-      progressBar: true,
-      closeButton: true,
-      timeOut: 3000,
-      positionClass: 'toast-top-right',
-      enableHtml: true
-    };
-
     switch (errorType) {
       case 'error':
-        this._toastr.error(errorMsg, errorModule, options);
+        this._toastr.error(errorMsg, errorModule, {
+          progressBar: true,
+        });
+
         break;
 
       case 'info':
-        this._toastr.info(errorMsg, errorModule, options);
+        this._toastr.info(errorMsg, errorModule, {
+          progressBar: true,
+        });
+
         break;
 
       case 'success':
-        this._toastr.success(errorMsg, errorModule, options);
+        this._toastr.success(errorMsg, errorModule, {
+          progressBar: true,
+        });
+
         break;
     }
   }
@@ -102,6 +103,7 @@ private getRouteData(): any {
     return this._apiHttpService.post(this._apiEndpointsService.registrationEndpoint(), data
     )
   }
+
   contectUs(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.contectUsEndpoint(), data
     )
@@ -134,6 +136,11 @@ private getRouteData(): any {
 
   getIPAddress() {
     return this._apiHttpService.get('https://api64.ipify.org?format=json')
+  }
+
+  registrationOnline(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postRegistrationOnlineEndpoint(), data
+    )
   }
 
 }

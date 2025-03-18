@@ -1,104 +1,147 @@
-<section class="section9 p-lg-4 py-4">
+<section class=" p-lg-4 py-4">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 text-center">
+    <div class="row align-items-center">
+      <div class="col-md-2 text-center logo-container">
         <img
           loading="eager"
           src="assets/UIComponents/images/index/global justice summit.png"
           alt="attach image"
-          class="col-md-2 col-6"
+          class="col-lg-9 col-md-4 col-sm-4 col-6"
         />
       </div>
-      <div class="col-md-12 text-center mt-4">
-        <a
-          class="mx-2"
-          href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit
+      <div class="col-md-10 text-center mt-lg-0 mt-4 px-lg-5">
+        <div class="row">
+          <div class="col-md-4">
+            <ul class="p-0 text-lg-start text-center">
+              <li class="header-text"><i class="bi bi-telephone-fill"></i> Helpline No.</li>
+              <li class="header-text-2">+971 54 325 7125</li>
+            </ul>
+          </div>
+          <div class="col-md-5">
+            <ul class="p-0 text-lg-start text-center">
+              <li class="header-text">Follow us</li>
+              <li class="header-text-2 social-icons">
+                <a
+                  class="mx-2"
+                  href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit
             "
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            loading="eager"
-            src="assets/UIComponents/images/fb.svg"
-            alt="attach image"
-        /></a>
-        <a
-          class="mx-2"
-          href="https://www.instagram.com/globaljusticelovepeacesummit/
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/fb.svg"
+                    alt="attach image"
+                  />
+                </a>
+                <a
+                  class="mx-2"
+                  href="https://www.instagram.com/globaljusticelovepeacesummit/
             "
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            loading="eager"
-            src="assets/UIComponents/images/insta.svg"
-            alt="attach image"
-        /></a>
-        <a
-          class="mx-2"
-          href="https://www.youtube.com/@GlobalJusticeLovePeaceSummit/videos"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            loading="eager"
-            src="assets/UIComponents/images/youtube.svg"
-            alt="attach image"
-        /></a>
-
-        <a
-          class="mx-2"
-          href="https://www.linkedin.com/company/global-justice-love-peace-summit-2025/posts/?feedView=all"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            loading="eager"
-            src="assets/UIComponents/images/linkedIn.svg"
-            alt="attach image"
-        /></a>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section10 footer p-3">
-  <div class="container">
-    <div class="row">
-      <div
-        class="col-md-12 text-center d-lg-block d-md-flex d-flex flex-column flex-lg-row flex-md-column"
-      >
-        <a
-          class="text-decoration-none text-white m-3"
-          [routerLink]="['/about-us']"
-          >About Us</a
-        >
-        <a
-          class="text-decoration-none text-white m-3"
-          [routerLink]="['/accessibility']"
-          >Accessibility</a
-        >
-        <a
-          class="text-decoration-none text-white m-3"
-          [routerLink]="['/privacy-policy']"
-          >Privacy Policy</a
-        >
-        <a
-          class="text-decoration-none text-white m-3"
-          [routerLink]="['/cookie-policy']"
-          >Cookie Policy</a
-        >
-        <a
-          class="text-decoration-none text-white m-3"
-          [routerLink]="['/terms-of-use']"
-          >Terms of use
-        </a>
-        <a
-          class="text-decoration-none text-white m-3"
-          [routerLink]="['/visitor-terms-conditions']"
-        >
-          Visitor Terms and Conditions</a
-        >
-        <!-- <a class="text-decoration-none text-white m-3"[routerLink]="['/media/videos']"> Media</a> -->
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/insta.svg"
+                    alt="attach image"
+                  />
+                </a>
+                <a
+                  class="mx-2"
+                  href="https://www.youtube.com/@GlobalJusticeLovePeaceSummit/videos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/youtube.svg"
+                    alt="attach image"
+                  />
+                </a>
+                <a
+                  class="mx-2"
+                  href="https://www.linkedin.com/company/global-justice-love-peace-summit-2025/posts/?feedView=all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/linkedIn.svg"
+                    alt="attach image"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row footer-links">
+          <div class="col-md-4 text-start">
+            <ul>
+              <li>
+                <a class="text-decoration-none m-3" [routerLink]="['/about-us']"
+                  >About Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-start">
+            <ul>
+              <li>
+                <a
+                  class="text-decoration-none m-3"
+                  [routerLink]="['/accessibility']"
+                  >Accessibility</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-start">
+            <ul>
+              <li>
+                <a
+                  class="text-decoration-none m-3"
+                  [routerLink]="['/privacy-policy']"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-start">
+            <ul>
+              <li>
+                <a
+                  class="text-decoration-none m-3"
+                  [routerLink]="['/cookie-policy']"
+                  >Cookie Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-start">
+            <ul>
+              <li>
+                <a
+                  class="text-decoration-none m-3"
+                  [routerLink]="['/terms-of-use']"
+                  >Terms of use
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-start">
+            <ul>
+              <li>
+                <a
+                  class="text-decoration-none m-3"
+                  [routerLink]="['/visitor-terms-conditions']"
+                  >Visitor Terms and Conditions</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

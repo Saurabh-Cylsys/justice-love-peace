@@ -9,20 +9,16 @@ export class Constants {
     public readonly API_IS_DEVELOPMENT_ENV: boolean = environment.production;
 
 
-    public readonly API_ENDPOINT_registration: string = 'registration/create-delegate-profile'
+    public readonly API_ENDPOINT_registration: string = 'create-delegate-profile-online'
     public readonly API_ENDPOINT_CONTECT_US: string = 'contact_us'
     public readonly API_ENDPOINT_PEACEKEEPER: string = 'create-peacekeeper'
     public readonly API_ENDPOINT_DOWNLOAD_PEACEKEEPER_BADGE: string = 'peacekeeper/'
 
     //payment
     public readonly API_ENDPOINT_CHECKOUT_SESSION: string = 'create_session_stripe'
-    public readonly API_ENDPOINT_VERIFY_SESSION: string = 'registration/verify_session_stripe_payment'
+    // public readonly API_ENDPOINT_VERIFY_SESSION: string = 'registration/verify_session_stripe_payment'
 
-
-
-
-
-
+    public readonly API_ENDPOINT_VERIFY_SESSION: string = 'verify_session_stripe_payment_new'
 
     public readonly API_ENDPOINT_checkEmailAndMobile: string = 'registration/delegate/already'
     public readonly API_ENDPOINT_checkEmailAndMobile_1: string = 'registration/partner/already'
@@ -68,8 +64,25 @@ export class Constants {
     public readonly API_ENDPOINT_GET_LOOKUPDATA: string = 'getLookupData'
     public readonly API_ENDPOINT_DELETE_PEACEKEEPER_ACC: string = 'delete-user'
 
+    // public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'create_delgate_online'
+    public readonly API_ENDPOINT_VERIFY_SESSION_ONLINE: string = 'verify_session_online'
 
+    public readonly API_ENDPOINT_REGISTRATION_ONLINE: string = 'create-delegate-profile-online'
 
-public readonly API_ENDPOINT_GET_AMBASSADOR : string = 'get_ambassador_by_code'
+    // 'create-delegate-profile-short'
+    public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'pre_delegate_user'
 
+    public readonly API_ENDPOINT_GET_AMBASSADOR : string = 'get_ambassador_by_code'
+
+    public readonly API_ENDPOINT_CREATE_ONLINE_MP: string = 'initiate-payment'
+
+    public readonly API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID: string = 'transaction'
+
+    public readonly API_ENDPOINT_VERIFY_PAYMENT_STATUS : string = 'verify-payment-status'
+
+    public readonly API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION: string ='pre_delegate_nomination'
+
+    public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE: string = 'pre_delegate_draft_details'
+
+    public readonly API_ENDPOINT_VALIDATE_COUPON: string = 'check_coupon'
 }

@@ -1,0 +1,3 @@
+.footerLinks p{
+  font-size: clamp(16px, 2vw, 24px);
+}

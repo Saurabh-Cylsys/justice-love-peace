@@ -29,6 +29,10 @@ export class DelegateService {
     return this._apiHttpService.get(this._apiEndpointsService.getAllCountryForDelegatesEndpoint());
   }
 
+  getAllCountryApi(): Promise<any> {
+    return this._apiHttpService.get(this._apiEndpointsService.getAllCountryForDelegatesEndpoint()).toPromise();
+  }
+
   getAllStates(country_id: any) {
     return this._apiHttpService.get(this._apiEndpointsService.getStatesByCountryEndpoint(country_id));
   }
@@ -76,7 +80,39 @@ export class DelegateService {
     return this._apiHttpService.delete(this._apiEndpointsService.postPeaceDeleteAccEndpoint(queryParamsObj));
   }
 
+  postDelegateOnline(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(), body);
+  }
+
+  postVerifySessionOnline(body: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionOnlineEndpoint(),body);
+  }
+
+ postDelegateOnlineMP(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body);
+  }
+
+  getDataByTransactionIdApi(transactionId: any): Observable<any> {
+    return this._apiHttpService.get(this._apiEndpointsService.getDataByTransactionIdEndpoint(transactionId));
+  }
+
+  postverifyPaymentStatus(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifyPaymentStatusEndpoint(), body);
+  }
+  postPreDelegateNominationApi(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postPreDelegateNominationEndpoint(), body);
+  }
+
+
   getAmbassadorURL(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)
+  }
+
+  postDelegateDraft(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOraftEndpoint(), body);
+  }
+
+  getCouponValidation(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.getCouponValidationEndpoint(), body);
   }
 }

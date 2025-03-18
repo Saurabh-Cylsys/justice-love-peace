@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+  <!-- Loading indicator -->
+  <div *ngIf="loading" class="col-12 text-center p-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Verifying your payment information...</p>
+  </div>
+
+  <!-- Success content - only show when not loading and data is available -->
+  <div *ngIf="!loading && showPaymentSuccess" class="col-md-6">
+    <div class="card border-1 shadow-lg">
+      <div class="card-body text-center p-md-5">
+        <div class="success-checkmark mb-4">
+          <div class="check-icon">
+            <span class="icon-line line-tip"></span>
+            <span class="icon-line line-long"></span>
+            <div class="icon-circle"></div>
+            <div class="icon-fix"></div>
+          </div>
+        </div>
+
+        <h2 class="card-title mb-3 text-success">Payment Successful!</h2>
+        <p class="card-text text-muted">Thank you for completing your registration.</p>
+
+        <div class="registration-details mt-4 p-4 p-md-4 px-1 bg-light rounded" *ngIf="this.pType=='DELEGATE_ONLINE' || this.pType=='DELEGATE_OFFLINE'">
+          <h4 class="mb-4 text-success">Registration Details</h4>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Name:</strong>
+                <span>{{registrationData?.first_name}} {{registrationData?.last_name}}</span>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Email:</strong>
+                <span>{{registrationData?.email}}</span>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Transaction Id:</strong>
+                <span>{{registrationData?.transcation_id}}</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Status:</strong>
+                <span class="text-success">{{registrationData?.transcation_json.status | uppercase}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="class" *ngIf="this.pType=='DELEGATE_CHILD_NOMINATION'">
+
+          <h4 class="mb-4 text-success">Registration Details</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Adult Name:</strong>
+                <span>{{peaceStudentData?.adultFirstName}} {{peaceStudentData?.adultLastName}}</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Student Name:</strong>
+                <span>{{peaceStudentData?.studentFirstName}} {{peaceStudentData?.studentLastName}}</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Adult Email:</strong>
+                <span>{{peaceStudentData?.adultEmail}}</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Student Email:</strong>
+                <span>{{peaceStudentData?.studentEmail}}</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Transaction Id:</strong>
+                <span>{{peaceStudentData?.transcation_id}}</span>
+              </div>
+            </div>
+            <div class="col-md-12 mb-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Status:</strong>
+                <span class="text-success">{{peaceStudentData?.transcation_json | uppercase}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-muted">You will receive a confirmation email shortly with further instructions.</p>
+
+        <div class="mt-4">
+          <button class="btn btn-success btn-lg px-5" (click)="showCompleteProfile()">
+            Complete Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
