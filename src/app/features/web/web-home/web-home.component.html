@@ -87,25 +87,25 @@
                     <ul class="d-flex list-unstyled">
                       <li class="p-1">
                         <a [routerLink]="['/peace-shop']">
-                          <img
+                          <img loading="lazy"
                             src="assets/UIComponents/images/peaceBtn1.svg"
-                            alt=""
+                            alt="peaceBtn1"
                             class="col-12"
                         /></a>
                       </li>
                       <li class="p-1">
                         <a [routerLink]="['/peace-menu']">
-                        <img
+                        <img loading="lazy"
                           src="assets/UIComponents/images/peaceBtn2.svg"
-                          alt=""
+                          alt="peaceBtn2"
                           class="col-12"
                         /></a>
                       </li>
                       <li class="p-1">
                         <a href="assets/UIComponents/files/agendaBook.pdf" target="_blank">
-                          <img
+                          <img loading="lazy"
                             src="assets/UIComponents/images/agendaBook.svg"
-                            alt=""
+                            alt="agendaBook"
                             class="col-12"
                         /></a>
                       </li>
@@ -169,7 +169,7 @@
                 </h1>
               </div> -->
               <div class="col-md-6 text-center mt-5">
-                <img
+                <img loading="lazy"
                   src="assets/UIComponents/images/chiefguest.webp"
                   alt="et_now"
                   class="col-8"
@@ -181,7 +181,7 @@
                 </p>
               </div>
               <div class="col-md-6 text-center mt-5">
-                <img
+                <img loading="lazy"
                   src="assets/UIComponents/images/chairman.webp"
                   alt="et_now"
                   class="col-8"
@@ -403,10 +403,11 @@
                   >
                     <ng-template swiperSlide *ngFor="let slide of slides">
                       <div class="mycard">
-                        <img
+                        <img loading="lazy"
                           [src]="slide.path"
                           class="speaker-image"
-                          loading="lazy"
+                          
+                          alt="speaker"
                         />
                       </div>
                     </ng-template>
@@ -420,7 +421,7 @@
                   >
                     <ng-template swiperSlide *ngFor="let slide of slides">
                       <div class="mycard">
-                        <img [src]="slide.path" class="speaker-image" />
+                        <img loading="lazy" [src]="slide.path" class="speaker-image" alt="speaker" />
                       </div>
                     </ng-template>
                   </swiper>
@@ -451,21 +452,21 @@
                 </div>
               </div>
               <div class="col-md-3 col-4 my-3">
-                <img
+                <img loading="lazy"
                   src="assets/UIComponents/images/peace_collaborators/pc3.webp"
                   alt="pc"
                   width="100%"
                 />
               </div>
               <div class="col-md-3 col-4 my-3">
-                <img
+                <img loading="lazy"
                   src="assets/UIComponents/images/peace_collaborators/pc12.webp"
                   alt="pc"
                   width="100%"
                 />
               </div>
               <div class="col-md-3 col-4 my-3">
-                <img
+                <img loading="lazy"
                   src="assets/UIComponents/images/peace_collaborators/pc13.webp"
                   alt="pc"
                   width="100%"
@@ -637,16 +638,16 @@
               </div>
             </div>
           </div>
-          <img
-            loading="eager"
+          <img loading="lazy"
+            
             src="assets/UIComponents/images/watermark.png"
             alt="attach images"
             class="position-absolute"
             style="left: 0; bottom: 0; width: 20rem"
             *ngIf="!isMobileView"
           />
-          <img
-            loading="eager"
+          <img loading="lazy"
+            
             src="assets/UIComponents/images/watermark.png"
             alt="attach images"
             class="position-absolute"
@@ -665,11 +666,12 @@
                   style="border: 0"
                   allowfullscreen=""
                   referrerpolicy="no-referrer-when-downgrade"
+                  title="Dubai Exhibition Centre"
                 ></iframe>
 
-                <img
-                  loading="eager"
-                  src="assets/UIComponents/images/index/GHD.png"
+                <img loading="lazy"
+                  
+                  src="assets/UIComponents/images/index/GHD.webp"
                   alt="Second Image"
                   class="position-absolute second-image col-md-4"
                 />
@@ -738,7 +740,7 @@
           <div class="col-md-3 py-3" *ngFor="let slide of slides">
             <div class="card">
               <div class="card-body p-0">
-                <img [src]="slide.path" class="speaker-image" />
+                <img loading="lazy" [src]="slide.path" class="speaker-image" alt="speaker" />
               </div>
             </div>
           </div>

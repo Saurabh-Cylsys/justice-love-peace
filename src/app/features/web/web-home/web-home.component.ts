@@ -17,7 +17,7 @@ import SwiperCore, { EffectCards, Navigation, Pagination, SwiperOptions, Autopla
 
 // Install Swiper modules
 SwiperCore.use([EffectCards, Navigation, Pagination, Autoplay]);
-declare var AOS: any;
+// declare var AOS: any;
 
 @Component({
   selector: 'app-web-home',
@@ -144,9 +144,9 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     // this.setMetaTags();
     // this.setCanonicalUrl('https://www.justice-love-peace.com/home');
     this.checkWindowSize();
-    AOS.init({
-      duration: 1200,
-    });
+    // AOS.init({
+    //   duration: 1200,
+    // });
 
     console.log('home');
     this.SharedService.headerIcon = this._router.routerState.snapshot.url;
