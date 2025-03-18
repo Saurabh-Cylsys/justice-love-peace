@@ -22,31 +22,17 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 });
 
-// function scrollFunction() {
-//   const logo = document.getElementById("logo");
-
-//   // ✅ Check if the element exists to avoid errors
-//   if (logo) {
-//     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-//       logo.style.width = "80%";
-//     } else {
-//       logo.style.width = "100%";
-//     }
-//   } else {
-//     console.warn("Element with ID 'logo' not found!"); // Debugging message
-//   }
-// }
-
-window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    document.getElementById("logo").style.width = "37%";
-    document.getElementById("logo").style.top = "0";
-    document.getElementById("logo").style.position = "relative";
+  const logo = document.getElementById("logo");
+
+  // ✅ Check if the element exists to avoid errors
+  if (logo) {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+      logo.style.width = "80%";
+    } else {
+      logo.style.width = "100%";
+    }
   } else {
-    document.getElementById("logo").style.width = "100%";
-    document.getElementById("logo").style.top = "0rem";
-    document.getElementById("logo").style.position = "absolute";
+    console.warn("Element with ID 'logo' not found!"); // Debugging message
   }
 }
