@@ -311,33 +311,40 @@
         </a>
       </div> -->
 
-      <div
-        class="col-md-1 col-1 position-relative"
-        *ngIf="!isMobileView"
-        [ngClass]="{ 'small-logo': isScrolled }"
-      >
-        <a
-          class="navbar-brand logo"
-          [routerLink]="['/home']"
-          *ngIf="!isHomePage"
-        >
-          <img
-            loading="eager"
-            src="assets/UIComponents/images/logo.gif"
-            alt="attach images"
-            width="80%"
-          />
-        </a>
-        <img
+      <div class="col-lg-2 col-md-1 col-1" *ngIf="!isMobileView">
+        <div class="position-relative">
+          <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+          <a
+            class="navbar-brand logo"
+            [routerLink]="['/home']"
+            *ngIf="!isHomePage"
+          >
+            <video autoplay loop muted style="width: 34%;">
+              <source
+                src="assets/UIComponents/images/logo.webm"
+                type="video/webm"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </a>
+          <!-- <img
           loading="eager"
           src="assets/UIComponents/images/logo.gif"
           alt="attach images"
           id="logo"
-          [ngClass]="{ 'small-logo': isScrolled }"
           *ngIf="isHomePage"
-        />
+          /> -->
+          <video *ngIf="isHomePage" autoplay loop muted id="logo">
+            <source
+              src="assets/UIComponents/images/logo.webm"
+              type="video/webm"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+        </div>
       </div>
-      <div class="col-md">
+      <div class="col-ld col-md">
         <ul
           class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
         >
@@ -443,19 +450,24 @@
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <!-- <button class="dropbtn" [routerLink]="['/media/news-paper']">
-              Media
-            </button> -->
-            <!-- <button class="dropbtn"
-              [routerLink]="['/DownloadCenter']"
-              >Download Center</button
-            > -->
             <div class="hover-dropdown">
               <button class="dropbtn" [routerLink]="['/DownloadCenter']">
                 Download Center
               </button>
               <div class="hover-dropdown-content">
-                <button [routerLink]="['/download-brochure']"  class="btn btn-success" style="font-size: 14px; margin: 0 0; text-align: center; width: 100%; border-radius: 0;" tabindex="0"> Download Brochure </button>
+                <button
+                  class="btn btn-success"
+                  [routerLink]="['/download-brochure']"
+                  style="
+                    font-size: 14px;
+                    margin: 0 0;
+                    text-align: center;
+                    width: 100%;
+                    border-radius: 0;
+                  "
+                >
+                  Download Brochure
+                </button>
                 <a
                   *ngFor="let link of downloadLinks"
                   [routerLink]="['/DownloadCenter']"
@@ -464,6 +476,10 @@
                 >
                   {{ link.label }}
                 </a>
+                <!-- <a [routerLink]="['/download-applications']"
+                >
+                  Download Mobile Application
+                </a> -->
               </div>
             </div>
           </li>
@@ -473,7 +489,7 @@
                 class="nav-link"
                 routerLinkActive="active"
                 [routerLink]="['/chairman-corner']"
-                >Chairman's Corner</a
+                >Chairman’s Corner</a
               >
             </div>
           </li>
@@ -487,7 +503,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2 col-md-2">
         <form class="d-flex justify-content-end" role="search">
           <!-- [routerLink]="['/delegate-registration']" -->
           <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
@@ -501,11 +517,8 @@
             <option value="">Eng</option>
           </select> -->
           <a
-            routerlinkactive="active"
-            data-bs-toggle="tooltip"
-            data-bs-custom-class="custom-tooltip"
-            data-bs-title="Download Brochures"
             class="nav-link"
+            routerLinkActive="active"
             style="
               border: 1px solid #fff;
               border-radius: 5px;
@@ -514,6 +527,9 @@
               justify-content: center;
               flex-flow: column wrap;
             "
+            data-bs-toggle="tooltip"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Download Brochures"
             [routerLink]="['/download-brochure']"
             >Lang <br /><img
               loading="eager"
@@ -521,21 +537,6 @@
               alt="attach image"
               class="w-50"
           /></a>
-          <!-- <a
-            class="nav-link p-0"
-            routerLinkActive="active"
-            data-bs-toggle="tooltip"
-            data-bs-custom-class="custom-tooltip"
-            data-bs-title="Download Brochures"
-            data-bs-placement="bottom"
-            data-bs-trigger="hover focus"
-            [routerLink]="['/DownloadCenter']"
-            ><img
-              loading="eager"
-              src="assets/UIComponents/images/download_new.svg"
-              alt="Download Brochures"
-              class="img-fluid"
-          /></a> -->
         </form>
       </div>
     </div>
