@@ -47,23 +47,36 @@
       onload="this.media='all'"
     />
 
-    <!-- Consolidated Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-DF9NDVZEJY"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-DF9NDVZEJY");
-      gtag("config", "AW-16849057294");
-      gtag("event", "conversion", {
-        send_to: "AW-16849057294/E3iBCJ2eypgaEI7soOI-",
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DF9NDVZEJY"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16849057294"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    // Google Analytics
+    gtag('config', 'G-DF9NDVZEJY');
+    // Google Ads
+    gtag('config', 'AW-16849057294');
+    // Event snippet for Page View 2nd section conversion
+    gtag('event', 'conversion', { 'send_to': 'AW-16849057294/E3iBCJ2eypgaEI7soOI-' });
+  </script>
+
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof (url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-16849057294/DNXdCK_Sx6AaEI7soOI-',
+        'event_callback': callback
       });
-    </script>
+      return false;
+    }
+  </script>
 
     <!-- Conversion tracking -->
     <script>
@@ -81,20 +94,125 @@
       }
     </script>
 
-    <!-- Tawk.to Script -->
-    <script defer type="text/javascript">
-      var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-      (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = "https://embed.tawk.to/6798b8f03a8427326075d7b1/1iim94rar";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
-        s0.parentNode.insertBefore(s1, s0);
-      })();
+    <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '615538498012845');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=615538498012845&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6798b8f03a8427326075d7b1/1iim94rar';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+
+  <script async type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Summit",
+      "name": "Global Justice, Love and Peace Summit | Dubai",
+      "startDate": "2025-04-12T08:00:00Z",
+      "endDate": "2025-04-13T10:00:00Z",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "DEC at Dubai Expo City",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Lehbab Street - Dubai - United Arab Emirates",
+          "addressLocality": "dubai-exhibition-centre-dec",
+          "postalCode": "",
+          "addressRegion": "Dubai",
+          "addressCountry": "United Arab Emirates"
+        }
+      },
+      "description": "Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.justice-love-peace.com",
+        "price": 2800,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-04-12T12:00:00Z"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Global Justice, Love and Peace Summit | Dubai"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Global Justice, Love and Peace Summit | Dubai",
+        "url": "https://www.justice-love-peace.com"
+      }
+    }
     </script>
+  <script async type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.justice-love-peace.com",
+      "sameAs": [
+        "https://www.facebook.com/globaljusticepeacesummit",
+        "https://www.instagram.com/globaljusticepeacesummit",
+        "https://twitter.com/gjpeacesummit"
+      ],
+      "logo": "assets/UIComponents/images/logo.jpg",
+      "name": "Global Justice, Love and Peace Summit | Dubai",
+      "description": "Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!",
+      "email": "help@justice-love-peace.com",
+      "telephone": "+971543257125",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Lehbab Street - Dubai - United Arab Emirates",
+        "addressLocality": "Dubai",
+        "addressCountry": "AE",
+        "addressRegion": "Dubai",
+        "postalCode": ""
+      }
+    }
+    </script>
+    <script async type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Dubai to host world's largest summit on justice, peace with nearly 3,000 attendees",
+        
+        "datePublished": "2025-02-04T12:27:00+08:00",
+        "dateModified": "2025-02-04T09:43:00+08:00",
+        "author": [{
+            "@type": "Person",
+            "name": "Waheed Abbas",
+            "url": "https://www.khaleejtimes.com/uae/dubai-to-host-worlds-largest-summit-on-justice-peace-with-nearly-3000-attendees"
+          },{
+            "@type": "Person",
+            "name": "",
+            "url": "https://www.zawya.com/en/press-release/events-and-conferences/dubai-to-host-the-worlds-largest-global-summit-on-justice-love-and-peace-jyozimez"
+        }]
+      }
+      </script>
   </head>
 
   <body
