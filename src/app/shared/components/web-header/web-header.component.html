@@ -292,7 +292,7 @@
 
 <!-- header start -->
 <header
-  class="head"
+  class="head d-lg-block d-none"
   [class.hide-logo]="_router.url === '/home' || _router.url === '/'"
   *ngIf="!isMobileView"
 >
@@ -542,7 +542,7 @@
     </div>
   </div>
 </header>
-<header *ngIf="isMobileView">
+<header class="d-lg-none d-block" *ngIf="isMobileView">
   <nav class="navbar navbar-expand-lg p-0">
     <div class="container-fluid">
       <a
