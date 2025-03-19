@@ -2967,7 +2967,7 @@ button:focus {
   text-align: center;
   color: #1e1e1e;
 }
-* Custom tooltip styles */
+/*  Custom tooltip styles */
 .custom-tooltip {
   --bs-tooltip-bg: var(--color3);
   --bs-tooltip-color: white;
@@ -3030,4 +3030,8 @@ button:focus {
 
 .delegateonline .iti #phone {
   border: 0 !important;
+}
+
+.agenda th, .agenda td {
+  color: #fff;
 }
