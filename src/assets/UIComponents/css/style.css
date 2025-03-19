@@ -3035,3 +3035,7 @@ button:focus {
 .agenda th, .agenda td {
   color: #fff;
 }
+
+.drop-zone input{
+  font-size: 12px;
+}

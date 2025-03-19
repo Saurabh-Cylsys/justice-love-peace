@@ -67,7 +67,7 @@ export class DelegateRegistrationComponent {
     { value: 'Peace', label: 'Peace' },
   ];
   disabledDates: Date[] = [];
-
+  isEnabled:boolean = false;
   maxDate1: any;
   minDate1: any;
   colorTheme: string = 'theme-dark-blue';
@@ -87,10 +87,7 @@ export class DelegateRegistrationComponent {
   buttonText: string = 'Send OTP';
   mediumValue: string | null = '';
 
-  tinyURL : string = environment.tinyUrl;
-
-  // tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
-  // tinyUatURL : string = 'https://tinyurl.com/3322sj49'
+  tinyURL: string = environment.tinyUrl;
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -108,10 +105,7 @@ export class DelegateRegistrationComponent {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2,
-    private titleService: Title,
-        private metaService: Meta,
-        @Inject(DOCUMENT) private document: Document
+    private renderer: Renderer2
   ) {
     this.fullURL = window.location.href;
 
@@ -145,106 +139,38 @@ export class DelegateRegistrationComponent {
   }
 
   ngOnInit(): void {
-    this.setMetaTags();
-    this.setCanonicalUrl('Delegate Registration | Global Justice, Love, and Peace Summit 2025');
     this.checkWindowSize();
-    // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
-      // if (params) {
-      //   this.referralCode = params.code;
-      // }
-      // if (this.referralCode) {
-      //   console.log(this.referralCode, 'referralCode..........');
-      // }
+      console.log('Params', params);
 
-      console.log("Params",params);
-      // {code: "COININ-0000001-W"
-      //   medium: "1"
-      // }
-      if(params != undefined && Object.keys(params).length > 0){
-      this.referralCode = params.code;
-      if(params.medium == 1 && params.code) {
+      if (params != undefined && Object.keys(params).length > 0) {
+        this.referralCode = params.code;
+        if (params.medium == 1 && params.code) {
+          const params = new URLSearchParams();
+          params.set('code', this.referralCode);
 
-        // this.router.navigate(['/delegate-registration'], {
-        //   queryParams: { code: this.referralCode }, // Pass query params
-        //   queryParamsHandling: 'merge', // Preserve existing query params (optional)
-        //   relativeTo: this.route, // Stay on the same route
-        // })
-        const params = new URLSearchParams();
-        params.set('code', this.referralCode);
+          const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
 
-        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+          // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
 
-        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
+          window.location.href = tinyUrlWithParams;
+        } else if (!params.medium) {
+          const params = new URLSearchParams();
+          params.set('code', this.referralCode);
 
-        window.location.href = tinyUrlWithParams;
+          const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
 
-          // this.router.navigate(['/peacekeeper-preselect'], {
-          //   queryParams: { code: this.referralCode },
-          // });
+          // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
+
+          window.location.href = tinyUrlWithParams;
+        }
       }
-
-      else if(!params.medium) {
-        console.log('Medium value not found, redirecting...');
-        // this.mediumValue = params.medium
-        const params = new URLSearchParams();
-        params.set('code', this.referralCode);
-
-        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
-
-        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
-
-        window.location.href = tinyUrlWithParams;
-
-          // this.router.navigate(['/peacekeeper-preselect'], {
-          //   queryParams: { code: this.referralCode },
-          // });
-      }
-    }
-
-
-      // if (params) {
-      //   const decodedCode = decodeURIComponent(params.code);
-      //   console.log('Decoded Code:', decodedCode);
-      //   this.referralCode = decodedCode.split('?')[0];
-
-      //   // Extract 'medium' value using regex
-      //   const match = decodedCode.match(/medium=(\d+)/);
-      //   this.mediumValue = match ? match[1] : null;
-
-      //   console.log('Medium Value:', this.mediumValue);
-
-      //   if(params.medium == 1  && this.referralCode) {
-      //     // this.router.navigate(['/delegate-registration'], {
-      //     //   queryParams: { code: this.referralCode },
-      //     // });
-      //     this.router.navigate(['/delegate-registration'], {
-      //       queryParams: { code: this.referralCode }, // Pass query params
-      //       queryParamsHandling: 'merge', // Preserve existing query params (optional)
-      //       relativeTo: this.route, // Stay on the same route
-      //     })
-      //   }
-
-      //   else if(!this.mediumValue) {
-      //     console.log('Medium value not found, redirecting...');
-      //     this.router.navigate(['/peacekeeper-preselect'], {
-      //       queryParams: { code: this.referralCode },
-      //     });
-      //   }
-
-
-      // }
     });
 
     this.createForm();
 
-    // this.getdates()
     this.getAllCountries();
-    // this.getAllCountrycode()
-    this.getIPAddress();
-
-    this.deviceInfo = this.getDeviceOS();
   }
 
   createForm() {
@@ -999,9 +925,9 @@ export class DelegateRegistrationComponent {
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : "0",
-        p_type:"DELEGATE_OFFLINE",
-        p_reference_by:'0'
+        is_nomination: '0',
+        p_type: 'DELEGATE_OFFLINE',
+        p_reference_by: '0',
       };
 
       this.ngxService.start();
@@ -1135,24 +1061,6 @@ export class DelegateRegistrationComponent {
     }
   }
 
-  getIPAddress() {
-    this.SharedService.getIPAddress().subscribe({
-      next: (res: any) => {
-        this.ipAddress = res.ip;
-      },
-    });
-  }
-
-  getDeviceOS(): string {
-    const userAgent = navigator.userAgent;
-    if (/android/i.test(userAgent)) return 'Android';
-    if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
-    if (/Win/i.test(userAgent)) return 'Windows';
-    if (/Mac/i.test(userAgent)) return 'MacOS';
-    if (/Linux/i.test(userAgent)) return 'Linux';
-    return 'Unknown';
-  }
-
   startTimer() {
     if (this.interval) {
       clearInterval(this.interval); // Clear any existing timer
@@ -1183,103 +1091,5 @@ export class DelegateRegistrationComponent {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-  }
-
-  sendOTP() {
-    if (
-      this.registrationForm.value.email_id == '' ||
-      this.registrationForm.value.email_id == undefined
-    ) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
-      return;
-    } else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup(
-        'Please enter a valid Email ID',
-        '',
-        'error'
-      );
-      return;
-    }
-
-    let body = {
-      email: this.registrationForm.value.email_id,
-      deviceId: this.ipAddress,
-      deviceOs: this.deviceInfo,
-      registeration_type: '0',
-    };
-    this.ngxService.start();
-    this.delegateService.sendOTPApi(body).subscribe({
-      next: (res: any) => {
-        console.log('Res', res);
-        this.ngxService.stop();
-        this.isOTPReceive = true;
-        this.timerExpired = false;
-        this.countdown = 100; // Reset countdown
-        this.startTimer();
-        this.SharedService.ToastPopup(res.message, '', 'success');
-      },
-      error: (err: any) => {
-        console.error('Error:', err);
-        this.ngxService.stop();
-      },
-    });
-  }
-
-  verifyOTP() {
-    let body = {
-      email: this.registrationForm.value.email_id,
-      otp: this.txtVerifyOTP,
-    };
-
-    this.delegateService.verifyOTPApi(body).subscribe({
-      next: (res: any) => {
-        console.log('Res', res);
-        this.buttonText = 'Send OTP';
-        this.isOTPReceive = false;
-        this.timerExpired = false;
-        this.SharedService.ToastPopup(res.message, '', 'success');
-      },
-      error: (err: any) => {
-        console.error('Error:', err);
-        this.ngxService.stop();
-      },
-    });
-  }
-
-  setMetaTags(): void {
-    this.titleService.setTitle('Delegate Registration | Global Justice, Love, and Peace Summit 2025');
-
-    this.metaService.addTags([
-      {
-        name: 'description',
-        content: "Register now to participate as a delegate in the Global Justice, Love, and Peace Summit 2025 in Dubai. Join global leaders and visionaries in promoting equality, justice, and unity. Secure your spot today!"
-      },
-      {
-        name: 'title',
-        content: 'Delegate Registration | Global Justice, Love, and Peace Summit 2025'
-      },
-      {
-        property: 'og:title',
-        content: 'Delegate Registration | Global Justice, Love, and Peace Summit 2025'
-      },
-      {
-        property: 'og:description',
-        content: "Register now to participate as a delegate in the Global Justice, Love, and Peace Summit 2025 in Dubai. Join global leaders and visionaries in promoting equality, justice, and unity. Secure your spot today!"
-      },
-      
-    ]);
-  }
-  setCanonicalUrl(url: string): void {
-    const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
-    if (existingLink) {
-      this.renderer.removeChild(this.document.head, existingLink);
-    }
-
-    const link: HTMLLinkElement = this.renderer.createElement('link');
-    this.renderer.setAttribute(link, 'rel', 'canonical');
-    this.renderer.setAttribute(link, 'href', url);
-    this.renderer.appendChild(this.document.head, link);
   }
 }

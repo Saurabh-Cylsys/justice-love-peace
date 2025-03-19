@@ -54,44 +54,44 @@
         </div>
 
 
-        <div class="class" *ngIf="this.pType=='DELEGATE_CHILD_NOMINATION'">
+        <div class="class" *ngIf="this.pType=='DELEGATE_CHILD_NOMINATION' && peaceStudentData">
 
           <h4 class="mb-4 text-success">Registration Details</h4>
           <div class="row">
             <div class="col-md-12">
               <div class="d-flex justify-content-between align-items-center">
                 <strong class="text-muted">Adult Name:</strong>
-                <span>{{peaceStudentData?.adultFirstName}} {{peaceStudentData?.adultLastName}}</span>
+                <span>{{peaceStudentData.adultFirstName}} {{peaceStudentData.adultLastName}}</span>
               </div>
             </div>
             <div class="col-md-12">
               <div class="d-flex justify-content-between align-items-center">
                 <strong class="text-muted">Student Name:</strong>
-                <span>{{peaceStudentData?.studentFirstName}} {{peaceStudentData?.studentLastName}}</span>
+                <span>{{peaceStudentData.studentFirstName}} {{peaceStudentData.studentLastName}}</span>
               </div>
             </div>
             <div class="col-md-12">
               <div class="d-flex justify-content-between align-items-center">
                 <strong class="text-muted">Adult Email:</strong>
-                <span>{{peaceStudentData?.adultEmail}}</span>
+                <span>{{peaceStudentData.adultEmail}}</span>
               </div>
             </div>
             <div class="col-md-12">
               <div class="d-flex justify-content-between align-items-center">
                 <strong class="text-muted">Student Email:</strong>
-                <span>{{peaceStudentData?.studentEmail}}</span>
+                <span>{{peaceStudentData.studentEmail}}</span>
               </div>
             </div>
             <div class="col-md-12">
               <div class="d-flex justify-content-between align-items-center">
                 <strong class="text-muted">Transaction Id:</strong>
-                <span>{{peaceStudentData?.transcation_id}}</span>
+                <span>{{peaceStudentData.transcation_id}}</span>
               </div>
             </div>
             <div class="col-md-12 mb-2">
               <div class="d-flex justify-content-between align-items-center">
                 <strong class="text-muted">Status:</strong>
-                <span class="text-success">{{peaceStudentData?.transcation_json | uppercase}}</span>
+                <span class="text-success">{{peaceStudentData.transcation_json | uppercase}}</span>
               </div>
             </div>
           </div>

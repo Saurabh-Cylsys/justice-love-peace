@@ -63,16 +63,8 @@
                                             *</span>
                                         </label>
                                         <input readonly type="text" name="title" id="title" #title placeholder="Enter title"
-                                          class="form-control p-0" [maxlength]="15" (keypress)="validateAlpha($event)"
-                                          (paste)="onPaste($event)" formControlName="title" autocomplete="off"
-                                          (input)="onInput($event, 'title')" />
-                                      </div>
-                                      <div *ngIf="
-                                          getcontrol('title')?.errors &&
-                                          getcontrol('title')?.touched
-                                        ">
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('title')?.errors?.['required']">Title is required</small>
+                                          class="form-control p-0" [maxlength]="15" formControlName="title" autocomplete="off"
+                                           />
                                       </div>
                                       <div class="help-block with-errors"></div>
                                     </div>
@@ -86,26 +78,9 @@
                                         <input readonly type="text" name="fname[1]" id="f_name" #f_name
                                           placeholder="Enter first name" class="form-control p-0" required
                                           formControlName="first_name" minlength="3" maxlength="115"
-                                          (keypress)="validateAlpha($event)" (paste)="onPaste($event)"
-                                          autocomplete="off" (input)="
-                                            onInput($event, 'first_name')
-                                          " [ngClass]="{
-                                            'text-danger':
-                                              submitted && f.first_name.errors
-                                          }" />
+                                          autocomplete="off" />
                                       </div>
-                                      <div class="text-danger" *ngIf="
-                                          getcontrol('first_name')?.errors &&
-                                          getcontrol('first_name')?.touched
-                                        ">
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('first_name')?.errors?.['required']">First name is
-                                          required</small>
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('first_name')?.errors?.['minlength']">First name must be at
-                                          least 3
-                                          characters long.</small>
-                                      </div>
+
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
@@ -117,26 +92,9 @@
                                             *</span></label>
                                         <input readonly type="text" name="lname[1]" id="l_name" placeholder="Enter last name"
                                           class="form-control p-0" required formControlName="last_name" #l_name
-                                          minlength="2" maxlength="115" (keypress)="validateAlpha($event)"
-                                          (paste)="onPaste($event)" (keydown)="
-                                            handleTabKey($event, 'dob')
-                                          " autocomplete="off" (input)="onInput($event, 'last_name')" [ngClass]="{
-                                            'is-invalid':
-                                              submitted && f.last_name.errors
-                                          }" />
+                                          minlength="2" maxlength="115" />
                                       </div>
-                                      <div *ngIf="
-                                          getcontrol('last_name')?.errors &&
-                                          getcontrol('last_name')?.touched
-                                        ">
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('last_name')?.errors?.['required']">Last name is
-                                          required</small>
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('last_name')?.errors?.['minlength']">Last name must be at
-                                          least 2
-                                          characters long.</small>
-                                      </div>
+
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
@@ -267,29 +225,14 @@
                                         <label class="col-md-12 no-padding p-0" for="email1">Email Id<span
                                             class="form-label-span" style="color: #ff0000">
                                             *</span></label>
-                                        <input (input)="onInput($event, 'email_id')" type="email" name="email[1]"
+                                        <input type="email" name="email[1]"
                                           id="email" #email placeholder="Enter your email" class="form-control p-0"
-                                          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$" required
-                                          (keydown)="onKeyDown($event, 'email')" (paste)="onEmailPaste($event)"
+                                          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
                                           maxlength="125" autocomplete="off" data-error="Please enter valid email id"
-                                          formControlName="email_id" [ngClass]="{
-                                            'is-invalid':
-                                              submitted && f.email_id.errors
-                                          }" />
+                                          formControlName="email_id" />
                                       </div>
                                       <div class="help-block with-errors"></div>
-                                      <div *ngIf="
-                                          getcontrol('email_id')?.errors &&
-                                          getcontrol('email_id')?.touched
-                                        ">
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('email_id')?.errors?.['required']">Email is
-                                          required.</small>
 
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('email_id')?.errors?.['pattern']">Please enter valid email
-                                          address.</small>
-                                      </div>
                                     </div>
                                   </div>
 
@@ -709,10 +652,7 @@
                                           <input readonly type="text" name="nominee_name" id="nominee_name" #nominee_name
                                             placeholder="Enter Nominee Name" class="form-control p-0"
                                             [(ngModel)]="nomineeName" maxlength="60"
-                                            [ngModelOptions]="{ standalone: true }"
-                                            (keypress)="validateNomineeName($event)" (keydown)="
-                                            handleTabKey($event, 'childDob')
-                                          " (ngModelChange)="markDirty()" />
+                                            [ngModelOptions]="{ standalone: true }" />
                                         </div>
                                       </div>
 
@@ -750,9 +690,7 @@
                                           <input readonly name="email" id="nomineeEmail" class="form-control p-0"
                                             [(ngModel)]="nomineeEmail" [ngModelOptions]="{ standalone: true }"
                                             type="email" #email placeholder="Enter Nominee email"
-                                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$" required
-                                            maxlength="125" autocomplete="off" data-error="Please enter valid email id"
-                                            (ngModelChange)="markDirty()" />
+                                            maxlength="125" autocomplete="off" />
                                         </div>
                                       </div>
 
@@ -828,9 +766,7 @@
                                               *</span></label>
                                           <input readonly type="text" name="nominee_relation" id="nominee_relation"
                                             placeholder="Enter Relation" class="form-control p-0" maxlength="60"
-                                            (keypress)="validateNomineeName($event)"
-                                            [ngModelOptions]="{ standalone: true }" [(ngModel)]="nomineeRelation"
-                                            (ngModelChange)="markDirty()" />
+                                            [ngModelOptions]="{ standalone: true }" [(ngModel)]="nomineeRelation" />
                                         </div>
                                       </div>
 
@@ -842,9 +778,9 @@
                                               *</span></label>
                                           <input readonly type="text" name="institute_name" id="institute_Name"
                                             placeholder="Enter Student Institute/school/college name"
-                                            class="form-control p-0" maxlength="100" required
-                                            (keypress)="validateNomineeName($event)" [(ngModel)]="instituteName"
-                                            [ngModelOptions]="{ standalone: true }" (ngModelChange)="markDirty()" />
+                                            class="form-control p-0" maxlength="100"
+                                            [(ngModel)]="instituteName"
+                                            [ngModelOptions]="{ standalone: true }" />
                                         </div>
                                       </div>
                                     </div>
@@ -858,9 +794,6 @@
                               </div>
                             </div>
                           </div>
-
-
-
                         </div>
                       </div>
                     </div>

@@ -132,7 +132,6 @@ export class DelegateWithChildNominationComponent {
   }
 
   constructor(
-    private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private delegateService: DelegateService,
     private SharedService: SharedService,
@@ -151,11 +150,6 @@ export class DelegateWithChildNominationComponent {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
       if (selectedCountry) {
-
-        // this.registrationForm.patchValue({
-        //   country: selectedCountry.name,
-        //   country_id: +selectedCountry.id
-        // });
 
         const patchFormData = {
           country_id: +this.country_id,
@@ -176,14 +170,10 @@ export class DelegateWithChildNominationComponent {
           }
         );
       }
-      // this.registrationForm.patchValue({ country: selectedCountry });
 
     } else {
       console.warn("Country not found for ID:", this.country_id);
     }
-
-    console.log("Selected Country:", this.registrationForm.value.country);
-    console.log("Selected CountryID:", this.registrationForm.value.country_id);
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -226,7 +216,6 @@ export class DelegateWithChildNominationComponent {
           if (params['data']) {
             const decryptedData = this.encryptionService.decryptData(params['data']);
 
-            console.log('Decrypted Data:', decryptedData);
             if (decryptedData) {
 
               const isNominee = localStorage.getItem('isNominee');
@@ -273,16 +262,11 @@ export class DelegateWithChildNominationComponent {
 
             }
           }
-
     });
-
-
 
     this.createForm();
 
     await this.getAllCountries();
-
-    console.log("this.countryData", this.countryData);
 
     if (this.countryData.length > 0) {
 
@@ -344,16 +328,6 @@ export class DelegateWithChildNominationComponent {
     });
   }
 
-  isDisabledDate(date: Date): boolean {
-    const today = new Date();
-    const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-    return date >= eighteenYearsAgo;
-  }
-
   onCheckboxChange(event: any) {
     const conferenceLeverInterest = this.registrationForm.get(
       'conference_lever_interest'
@@ -411,7 +385,7 @@ export class DelegateWithChildNominationComponent {
         this.setCountry();
 
     } catch (error) {
-      console.error("Error fetching countries:", error);
+      console.log("Error fetching countries:", error);
     }
     }
 
@@ -454,17 +428,6 @@ export class DelegateWithChildNominationComponent {
     this.city_name = cityObj.name;
   }
 
-  keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    if (inputValue !== null) {
-      if (inputValue.number.length < 7) {
-        this.mobile_numberVal = true;
-        // event.preventDefault()
-      } else {
-        this.mobile_numberVal = false;
-      }
-    }
-  }
-
   onPaste(event: ClipboardEvent) {
     event.preventDefault(); // Block pasting
     const text = event.clipboardData?.getData('text') || '';
@@ -474,30 +437,6 @@ export class DelegateWithChildNominationComponent {
     if (allowedPattern.test(text)) {
       const input = event.target as HTMLInputElement;
       input.value += text; // Append only valid text
-      input.dispatchEvent(new Event('input')); // Update Angular form control
-    }
-  }
-
-  onPasteMobileNumber(event: ClipboardEvent) {
-    event.preventDefault(); // Block default paste action
-    const text = event.clipboardData?.getData('text') || '';
-
-    // Allow only numbers (0-9)
-    if (/^\d+$/.test(text)) {
-      const input = event.target as HTMLInputElement;
-      input.value += text; // Append only valid numbers
-      input.dispatchEvent(new Event('input')); // Update Angular form control
-    }
-  }
-
-  onEmailPaste(event: ClipboardEvent) {
-    event.preventDefault(); // Block default paste action
-    const text = event.clipboardData?.getData('text') || '';
-
-    // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
-    if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
-      const input = event.target as HTMLInputElement;
-      input.value += text; // Append only valid characters
       input.dispatchEvent(new Event('input')); // Update Angular form control
     }
   }
@@ -622,18 +561,6 @@ export class DelegateWithChildNominationComponent {
     };
   }
 
-  getPhoneErrorMessage() {
-    const control = this.registrationForm.controls['mobile_number'];
-    if (control.value) {
-      if (control.errors.validatePhoneNumber['valid']) {
-        return '';
-      } else {
-        return 'Invalid mobile number for selected country.';
-      }
-    }
-    return '';
-  }
-
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
     if (inputValue !== null) {
       // Prevent space at the beginning
@@ -670,7 +597,7 @@ export class DelegateWithChildNominationComponent {
 
   onKeyDown(
     event: KeyboardEvent,
-    fieldType: 'email' | 'website' | 'linkedin'
+    fieldType: 'website' | 'linkedin'
   ): void {
     if (
       ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
@@ -687,9 +614,6 @@ export class DelegateWithChildNominationComponent {
 
     let allowedPattern: RegExp;
     switch (fieldType) {
-      case 'email':
-        allowedPattern = /^[a-zA-Z0-9@._-]$/; // Allowed characters for email
-        break;
       case 'website':
         allowedPattern = /^[a-zA-Z0-9.:/_-]$/; // Allowed characters for website
         break;
@@ -707,7 +631,7 @@ export class DelegateWithChildNominationComponent {
 
   onInputEvent(
     event: KeyboardEvent | ClipboardEvent,
-    fieldType: 'email' | 'website' | 'linkedin'
+    fieldType: 'website' | 'linkedin'
   ): void {
     if (event.type === 'paste') {
       // Handle paste event
@@ -717,9 +641,6 @@ export class DelegateWithChildNominationComponent {
 
       let allowedPattern: RegExp;
       switch (fieldType) {
-        case 'email':
-          allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
-          break;
         case 'website':
           allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
           break;
@@ -757,9 +678,6 @@ export class DelegateWithChildNominationComponent {
 
     let allowedPattern: RegExp;
     switch (fieldType) {
-      case 'email':
-        allowedPattern = /^[a-zA-Z0-9@._-]$/;
-        break;
       case 'website':
         allowedPattern = /^[a-zA-Z0-9.:/_-]$/;
         break;
@@ -904,9 +822,6 @@ export class DelegateWithChildNominationComponent {
       return;
     }
 
-
-    // Delegate Mobile Number
-
     const returnDOB = this.registrationForm.value.dob;
 
     // Convert "DD/MM/YYYY" → "YYYY-MM-DD"
@@ -941,7 +856,7 @@ export class DelegateWithChildNominationComponent {
           this.ngxService.stop(); // Stop the loader here, after first API completes
 
           if (result.success) {
-            console.log('Registration Successful:', result);
+
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
 
@@ -960,46 +875,6 @@ export class DelegateWithChildNominationComponent {
         },
       });
     }
-  }
-
-  private callNominationProfileAPI(nomineeBody: any, paymentUrl: string): void {
-    this.ngxService.start();
-
-    this.delegateService.getNominationProfileApi(nomineeBody).subscribe({
-      next: (res: any) => {
-        this.ngxService.stop();
-        console.log('Nomination Profile Response:', res);
-
-        if (res.success && paymentUrl) {
-          window.location.href = paymentUrl; // Redirect to payment
-          this.clearNomineeFields();
-        }
-      },
-      error: (err) => {
-        this.ngxService.stop();
-        console.error('Nomination API Error:', err);
-        this.SharedService.ToastPopup('', err.error.message, 'error');
-      },
-    });
-  }
-
-  private formatNomineeMobileNumber(rawNomineeMobileNumber: any): string {
-    if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
-      return rawNomineeMobileNumber.number
-        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
-        : '';
-    }
-    return typeof rawNomineeMobileNumber === 'string'
-      ? rawNomineeMobileNumber.replace(/[^0-9]/g, '')
-      : '';
-  }
-
-  private clearNomineeFields(): void {
-    this.nomineeName = '';
-    this.nomineeDob = '';
-    this.nomineeEmail = '';
-    this.nomineeRelation = '';
-    this.nominee_mobile_number = '';
   }
 
   checkWindowSize(): void {
@@ -1024,16 +899,6 @@ export class DelegateWithChildNominationComponent {
     let allowedPattern: RegExp;
 
     switch (controlName) {
-      case 'first_name':
-        allowedPattern = /^[a-zA-Z\s'-]+$/; // Allows only alphabets, spaces, and hyphens
-        break;
-      case 'last_name':
-        allowedPattern = /^[a-zA-Z\s-]+$/; // Allows only alphabets, spaces, and hyphens
-        break;
-      case 'email_id':
-        allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
-        inputValue = inputValue.toLowerCase(); // Convert email to lowercase
-        break;
       case 'website':
         allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
         break;
@@ -1062,23 +927,6 @@ export class DelegateWithChildNominationComponent {
     });
   }
 
-  handleTabKey(event: KeyboardEvent, nextFieldId: string) {
-    if (event.key === 'Tab') {
-      event.preventDefault(); // Prevent default tab behavior
-
-      const nextField = document.getElementById(nextFieldId) as HTMLElement;
-      if (nextField) {
-        nextField.focus(); // Move focus to DOB field
-
-        // Open the datepicker when moving to DOB field
-        if (nextFieldId === 'dob') {
-          this.openDatepicker();
-        } else if (nextFieldId === 'nomineeDob') {
-          this.openNomineeDatepicker();
-        }
-      }
-    }
-  }
 
   openDatepicker() {
     const dobInput = document.getElementById('dob') as HTMLInputElement;
@@ -1087,71 +935,6 @@ export class DelegateWithChildNominationComponent {
     }
   }
 
-  openNomineeDatepicker() {
-    const dobInput = document.getElementById('nomineeDob') as HTMLInputElement;
-    if (dobInput) {
-      dobInput.click(); // Open ngx-bootstrap datepicker
-    }
-  }
-
-  getRelationData() {
-    let body = {
-      parent_code: 'NOMINATION',
-      type: 'ANSWER',
-    };
-    this.delegateService.getRelationDataApi(body).subscribe({
-      next: (res) => {
-        console.log('Res', res);
-        this.relationData = res;
-      },
-    });
-  }
-
-  private isNomineeFormDirty(): boolean {
-    return (
-      (this.nomineeName?.trim() || '') !== '' ||
-      (this.nomineeDob?.trim() || '') !== '' ||
-      (this.nomineeEmail?.trim() || '') !== '' ||
-      (this.nomineeRelation?.trim() || '') !== '' ||
-      (this.nominee_mobile_number?.trim() || '') !== ''
-    );
-  }
-
-  // ✅ Reset form and ngModel dirty state
-  private clearFormState(): void {
-    this.nomineeName = '';
-    this.nomineeDob = '';
-    this.nomineeEmail = '';
-    this.nomineeRelation = '';
-    this.nominee_mobile_number = '';
-
-    this.registrationForm.markAsPristine(); // Reset form state
-    this.registrationForm.markAsUntouched();
-  }
-
-  onUserTypeChange(selectedType: string): void {
-    this.isFormDirty = this.isNomineeFormDirty(); // Update before checking
-
-    if (this.isFormDirty || this.registrationForm.dirty) {
-      const confirmation = window.confirm(
-        'Warning: Your unsaved data will be lost. Do you want to continue?'
-      );
-
-      if (confirmation) {
-        this.userType = selectedType;
-        console.log('User Type Selected:', this.userType);
-        // this.clearFormState();
-        this.isFormDirty = false; // Reset dirty flag
-        // this.registrationForm.reset();
-      } else {
-        console.log('User type change canceled.');
-        this.userType = this.previousType;
-      }
-    } else {
-      this.userType = selectedType;
-      console.log('User Type Selected:', this.userType);
-    }
-  }
 
   // Disable the user type selection
   disableUserTypeChange(): void {

@@ -98,19 +98,6 @@ export class DelegatePaymentSuccessComponent {
     // Prevent browser back navigation to payment URL
     history.pushState(null, '', window.location.href);
 
-    this.route.queryParams.subscribe((params: any) => {
-      if (params != undefined && Object.keys(params).length > 0) {
-        this.sessionId = params['session_id'] || 'No session_id';
-        this.pType = params['p_type'];
-        if (this.sessionId != 'No session_id' && this.sessionId != '') {
-          this.verifySession();
-        }
-        else {
-          this.transactionId = params.txnId;
-          this.getUserDataByTransactionId();
-        }
-      }
-    });
 
     // Handle browser back button
     window.addEventListener('popstate', () => {
@@ -118,7 +105,21 @@ export class DelegatePaymentSuccessComponent {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    this.route.queryParams.subscribe(async (params: any) => {
+      if (params != undefined && Object.keys(params).length > 0) {
+        this.sessionId = params['session_id'] || 'No session_id';
+        this.pType = params['p_type'];
+        if (this.sessionId != 'No session_id' && this.sessionId != '') {
+            await this.verifySession();
+        }
+        else {
+          this.transactionId = params.txnId;
+          this.getUserDataByTransactionId();
+        }
+      }
+    });
 
   }
 
@@ -145,7 +146,7 @@ export class DelegatePaymentSuccessComponent {
       );
   }
 
-  verifySession() {
+ async verifySession() {
     this.loading = true;
     let body = {
       // sessionId: "cs_test_a1wx1VFhgcGnSFpvXZ36uXOna2QbD3gYfXdi1ZefYj9MYOwUv6bpj1v2Ak"
@@ -153,8 +154,8 @@ export class DelegatePaymentSuccessComponent {
       p_type: this.pType
 
     }
-
-    this.delegateService.postVerifySession(body).subscribe({
+debugger
+    await this.delegateService.postVerifySession(body).subscribe({
       next: (response: any) => {
         this.loading = false;
         console.log('Response:', response);
