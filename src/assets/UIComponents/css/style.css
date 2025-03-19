@@ -2996,3 +2996,38 @@ button:focus {
   height: 100%;
   border-radius: 20px;
 }
+
+.ui-card {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 210px 210px 80px;
+  grid-template-areas:
+    "image"
+    "text"
+    "stats";
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  transition: 0.4s ease;
+  cursor: pointer;
+  margin: auto; /* Center alignment */
+  max-width: 320px; /* Prevents too much stretching */
+}
+
+.delegateonline .form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: none;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.delegateonline .iti {
+  border-bottom: 0 !important;
+}
+
+.delegateonline .iti #phone {
+  border: 0 !important;
+}

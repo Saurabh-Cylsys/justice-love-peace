@@ -45,6 +45,25 @@
     background-repeat: no-repeat;
     min-height: 67vh; /* Keeps the height relative to the viewport */
   }
+  .ui-card {
+    display: grid
+;
+    grid-template-columns: 300px;
+    grid-template-rows: 190px 160px 0px;
+    grid-template-areas:
+        "image"
+        "text"
+        "stats";
+    border-radius: 15px;
+    /* border-top-right-radius: 15px; */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    transition: 0.4sease;
+    cursor: pointer;
+    margin: auto;
+    max-width: 320px;
+}
 }
 
 /* Add media queries for finer control on smaller devices */

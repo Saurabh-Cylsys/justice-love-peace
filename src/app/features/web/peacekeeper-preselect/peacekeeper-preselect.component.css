@@ -480,10 +480,6 @@ h5 {
 .ui-card .ui-card-image {
   background: url("../../../../assets/UIComponents/images/pre-select/delegate.jpg")
     center/cover;
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    padding: 30px;
 }
 
 /* Card Variations */

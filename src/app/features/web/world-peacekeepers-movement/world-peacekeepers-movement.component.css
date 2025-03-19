@@ -33,29 +33,45 @@
 
 .drop-zone {
   max-width: 100%;
-  height: 200px;
-  padding: 25px;
+  /* height: 200px; */
+  /* height: 50px; */
+  padding: 0 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
   /* font-weight: 500;
   font-size: 20px; */
   /* cursor: pointer; */
   color: #0B0B0B;
   border: 1px dashed #8D8D8D;
   border-radius: 10px;
-  flex-flow: column wrap;
+  /* flex-flow: column wrap; */
+}
+@media (min-width: 320px) {
+  .drop-zone {
+    display: block;
+  }
+}
+@media (min-width: 768px) {
+  .drop-zone {
+    display: block;
+  }
+}
+@media (min-width: 992px) {
+  .drop-zone {
+    display: flex;
+  }
+}
+
+.drop-zone input{
+  padding: 10px;
 }
 
 .drop-zone--over {
   border-style: solid;
 }
-
-/* .drop-zone__input {
-  display: none;
-} */
 
 .drop-zone__thumb {
   width: 100%;
@@ -79,9 +95,7 @@
   font-size: 14px;
   text-align: center;
 }
-/* .custom-file-input {
-  width: 53%;
-  padding: 7px 14px 15px 99px;} */
+
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
@@ -110,45 +124,15 @@
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
-/*
-.custom-file-input-isfile::-webkit-file-upload-button {
-  visibility: hidden;
+
+.drop-zone p{
+  font-size: clamp(12px, 1.5vw, 14px);
+  margin: 0;
 }
-.custom-file-input-isSelected::before {
-  content: 'Clear Image';
-  color: #005A93;
-  display: inline-block;
-  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
-  border: 1px solid #005A93;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt;
-}
-.custom-file-input-isSelected:hover::before {
-  border-color: black;
-}
-.custom-file-input-isSelected:active {
-  outline: 0;
-}
-.custom-file-input-isSelected:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-} */
 
 .iti {
   width: 100%;
 }
-/* .modal-content {
-  background-color: transparent;
-  background-clip: padding-box;
-  border: none;
-} */
-
 
 .bgModal .modal-content{
   background-image: none;
@@ -203,3 +187,25 @@
   transform: scale(0.95); /* Slight shrink effect */
 }
 
+.containerCheck{
+  color: #B8B9B5 !important;
+}
+
+.custom-select {
+  color: #000000;
+}
+
+.custom-select option[value=""][disabled] {
+  color: #B8B9B5 !important;
+}
+
+.custom-select option[value=""][disabled]:focus,
+.custom-select option[value=""][disabled]:active,
+.custom-select option[value=""][disabled]:checked {
+  color: white !important;
+  background-color: #0275d8 !important;
+}
+
+.custom-select option {
+  color: #000000;
+}

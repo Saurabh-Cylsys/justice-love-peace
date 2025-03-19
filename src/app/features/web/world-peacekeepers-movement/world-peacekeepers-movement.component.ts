@@ -98,6 +98,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   maxDate1 : any;
   minDate1 : any;
   colorTheme: string = 'theme-dark-blue';
+  btnDisabled : boolean = false;
+  peacebookwebAppurl : string = environment.peacebookWebAppUrl
 
 
   changePreferredCountries() {
@@ -117,9 +119,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private ngxService: NgxUiLoaderService,
     private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
-    private renderer : Renderer2,
-    private titleService: Title,
-    private metaService: Meta,
+    private renderer : Renderer2
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
@@ -144,10 +144,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.setMetaTags();
-    this.setCanonicalUrl(
-      'https://www.justice-love-peace.com/world-peacekeepers-movement'
-    );
+    // this.setMetaTags();
+    // this.setCanonicalUrl(
+    //   'https://www.justice-love-peace.com/world-peacekeepers-movement'
+    // );
 
     this.checkWindowSize();
     this.getAllCountrycode();
@@ -173,6 +173,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       });
     }
 
+    this.btnDisabled = true;
+
+    this.createPeacekeeperForm();
+
+  }
+
+  createPeacekeeperForm(){
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
       dob: ['', [Validators.required,this.ageValidator]],
@@ -302,7 +309,7 @@ onDateChange(event: string): void {
         document.body.removeChild(link);
         URL.revokeObjectURL(url); // Clean up the object URL
       })
-      .catch(error => console.error('Error downloading the image:', error));    
+      .catch(error => console.error('Error downloading the image:', error));
     }
 
 
@@ -446,11 +453,11 @@ onDateChange(event: string): void {
           return;
         }
               // Validate the file size
-      if (file.size < minSize || file.size > maxSize) {
-        this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-        this.is_selectedFile = false;
-        return;
-      }
+      // if (file.size < minSize || file.size > maxSize) {
+      //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+      //   this.is_selectedFile = false;
+      //   return;
+      // }
       }
       else {
         console.log('No file selected.');
@@ -714,6 +721,8 @@ onDateChange(event: string): void {
       (response: any) => {
         if (response.success) {
           this.submitted = true;
+
+          this.btnDisabled = false;
           this.ngxService.stop();
           console.log('response', response);
           // this.peacekeeperBadgeResponse = response.QR_code
@@ -964,38 +973,4 @@ onDateChange(event: string): void {
     }
   }
 
-  setMetaTags(): void {
-    this.titleService.setTitle('World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai');
-
-    this.metaService.addTags([
-      {
-        name: 'description',
-        content: "Join the World Peacekeepers Movement, a global initiative forming the world's largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world."
-      },
-      {
-        name: 'title',
-        content: "World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai"
-      },
-      {
-        property: 'og:title',
-        content: 'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai'
-      },
-      {
-        property: 'og:description',
-        content: "Join the World Peacekeepers Movement, a global initiative forming the world's largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world."
-      },
-      
-    ]);
-  }
-  setCanonicalUrl(url: string): void {
-    const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
-    if (existingLink) {
-      this.renderer.removeChild(this.document.head, existingLink);
-    }
-
-    const link: HTMLLinkElement = this.renderer.createElement('link');
-    this.renderer.setAttribute(link, 'rel', 'canonical');
-    this.renderer.setAttribute(link, 'href', url);
-    this.renderer.appendChild(this.document.head, link);
-  }
 }
