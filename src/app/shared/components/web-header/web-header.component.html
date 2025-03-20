@@ -202,54 +202,17 @@
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseFive"
-            aria-expanded="false"
-            aria-controls="flush-collapseFive"
-          >
-            <a
-              [routerLink]="['/DownloadCenter']"
-              aria-label="Close"
-              data-bs-dismiss="offcanvas"
-              >Download Center</a
-            >
-          </button>
-        </h2>
-        <div
-          id="flush-collapseFive"
-          class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
-        >
-          <div class="accordion-body">
-            <ul>
-              <li *ngFor="let link of downloadLinks">
-                <a
-                  [routerLink]="['/DownloadCenter']"
-                  aria-label="Close"
-                  data-bs-dismiss="offcanvas"
-                  (click)="navigateToSection(link.fragment)"
-                  fragment="{{ link.fragment }}"
-                >
-                  {{ link.label }}
-                </a>
-              </li>
-              <!-- <li>
-                <a [routerLink]="['/download-applications']" data-bs-dismiss="offcanvas"
-                >
-                  Download Mobile Application
-                </a>
-              </li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
     <ul>
+      <li>
+        <a
+        [routerLink]="['/media/videos']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+        >
+          Media</a
+        >
+      </li>
       <li>
         <a
           [routerLink]="['/chairman-corner']"
@@ -271,10 +234,10 @@
         <a
           type="btn"
           class="btn btn-success"
-          [routerLink]="['/download-brochure']"
+          [routerLink]="['/DownloadCenter']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
-          >Download Brochure</a
+          >Download Center</a
         >
         <a
           type="btn"
@@ -298,19 +261,6 @@
 >
   <div class="container-fluid">
     <div class="row align-items-center">
-      <!-- <div class="col-md-1" *ngIf="!isHomePage">
-        <a
-          class="navbar-brand logo"
-          [routerLink]="['/home']"
-        >
-          <img loading="lazy"
-            src="assets/UIComponents/images/logo.gif"
-            alt="attach image"
-            class="col-md-10"
-          />
-        </a>
-      </div> -->
-
       <div class="col-lg-2 col-md-1 col-1" *ngIf="!isMobileView">
         <div class="position-relative">
           <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
@@ -548,12 +498,19 @@
         [routerLink]="['/home']"
         style="width: 100px"
       >
-        <img
+        <!-- <img
           loading="lazy"
           src="assets/UIComponents/images/logo.gif"
           alt="attach image"
           class="col-lg-12 col-md-12 col-6"
-        />
+        /> -->
+        <video autoplay loop muted class="col-lg-12 col-md-12 col-6">
+          <source
+            src="assets/UIComponents/images/logo.webm"
+            type="video/webm"
+          />
+          Your browser does not support the video tag.
+        </video>
       </a>
       <button
         class="navbar-toggler border-white list"

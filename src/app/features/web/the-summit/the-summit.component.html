@@ -445,21 +445,21 @@
   </section>
   <div class="section" id="ts3">
     <div
-      class="section6 py-5 speakers scroll position-relative"
+      class="section6 speakers scroll position-relative"
       style="z-index: 1"
     >
       <div class="container-fluid h-100">
         <div class="row align-items-center align-content-center h-100">
           <div class="col-md-12">
-            <h2>Speakers (Peace Ambassadors)</h2>
-            <h6>Names in Alphabetic Order; All with Written Confirmations</h6>
+            <h2 class="mb-0">Speakers (Peace Ambassadors)</h2>
+            <h6 class="m-0">Names in Alphabetic Order; All with Written Confirmations</h6>
             <div
               id="carouselExampleAutoplaying"
               class="carousel carousel-dark slide"
               data-bs-ride="carousel"
               *ngIf="!isMobileView"
             >
-              <div class="carousel-indicators">
+              <!-- <div class="carousel-indicators">
                 <button
                   *ngFor="let group of speakersList; let i = index"
                   type="button"
@@ -469,7 +469,7 @@
                   [attr.aria-current]="i === 0 ? 'true' : null"
                   [attr.aria-label]="'Slide ' + (i + 1)"
                 ></button>
-              </div>
+              </div> -->
               <div class="carousel-inner px-5">
                 <div
                   class="carousel-item"
@@ -551,7 +551,6 @@
                       <div class="col-md-4">
                         <ul class="list-unstyled p-0">
                           <li class="p-3 text-center">
-                            <!-- <img loading="eager" src="../../../../assets/UIComponents/images/speakers/" alt="attach image"> -->
 
                             <img
                               loading="eager"
@@ -600,10 +599,16 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
+            
           </div>
-          <!-- <div class="col-12 mt-5">
-          <button class="btn btn-success">View All Speakers</button>
-        </div> -->
+          <div class="col-12">
+            <a
+            [routerLink]="['/speaker-details']"
+            class="see-all-button btn btn-success"
+          >
+            See all Speakers
+          </a>
+        </div>
         </div>
       </div>
       <img
