@@ -303,7 +303,7 @@
           class="navbar-brand logo"
           [routerLink]="['/home']"
         >
-          <img loading="eager"
+          <img loading="lazy"
             src="assets/UIComponents/images/logo.gif"
             alt="attach image"
             class="col-md-10"
@@ -328,7 +328,7 @@
             </video>
           </a>
           <!-- <img
-          loading="eager"
+          loading="lazy"
           src="assets/UIComponents/images/logo.gif"
           alt="attach images"
           id="logo"
@@ -451,10 +451,10 @@
           </li>
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
-              <button class="dropbtn" [routerLink]="['/DownloadCenter']">
-                Download Center
+              <button class="dropbtn" [routerLink]="['/media/videos']">
+                Media
               </button>
-              <div class="hover-dropdown-content">
+              <!-- <div class="hover-dropdown-content">
                 <button
                   class="btn btn-success"
                   [routerLink]="['/download-brochure']"
@@ -476,11 +476,8 @@
                 >
                   {{ link.label }}
                 </a>
-                <!-- <a [routerLink]="['/download-applications']"
-                >
-                  Download Mobile Application
-                </a> -->
-              </div>
+                
+              </div> -->
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
@@ -530,13 +527,14 @@
             data-bs-toggle="tooltip"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Download Brochures"
-            [routerLink]="['/download-brochure']"
-            >Lang <br /><img
-              loading="eager"
-              src="assets/UIComponents/images/download.svg"
+            [routerLink]="['/DownloadCenter']"
+            > <img
+              loading="lazy"
+              src="assets/UIComponents/images/download_new.svg"
               alt="attach image"
-              class="w-50"
-          /></a>
+              width="100%"
+          />
+        </a>
         </form>
       </div>
     </div>
@@ -551,7 +549,7 @@
         style="width: 100px"
       >
         <img
-          loading="eager"
+          loading="lazy"
           src="assets/UIComponents/images/logo.gif"
           alt="attach image"
           class="col-lg-12 col-md-12 col-6"

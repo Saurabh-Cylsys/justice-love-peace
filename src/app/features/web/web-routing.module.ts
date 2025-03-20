@@ -91,7 +91,7 @@ const routes: Routes = [
           metaKey: 'chairman-corner',
         },
       },
-      { path: 'download-brochure', component: DownloadBrochureComponent },
+      // { path: 'download-brochure', component: DownloadBrochureComponent },
 
       {
         path: 'contact-us',
