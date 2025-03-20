@@ -621,10 +621,10 @@
   padding: 0 0;
 }
 
-.awardLink li:nth-child(2){
+/* .awardLink li:nth-child(2){
   background-color: #128940;
-}
+} */
 
-.awardLink li:nth-child(2) a{
+/* .awardLink li:nth-child(2) a{
   color: #fff !important;
-}
+} */

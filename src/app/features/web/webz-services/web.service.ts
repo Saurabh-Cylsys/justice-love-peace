@@ -83,6 +83,14 @@ export class WebService {
       Country: 'TUNISIA',
       Credentials: 'Lawyer, Human Rights Activist : Nobel Peace Laureate 2015',
     },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Ali Rashed Al Nuaimi, Dr',
+      Country: 'UAE',
+      Credentials: 'Parliamentarian, Educationist',
+    },
 
     // list 2
     {
@@ -121,6 +129,14 @@ export class WebService {
       // "S_No": 1,
       View: '',
       Profile_Photo: null,
+      Name: 'Awad Bin Mohammed Bin Mejren, His Excellency',
+      Country: 'UAE',
+      Credentials: 'Royalty',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
       Name: 'Azali Assoumani, His Excellency',
       Country: 'COMOROS',
       Credentials: 'Head of State, President ',
@@ -151,15 +167,14 @@ export class WebService {
       Country: 'India',
       Credentials: 'General : Former Chief of the Indian Army',
     },
-    {
-      // "S_No": 3,
-      View: 'binod',
-      Profile_Photo: 'speaker14.png',
-      Name: 'Binod Kumar Chaudhary',
-      Country: 'NEPAL',
-      Credentials:
-        'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
-    },
+    // {
+    //   View: 'binod',
+    //   Profile_Photo: 'speaker14.png',
+    //   Name: 'Binod Kumar Chaudhary',
+    //   Country: 'NEPAL',
+    //   Credentials:
+    //     'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
+    // },
     {
       // "S_No": 4,
       View: '',
@@ -297,6 +312,14 @@ export class WebService {
       Credentials: 'Social Activist, Nobel Peace Laureate 2014',
     },
     {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Khalifa Al Dhaheri',
+      Country: 'UAE',
+      Credentials: 'Chancellor of Mohamed bin Zayed University for Humanities, Exec. Director of the Forum for the promotion of Peace',
+    },
+    {
       // "S_No": 14,
       View: '',
       Profile_Photo: 'speaker62.png',
@@ -362,14 +385,13 @@ export class WebService {
       Credentials: 'Royalty, TV Host, Philanthropist',
     },
     // list 11
-    {
-      // "S_No": 19,
-      View: '',
-      Profile_Photo: 'speaker46.png',
-      Name: 'Mary Kom',
-      Country: 'INDIA',
-      Credentials: 'Boxer, 6 times World Champion',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker46.png',
+    //   Name: 'Mary Kom',
+    //   Country: 'INDIA',
+    //   Credentials: 'Boxer, 6 times World Champion',
+    // },
     {
       // "S_No": 20,
       View: 'salam',
@@ -497,6 +519,14 @@ export class WebService {
     //   Credentials:
     //     'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
     // },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Rahul Chaudhary',
+      Country: 'NEPAL',
+      Credentials: 'Director, CG Group',
+    },
     {
       // "S_No": 30,
       View: '',
@@ -658,14 +688,13 @@ export class WebService {
       Credentials: 'Actor & Model',
     },
     // list 20
-    {
-      // "S_No": 37,
-      View: '',
-      Profile_Photo: 'speaker45.png',
-      Name: 'Venkatramani R, Honorable',
-      Country: 'INDIA',
-      Credentials: 'Attorney General of India',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker45.png',
+    //   Name: 'Venkatramani R, Honorable',
+    //   Country: 'INDIA',
+    //   Credentials: 'Attorney General of India',
+    // },
     {
       // "S_No": 37,
       View: '',
@@ -702,6 +731,14 @@ export class WebService {
       Country: 'TUNISIA',
       Credentials: 'Lawyer, Human Rights Activist : Nobel Peace Laureate 2015',
     },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Ali Rashed Al Nuaimi, Dr',
+      Country: 'UAE',
+      Credentials: 'Parliamentarian, Educationist',
+    },
     // list 2
     {
       // "S_No": 1,
@@ -739,6 +776,14 @@ export class WebService {
       // "S_No": 1,
       View: '',
       Profile_Photo: null,
+      Name: 'Awad Bin Mohammed Bin Mejren, His Excellency',
+      Country: 'UAE',
+      Credentials: 'Royalty',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
       Name: 'Azali Assoumani, His Excellency',
       Country: 'COMOROS',
       Credentials: 'Head of State, President ',
@@ -770,15 +815,14 @@ export class WebService {
       Credentials:
         'General : Former Chief of the Indian Army',
     },
-    {
-      // "S_No": 3,
-      View: 'binod',
-      Profile_Photo: 'speaker14.png',
-      Name: 'Binod Kumar Chaudhary',
-      Country: 'NEPAL',
-      Credentials:
-        'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
-    },
+    // {
+    //   View: 'binod',
+    //   Profile_Photo: 'speaker14.png',
+    //   Name: 'Binod Kumar Chaudhary',
+    //   Country: 'NEPAL',
+    //   Credentials:
+    //     'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
+    // },
     {
       // "S_No": 4,
       View: '',
@@ -916,6 +960,14 @@ export class WebService {
       Credentials: 'Social Activist, Nobel Peace Laureate 2014',
     },
     {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Khalifa Al Dhaheri',
+      Country: 'UAE',
+      Credentials: 'Chancellor of Mohamed bin Zayed University for Humanities, Exec. Director of the Forum for the promotion of Peace',
+    },
+    {
       // "S_No": 14,
       View: '',
       Profile_Photo: 'speaker62.png',
@@ -981,14 +1033,13 @@ export class WebService {
       Credentials: 'Royalty, TV Host, Philanthropist',
     },
     // list 11
-    {
-      // "S_No": 19,
-      View: '',
-      Profile_Photo: 'speaker46.png',
-      Name: 'Mary Kom',
-      Country: 'INDIA',
-      Credentials: 'Boxer, 6 times World Champion',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker46.png',
+    //   Name: 'Mary Kom',
+    //   Country: 'INDIA',
+    //   Credentials: 'Boxer, 6 times World Champion',
+    // },
     {
       // "S_No": 20,
       View: 'salam',
@@ -1117,6 +1168,14 @@ export class WebService {
     //   Credentials:
     //     'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
     // },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Rahul Chaudhary',
+      Country: 'NEPAL',
+      Credentials: 'Director, CG Group',
+    },
     {
       // "S_No": 30,
       View: '',
@@ -1277,14 +1336,13 @@ export class WebService {
       Credentials: 'Actor & Model',
     },
     // list 20
-    {
-      // "S_No": 37,
-      View: '',
-      Profile_Photo: 'speaker45.png',
-      Name: 'Venkatramani R, Honorable',
-      Country: 'INDIA',
-      Credentials: 'Attorney General of India',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker45.png',
+    //   Name: 'Venkatramani R, Honorable',
+    //   Country: 'INDIA',
+    //   Credentials: 'Attorney General of India',
+    // },
     {
       // "S_No": 37,
       View: '',
@@ -1359,11 +1417,27 @@ export class WebService {
           {
             // "S_No": 1,
             View: '',
+            Profile_Photo: null,
+            Name: 'Ali Rashed Al Nuaimi, Dr',
+            Country: 'UAE',
+            Credentials: 'Parliamentarian, Educationist',
+          },
+          {
+            // "S_No": 1,
+            View: '',
             Profile_Photo: 'speaker50.png',
             Name: 'Alpha Sesay, Esquire, Honorable',
             Country: 'SIERRA LEONE',
             Credentials: 'Attorney General & Minister of Justice, Sierra Leone',
           },
+          
+
+        ],
+      },
+
+      {
+        speakers: [
+          // list 2
           {
             // "S_No": 1,
             View: '',
@@ -1372,13 +1446,6 @@ export class WebService {
             Country: 'Mauritius',
             Credentials: 'Her Excellency Former President of the Republic of Mauritius',
           },
-
-        ],
-      },
-
-      {
-        speakers: [
-          // list 2
 
           {
             // "S_No": 1,
@@ -1396,14 +1463,7 @@ export class WebService {
             Country: 'NORWAY',
             Credentials: 'Deputy Leader, Norwegian Nobel Committee',
           },
-          {
-            // "S_No": 1,
-            View: '',
-            Profile_Photo: null,
-            Name: 'Azali Assoumani, His Excellency',
-            Country: 'COMOROS',
-            Credentials: 'Head of State, President ',
-          },
+          
           
         ],
       },
@@ -1414,11 +1474,36 @@ export class WebService {
           {
             // "S_No": 1,
             View: '',
+            Profile_Photo: null,
+            Name: 'Awad Bin Mohammed Bin Mejren, His Excellency',
+            Country: 'UAE',
+            Credentials: 'Royalty',
+          },
+          {
+            // "S_No": 1,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Azali Assoumani, His Excellency',
+            Country: 'COMOROS',
+            Credentials: 'Head of State, President ',
+          },
+          {
+            // "S_No": 1,
+            View: '',
             Profile_Photo: 'speaker20.png',
             Name: 'Baba Ramdev',
             Country: 'INDIA',
             Credentials: 'World Yoga Guru',
           },
+          
+          
+
+        ],
+      },
+
+      {
+        speakers: [
+          // list 4
           {
             // "S_No": 2,
             View: '',
@@ -1437,23 +1522,6 @@ export class WebService {
             Credentials:
               'General : Former Chief of the Indian Army',
           },
-          
-
-        ],
-      },
-
-      {
-        speakers: [
-          // list 4
-          {
-            // "S_No": 3,
-            View: 'binod',
-            Profile_Photo: 'speaker14.png',
-            Name: 'Binod Kumar Chaudhary',
-            Country: 'NEPAL',
-            Credentials:
-              'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
-          },
           {
             // "S_No": 4,
             View: '',
@@ -1464,6 +1532,12 @@ export class WebService {
               'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
           },
 
+        ],
+      },
+
+      {
+        speakers: [
+          // list 5
           {
             // "S_No": 5,
             View: '',
@@ -1473,14 +1547,6 @@ export class WebService {
             Credentials:
               'Wrestler : 1st Indian born World Heavyweight Champion, WWE',
           },
-          
-
-        ],
-      },
-
-      {
-        speakers: [
-          // list 5
           {
             // "S_No": 5,
             View: '',
@@ -1498,7 +1564,13 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Beauty Queen, Actress',
           },
+          
 
+        ],
+      },
+      {
+        speakers: [
+          // list 6
           {
             // "S_No": 6,
             View: '',
@@ -1508,13 +1580,6 @@ export class WebService {
             Credentials:
               'President of the Permanent Secretariat of the World Summit of Nobel Peace Laureates',
           },
-          
-
-        ],
-      },
-      {
-        speakers: [
-          // list 6
           {
             // "S_No": 7,
             View: '',
@@ -1532,7 +1597,11 @@ export class WebService {
             Credentials:
               'Elected Representative, National Spiritual Assembly of the Bahais of Brazil',
           },
-
+        ],
+      },
+      {
+        speakers: [
+          // list 7
           {
             // "S_No": 10,
             View: 'habil',
@@ -1541,13 +1610,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Industrialist : Chairman, Wockhardt Group',
           },
-          
-
-        ],
-      },
-      {
-        speakers: [
-          // list 7
           {
             // "S_No": 11,
             View: '',
@@ -1565,7 +1627,12 @@ export class WebService {
             Credentials:
               'Politician ( Member of Parliament ), Royalty ( Queen of the North Kenya ), Beauty Queen ( Miss Commonwealth Kenya, 2018 )',
           },
-
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 8
           {
             // "S_No": 12,
             View: '',
@@ -1574,14 +1641,6 @@ export class WebService {
             Country: 'SOUTH AFRICA',
             Credentials: 'Actress, Humanitarian',
           },
-          
-
-
-        ],
-      },
-      {
-        speakers: [
-          // list 8
           {
             // "S_No": 12,
             View: '',
@@ -1600,6 +1659,13 @@ export class WebService {
             Credentials: 'Educationist : Nobel Peace Laureate 2015',
           },
           
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 9
           {
             View: '',
             Profile_Photo: null,
@@ -1607,12 +1673,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Actress, content creator and social media influencer',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 9
           {
             // "S_No": 13,
             View: '',
@@ -1621,6 +1681,22 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Social Activist, Nobel Peace Laureate 2014',
           },
+          {
+            // "S_No": 1,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Khalifa Al Dhaheri',
+            Country: 'UAE',
+            Credentials: 'Chancellor of Mohamed bin Zayed University for Humanities, Exec. Director of the Forum for the promotion of Peace',
+          },
+          
+          
+        ],
+      },
+
+      {
+        speakers: [
+          // list 10
           {
             // "S_No": 14,
             View: '',
@@ -1640,13 +1716,6 @@ export class WebService {
             Credentials:
               'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
           },
-          
-        ],
-      },
-
-      {
-        speakers: [
-          // list 10
           {
             // "S_No": 14,
             View: '',
@@ -1657,6 +1726,14 @@ export class WebService {
               'Politician, Trade Union Activist : Nobel Peace Laureate 1983',
           },
 
+          
+          
+        ],
+      },
+
+      {
+        speakers: [
+          // list 11
           {
             // "S_No": 15,
             View: '',
@@ -1675,14 +1752,6 @@ export class WebService {
             Credentials:
               'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
           },
-          
-        ],
-      },
-
-      {
-        speakers: [
-          // list 11
-
 
           {
             // "S_No": 17,
@@ -1693,6 +1762,14 @@ export class WebService {
             Credentials:
               'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner',
           },
+          
+          
+        ],
+      },
+
+      {
+        speakers: [
+          // list 12
           {
             // "S_No": 18,
             View: '',
@@ -1701,22 +1778,6 @@ export class WebService {
             Country: 'GERMANY',
             Credentials: 'Royalty, TV Host, Philanthropist',
           },
-          {
-            // "S_No": 19,
-            View: '',
-            Profile_Photo: 'speaker46.png',
-            Name: 'Mary Kom',
-            Country: 'INDIA',
-            Credentials: 'Boxer, 6 times World Champion',
-          },
-          
-        ],
-      },
-
-      {
-        speakers: [
-          // list 12
-
 
           {
             // "S_No": 20,
@@ -1736,6 +1797,12 @@ export class WebService {
             Credentials:
               'Nobel Peace Laureate 2015 : President, Tunisian Order of Lawyers',
           },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 13
           {
             // "S_No": 21,
             View: 'asif',
@@ -1744,12 +1811,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Royalty Heir Apparent to the Prince of Arcot',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 13
-
 
 
           {
@@ -1769,6 +1830,12 @@ export class WebService {
             Country: 'SRI LANKA',
             Credentials: 'Nobel Peace Laureate 2007',
           },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 14
           {
             // "S_No": 23,
             View: '',
@@ -1777,12 +1844,6 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'Industrialist : Chairman, TAF Global',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 14
-
 
 
           {
@@ -1801,6 +1862,13 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Industrialist: Chairman, Godrej Industries',
           },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 15
+
           {
             // "S_No": 17,
             View: '',
@@ -1809,13 +1877,6 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'Industrialist : Founder & Chairman, West Zone Group',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 15
-
-
           {
             // "S_No": 17,
             View: '',
@@ -1833,6 +1894,12 @@ export class WebService {
             Credentials: 'Royalty, The Royal House of Sefwi Obeng-Mim',
           },
 
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 16
           {
             // "S_No": 27,
             View: '',
@@ -1841,12 +1908,6 @@ export class WebService {
             Country: 'TUNISIA',
             Credentials: 'Nobel Peace Laureate 2015',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 16
-
 
 
           {
@@ -1858,6 +1919,20 @@ export class WebService {
             Credentials:
               'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
           },
+          {
+            // "S_No": 1,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Rahul Chaudhary',
+            Country: 'NEPAL',
+            Credentials: 'Director, CG Group',
+          },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 17
           {
             // "S_No": 30,
             View: '',
@@ -1874,12 +1949,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Royalty',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 17
-
           {
             // "S_No": 30,
             View: 'rina',
@@ -1889,6 +1958,12 @@ export class WebService {
             Credentials: 'Royalty, Pastor, Philanthropist',
           },
 
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 18
           {
             // "S_No": 31,
             View: '',
@@ -1906,12 +1981,6 @@ export class WebService {
             Country: 'MALAYSIA',
             Credentials: 'Royalty, Philanthropist, Peace Activist',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 18
-
 
           {
             // "S_No": 32,
@@ -1922,6 +1991,13 @@ export class WebService {
             Credentials: 'Prime Minister',
           },
 
+          
+
+        ],
+      },
+      {
+        speakers: [
+          // list 19
           {
             // "S_No": 33,
             View: '',
@@ -1930,13 +2006,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Secretary General Indian Business & Professional Council (IBPC) Dubai, CFO Ajmal Perfumes',
           },
-          // {
-          //   View: '',
-          //   Profile_Photo: 'speaker36.png',
-          //   Name: 'Sanjay Khan',
-          //   Country: 'INDIA',
-          //   Credentials: 'Producer, Director, & Actor',
-          // },
           {
             // "S_No": 34,
             View: '',
@@ -1946,15 +2015,6 @@ export class WebService {
             Credentials: 'World Renowned Chef',
           },
 
-        ],
-      },
-      {
-        speakers: [
-          // list 19
-
-
-
-
           {
             // "S_No": 33,
             View: '',
@@ -1963,6 +2023,14 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'TV personality, entrepreneur',
           },
+          
+
+        ],
+      },
+      {
+        speakers: [
+          // list 20
+
           {
             // "S_No": 33,
             View: 'satpal',
@@ -1981,14 +2049,6 @@ export class WebService {
               'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
           },
 
-        ],
-      },
-      {
-        speakers: [
-          // list 20
-
-
-
           {
             // "S_No": 34,
             View: '',
@@ -1997,6 +2057,13 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'Chief Justice of Liberia',
           },
+          
+
+        ],
+      },
+      {
+        speakers: [
+          // list 21
           {
             // "S_No": 34,
             View: '',
@@ -2015,13 +2082,6 @@ export class WebService {
               'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
           },
 
-        ],
-      },
-      {
-        speakers: [
-          // list 21
-
-
 
           {
             // "S_No": 35,
@@ -2031,6 +2091,13 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'Industrialist : Chairman, Al Dobowi Group',
           },
+          
+
+        ],
+      },
+      {
+        speakers: [
+          // list 22
           {
             // "S_No": 35,
             View: '',
@@ -2050,13 +2117,6 @@ export class WebService {
               'Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader',
           },
 
-        ],
-      },
-      {
-        speakers: [
-          // list 22
-
-
 
           {
             // "S_No": 37,
@@ -2066,15 +2126,12 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Actor & Model',
           },
-
-          {
-            // "S_No": 37,
-            View: '',
-            Profile_Photo: 'speaker45.png',
-            Name: 'Venkatramani R, Honorable',
-            Country: 'INDIA',
-            Credentials: 'Attorney General of India',
-          },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 22
           {
             // "S_No": 37,
             View: '',
@@ -2083,12 +2140,6 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'CEO, OIC (Organisation of Islamic Countries)',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 22
-
 
           {
             // "S_No": 38,
@@ -2098,13 +2149,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Celebrity Fitness Trainer',
           },
-          // {
-          //   View: '',
-          //   Profile_Photo: 'speaker43.png',
-          //   Name: 'Zayed Khan',
-          //   Country: 'INDIA',
-          //   Credentials: 'Producer & Actor',
-          // },
           {
             // "S_No": 39,
             View: '',
@@ -2114,6 +2158,11 @@ export class WebService {
             Credentials:
               'President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)',
           },
+          
+        ],
+      },
+      {
+        speakers: [
           {
             View: '',
             Profile_Photo: 'speaker61.png',
@@ -2121,10 +2170,6 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'President of Liberia (ONLINE)',
           },
-        ],
-      },
-      {
-        speakers: [
           {
             View: '',
             Profile_Photo: null,
