@@ -73,9 +73,9 @@ $(document).ready(function () {
     });
 });
 
-AOS.init({
-    duration: 1200,
-})
+// AOS.init({
+//     duration: 1200,
+// })
 window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
