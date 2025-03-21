@@ -48,7 +48,6 @@
             ],
             "scripts": [
               "src/assets/UIComponents/js/bootstrap.min.js",
-              "src/assets/UIComponents/js/script.js",
               "src/assets/UIComponents/js/fullpage.js"
             ],
             "server": "src/main.server.ts",
