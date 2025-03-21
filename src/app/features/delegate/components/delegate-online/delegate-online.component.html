@@ -15,7 +15,8 @@
                     style="color: #ff0000">*</span></label>
 
                 <input type="text" class="form-control" id="title" placeholder="Enter Title" formControlName="title"
-                  required autocomplete="off" maxlength="15"  (keypress)="validateAlpha($event)"/>
+                  required autocomplete="off" maxlength="15"  (input)="titleValidateAlpha($event, 'title')"
+                  />
 
                 <div *ngIf="
                     userForm.get('title')?.hasError('required') &&

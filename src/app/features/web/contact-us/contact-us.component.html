@@ -404,7 +404,7 @@
                     placeholder="Enter title"
                     class="form-control p-0"
                     (paste)="onPaste($event)"
-                    (keypress)="ValidateAlpha($event)"
+                    (input)="validateTitle($event, 'title')"
                     [maxlength]="10"
                     data-error="Please select option"
                     formControlName="title"

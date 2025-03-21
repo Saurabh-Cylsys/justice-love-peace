@@ -659,7 +659,7 @@ onDateChange(event: string): void {
     inputValue = inputValue.replace(/^\s+/, '');
 
     // Remove invalid characters except letters, space, hyphen, and underscore
-    inputValue = inputValue.replace(/[^a-zA-Z\s\-_‘]/g, '');
+    inputValue = inputValue.replace(/[^a-zA-Z\s\-_.‘]/g, '');
 
     // Update the input field
     this.peacekeepersForm.controls[controlName].setValue(inputValue, { emitEvent: false });
