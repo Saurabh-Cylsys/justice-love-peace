@@ -28,6 +28,7 @@ import {
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { environment } from '../../../../../environments/environment';
 import { Meta, Title } from '@angular/platform-browser';
+import { EncryptionService } from '../../../../shared/services/encryption.service';
 
 @Component({
   selector: 'app-delegate-registration',
@@ -105,7 +106,9 @@ export class DelegateRegistrationComponent {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private encryptionService: EncryptionService
+
   ) {
     this.fullURL = window.location.href;
 
@@ -310,7 +313,10 @@ export class DelegateRegistrationComponent {
   getAllCountries() {
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
-        this.countryData = res.data;
+        let decryptData: any = this.encryptionService.decrypt(res);
+        console.log("Country decryptData:", decryptData);
+
+        this.countryData = decryptData.data;
       },
       (err: any) => {
         console.log('error', err);
@@ -930,35 +936,45 @@ export class DelegateRegistrationComponent {
         p_reference_by: '0',
       };
 
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
+
       this.ngxService.start();
-      this.SharedService.registration(this.reqBody).subscribe(
+      let payload = {
+        "encryptedData": encryptedObj
+      }
+      this.SharedService.registration(payload).subscribe(
         async (result: any) => {
-          if (result.success) {
-            console.log('result', result);
+          let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
+          if (decryptedObj.success) {
+            console.log("decryptedObj", decryptedObj);
+
             // this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'success');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
             setTimeout(() => {
-              console.log('get payment URL', result.url);
+              console.log('get payment URL', decryptedObj.url);
               this.ngxService.stop();
-              if (result.url) {
-                window.location.href = result.url; // Redirect to Stripe Checkout
+              if (decryptedObj.url) {
+                window.location.href = decryptedObj.url; // Redirect to Stripe Checkout
               }
             }, 5000);
           } else {
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         (err) => {
+          let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
           this.ngxService.stop();
           this.registrationForm.patchValue({
             mobile_number: returnmobileNumber,
             dob: returnDOB,
           });
 
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptErr.message, 'error');
         }
       );
     }

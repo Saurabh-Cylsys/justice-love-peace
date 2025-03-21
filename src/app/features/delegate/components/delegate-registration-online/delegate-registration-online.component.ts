@@ -185,15 +185,20 @@ async ngOnInit() {
 
 
         this.cdr.detectChanges(); // 👈 Force UI update
+      const encryptedObj = this.encryptionService.encrypt(this.country_id);
+
         if (this.country_id) {
-        this.delegateService.getAllStates(this.country_id).subscribe(
+        this.delegateService.getAllStates(encryptedObj).subscribe(
           (res: any) => {
-            this.ngxService.stop();
-            this.statesData = res.data;
+            let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+            decryptData = JSON.parse(decryptData);
+              this.ngxService.stop();
+              this.statesData = decryptData.data;
           },
           (err: any) => {
-            console.log('Err', err);
-          }
+            let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+            decryptErr = JSON.parse(decryptErr);
+            console.error('Error ', decryptErr);          }
         );
       }
       // this.registrationForm.patchValue({ country: selectedCountry });
@@ -332,8 +337,11 @@ async ngOnInit() {
  async getAllCountries() {
   try {
     const response = await this.delegateService.getAllCountryApi();
-    this.countryData = response.data;
-    console.log("Country Data:", this.countryData);
+    let encryptedData = response.encryptedData;
+    let decryptData = this.encryptionService.decrypt(encryptedData);
+    let countryDcrypt = JSON.parse(decryptData);
+
+    this.countryData = countryDcrypt.data;
 
     // Ensure we bind the country only after fetching data
     if (this.isOnline) {
@@ -350,15 +358,20 @@ async ngOnInit() {
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ country_id: countryObj.id });
     this.country_name = countryObj.name;
+    const encryptedObj = this.encryptionService.encrypt(countryObj.id);
 
     this.ngxService.start();
-    this.delegateService.getAllStates(countryObj.id).subscribe(
+    this.delegateService.getAllStates(encryptedObj).subscribe(
       (res: any) => {
-        this.ngxService.stop();
-        this.statesData = res.data;
+        let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+          decryptData = JSON.parse(decryptData);
+            this.ngxService.stop();
+            this.statesData = decryptData.data;
       },
       (err: any) => {
-        console.log('Err', err);
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error ', decryptErr); 
       }
     );
   }
@@ -368,12 +381,14 @@ async ngOnInit() {
     const stateObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ state_id: stateObj.id });
     this.state_name = stateObj.name;
+    const encryptedObj = this.encryptionService.encrypt(stateObj.id);
 
     // this.ngxService.start();
-    this.delegateService.getAllCities(stateObj.id).subscribe((res: any) => {
+    this.delegateService.getAllCities(encryptedObj).subscribe((res: any) => {
       // this.ngxService.stop();
-      this.cityData = res.data;
-    });
+      let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+      decryptData = JSON.parse(decryptData);
+      this.cityData = decryptData.data;    });
   }
 
   changeCity(e: any) {
@@ -848,13 +863,25 @@ async ngOnInit() {
         p_reference_by: '0'
       };
 
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
 
       this.ngxService.start();
-      this.SharedService.registrationOnline(this.reqBody).subscribe(
+      let payload = {
+        "encryptedData": encryptedObj
+      }
+
+
+      this.ngxService.start();
+      this.SharedService.registrationOnline(payload).subscribe(
         async (result: any) => {
-          if (result.success) {
+          let decryptedObj:any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
+
+          if (decryptedObj.success) {
+            console.log("decryptedObj", decryptedObj);
+
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'success');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
             setTimeout(() => {
                 this.router.navigateByUrl('/delegate-message');
@@ -862,16 +889,18 @@ async ngOnInit() {
 
           } else {
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         (err) => {
-          this.ngxService.stop();
-          this.registrationForm.patchValue({
+          let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error creating delegate:', decryptErr);
+          this.ngxService.stop();          this.registrationForm.patchValue({
             dob: returnDOB,
           });
 
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptErr.message, 'error');
         }
       );
     }

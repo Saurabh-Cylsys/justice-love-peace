@@ -37,6 +37,7 @@ import {
   LoadedImage,
 } from 'ngx-image-cropper';
 import { DatePipe, DOCUMENT } from '@angular/common';
+import { EncryptionService } from '../../../shared/services/encryption.service';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -118,6 +119,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private route: ActivatedRoute,
+    private encryptionService: EncryptionService,
     @Inject(DOCUMENT) private document: Document,
     private renderer : Renderer2
   ) {
@@ -414,8 +416,11 @@ onDateChange(event: string): void {
     this.DelegateService.getAllCountrycode().subscribe(
       (res: any) => {
 
-        this.code = res.data;
-        // Define the country name you want to find (e.g., "India (+91)")
+        let encryptedData = res.encryptedData;
+        let decryptData = this.encryptionService.decrypt(encryptedData);
+        let countryDcrypt = JSON.parse(decryptData);         
+        
+        this.code = countryDcrypt.data;        // Define the country name you want to find (e.g., "India (+91)")
         const countryToFind = 'India';
 
         // Find the object that matches the country name
@@ -696,42 +701,59 @@ onDateChange(event: string): void {
     });
 
     // Create FormData object
-    const formData = new FormData();
+     // Create FormData object
+     const formData = {
+      full_name: this.peacekeepersForm.value.full_name,
+      dob: this.peacekeepersForm.value.dob,
+      country: this.peacekeepersForm.value.country,
+      country_code: this.peacekeepersForm.value.country_code,
+      mobile_number: this.peacekeepersForm.value.mobile_number,
+      email_id: this.peacekeepersForm.value.email_id,
+      is_active: this.peacekeepersForm.value.is_active,
+      Check_email: this.peacekeepersForm.value.Check_email == true ? 1 : 0,
+      url: environment.domainUrl,
+    };
+    
 
-    // Append all form fields except the file
-    Object.keys(this.peacekeepersForm.value).forEach((key) => {
-      formData.append(key, this.peacekeepersForm.value[key]);
-    });
+    const EncryptData = this.encryptionService.encrypt(formData);
+    const encryptedPayload = new FormData();
+    encryptedPayload.append('encryptedData', EncryptData);
+    this.getAllCountrycode();
 
-    // Append the selected file
     if (this.selectedFile) {
-      formData.append(
+      encryptedPayload.append(
         'profile_picture',
         this.selectedFile,
         this.selectedFile.name
       );
     }
-    formData.append('url', environment.domainUrl);
+
+    console.log('encryptedPayload', encryptedPayload);
+    console.log('Payload', formData);
 
     // Show loader
     this.ngxService.start();
 
     // Call the service to submit data
-    this.SharedService.postPeacekeeper(formData).subscribe(
+    this.SharedService.postPeacekeeper(encryptedPayload).subscribe(
       (response: any) => {
-        if (response.success) {
+        debugger
+        let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+        decryptData = JSON.parse(decryptData);
+
+        if (decryptData.success) {
           this.submitted = true;
 
           this.btnDisabled = false;
           this.ngxService.stop();
-          console.log('response', response);
+          console.log('response', decryptData);
           // this.peacekeeperBadgeResponse = response.QR_code
           this.peacekeeperBadgeResponse =
             'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png';
-          this.peacekeeperBadge = response.batch;
+          this.peacekeeperBadge = decryptData.batch;
 
-          this.peacekeeperBadgeId = response.peacekeeper_id;
-          this.SharedService.ToastPopup('', response.message, 'success');
+          this.peacekeeperBadgeId = decryptData.peacekeeper_id;
+          this.SharedService.ToastPopup('', decryptData.message, 'success');
           this.is_selectedFile = false;
           this.peacekeepersForm.reset();
 
@@ -740,17 +762,20 @@ onDateChange(event: string): void {
           this.previewUrl = '';
         } else {
           this.ngxService.stop();
-          this.SharedService.ToastPopup('', response.message, 'error');
+          this.SharedService.ToastPopup('', decryptData.message, 'error');
         }
       },
       (err) => {
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.log('decryptErr', decryptErr);
           this.peacekeepersForm.patchValue({
           mobile_number: returnmobileNumber,
           dob: returnDOB,
         });
         this.ngxService.stop();
 
-        this.SharedService.ToastPopup('', err.error.message, 'error');
+        this.SharedService.ToastPopup('', decryptErr.message, 'error');
       }
     );
   }

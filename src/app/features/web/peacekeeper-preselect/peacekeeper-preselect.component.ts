@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DelegateService } from '../../delegate/services/delegate.service';
+import { EncryptionService } from '../../../shared/services/encryption.service';
 @Component({
   selector: 'app-peacekeeper-preselect',
   templateUrl: './peacekeeper-preselect.component.html',
@@ -12,7 +13,12 @@ export class PeacekeeperPreselectComponent {
   packageAmt: number = 2800;
   onlinepackageAmt: number = 280;
 
-  constructor(private router: Router, private route: ActivatedRoute, private delegateService: DelegateService) { }
+  constructor(
+    private router: Router,
+     private route: ActivatedRoute,
+      private delegateService: DelegateService,
+      private encryptionService: EncryptionService
+    ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(async (params: any) => {
@@ -72,35 +78,70 @@ debugger;
   }
 
   goToDelegatePage() {
+    let params;
+    if (this.referralCode) {
+      params = {
+        dType: 'offline',
+        code: this.referralCode,
+        medium: 0
+      };
 
+    } else {
+      params = {
+        dType: 'offline'
+      };
+    }
+
+    const encryptedParams = this.encryptionService.encryptData(params);
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { dType: 'offline', code: this.referralCode, medium: 0 }
+        queryParams: { data : encryptedParams }
       });
     }
     else {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { dType: 'offline' }
+        queryParams: { data : encryptedParams  }
       });
     }
   }
 
   goToChildNomination() {
+   let params = {
+    dType: 'offline', 
+    code: this.referralCode
+    };
+    const encryptedParams = this.encryptionService.encryptData(params);
 
     this.router.navigate(['/delegate-student'], {
-      queryParams: { dType: 'offline', code: this.referralCode }
+      queryParams: { data : encryptedParams }
     });
   }
 
   goToOnlineDelegate() {
+
+    let params;
+    if (this.referralCode) {
+      params = {
+        dType: 'online',
+        code: this.referralCode
+      };
+
+    } else {
+      params = {
+        dType: 'online'
+      };
+    }
+
+    const encryptedParams = this.encryptionService.encryptData(params);
+
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { dType: 'online', code: this.referralCode }
+        queryParams: { data : encryptedParams }
       });
     }
     else {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { dType: 'online' }
+        queryParams: { data : encryptedParams }
       });
     }
   }

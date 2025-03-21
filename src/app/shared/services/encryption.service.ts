@@ -7,14 +7,14 @@ import { environment } from '../../../environments/environment';
 })
 export class EncryptionService {
     constructor() { }
-
-    encrypt(text: string): string {
-        return CryptoJS.AES.encrypt(text, environment.encryptionKey).toString();
+    encrypt(text: any): string {
+        return CryptoJS.AES.encrypt(JSON.stringify(text), environment.encryptionKey).toString();
     }
 
     decrypt(encryptedText: string): string {
         const bytes = CryptoJS.AES.decrypt(encryptedText, environment.encryptionKey);
-        return bytes.toString(CryptoJS.enc.Utf8);
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
     }
 
     encryptData(data: any): string {

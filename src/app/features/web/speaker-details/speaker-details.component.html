@@ -75,7 +75,7 @@
                 
               </div>
               <div class="card-footer text-center bg-transparent border-0">
-                <button class="btn btn-primary hover-scale col-md-6" [routerLink]="['/speaker-details', speaker.speaker_id , speaker.speaker_name]">View Profile</button>
+                <button class="btn btn-primary hover-scale col-md-6" (click)="goToChildNomination(speaker.speaker_id,speaker.speaker_name)">View Profile</button>
               </div>
             </div>
           </div>

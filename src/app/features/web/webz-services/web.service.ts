@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { EncryptionService } from '../../../shared/services/encryption.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,8 @@ export class WebService {
   constructor(
     private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
-    private http: HttpClient
+    private http: HttpClient,
+    private encryptionService: EncryptionService,
   ) {}
 
   getSpeakers(): Observable<any[]> {
@@ -64,13 +66,17 @@ export class WebService {
   }
 
   getSpeakersList(search: string = '', limit: string = '10', type: string = 'All'): Observable<any> {
-    const payload = {
+    let body = {
       p_search: search,
       p_limit: limit,
       p_type: type
+    }
+    let encryptedData = this.encryptionService.encrypt(body);
+  
+    const payload = {
+      "encryptedData": encryptedData
     };
-
-    return this.http.post<any>(`${this.API_BASE_URL}/get_speaker_list`, payload);
+    return this._apiHttpService.post(this._apiEndpointsService.getAllSpeakersListEndpoint(payload),payload);
   }
 
   confirmedSpeakersList: any[] = [

@@ -5,6 +5,7 @@ import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
+import { EncryptionService } from '../../../../shared/services/encryption.service';
 @Component({
   selector: 'app-delegate-peace-student',
   templateUrl: './delegate-peace-student.component.html',
@@ -55,15 +56,23 @@ export class DelegatePeaceStudentComponent {
     private delegateService: DelegateService,
     private datePipe: DatePipe,
     private sharedService:SharedService,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+    private encryptionService: EncryptionService
+
+  ) {
 
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
 
         this.referralCode = params.code;
+        if (params['data']) {
+          const decryptedData = this.encryptionService.decryptData(params['data']);
 
+          if (decryptedData) {
+            this.delagateType = decryptedData.dType;
+          }
+        }
         console.log('params', params);
-        this.delagateType = params.dType;
 
         // this.router.navigate([], {
         //   relativeTo: this.route,
@@ -322,8 +331,11 @@ export class DelegatePeaceStudentComponent {
   getAllCountries() {
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
-        this.countryData = res.data;
-      },
+        let encryptedData = res.encryptedData;
+        let decryptData = this.encryptionService.decryptData(encryptedData);
+        let countryDcrypt = JSON.parse(decryptData);
+        this.countryData = countryDcrypt.data;
+            },
       (err: any) => {
         console.log('error', err);
       }
@@ -488,26 +500,33 @@ private async fnStripePG(response: any, payload: any) {
 
       localStorage.setItem('isNominee','student');
     }
+    const EncryptData = this.encryptionService.encrypt(this.requestBody);
+    let payload = {
+      encryptedData: EncryptData
+    }
 
-    this.delegateService.postPreDelegateNominationApi(this.requestBody).subscribe({
+    this.delegateService.postPreDelegateNominationApi(payload).subscribe({
       next: async (response: any) => {
-        if (response.success) {
-          this.sharedService.ToastPopup('', response.message, 'success');
-
+        let decryptData: any = this.encryptionService.decrypt(response.encryptedData);
+        decryptData = JSON.parse(decryptData);
+        if (decryptData.success) {
+          this.sharedService.ToastPopup('', decryptData.message, 'success');
+         
           setTimeout(async () => {
 
-            if(response.isStripe)
-              await this.fnStripePG(response, this.requestBody);
+            if(decryptData.isStripe)
+              await this.fnStripePG(decryptData, this.requestBody);
             else
-              await this.fnMagnatiPG(response, this.requestBody);
+              await this.fnMagnatiPG(decryptData, this.requestBody);
           }, 5000);
 
         }
       },
       error: (err) => {
-
-        console.error('Error creating delegate:', err);
-        this.sharedService.ToastPopup('Error', err.error?.message || 'Registration failed', 'error');
+        let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error creating delegate:', decryptErr);
+        this.sharedService.ToastPopup('', decryptErr?.message || 'Registration failed', 'error');
       },
     })
   }

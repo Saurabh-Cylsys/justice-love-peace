@@ -20,6 +20,7 @@ import {
 } from 'ngx-intl-tel-input';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import { EncryptionService } from '../../../shared/services/encryption.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -171,6 +172,7 @@ export class ContactUsComponent {
     private titleService: Title,
         private metaService: Meta,
         private renderer: Renderer2,
+    private encryptionService: EncryptionService,
         @Inject(DOCUMENT) private document: Document
   ) {}
   getcontrol(name: any): AbstractControl | null {
@@ -337,23 +339,41 @@ export class ContactUsComponent {
     // }
     if (this.submitted) {
       this.reqBody = {
-        ...this.contactUsForm.value,
+        title: this.contactUsForm.value.title,
+        email: this.contactUsForm.value.email,
+        firstName: this.contactUsForm.value.firstName,
+        lastName: this.contactUsForm.value.lastName,
+        countryCode: this.contactUsForm.value.countryCode,
+        phoneNumber: this.contactUsForm.value.phoneNumber,
+        yourQuestion: this.contactUsForm.value.yourQuestion
       };
+      const encryptData = this.encryptionService.encrypt(this.reqBody);
+      console.log('encryptData', encryptData);
       console.log('this.contactUsForm.value', this.contactUsForm.value);
       this.ngxService.start();
-      this.SharedService.contectUs(this.reqBody).subscribe(
+      let body = {
+        encryptedData: encryptData
+      }
+      this.SharedService.contectUs(body).subscribe(
         (result: any) => {
-          if (result.success) {
+          let decryptData:any = this.encryptionService.decrypt(result.encryptedData);
+
+          decryptData = JSON.parse(decryptData);
+          console.log('decryptData', decryptData);
+
+          if (decryptData.success) {
             console.log('result', result);
             this.ngxService.stop();
             this.contactUsForm.reset();
-            this.SharedService.ToastPopup('', result.message, 'success');
+            this.SharedService.ToastPopup('', decryptData.message, 'success');
           }
         },
         (err) => {
           this.ngxService.stop();
-
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          let decryptedErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptedErr = JSON.parse(decryptedErr);
+          console.log("decryptedObj", decryptedErr);
+          this.SharedService.ToastPopup('', decryptedErr.message, 'error');
         }
       );
     }

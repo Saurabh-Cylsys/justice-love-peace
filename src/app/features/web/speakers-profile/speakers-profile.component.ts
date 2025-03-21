@@ -5,6 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../../../app/shared/services/shared.service';
 import { environment } from '../../../../environments/environment';
+import { EncryptionService } from '../../../shared/services/encryption.service';
 
 
 @Component({
@@ -17,10 +18,10 @@ export class SpeakersProfileComponent implements OnInit {
   speakersId: any;
   speakersName: any = '';
   isLoading = true;
- totalColor :  any[] = [];
-  tinyURL : string = environment.tinyUrl;
-  domainUrl : string = environment.domainUrl;
-  speakerShareUrl : string = '';
+  totalColor: any[] = [];
+  tinyURL: string = environment.tinyUrl;
+  domainUrl: string = environment.domainUrl;
+  speakerShareUrl: string = '';
 
   constructor(
     private webService: WebService,
@@ -29,46 +30,55 @@ export class SpeakersProfileComponent implements OnInit {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2
-  ) { }
-  
-  
+    private renderer: Renderer2,
+    private encryptionService: EncryptionService,
 
-  
+  ) { }
+
+
+
+
 
   ngOnInit(): void {
     this.getrandomcolor(10)
-debugger
-this.speakerShareUrl = this.domainUrl + this.router.url 
-console.log(this.speakerShareUrl);
+    this.speakerShareUrl = this.domainUrl + this.router.url
+    console.log(this.speakerShareUrl);
 
-    this.route.params.subscribe((params: any) => {
+    this.route.queryParams.subscribe((params: any) => {
       console.log("Params", params);
       if (params != undefined && Object.keys(params).length > 0) {
 
-        this.speakersId = params.speakerId
-        this.speakersName = params.speakerName
+        if (params['data']) {
+          let decryptedData = this.encryptionService.decryptData(params['data']);
+
+          if (decryptedData) {
+
+            this.speakersId = decryptedData.speakerId
+            this.speakersName = decryptedData.speakerName
+          }
+        }
 
       }
     });
 
 
-    this.loadSpeakers()
-
+    if (this.speakersId) {
+      this.loadSpeakers()
+    }
 
   }
 
-  
-  getrandomcolor(length:any) {
+
+  getrandomcolor(length: any) {
     let letters = '0123456789ABCDEF';
-  
+
     for (let i = 0; i < length; i++) {
       let color = '#';
       for (let j = 0; j < 6; j++) {
         color += letters[Math.floor(Math.random() * 16)];
-      }    this.totalColor.push(color);
+      } this.totalColor.push(color);
     }
-  
+
     console.log(this.totalColor);
   }
 
@@ -81,10 +91,12 @@ console.log(this.speakerShareUrl);
       .subscribe({
 
         next: (response: any) => {
-          if (response?.data) {
-            this.speakersDetails = response?.data;
+          if (response?.encryptedData) {
+            let decryptedObj:any = this.encryptionService.decrypt(response.encryptedData);
+            decryptedObj = JSON.parse(decryptedObj);
+            this.speakersDetails = decryptedObj?.data;
             this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
-            this.speakersDetails[0].qr_code =  this.speakersDetails[0].url
+            this.speakersDetails[0].qr_code = this.speakersDetails[0].url
             console.log(this.speakersDetails, 'list of speakers');
 
 
@@ -98,31 +110,32 @@ console.log(this.speakerShareUrl);
           this.isLoading = false;
         },
         error: (error) => {
-          console.error('Error fetching speakers:', error);
-          this.isLoading = false;
+          let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error fetching speakers:', decryptErr);          this.isLoading = false;
           this.speakersDetails = [];
         }
       });
   }
- 
-  private transformSpeakerData(data:any): any[] {
+
+  private transformSpeakerData(data: any): any[] {
     // Group speakers into chunks of 4 speakers per group
     const groupSize = 2;
     const groups = [];
-    
+
     for (let i = 0; i < data.length; i += groupSize) {
       groups.push({
         details: data.slice(i, i + groupSize)
       });
     }
-    
+
     return groups;
   }
 
   navigateUrl() {
-     const tinyUrlWithParams = `${this.speakersDetails[0].url}`;
+    const tinyUrlWithParams = `${this.speakersDetails[0].url}`;
     // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
-        window.location.href = tinyUrlWithParams;
+    window.location.href = tinyUrlWithParams;
 
   }
 
@@ -218,20 +231,20 @@ INDIA : 18002672828
       navigator.share({
         text: shareTitle
       })
-      .then(() => console.log('Thanks for sharing!'))
-      .catch(err => {
-        if (err.name === 'AbortError') {
-          console.warn('User canceled the sharing action.');
-        } else {
-          console.error('Error while using Web Share API:', err);
-        }
-      });
+        .then(() => console.log('Thanks for sharing!'))
+        .catch(err => {
+          if (err.name === 'AbortError') {
+            console.warn('User canceled the sharing action.');
+          } else {
+            console.error('Error while using Web Share API:', err);
+          }
+        });
     } else {
       // Open WhatsApp in a new tab for users without Web Share API support
       window.open(whatsappURL, '_blank');
     }
   }
   ngOnDestroy(): void {
-    
+
   }
 }

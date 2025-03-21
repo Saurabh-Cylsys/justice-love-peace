@@ -171,14 +171,14 @@ export class ApiEndpointsService {
   // }
 
   public registrationEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_registration);
+    return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE_ENCRYPT);
   }
   public contectUsEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_CONTECT_US);
+    return this.createUrl(this._constants.API_ENDPOINT_CONTECT_US_ENCRYPT);
   }
 
   public peacekeeperEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER);
+    return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER_ENCRYPT);
   }
 
   public checkEmailAndMobileEndpoint(): string {
@@ -256,7 +256,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_getdates);
   }
   public getAllCountrycodeEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_GET_getAllCountrycode);
+    return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_COUNTRY_ENCRYPT);
   }
   public getAllCountriesEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_COUNTRY);
@@ -280,19 +280,27 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_CHECKOUT_SESSION);
   }
   public postVerifySessionEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION_ENCRYPT);
   }
 
   public getAllCountryForDelegatesEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY);
+    return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY_ENCRYPT);
   }
 
   public getStatesByCountryEndpoint(country_id:any): string {
-    return this.createUrl(this._constants.API_ENDPOINT_STATE_BY_COUNTRY + '/' + country_id);
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT ,
+      (qs: QueryStringParameters) => {
+        qs.push('encryptedData', country_id);
+      }
+    );
   }
 
-  public getCityByStateEndpoint(country_id:any): string {
-    return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
+  public getCityByStateEndpoint(state_id:any): string {
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_CITY_BY_STATE_ENCRYPT ,
+      (qs: QueryStringParameters) => {
+        qs.push('encryptedData', state_id);
+      }
+    );
   }
 
   public getSendOTPEndpoint(): string {
@@ -308,7 +316,7 @@ export class ApiEndpointsService {
   }
 
   public getCreateNominationProfileEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE);
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE_ENCRYPT);
 
   // public postPeaceDeleteAccEndpoint() {
   //   return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
@@ -327,7 +335,7 @@ export class ApiEndpointsService {
   }
 
   public postCreateDelegateOnlineEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE);
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE_ENCRYPT);
   }
 
   public postVerifySessionOnlineEndpoint() {
@@ -350,7 +358,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VERIFY_PAYMENT_STATUS);
   }
   public postPreDelegateNominationEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION);
+    return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION_ENCRYPT);
   }
 
   public getAmbassadorURLEndpoint(): string {
@@ -363,6 +371,10 @@ export class ApiEndpointsService {
 
   public getCouponValidationEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_VALIDATE_COUPON);
+  }
+
+    public getAllSpeakersListEndpoint(data:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT );
   }
 
 }

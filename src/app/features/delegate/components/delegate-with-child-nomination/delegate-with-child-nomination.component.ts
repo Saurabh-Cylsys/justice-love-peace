@@ -849,15 +849,21 @@ export class DelegateWithChildNominationComponent {
         p_reference_by:'0'
       };
 
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
       this.ngxService.start();
-
-      this.SharedService.registration(this.reqBody).subscribe({
+      let payload = {
+        "encryptedData": encryptedObj
+      }
+      this.SharedService.registration(payload).subscribe({
         next: async (result: any) => {
-          this.ngxService.stop(); // Stop the loader here, after first API completes
+          let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
+          this.ngxService.stop();
+          if (decryptedObj.success) {
+            console.log("decryptedObj", decryptedObj);
 
-          if (result.success) {
-
-            this.SharedService.ToastPopup('', result.message, 'success');
+            console.log('Registration Successful:', result);
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
             setTimeout(() => {
@@ -865,13 +871,16 @@ export class DelegateWithChildNominationComponent {
           }, 3000);
 
           } else {
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         error: (err) => {
+          let decryptedErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptedErr = JSON.parse(decryptedErr);
+          console.log("decryptedObj", decryptedErr);
           this.ngxService.stop();
 
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptedErr.message, 'error');
         },
       });
     }

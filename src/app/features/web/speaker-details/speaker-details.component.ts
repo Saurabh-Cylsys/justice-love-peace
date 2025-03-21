@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WebService } from '../webz-services/web.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { EncryptionService } from '../../../shared/services/encryption.service';
 
 interface Speaker {
   speaker_name: string;
@@ -28,7 +30,11 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
   private countrySubscription?: Subscription;
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
-  constructor(private webService: WebService) {}
+  constructor(
+    private webService: WebService,
+    private router: Router,
+    private encryptionService: EncryptionService,
+  ) {}
 
   ngOnInit() {
     this.setupSearchDebounce();
@@ -90,10 +96,13 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     this.webService.getSpeakersList(searchQuery, '73', 'All')
     .subscribe({
       next: (response: any) => {
-        if (response?.data) {
-
+        if (response?.encryptedData) {
+          // Decrypt the response data
+          let encryptedData = response.encryptedData;
+          let decryptData = this.encryptionService.decrypt(encryptedData);
+          let data = JSON.parse(decryptData);
             // Map the API response data and filter out excluded countries
-            const mappedData = response.data
+            const mappedData = data.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
               .map((item: any) => ({
                 speaker_id: item.speaker_id || '',
@@ -121,7 +130,10 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         },
         error: (error) => {
-          console.error('Error fetching speakers:', error);
+          let decryptErr = this.encryptionService.decrypt(error.error.encryptedData);
+          console.log(JSON.parse(decryptErr), 'decrypted data');
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error fetching speakers:', decryptErr);
           this.isLoading = false;
           this.speakersList = [];
           this.originalSpeakersList = [];
@@ -174,5 +186,16 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     }
 
     return '';
+  }
+
+  goToChildNomination(speakerId: any, speakerName: any) {
+    const params = {
+      speakerId: speakerId,
+      speakerName: speakerName
+    }
+    const encryptedParams = this.encryptionService.encryptData(params);
+    this.router.navigate(['/speaker-profile'], {
+      queryParams: {  data: encryptedParams }
+    });
   }
 }

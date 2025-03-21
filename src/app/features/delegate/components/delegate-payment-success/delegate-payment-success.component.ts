@@ -154,14 +154,20 @@ export class DelegatePaymentSuccessComponent {
       p_type: this.pType
 
     }
-debugger
-    await this.delegateService.postVerifySession(body).subscribe({
+    const EncryptData = this.encryptionService.encrypt(body);
+    let reqBody = {
+      encryptedData: EncryptData
+    }
+        await this.delegateService.postVerifySession(reqBody).subscribe({
       next: (response: any) => {
         this.loading = false;
-        console.log('Response:', response);
-        if (response.success) {
+        let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+        decryptData = JSON.parse(decryptData);
+        this.loading = false;
+        console.log('Response:', decryptData);
+        if (decryptData.success) {
 
-          this.isPaymentStatus = response.session.payment_status;
+          this.isPaymentStatus = decryptData.session.payment_status;
 
           if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
            const isNominee = localStorage.getItem('isNominee')
@@ -169,8 +175,8 @@ debugger
            console.log("isnominee",isNominee);
 
            if(isNominee == 'student') {
-            let adultData  = response.savedDetails[0].parent_details[0];
-            let peaceStudentData = response.savedDetails[0].nominations[0];
+            let adultData  = decryptData.savedDetails[0].parent_details[0];
+            let peaceStudentData = decryptData.savedDetails[0].nominations[0];
 
             this.peaceStudentData = {
               studentTitle: peaceStudentData?.title_nom,
@@ -194,13 +200,13 @@ debugger
               adultDob:adultData.dob,
               referralCode : adultData.reference_no,
 
-              transcation_id: response.session.payment_intent,
-              transcation_json: response.session.status,
+              transcation_id: decryptData.session.payment_intent,
+              transcation_json: decryptData.session.status,
             }
            }
            else if(isNominee == 'adult') {
-            let peaceStudentData = response.savedDetails[0].parent_details[0];
-            let adultData = response.savedDetails[0].nominations[0];
+            let peaceStudentData = decryptData.savedDetails[0].parent_details[0];
+            let adultData = decryptData.savedDetails[0].nominations[0];
 
             this.peaceStudentData = {
               studentTitle: peaceStudentData?.title,
@@ -225,42 +231,42 @@ debugger
               adultDob:adultData.dob_nom,
 
 
-              transcation_id: response.session.payment_intent,
-              transcation_json: response.session.status,
+              transcation_id: decryptData.session.payment_intent,
+              transcation_json: decryptData.session.status,
            }
         };
       }
 
           else if(this.pType == 'DELEGATE_ONLINE' || this.pType == 'DELEGATE_OFFLINE'){
             this.registrationData = {
-              title: response.savedDetails[0].title,
-              first_name: response.savedDetails[0].first_name,
-              last_name: response.savedDetails[0].last_name,
-              email: response.savedDetails[0].email_id ,
-              country_code :response.savedDetails[0].country_code,
-              mobile_number: response.savedDetails[0].mobile_no,
-              country_id :response.savedDetails[0].country_id,
-              transcation_id: response.session.payment_intent || '',
-              transcation_json: { status: response.session.status || '' },
-              dob : response.savedDetails[0].dob,
-              referralCode : response.savedDetails[0].reference_no
+              title: decryptData.savedDetails[0].title,
+              first_name: decryptData.savedDetails[0].first_name,
+              last_name: decryptData.savedDetails[0].last_name,
+              email: decryptData.savedDetails[0].email_id ,
+              country_code :decryptData.savedDetails[0].country_code,
+              mobile_number: decryptData.savedDetails[0].mobile_no,
+              country_id :decryptData.savedDetails[0].country_id,
+              transcation_id: decryptData.session.payment_intent || '',
+              transcation_json: { status: decryptData.session.status || '' },
+              dob : decryptData.savedDetails[0].dob,
+              referralCode : decryptData.savedDetails[0].reference_no
             };
             if (this.registrationData) {
-              this.registrationData.email = response.session.customer_email;
-              this.registrationData.transcation_id =response.session.payment_intent;
-              this.registrationData.transcation_json.status = response.session.status;
+              this.registrationData.email = decryptData.session.customer_email;
+              this.registrationData.transcation_id =decryptData.session.payment_intent;
+              this.registrationData.transcation_json.status = decryptData.session.status;
               this.registrationData = {
-                title: response.savedDetails[0].title,
-                first_name: response.savedDetails[0].first_name,
-                last_name: response.savedDetails[0].last_name,
-                country_code: response.savedDetails[0].country_code,
-                email: response.savedDetails[0].email_id,
-                mobile_number: response.savedDetails[0].mobile_no,
-                transcation_id: response.session.payment_intent || '',
-                transcation_json: { status: response.session.status || '' },
-                country_id: response.savedDetails[0].country_id,
-                dob: response.savedDetails[0].dob,
-                referralCode : response.savedDetails[0].reference_no
+                title: decryptData.savedDetails[0].title,
+                first_name: decryptData.savedDetails[0].first_name,
+                last_name: decryptData.savedDetails[0].last_name,
+                country_code: decryptData.savedDetails[0].country_code,
+                email: decryptData.savedDetails[0].email_id,
+                mobile_number: decryptData.savedDetails[0].mobile_no,
+                transcation_id: decryptData.session.payment_intent || '',
+                transcation_json: { status: decryptData.session.status || '' },
+                country_id: decryptData.savedDetails[0].country_id,
+                dob: decryptData.savedDetails[0].dob,
+                referralCode : decryptData.savedDetails[0].reference_no
               };
             }
           }
@@ -272,9 +278,12 @@ debugger
         }
       },
       error: (err) => {
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+
         this.loading = false;
-        console.log('Error verifying session:', err.error['error']);
-        this.sharedService.ToastPopup(err.error['error'], '', 'error');
+        console.log('Error verifying session:', decryptErr['error']);
+        this.sharedService.ToastPopup(decryptErr['error'], '', 'error');
       },
     });
   }

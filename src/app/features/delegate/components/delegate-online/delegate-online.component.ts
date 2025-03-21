@@ -89,12 +89,18 @@ export class DelegateOnlineComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private datePipe: DatePipe,
     private sharedService: SharedService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private encryptionService: EncryptionService
+
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
-        this.referralCode = params.code;
-        this.delagateType = params.dType;
+        const decryptedData = this.encryptionService.decryptData(params['data']);
+
+        if (decryptedData) {
+          this.referralCode = decryptedData.code;
+          this.delagateType = decryptedData.dType;
+        }
 
         this.fnPartialSave()
         // this.router.navigate([], {
@@ -199,8 +205,11 @@ export class DelegateOnlineComponent implements OnInit {
   getAllCountries() {
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
-        this.countryData = res.data;
-      },
+        let encryptedData = res.encryptedData;
+        let decryptData = this.encryptionService.decrypt(encryptedData);
+        let countryDcrypt = JSON.parse(decryptData);         
+        
+        this.countryData = countryDcrypt.data;      },
       (err: any) => {
         console.log('error', err);
       }
@@ -395,27 +404,36 @@ export class DelegateOnlineComponent implements OnInit {
         };
 
       }
+      const EncryptData = this.encryptionService.encrypt(this.payload);
+      let reqBody = {
+        encryptedData: EncryptData
+      }
+        
 
-      this.delegateService.postDelegateOnline(this.payload).subscribe({
+      this.delegateService.postDelegateOnline(reqBody).subscribe({
         next: (response: any) => {
+          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          decryptData = JSON.parse(decryptData);
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave
           this.btnDisabled = true;
-          this.sharedService.ToastPopup(response.message, '', 'success');
+          this.sharedService.ToastPopup(decryptData.message, '', 'success');
           this.registrationData = this.payload;
 
           setTimeout(async () => {
             if (response.isStripe)
-              await this.fnStripePG(response, this.payload);
+              await this.fnStripePG(decryptData, this.payload);
             else
-              await this.fnMagnatiPG(response, this.payload);
+              await this.fnMagnatiPG(decryptData, this.payload);
           }, 5000);
 
           this.loading = false;
         },
         error: (error: any) => {
-          console.error('Error creating delegate:', error);
-          this.sharedService.ToastPopup('Error', error.error?.message || 'Registration failed', 'error');
+          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error creating delegate:', decryptErr);
+          this.sharedService.ToastPopup('Error', decryptErr?.message || 'Registration failed', 'error');
           this.loading = false;
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave

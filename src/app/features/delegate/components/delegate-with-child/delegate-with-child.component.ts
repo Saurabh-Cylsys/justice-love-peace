@@ -26,6 +26,7 @@ import {
   SearchCountryField,
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
+import { EncryptionService } from '../../../../shared/services/encryption.service';
 
 @Component({
   selector: 'app-delegate-with-child',
@@ -116,7 +117,8 @@ export class DelegateWithChildComponent {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private encryptionService: EncryptionService
   ) {
     this.fullURL = window.location.href;
   }
@@ -1248,18 +1250,24 @@ export class DelegateWithChildComponent {
       //   }
       // );
 
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
       this.ngxService.start();
+      let payload = {
+        "encryptedData": encryptedObj
+      }
 
-      this.SharedService.registration(this.reqBody).subscribe({
+      this.SharedService.registration(payload).subscribe({
         next: async (result: any) => {
-          this.ngxService.stop(); // Stop the loader here, after first API completes
+          let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
+          if (decryptedObj.success) {
 
-          if (result.success) {
-            console.log('Registration Successful:', result);
-            this.SharedService.ToastPopup('', result.message, 'success');
+
+            console.log('Registration Successful:', decryptedObj);
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
-            this.delegateId = result.delegate_id;
+            this.delegateId = decryptedObj.delegate_id;
             const formattedNomineeMobileNumber = this.formatNomineeMobileNumber(
               this.nominee_mobile_number
             );
@@ -1275,41 +1283,52 @@ export class DelegateWithChildComponent {
                 institution: this.instituteName,
               };
 
-              this.callNominationProfileAPI(nomineeBody, result.url);
+              this.callNominationProfileAPI(nomineeBody, decryptedObj.url);
             }
           } else {
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         error: (err) => {
+          let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+
+          console.error('Registration Error:', decryptErr)
           this.ngxService.stop();
           this.registrationForm.patchValue({
             mobile_number: returnmobileNumber,
             dob: returnDOB,
           });
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptErr.message, 'error');
         },
       });
     }
   }
 
   private callNominationProfileAPI(nomineeBody: any, paymentUrl: string): void {
+    let encryptedObj = this.encryptionService.encrypt(nomineeBody);
     this.ngxService.start();
-
-    this.delegateService.getNominationProfileApi(nomineeBody).subscribe({
+    let payload = {
+      "encryptedData": encryptedObj
+    }
+    this.delegateService.getNominationProfileApi(payload).subscribe({
       next: (res: any) => {
+        let decryptedObj: any = this.encryptionService.decrypt(res.encryptedData);
+        decryptedObj = JSON.parse(decryptedObj);
         this.ngxService.stop();
-        console.log('Nomination Profile Response:', res);
+        console.log('Nomination Profile Response:', decryptedObj);
 
-        if (res.success && paymentUrl) {
+        if (decryptedObj.success && paymentUrl) {
           window.location.href = paymentUrl; // Redirect to payment
           this.clearNomineeFields();
         }
       },
       error: (err) => {
+        let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
         this.ngxService.stop();
         console.error('Nomination API Error:', err);
-        this.SharedService.ToastPopup('', err.error.message, 'error');
+        this.SharedService.ToastPopup('', decryptErr.message, 'error');
       },
     });
   }
