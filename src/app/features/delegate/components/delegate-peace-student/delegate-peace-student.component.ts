@@ -5,6 +5,7 @@ import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
+import { EncryptionService } from '../../../../shared/services/encryption.service';
 @Component({
   selector: 'app-delegate-peace-student',
   templateUrl: './delegate-peace-student.component.html',
@@ -50,30 +51,24 @@ export class DelegatePeaceStudentComponent {
   showPaymentSuccess = false;
   requestBody: any;
   isNominee : boolean = false;
+  delegateEmail: string = "";
 
   constructor(private fb: FormBuilder,
     private delegateService: DelegateService,
     private datePipe: DatePipe,
     private sharedService:SharedService,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,private encryptionService : EncryptionService) {
 
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
 
         this.referralCode = params.code;
-
-        console.log('params', params);
-        this.delagateType = params.dType;
-
-        // this.router.navigate([], {
-        //   relativeTo: this.route,
-        //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL
-        //   replaceUrl: true // Replace the current URL in the browser history
-        // });
+        console.log("Params",params);
+        this.delagateType = this.encryptionService.decrypt(params.dType);
+        // this.delagateType = params.dType;
+        console.log("this.delagateType",this.delagateType);
       }
     });
-
-
 
     const today = new Date();
 
@@ -345,12 +340,21 @@ private trimValue(value: any): any {
 }
 
 private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
-  if (response.success && response.gatewayUrl) {
-    localStorage.setItem('delegateRegistration', JSON.stringify(payload));
+  if (response.success) {
     //window.location.href = response.payment_link;
+
+    const isNominee = localStorage.getItem('isNominee');
+    if(isNominee == 'adult') {
+        this.delegateEmail = this.studentForm.get('email')?.value.toLowerCase();
+    }
+    else if(isNominee == 'student') {
+      this.delegateEmail = this.delegateForm.get('email')?.value.toLowerCase();
+    }
+
     let obj = {
-      "email": this.delegateForm.get('email')?.value.toLowerCase(),
-      "pay_type": "DELEGATE_ONLINE",
+      "email": this.delegateEmail,
+      "pay_type": "DELEGATE_CHILD_NOMINATION",
+      "reference_no": (this.referralCode ? this.referralCode : this.delegateForm.value.reference_no) ?? '',
     };
 
     await this.delegateService.postDelegateOnlineMP(obj).subscribe({
@@ -496,18 +500,20 @@ private async fnStripePG(response: any, payload: any) {
 
           setTimeout(async () => {
 
-            if(response.isStripe)
+            if(response.isStripe == "true") {
               await this.fnStripePG(response, this.requestBody);
+            }
             else
+             {
               await this.fnMagnatiPG(response, this.requestBody);
+            }
           }, 5000);
-
         }
       },
       error: (err) => {
 
         console.error('Error creating delegate:', err);
-        this.sharedService.ToastPopup('Error', err.error?.message || 'Registration failed', 'error');
+        this.sharedService.ToastPopup(err.error?.message || 'Registration failed','', 'error');
       },
     })
   }

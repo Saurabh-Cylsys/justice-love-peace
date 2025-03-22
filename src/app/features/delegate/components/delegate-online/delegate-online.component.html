@@ -11,7 +11,7 @@
             <div class="row">
 
               <div class="mb-3 col-md-6">
-                <label for="name" class="form-label">Title<span class="form-label"
+                <label for="title" class="form-label">Title<span class="form-label"
                     style="color: #ff0000">*</span></label>
 
                 <input type="text" class="form-control" id="title" placeholder="Enter Title" formControlName="title"
@@ -56,9 +56,9 @@
               </div>
 
               <div class="mb-3 col-md-6">
-                <label for="name" class="form-label">Last Name<span class="form-label"
+                <label for="lname" class="form-label">Last Name<span class="form-label"
                     style="color: #ff0000">*</span></label>
-                <input type="text" class="form-control" id="name" placeholder="Enter last name" formControlName="last_name"
+                <input type="text" class="form-control" id="lname" placeholder="Enter last name" formControlName="last_name"
                   required autocomplete="off" maxlength="50" (keypress)="validateAlpha($event)"/>
                 <!-- (keypress)="validateInput($event)" -->
                 <div *ngIf="
@@ -94,7 +94,7 @@
               <div class="col-md-6 mb-3">
                 <div class="row no-padding">
                   <div class="form-group form-group-inner mobile-number">
-                    <label class="col-md-12 no-padding p-0 form-label" for="mobile1">Mobile Number<span class="form-label-span"
+                    <label class="col-md-12 no-padding p-0 form-label" for="mobile_number">Mobile Number<span class="form-label-span"
                         style="color: #ff0000">
                         *</span></label>
                     <div class="delegateonline form-control">
@@ -161,7 +161,7 @@
               </div>
 
               <div class="mb-3 col-md-6">
-                <label class="col-md-12 no-padding p-0 form-label" for="lname1">DOB<span class="form-label-span"
+                <label class="col-md-12 no-padding p-0 form-label" for="dob">DOB<span class="form-label-span"
                     style="color: #ff0000">
                     *</span></label>
                 <input type="text" class="form-control" placeholder="Select Date of birth" id="dob" #dob

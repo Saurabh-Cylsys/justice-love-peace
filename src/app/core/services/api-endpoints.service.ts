@@ -365,4 +365,12 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VALIDATE_COUPON);
   }
 
+  public getVerifyTicketEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_TICKET);
+  }
+
+  public getDiscountAmountEndpoint(couponCode:string) {
+    return this.createUrl(this._constants.API_ENDPOINT_DISCOUNT_AMOUNT + '/' + couponCode);
+  }
+
 }

@@ -1,5 +1,5 @@
 <!-- <div class="section5"> -->
-  <div class="col-xl-8 m-auto index " style="min-height: 100vh;">
+  <div class="col-xl-8 m-auto index" style="min-height: 90vh;">
     <!-- <button class="btn btn-outline-primary position-absolute" style="top: 20px; left: 20px; z-index: 1000;"
           (click)="goBack()">
       <i class="fas fa-arrow-left me-2"></i>Back
@@ -15,7 +15,7 @@
       </div>
       <div class="carousel-item">
       <img src="assets/UIComponents/images/pre-select/banner.png" class="d-block w-100" alt="Slide 1" />
-      </div>        
+      </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -34,7 +34,7 @@
                 <source src="assets/UIComponents/video/slider.mp4" type="video/mp4">
                 <source src="assets/UIComponents/video/slider.mp4" type="video/mp4">Your browser does not support the
                 video tag. I suggest you upgrade your browser.
-  
+
               </video>
             </div>
             <!-- Image Slide -->
@@ -42,8 +42,8 @@
               <img src="assets/UIComponents/images/pre-select/banner.png" class="d-block w-100 h-100" alt="..."
                 style="object-fit: cover;">
             </div>
-            
-  
+
+
           </div>
           <!-- Carousel Controls -->
           <button class="carousel-control-prev" type="button" data-bs-target="#mediaCarousel" data-bs-slide="prev">
@@ -55,14 +55,20 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-  <!-- {{packageAmt | json}} -->
+
         <div class="ui-card-container mb-2 mt-1">
           <div class="ui-card ui-card1" (click)="goToDelegatePage()">
-            <div class="price-ribbon">${{this.packageAmt}}</div>
+            <div class="price-ribbon">
+              <span *ngIf="this.isStrip == 'true'">$ {{this.offlineDiscount}}</span>
+              <span *ngIf="this.isStrip == 'false'"> {{this.offlineDiscount}}</span>
+            </div>
             <div class="ui-card-image"></div>
             <div class="ui-card-text">
               <a class="btn btn-success" (click)="goToDelegatePage()">As a Delegate</a>
-              <h4 class="text-dark fw-bold mt-2">${{this.packageAmt}}</h4>
+              <h4 class="text-dark fw-bold mt-2">
+                <span *ngIf="this.isStrip == 'true'">$ {{offlineDiscount}}</span>
+                <span *ngIf="this.isStrip == 'false'"> {{offlineDiscount}}</span>
+              </h4>
               <p>Join global leaders, attend exclusive events & contribute to peace.</p>
             </div>
             <!-- <div class="ui-card-buttons">
@@ -70,13 +76,19 @@
       <button>Register</button>
       </div> -->
           </div>
-  
+
           <div class="ui-card ui-card2" (click)="goToChildNomination()">
-            <div class="price-ribbon">$2800</div>
+            <div class="price-ribbon">
+              <span *ngIf="this.isStrip == 'true'">$ {{childNominationDiscount}}</span>
+              <span *ngIf="this.isStrip == 'false'"> {{childNominationDiscount}}</span>
+            </div>
             <div class="ui-card-image"></div>
             <div class="ui-card-text">
               <a class="btn btn-success" (click)="goToChildNomination()">As a Peace Student</a>
-              <h4 class="text-dark fw-bold mt-2">$2800</h4>
+              <h4 class="text-dark fw-bold mt-2">
+                <span *ngIf="this.isStrip == 'true'">$ {{childNominationDiscount}}</span>
+                <span *ngIf="this.isStrip == 'false'"> {{childNominationDiscount}}</span>
+              </h4>
               <p>Support global peace initiatives & leadership training.</p>
             </div>
             <!-- <div class="ui-card-buttons">
@@ -84,13 +96,19 @@
       <button>Register</button>
       </div> -->
           </div>
-  
+
           <div class="ui-card ui-card3" (click)="goToOnlineDelegate()">
-            <div class="price-ribbon">${{this.onlinepackageAmt}}</div>
+            <div class="price-ribbon">
+              <span *ngIf="this.isStrip == 'true'">$ {{onlineDiscount}}</span>
+              <span *ngIf="this.isStrip == 'false'"> {{onlineDiscount}}</span>
+            </div>
             <div class="ui-card-image"></div>
             <div class="ui-card-text">
               <a class="btn btn-success" (click)="goToOnlineDelegate()">As an Online Delegate</a>
-              <h4 class="text-dark fw-bold mt-2">${{this.onlinepackageAmt}}</h4>
+              <h4 class="text-dark fw-bold mt-2">
+                <span *ngIf="this.isStrip == 'true'">$ {{onlineDiscount}}</span>
+                <span *ngIf="this.isStrip == 'false'"> {{onlineDiscount}}</span>
+              </h4>
               <p>Engage in leadership programs and network with professionals.</p>
             </div>
             <!-- <div class="ui-card-buttons">
@@ -99,7 +117,7 @@
       </div> -->
           </div>
         </div>
-  
+
         <div class="container-fluid" id="accordionContainer">
           <div id="userdelegate" class="content-section accordion-collapse collapse" aria-labelledby="userdelegate"
             data-bs-parent="#accordionContainer">
@@ -118,7 +136,7 @@
             data-bs-parent="#accordionContainer">
             <div class="list-container border-1 shadow-lg p-5">
               <h3>Peace Student Program</h3>
-  
+
               <div class="row">
                 <div class="col-md-6">
                   <img src="../../../../assets/UIComponents/images/pre-select/student_info.jpeg">
@@ -130,12 +148,9 @@
                     <li>Peace education workshops</li>
                     <li>Leadership training sessions</li>
                     <li>International networking opportunities</li>
-  
                   </ul>
                 </div>
               </div>
-  
-  
             </div>
           </div>
           <div id="olinedelegate" class="content-section accordion-collapse collapse" aria-labelledby="olinedelegate"
@@ -152,8 +167,6 @@
             </div>
           </div>
         </div>
-  
-  
       </div>
     </div>
     <!-- </div> -->
