@@ -41,7 +41,8 @@
                   <label for="studentTitle" class="form-label">Title<span class="form-label-span"
                       style="color: #ff0000">*</span></label>
                   <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
+                    placeholder="Enter title" autocomplete="off" maxlength="15"   (input)="validateStudentTitle($event, 'title')
+                    "
                     (paste)="onPaste($event)" />
                   <div *ngIf="
                       getStudentControl('title')?.hasError('required') &&
@@ -263,7 +264,7 @@
                   <label for="studentTitle" class="form-label">Title<span class="form-label-span"
                       style="color: #ff0000">*</span></label>
                   <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
+                    placeholder="Enter title" autocomplete="off" maxlength="15"  (input)="validateDelegateTitle($event, 'title')"
                     (paste)="onPaste($event)" />
                   <div *ngIf="
                       getDelegateControl('title')?.hasError('required') &&
@@ -476,7 +477,7 @@
                   <label for="studentTitle" class="form-label">Title<span class="form-label-span"
                       style="color: #ff0000">*</span></label>
                   <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
+                    placeholder="Enter title" autocomplete="off" maxlength="15"  (input)="validateDelegateTitle($event, 'title')"
                     (paste)="onPaste($event)" />
                   <div *ngIf="
                       getDelegateControl('title')?.hasError('required') &&
@@ -676,7 +677,7 @@
                   <label for="studentTitle" class="form-label">Title<span class="form-label-span"
                       style="color: #ff0000">*</span></label>
                   <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
+                    placeholder="Enter title" autocomplete="off" maxlength="15"  (input)="validateStudentTitle($event, 'title')"
                     (paste)="onPaste($event)" />
                   <div *ngIf="
                       getStudentControl('title')?.hasError('required') &&

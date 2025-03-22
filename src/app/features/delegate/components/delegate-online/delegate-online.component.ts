@@ -199,6 +199,18 @@ export class DelegateOnlineComponent implements OnInit {
       event.preventDefault();
     }
   }
+  titleValidateAlpha(event: any, controlName: string) {
+    let inputValue = event.target.value;
+
+    // Remove leading spaces
+    inputValue = inputValue.replace(/^\s+/, '');
+
+    // Remove invalid characters except letters, space, hyphen, and underscore
+    inputValue = inputValue.replace(/[^a-zA-Z\s\.‘]/g, '');
+
+    // Update the input field
+    this.userForm.controls[controlName].setValue(inputValue, { emitEvent: false });
+  }
 
   getAllCountries() {
     this.delegateService.getAllCountries().subscribe(

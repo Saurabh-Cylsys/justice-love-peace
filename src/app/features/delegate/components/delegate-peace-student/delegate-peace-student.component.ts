@@ -176,6 +176,34 @@ export class DelegatePeaceStudentComponent {
     }
   }
 
+  validateStudentTitle(event: any, controlName: string) {
+    debugger
+    let inputValue = event.target.value;
+
+    // Remove leading spaces
+    inputValue = inputValue.replace(/^\s+/, '');
+
+    // Remove invalid characters except letters, space, hyphen, and underscore
+    inputValue = inputValue.replace(/[^a-zA-Z\s\.‘]/g, '');
+
+    // Update the input field
+    this.studentForm.controls[controlName].setValue(inputValue, { emitEvent: false });
+  }
+
+  validateDelegateTitle(event: any, controlName: string) {
+    debugger
+    let inputValue = event.target.value;
+
+    // Remove leading spaces
+    inputValue = inputValue.replace(/^\s+/, '');
+
+    // Remove invalid characters except letters, space, hyphen, and underscore
+    inputValue = inputValue.replace(/[^a-zA-Z\s\.‘]/g, '');
+
+    // Update the input field
+    this.delegateForm.controls[controlName].setValue(inputValue, { emitEvent: false });
+  }
+
   onPaste(event: ClipboardEvent) {
     event.preventDefault(); // Block pasting
     const text = event.clipboardData?.getData('text') || '';
