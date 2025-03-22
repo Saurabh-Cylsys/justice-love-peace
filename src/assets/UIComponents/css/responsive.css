@@ -49,7 +49,8 @@
     display: grid
 ;
     grid-template-columns: 300px;
-    grid-template-rows: 190px 160px 0px;
+    /* grid-template-rows: 190px 160px 0px; */
+    grid-template-rows: 160px 230px 0px;
     grid-template-areas:
         "image"
         "text"
