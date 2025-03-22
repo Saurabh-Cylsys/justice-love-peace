@@ -897,7 +897,7 @@
 
   <div class="text-center" *ngIf="userType === 'student' || userType === 'delegate'">
     <button (click)="onSubmit()" type="button" class="btn btn-success"
-      [disabled]="delegateForm.invalid || studentForm.invalid">
+      [disabled]="delegateForm.invalid || studentForm.invalid || btnDisabled">
       Submit
     </button>
   </div>

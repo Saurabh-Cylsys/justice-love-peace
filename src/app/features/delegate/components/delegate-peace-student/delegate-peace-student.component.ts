@@ -52,6 +52,7 @@ export class DelegatePeaceStudentComponent {
   requestBody: any;
   isNominee : boolean = false;
   delegateEmail: string = "";
+  btnDisabled: boolean = false;
 
   constructor(private fb: FormBuilder,
     private delegateService: DelegateService,
@@ -525,7 +526,7 @@ private async fnStripePG(response: any, payload: any) {
       next: async (response: any) => {
         if (response.success) {
           this.sharedService.ToastPopup('', response.message, 'success');
-
+          this.btnDisabled = true;
           setTimeout(async () => {
 
             if(response.isStripe == "true") {
