@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { DelegateService } from '../../services/delegate.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from '../../../../shared/services/encryption.service';
+import { SharedService } from '../../../../shared/services/shared.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-delegate-email-payment',
@@ -12,11 +15,17 @@ export class DelegateEmailPaymentComponent {
   email: string = '';
   pay_type: string = '';
   reference_no: string = '';
+  loading: boolean = false;
+  paymentData: any;
+  message: string = "";
 
   constructor(
     private delegateService: DelegateService,
     private route: ActivatedRoute,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private sharedService : SharedService,
+    private router : Router,
+    private ngxLoader : NgxUiLoaderService
   ) {}
 
   async ngOnInit() {
@@ -57,10 +66,19 @@ export class DelegateEmailPaymentComponent {
       reference_no: this.reference_no,
     };
 
+    // this.ngxLoader.start();
+    this.loading = true;
     await this.delegateService.postDelegateOnlineMP(obj).subscribe({
       next: (response: any) => {
         //window.location.href = response.paymentUrl
         // Redirect to the IPG gateway
+        this.loading = false;
+        // this.ngxLoader.stop();
+        if(response.success) {
+          // this.sharedService.ToastPopup(response.message,'','success');
+          this.paymentData = response.data[0];
+          this.message = response.message;
+        }
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = response.gatewayUrl;
