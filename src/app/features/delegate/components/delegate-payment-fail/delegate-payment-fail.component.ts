@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
 import { EncryptionService } from '../../../../shared/services/encryption.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 @Component({
@@ -14,27 +15,33 @@ export class DelegatePaymentFailComponent {
   formData: any;
   errorMessage = '';
   transactionId = '';
-  errorCode = '';
+  code = '';
 
   email: string = '';
   pay_type: string = '';
   reference_no: string = '';
+  p_type: any;
 
   constructor(
     private route: ActivatedRoute,
     private paymentService: DelegateService,
     private sanitizer: DomSanitizer,
     private router:Router,
-    private encryptionService : EncryptionService
+    private encryptionService : EncryptionService,
+    private ngxLoader : NgxUiLoaderService
   ) {}
 
   ngOnInit() {
+    debugger;
     this.route.queryParams.subscribe(params => {
 
       if (params != undefined && Object.keys(params).length > 0) {
 
-      this.errorCode = params['code'];
-      this.transactionId = params['txnId'];
+        this.email = params['email'];
+        this.pay_type = params['p_type'];
+        this.reference_no = params['reference_no'];
+        this.code = params['code'];
+
 
       if (params['data']) {
         let data = params['data'].replace(/ /g, '+');
@@ -56,6 +63,7 @@ export class DelegatePaymentFailComponent {
         this.email = parsedData.email;
         this.pay_type = parsedData.p_type;
         this.reference_no = parsedData.reference_no;
+        this.code = parsedData.code;
       }
 
       // Get stored payment data
@@ -72,9 +80,9 @@ export class DelegatePaymentFailComponent {
     }, 300000);
   }
 
-  async retryPayment() {
+  retryPayment() {
 
-    if (this.formData) {
+
 
       let obj = {
         "email": this.email,
@@ -82,20 +90,22 @@ export class DelegatePaymentFailComponent {
         "reference_no": this.reference_no,
       };
 
-      await this.paymentService.postDelegateOnlineMP(obj).subscribe({
+      this.ngxLoader.start();
+     this.paymentService.postDelegateOnlineMP(obj).subscribe({
         next: (response: any) => {
-          //window.location.href = response.paymentUrl
 
+          //window.location.href = response.paymentUrl
+          this.ngxLoader.stop();
           // Redirect to the IPG gateway
           const form = document.createElement('form');
           form.method = 'POST';
-          form.action = response.paymentUrl;
+          form.action = response.gatewayUrl;
 
-          Object.keys(response.paymentData).forEach((key) => {
+          Object.keys(response.formData).forEach((key) => {
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = key;
-            input.value = response.paymentData[key];
+            input.value = response.formData[key];
             form.appendChild(input);
           });
 
@@ -108,7 +118,6 @@ export class DelegatePaymentFailComponent {
           //this.loading = false;
         }
       });
-    }
   }
 
   cancelPayment() {

@@ -66,14 +66,14 @@ export class DelegateEmailPaymentComponent {
       reference_no: this.reference_no,
     };
 
-    // this.ngxLoader.start();
+    this.ngxLoader.start();
     this.loading = true;
     await this.delegateService.postDelegateOnlineMP(obj).subscribe({
       next: (response: any) => {
         //window.location.href = response.paymentUrl
         // Redirect to the IPG gateway
         this.loading = false;
-        // this.ngxLoader.stop();
+        this.ngxLoader.stop();
         if(response.success) {
           // this.sharedService.ToastPopup(response.message,'','success');
           this.paymentData = response.data[0];
@@ -84,18 +84,22 @@ export class DelegateEmailPaymentComponent {
         form.action = response.gatewayUrl;
 
         Object.keys(response.formData).forEach((key) => {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = response.formData[key];
-          form.appendChild(input);
+          if (response.formData[key] !== null && response.formData[key] !== undefined) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = response.formData[key];
+            form.appendChild(input);
+          }
         });
 
         document.body.appendChild(form);
         form.submit();
       },
       error: (error: any) => {
-        console.error('Error creating delegate:', error);
+        this.loading = false;
+        this.ngxLoader.stop();
+        console.log('Error creating delegate:', error);
       },
     });
   }

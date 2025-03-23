@@ -130,6 +130,7 @@ export class DelegateRegistrationOnlineComponent {
 
 async ngOnInit() {
   this.isDisabled = true;
+  this.ngxService.start();
     this.checkWindowSize();
     // this.dobValidator();
 
@@ -160,22 +161,17 @@ async ngOnInit() {
     this.createForm();    // this.getdates()
     await this.getAllCountries();
 
-    console.log("this.countryData", this.countryData);
-
    if (this.countryData.length > 0) {
        this.setCountry();
+       this.ngxService.stop();
     }
+    this.ngxService.stop();
   }
 
   setCountry() {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
       if (selectedCountry) {
-
-        // this.registrationForm.patchValue({
-        //   country: selectedCountry.name,
-        //   country_id: +selectedCountry.id
-        // });
 
         const patchFormData = {
           country_id: +this.country_id,
@@ -330,15 +326,11 @@ async ngOnInit() {
   }
 
  async getAllCountries() {
+
   try {
+
     const response = await this.delegateService.getAllCountryApi();
     this.countryData = response.data;
-    console.log("Country Data:", this.countryData);
-
-    // Ensure we bind the country only after fetching data
-    if (this.isOnline) {
-      this.setCountry();
-    }
 
   } catch (error) {
     console.error("Error fetching countries:", error);
@@ -403,18 +395,6 @@ async ngOnInit() {
     if (allowedPattern.test(text)) {
       const input = event.target as HTMLInputElement;
       input.value += text; // Append only valid text
-      input.dispatchEvent(new Event('input')); // Update Angular form control
-    }
-  }
-
-  onPasteMobileNumber(event: ClipboardEvent) {
-    event.preventDefault(); // Block default paste action
-    const text = event.clipboardData?.getData('text') || '';
-
-    // Allow only numbers (0-9)
-    if (/^\d+$/.test(text)) {
-      const input = event.target as HTMLInputElement;
-      input.value += text; // Append only valid numbers
       input.dispatchEvent(new Event('input')); // Update Angular form control
     }
   }
@@ -551,51 +531,6 @@ async ngOnInit() {
     };
   }
 
-  getPhoneErrorMessage() {
-    const control = this.registrationForm.controls['mobile_number'];
-    if (control.value) {
-      if (control.errors.validatePhoneNumber['valid']) {
-        return '';
-      } else {
-        return 'Invalid mobile number for selected country.';
-      }
-    }
-    return '';
-  }
-
-  onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
-    if (inputValue !== null) {
-      // Prevent space at the beginning
-      if (
-        event.key === ' ' &&
-        event.code === 'Space' &&
-        inputValue.number.length === 0
-      ) {
-        event.preventDefault();
-        return;
-      }
-
-      // Allow only numbers, Backspace, Delete, Arrow Keys, and Tab
-      if (
-        !/^[0-9]$/.test(event.key) &&
-        !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
-          event.key
-        )
-      ) {
-        event.preventDefault();
-        return;
-      }
-
-      // Handle backspace validation
-      if (event.code === 'Backspace') {
-        if (inputValue.number.length < 7) {
-          this.mobile_numberVal = true;
-        } else {
-          this.mobile_numberVal = false;
-        }
-      }
-    }
-  }
 
   onKeyDown(
     event: KeyboardEvent,
@@ -858,7 +793,7 @@ async ngOnInit() {
             this.registrationForm.reset();
             setTimeout(() => {
                 this.router.navigateByUrl('/delegate-message');
-            }, 3000);
+            }, 2000);
 
           } else {
             this.ngxService.stop();
@@ -877,11 +812,6 @@ async ngOnInit() {
     }
   }
 
-  openPopup() {
-    this.showPopup = true;
-    this.display = 'block';
-    this.formdisplay = false;
-  }
 
   closeModal() {
     this.display = 'none';

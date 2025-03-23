@@ -196,6 +196,9 @@ export class DelegateWithChildNominationComponent {
   }
 
  async ngOnInit() {
+
+  this.ngxService.start();
+
     this.checkWindowSize();
     // this.dobValidator();
 
@@ -263,6 +266,8 @@ export class DelegateWithChildNominationComponent {
             }
           }
     });
+
+    this.ngxService.stop();
 
     this.createForm();
 
@@ -380,9 +385,6 @@ export class DelegateWithChildNominationComponent {
     try {
       const response = await this.delegateService.getAllCountryApi();
       this.countryData = response.data;
-      console.log("Country Data:", this.countryData);
-
-        this.setCountry();
 
     } catch (error) {
       console.log("Error fetching countries:", error);

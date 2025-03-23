@@ -173,7 +173,7 @@ export class DelegatePaymentSuccessComponent {
               referralCode : adultData.reference_no,
 
               transcation_id: this.transactionId,
-              transcation_json: { status: response.data[0]['transcation_json'].status },
+              transcation_json:  response.data[0]['transcation_json'].status,
             }
            }
            else if(isNominee == 'adult') {
@@ -204,7 +204,7 @@ export class DelegatePaymentSuccessComponent {
 
 
               transcation_id: this.transactionId,
-              transcation_json: { status: response.data[0]['transcation_json'].status },
+              transcation_json: response.data[0]['transcation_json'].status,
            }
         };
       }

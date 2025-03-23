@@ -64,10 +64,7 @@ export class DelegatePeaceStudentComponent {
       if (params != undefined && Object.keys(params).length > 0) {
 
         this.referralCode = params.code;
-        console.log("Params",params);
-        this.delagateType = this.encryptionService.decrypt(params.dType);
-        // this.delagateType = params.dType;
-        console.log("this.delagateType",this.delagateType);
+
       }
     });
 
@@ -178,7 +175,7 @@ export class DelegatePeaceStudentComponent {
   }
 
   validateStudentTitle(event: any, controlName: string) {
-    debugger
+
     let inputValue = event.target.value;
 
     // Remove leading spaces
@@ -192,7 +189,7 @@ export class DelegatePeaceStudentComponent {
   }
 
   validateDelegateTitle(event: any, controlName: string) {
-    debugger
+
     let inputValue = event.target.value;
 
     // Remove leading spaces
@@ -536,7 +533,7 @@ private async fnStripePG(response: any, payload: any) {
              {
               await this.fnMagnatiPG(response, this.requestBody);
             }
-          }, 5000);
+          }, 4000);
         }
       },
       error: (err) => {

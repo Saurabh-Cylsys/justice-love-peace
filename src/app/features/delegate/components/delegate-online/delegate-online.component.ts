@@ -95,10 +95,8 @@ export class DelegateOnlineComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
-        console.log("Params",params);
         this.delagateType = this.encryptionService.decrypt(params.dType);
         // this.delagateType = params.dType;
-        console.log("this.delagateType",this.delagateType);
 
         this.fnPartialSave()
         // this.router.navigate([], {
@@ -352,18 +350,15 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Userform", this.userForm.value);
 
     if (!this.userForm.valid || this.loading) {
       return; // Prevent submission if the form is invalid or loading
     }
 
     const returnmobileNumber = this.userForm.value.mobile_number;
-    console.log(returnmobileNumber, 'mobileNumber');
     const country_code = this.userForm.value.mobile_number.dialCode;
     const rawMobileNumber = this.userForm.value.mobile_number.number;
     let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    console.log(formattedMobileNumber);
 
     if (this.userForm.valid) {
       this.loading = true;
@@ -426,7 +421,7 @@ export class DelegateOnlineComponent implements OnInit {
               await this.fnMagnatiPG(response, this.payload);
              }
 
-          }, 5000);
+          }, 4000);
 
           this.loading = false;
         },
@@ -509,8 +504,10 @@ export class DelegateOnlineComponent implements OnInit {
         "reference_no": (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
       };
 
+
       await this.delegateService.postDelegateOnlineMP(obj).subscribe({
         next: (response: any) => {
+
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
@@ -530,7 +527,7 @@ export class DelegateOnlineComponent implements OnInit {
 
         },
         error: (error: any) => {
-          console.error('Error creating delegate:', error);
+          console.log('Error creating delegate:', error);
           this.loading = false;
         }
       });
