@@ -8,8 +8,8 @@ declare var AOS:any;
 
 export class DelegateMainComponent {
   ngOnInit(): void {
-    AOS.init({
-      duration: 1200,
-  })
+  //   AOS.init({
+  //     duration: 1200,
+  // })
   }
 }

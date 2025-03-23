@@ -15,9 +15,9 @@ export class AppComponent {
 
   
   ngOnInit(): void {
-    AOS.init({
-      duration: 1200,
-  })
+  //   AOS.init({
+  //     duration: 1200,
+  // })
 
   this.router.events.pipe(
         filter((event: any) => event instanceof NavigationEnd),

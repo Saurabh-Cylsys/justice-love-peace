@@ -73,13 +73,29 @@ export class WebHeaderComponent implements OnInit {
   onWindowScroll() {
     const scrollY = window.scrollY;
     this.isScrolled = scrollY > 50; // Change logo size after 50px of scroll
+    
+    // Logo resize functionality converted from script.js
+    const logoElement = document.getElementById('logo');
+    if (logoElement) {
+      if (scrollY > 50) {
+        logoElement.style.width = '37%';
+        logoElement.style.top = '0';
+        logoElement.style.position = 'relative';
+      } else {
+        logoElement.style.width = '100%';
+        logoElement.style.top = '0rem';
+        logoElement.style.position = 'absolute';
+      }
+    }
   }
   constructor(
     public _router: Router,
     private _activeRouter: ActivatedRoute,
     private SharedService: SharedService,
     private location: Location,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
   ngOnInit(): void {
     this.checkWindowSize();
