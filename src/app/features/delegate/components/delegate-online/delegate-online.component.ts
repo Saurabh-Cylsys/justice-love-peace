@@ -82,6 +82,7 @@ export class DelegateOnlineComponent implements OnInit {
   btnDisabled: boolean = false;
   private autoSaveSubscription?: Subscription;
   private isFormSubmitted = false; // Flag to track submission
+  isMobileView = false;
 
   constructor(
     private fb: FormBuilder,
@@ -166,7 +167,7 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   async ngOnInit() {
-
+    this.checkWindowSize();
     this.initializeForms();
     await this.getAllCountries();
     this.autoSaveSubscription = timer(0, 60000).subscribe(() => {
@@ -531,6 +532,22 @@ export class DelegateOnlineComponent implements OnInit {
     const selectedValue = e.target.value;
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.userForm.patchValue({ country_id: countryObj.id });
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 900) {
+      this.sharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.sharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
   }
 
 }

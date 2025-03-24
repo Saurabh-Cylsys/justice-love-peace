@@ -36,7 +36,8 @@ form > div {
 }
 
 /* Style the buttons */
-.btn-primary, .btn-success {
+.btn-primary,
+.btn-success {
   margin-top: 20px;
   padding: 10px 30px;
 }
@@ -46,7 +47,6 @@ form > div {
   padding: 10px 20px;
 }
 
-
 .image-box {
   display: flex;
   align-items: center;
@@ -54,3 +54,88 @@ form > div {
   gap: 1rem;
   font-size: 20px;
 }
+
+h1 {
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #005a93;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+  color: #005a93;
+  display: flex;
+  align-items: center;
+}
+
+.delegateBg {
+  background: linear-gradient(180deg, #ffffff 0%, #dce7b0 100%);
+}
+
+#delegate, #student{
+  opacity: 0;
+  display: none;
+  visibility: hidden;
+}
+
+.nav li{
+  border: 1px solid#005a93;
+}
+
+.nav li button{
+  padding: 5px;
+font-weight: 500;
+font-size: 25px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+vertical-align: middle;
+color: #005a93;
+
+}
+
+.nav li button.active{
+  background-color: #005a93;
+  color: #ffffff;
+}
+
+.nav li:nth-child(1){
+border-top-left-radius: 15px;
+border-bottom-left-radius: 15px;
+}
+.nav li:nth-child(1) button{
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  }
+.nav li:nth-child(2){
+border-top-right-radius: 15px;
+border-bottom-right-radius: 15px;
+}
+.nav li:nth-child(2) button{
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  }
+
+  .subHead{
+    color: #005a93;
+font-weight: 400;
+font-size: clamp(14px, 2.5vw, 24px);
+line-height: 100%;
+letter-spacing: 0%;
+text-transform: capitalize;
+
+  }
+
+  .dropdown-menu{
+    z-index: 9 !important;
+  }

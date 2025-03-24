@@ -1,904 +1,1587 @@
-<div class="container mt-3" style="min-height: 50vh;">
-  <h2 class="text-center mb-4">Peace Student Registration Form</h2>
+<div class="delegateBg">
+  <div class="container mt-3" style="min-height: 50vh">
+    <h1 class="text-center ">Peace Student Registration Form</h1>
 
-  <!-- User Type Selection -->
+    <!-- User Type Selection -->
 
-  <div class="mb-4 text-center">
-    <label class="form-label"><strong>Are you a student or a adult?</strong></label>
-    <div class="d-flex justify-content-center gap-4">
-      <!-- Student Image Box -->
-      <div class="image-box" [class.active]="userType === 'student'" (click)="setUserType('student', $event)">
-        <input type="radio" name="userType" value="student" [checked]="userType === 'student'" />
-        <div class="overlay">
-          <i class="fas fa-user-graduate "></i>
-          <span class="mt-2">Student</span>
+    <div class="mb-4 text-center">
+      <label class="form-label mt-2 mb-4 subHead"
+        ><strong>Are you a student or a adult?</strong></label
+      >
+      <ul
+        class="nav nav-pills mb-3 align-items-center justify-content-center"
+        id="pills-tab"
+        role="tablist"
+      >
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="pills-student-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-student"
+            type="button"
+            role="tab"
+            aria-controls="pills-student"
+            aria-selected="true"
+            [class.active]="userType === 'student'"
+            (click)="setUserType('student', $event)"
+          >
+            <input
+              type="radio"
+              name="userType"
+              value="student"
+              id="student"
+              [checked]="userType === 'student'"
+            />
+            <label for="student" class="overlay">
+              <i class="fas fa-user-graduate"></i>
+              <span class="mt-2"><img src="assets/UIComponents/images/student.svg" alt="" width="30px" /> Student</span>
+            </label>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="pills-adult-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-adult"
+            type="button"
+            role="tab"
+            aria-controls="pills-adult"
+            aria-selected="false"
+            [class.active]="userType === 'delegate'"
+            (click)="setUserType('delegate', $event)"
+          >
+            <input
+              type="radio"
+              name="userType"
+              value="delegate"
+              id="delegate"
+              [checked]="userType === 'delegate'"
+            />
+
+            <label for="delegate" class="overlay">
+              <i class="fas fa-users"></i>
+              <span class="mt-2"><img src="assets/UIComponents/images/adult.svg" alt=""  width="30px" /> Adult</span>
+            </label>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row" *ngIf="userType === 'student'">
+      <form>
+        <div class="row">
+          <!-- Student Form (Left Side) -->
+          <div class="col-md-12 mt-2 mb-2">
+            <div [formGroup]="studentForm" class="h-100">
+              <h3>
+                <img src="assets/UIComponents/images/student.svg" alt="" />
+                Student Information
+              </h3>
+              <div class="row rounded" style="background-color: #bdc78c">
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentTitle" class="form-label"
+                      >Title<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentTitle"
+                      formControlName="title"
+                      placeholder="Enter title"
+                      autocomplete="off"
+                      maxlength="15"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('title')?.hasError('required') &&
+                        getStudentControl('title')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Title is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('title')?.hasError('required') &&
+                        getStudentControl('title')?.hasError('minlength')
+                      "
+                    >
+                      Title must be at least 2 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentFname" class="form-label"
+                      >First Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentFname"
+                      formControlName="first_name"
+                      placeholder="Enter first name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('first_name')?.hasError('required') &&
+                        getStudentControl('first_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      First name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('first_name')?.hasError(
+                          'required'
+                        ) &&
+                        getStudentControl('first_name')?.hasError('minlength')
+                      "
+                    >
+                      First name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentLName" class="form-label"
+                      >Last Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentLName"
+                      formControlName="last_name"
+                      placeholder="Enter last name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('last_name')?.hasError('required') &&
+                        getStudentControl('last_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Last name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('last_name')?.hasError('required') &&
+                        getStudentControl('last_name')?.hasError('minlength')
+                      "
+                    >
+                      Name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="dob" class="form-label"
+                      >DOB<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Select date of birth"
+                      id="dob"
+                      #dob
+                      formControlName="studentDob"
+                      [minDate]="minStudentDate"
+                      [maxDate]="maxStudentDate"
+                      (keydown)="disableManualInput($event)"
+                      (ngModelChange)="onStudentDobChange($event)"
+                      (keydown.tab)="openDatepicker()"
+                      bsDatepicker
+                      [bsConfig]="{
+                        isAnimated: true,
+                        dateInputFormat: 'DD/MM/YYYY',
+                        showWeekNumbers: false,
+                        containerClass: colorTheme
+                      }"
+                      readonly
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('studentDob')?.errors &&
+                        getStudentControl('studentDob')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getStudentControl('studentDob')?.errors?.['required']"
+                        >Date of birth is required</small
+                      >
+                    </div>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <div class="row no-padding">
+                      <div class="form-group-inner mobile-number">
+                        <label
+                          class="col-md-12 no-padding form-label"
+                          for="studentMobileNo"
+                          >Mobile Number<span
+                            class="form-label-span"
+                            style="color: #ff0000"
+                          >
+                            *</span
+                          ></label
+                        >
+                        <div class="delegateonline form-control">
+                          <ngx-intl-tel-input
+                            class="custom-width-container"
+                            [preferredCountries]="[
+                              CountryISO.India,
+                              CountryISO.UnitedStates,
+                              CountryISO.UnitedKingdom
+                            ]"
+                            [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="false"
+                            [searchCountryFlag]="true"
+                            [searchCountryField]="[
+                              SearchCountryField.Iso2,
+                              SearchCountryField.Name
+                            ]"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="CountryISO.India"
+                            [maxLength]="12"
+                            [phoneValidation]="true"
+                            name="mobile_number"
+                            id="studentMobileNo"
+                            #number_mobile1
+                            [separateDialCode]="true"
+                            formControlName="mobile_number"
+                            autocomplete="off"
+                            (keypress)="keyPressNumbersForStudent($event)"
+                            (keydown)="onMobileKeyDown($event, 'student')"
+                          ></ngx-intl-tel-input>
+                        </div>
+                        <small
+                          class="text-danger"
+                          *ngIf="studentMobileNumberVal"
+                        >
+                          (Country code + Mobile number) will be 7 to 15 digits
+                          based on country.
+                        </small>
+                      </div>
+                      <div class="form-group form-group-inner mobile-number">
+                        <div class="help-block with-errors"></div>
+                        <div
+                          *ngIf="
+                            getStudentControl('mobile_number')?.errors &&
+                            getStudentControl('mobile_number')?.touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="getStudentControl('mobile_number')?.touched && getStudentControl('mobile_number')?.errors?.['required']"
+                            >Mobile number is required</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              !studentMobileNumberVal &&
+                              getStudentControl('mobile_number')?.invalid &&
+                              getStudentControl('mobile_number')?.touched
+                            "
+                          >
+                            {{ getStudentPhoneErrorMessage() }}
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="studentEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                      autocomplete="off"
+                      maxlength="125"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('email')?.invalid &&
+                        getStudentControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentCountry" class="form-label"
+                      >Country<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <select
+                      class="form-control form-select"
+                      id="studentCountry"
+                      formControlName="country"
+                    >
+                      <option value="" disabled>Select country</option>
+                      <option
+                        *ngFor="let country of countryData"
+                        [value]="country.id"
+                      >
+                        {{ country.name }}
+                      </option>
+                    </select>
+
+                    <div
+                      *ngIf="
+                        getStudentControl('country')?.errors &&
+                        getStudentControl('country')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger small"
+                        *ngIf="getStudentControl('country')?.errors?.['required']"
+                        >Country is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentInstitution" class="form-label"
+                      >Institution Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      autocomplete="off"
+                      id="studentInstitution"
+                      formControlName="institutionName"
+                      placeholder="Enter institution name"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('institutionName')?.errors &&
+                        getStudentControl('institutionName')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger small"
+                        *ngIf="getStudentControl('institutionName')?.errors?.['required']"
+                        >institute name is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="reference_no" class="form-label"
+                      >Reference No</label
+                    >
+                    <input
+                      autocomplete="off"
+                      type="text"
+                      name="reference_no"
+                      maxlength="50"
+                      id="reference_no"
+                      #reference_no
+                      placeholder="Enter reference no"
+                      class="form-control"
+                      [readonly]="this.referralCode ? this.referralCode : ''"
+                      formControlName="reference_no"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Delegate Form (Right Side) -->
+          <div class="col-md-12 mt-4 mb-2">
+            <div [formGroup]="delegateForm" class="h-100">
+              <h3>
+                <img src="assets/UIComponents/images/adult.svg" alt="" />Adult
+                Information (Nominee)
+              </h3>
+              <div class="row rounded" style="background-color: #bdc78c">
+                <!-- Column 1 -->
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentTitle" class="form-label"
+                      >Title<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentTitle"
+                      formControlName="title"
+                      placeholder="Enter title"
+                      autocomplete="off"
+                      maxlength="15"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('title')?.hasError('required') &&
+                        getDelegateControl('title')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Title is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('title')?.hasError('required') &&
+                        getStudentControl('title')?.hasError('minlength')
+                      "
+                    >
+                      Title must be at least 2 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="delgaFname" class="form-label"
+                      >First Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="delgaFname"
+                      formControlName="first_name"
+                      placeholder="Enter first name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('first_name')?.hasError(
+                          'required'
+                        ) && getDelegateControl('first_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      First name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getDelegateControl('first_name')?.hasError(
+                          'required'
+                        ) &&
+                        getDelegateControl('first_name')?.hasError('minlength')
+                      "
+                    >
+                      First name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="deleagetLName" class="form-label"
+                      >Last Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="deleagetLName"
+                      formControlName="last_name"
+                      placeholder="Enter last name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('last_name')?.hasError('required') &&
+                        getDelegateControl('last_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Last name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('last_name')?.hasError('required') &&
+                        getStudentControl('last_name')?.hasError('minlength')
+                      "
+                    >
+                      Last name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label class="form-label" for="dob"
+                      >DOB<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Select date of birth"
+                      id="delegateDob"
+                      #dob
+                      formControlName="delegateDob"
+                      [minDate]="minDelegateDate"
+                      [maxDate]="maxDelegateDate"
+                      (keydown)="disableManualInput($event)"
+                      (ngModelChange)="onDelegateDobChange($event)"
+                      (keydown.tab)="openDelageteDatepicker()"
+                      bsDatepicker
+                      [bsConfig]="{
+                        isAnimated: true,
+                        dateInputFormat: 'DD/MM/YYYY',
+                        showWeekNumbers: false,
+                        containerClass: colorTheme
+                      }"
+                      readonly
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('delegateDob')?.errors &&
+                        getDelegateControl('delegateDob')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getDelegateControl('delegateDob')?.errors?.['required']"
+                        >Date of birth is required</small
+                      >
+                    </div>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <div class="row no-padding">
+                      <div class="form-group-inner mobile-number">
+                        <label
+                          class="col-md-12 no-padding form-label"
+                          for="studentMobileNo"
+                          >Mobile Number<span
+                            class="form-label-span"
+                            style="color: #ff0000"
+                          >
+                            *</span
+                          ></label
+                        >
+                        <div class="delegateonline form-control">
+                          <ngx-intl-tel-input
+                            class="custom-width-container"
+                            [preferredCountries]="[
+                              CountryISO.India,
+                              CountryISO.UnitedStates,
+                              CountryISO.UnitedKingdom
+                            ]"
+                            [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="false"
+                            [searchCountryFlag]="true"
+                            [searchCountryField]="[
+                              SearchCountryField.Iso2,
+                              SearchCountryField.Name
+                            ]"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="CountryISO.India"
+                            [maxLength]="12"
+                            [phoneValidation]="true"
+                            name="mobile_number"
+                            id="studentMobileNo"
+                            #number_mobile1
+                            [separateDialCode]="true"
+                            formControlName="mobile_number"
+                            autocomplete="off"
+                            (keypress)="keyPressNumbersForDelegate($event)"
+                            (keydown)="onMobileKeyDown($event, 'delegate')"
+                          ></ngx-intl-tel-input>
+                        </div>
+                        <small
+                          class="text-danger"
+                          *ngIf="deleagetMobileNumberVal"
+                        >
+                          (Country code + Mobile number) will be 7 to 15 digits
+                          based on country.
+                        </small>
+                      </div>
+                      <div class="form-group form-group-inner mobile-number">
+                        <div class="help-block with-errors"></div>
+                        <div
+                          *ngIf="
+                            getDelegateControl('mobile_number')?.errors &&
+                            getDelegateControl('mobile_number')?.touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="getDelegateControl('mobile_number')?.errors?.['required']"
+                            >Mobile number is required</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              !deleagetMobileNumberVal &&
+                              getDelegateControl('mobile_number')?.invalid &&
+                              getDelegateControl('mobile_number')?.touched
+                            "
+                          >
+                            {{ getDelegatePhoneErrorMessage() }}
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="delegateEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      autocomplete="off"
+                      class="form-control"
+                      id="delegateEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                    />
+
+                    <div
+                      *ngIf="
+                        getDelegateControl('email')?.invalid &&
+                        getDelegateControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentCountry" class="form-label"
+                      >Country<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <select
+                      class="form-control form-select"
+                      id="studentCountry"
+                      formControlName="country"
+                    >
+                      <option value="" disabled>Select country</option>
+                      <option
+                        *ngFor="let country of countryData"
+                        [value]="country.id"
+                      >
+                        {{ country.name }}
+                      </option>
+                    </select>
+                    <div
+                      *ngIf="
+                        getDelegateControl('country')?.errors &&
+                        getDelegateControl('country')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger small"
+                        *ngIf="getDelegateControl('country')?.errors?.['required']"
+                        >Country is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentRelation" class="form-label"
+                      >Relation<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      autocomplete="off"
+                      class="form-control"
+                      id="studentRelation"
+                      formControlName="relation"
+                      placeholder="Enter relation"
+                      (keypress)="validateAlpha($event)"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('relation')?.invalid &&
+                        getStudentControl('relation')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a relation
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
+    </div>
 
-      <!-- Delegate Image Box -->
-      <div class="image-box" [class.active]="userType === 'delegate'" (click)="setUserType('delegate', $event)">
-        <input type="radio" name="userType" value="delegate" [checked]="userType === 'delegate'" />
+    <div class="row" *ngIf="userType === 'delegate'">
+      <!-- Delegate Form (Right Side) -->
+      <form>
+        <div class="row">
+          <div class="col-md-12 mt-2 mb-2">
+            <div [formGroup]="delegateForm" class="h-100">
+              <h3>
+                <img src="assets/UIComponents/images/adult.svg" alt="" />Adult
+                Information
+              </h3>
+              <div class="row rounded" style="background-color: #bdc78c">
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentTitle" class="form-label"
+                      >Title<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentTitle"
+                      formControlName="title"
+                      placeholder="Enter title"
+                      autocomplete="off"
+                      maxlength="15"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('title')?.hasError('required') &&
+                        getDelegateControl('title')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Title is required
+                    </div>
 
-        <div class="overlay">
-          <i class="fas fa-users "></i>
-          <span class="mt-2">Adult</span>
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('title')?.hasError('required') &&
+                        getStudentControl('title')?.hasError('minlength')
+                      "
+                    >
+                      Title must be at least 2 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="delgaFname" class="form-label"
+                      >First Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="delgaFname"
+                      formControlName="first_name"
+                      placeholder="Enter first name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('first_name')?.hasError(
+                          'required'
+                        ) && getDelegateControl('first_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      First name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getDelegateControl('first_name')?.hasError(
+                          'required'
+                        ) &&
+                        getDelegateControl('first_name')?.hasError('minlength')
+                      "
+                    >
+                      First name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="deleagetLName" class="form-label"
+                      >Last Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="deleagetLName"
+                      formControlName="last_name"
+                      placeholder="Enter last name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('last_name')?.hasError('required') &&
+                        getDelegateControl('last_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Last name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('last_name')?.hasError('required') &&
+                        getStudentControl('last_name')?.hasError('minlength')
+                      "
+                    >
+                      Last name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label class="form-label" for="dob"
+                      >DOB<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Select date of birth"
+                      id="delegateDob"
+                      #dob
+                      formControlName="delegateDob"
+                      [minDate]="minDelegateDate"
+                      [maxDate]="maxDelegateDate"
+                      (keydown)="disableManualInput($event)"
+                      (ngModelChange)="onDelegateDobChange($event)"
+                      (keydown.tab)="openDelageteDatepicker()"
+                      bsDatepicker
+                      [bsConfig]="{
+                        isAnimated: true,
+                        dateInputFormat: 'DD/MM/YYYY',
+                        showWeekNumbers: false,
+                        containerClass: colorTheme
+                      }"
+                      readonly
+                    />
+                    <div
+                      *ngIf="
+                        getDelegateControl('delegateDob')?.errors &&
+                        getDelegateControl('delegateDob')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getDelegateControl('delegateDob')?.errors?.['required']"
+                        >Date of birth is required</small
+                      >
+                    </div>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <div class="row no-padding">
+                      <div class="form-group-inner mobile-number">
+                        <label
+                          class="col-md-12 no-padding form-label"
+                          for="studentMobileNo"
+                          >Mobile Number<span
+                            class="form-label-span"
+                            style="color: #ff0000"
+                          >
+                            *</span
+                          ></label
+                        >
+                        <div class="delegateonline form-control">
+                          <ngx-intl-tel-input
+                            class="custom-width-container"
+                            [preferredCountries]="[
+                              CountryISO.India,
+                              CountryISO.UnitedStates,
+                              CountryISO.UnitedKingdom
+                            ]"
+                            [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="false"
+                            [searchCountryFlag]="true"
+                            [searchCountryField]="[
+                              SearchCountryField.Iso2,
+                              SearchCountryField.Name
+                            ]"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="CountryISO.India"
+                            [maxLength]="12"
+                            [phoneValidation]="true"
+                            name="mobile_number"
+                            id="studentMobileNo"
+                            #number_mobile1
+                            [separateDialCode]="true"
+                            formControlName="mobile_number"
+                            autocomplete="off"
+                            (keypress)="keyPressNumbersForDelegate($event)"
+                            (keydown)="onMobileKeyDown($event, 'delegate')"
+                          ></ngx-intl-tel-input>
+                        </div>
+                        <small
+                          class="text-danger"
+                          *ngIf="deleagetMobileNumberVal"
+                        >
+                          (Country code + Mobile number) will be 7 to 15 digits
+                          based on country.
+                        </small>
+                      </div>
+                      <div class="form-group form-group-inner mobile-number">
+                        <div class="help-block with-errors"></div>
+                        <div
+                          *ngIf="
+                            getDelegateControl('mobile_number')?.errors &&
+                            getDelegateControl('mobile_number')?.touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="getDelegateControl('mobile_number')?.errors?.['required']"
+                            >Mobile number is required</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              !deleagetMobileNumberVal &&
+                              getDelegateControl('mobile_number')?.invalid &&
+                              getDelegateControl('mobile_number')?.touched
+                            "
+                          >
+                            {{ getDelegatePhoneErrorMessage() }}
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="delegateEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      autocomplete="off"
+                      class="form-control"
+                      id="delegateEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                    />
+
+                    <div
+                      *ngIf="
+                        getDelegateControl('email')?.invalid &&
+                        getDelegateControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentCountry" class="form-label"
+                      >Country<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <select
+                      class="form-control form-select"
+                      id="studentCountry"
+                      formControlName="country"
+                    >
+                      <option value="" disabled>Select country</option>
+                      <option
+                        *ngFor="let country of countryData"
+                        [value]="country.id"
+                      >
+                        {{ country.name }}
+                      </option>
+                    </select>
+                    <div
+                      *ngIf="
+                        getDelegateControl('country')?.errors &&
+                        getDelegateControl('country')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger small"
+                        *ngIf="getDelegateControl('country')?.errors?.['required']"
+                        >Country is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="reference_no" class="form-label"
+                      >Reference No</label
+                    >
+                    <input
+                      type="text"
+                      autocomplete="off"
+                      name="reference_no"
+                      maxlength="50"
+                      id="reference_no"
+                      #reference_no
+                      placeholder="Enter reference no"
+                      class="form-control"
+                      [readonly]="this.referralCode ? this.referralCode : ''"
+                      formControlName="reference_no"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Student Form (Left Side) -->
+          <div class="col-md-12 mt-4 mb-2">
+            <div [formGroup]="studentForm" class="h-100">
+              <h3>
+                <img
+                  src="assets/UIComponents/images/student.svg"
+                  alt=""
+                />Student Information (Nominee)
+              </h3>
+              <div class="row rounded" style="background-color: #bdc78c">
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentTitle" class="form-label"
+                      >Title<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentTitle"
+                      formControlName="title"
+                      placeholder="Enter title"
+                      autocomplete="off"
+                      maxlength="15"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('title')?.hasError('required') &&
+                        getStudentControl('title')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Title is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('title')?.hasError('required') &&
+                        getStudentControl('title')?.hasError('minlength')
+                      "
+                    >
+                      Title must be at least 2 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentFname" class="form-label"
+                      >First Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentFname"
+                      formControlName="first_name"
+                      placeholder="Enter first name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('first_name')?.hasError('required') &&
+                        getStudentControl('first_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      First name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('first_name')?.hasError(
+                          'required'
+                        ) &&
+                        getStudentControl('first_name')?.hasError('minlength')
+                      "
+                    >
+                      First name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentLName" class="form-label"
+                      >Last Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="studentLName"
+                      formControlName="last_name"
+                      placeholder="Enter last name"
+                      autocomplete="off"
+                      (keypress)="validateAlpha($event)"
+                      (paste)="onPaste($event)"
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('last_name')?.hasError('required') &&
+                        getStudentControl('last_name')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Last name is required
+                    </div>
+
+                    <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                    <span
+                      class="text-danger small"
+                      *ngIf="
+                        !getStudentControl('last_name')?.hasError('required') &&
+                        getStudentControl('last_name')?.hasError('minlength')
+                      "
+                    >
+                      Name must be at least 3 characters long
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="dob" class="form-label"
+                      >DOB<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Select date of birth"
+                      id="dob"
+                      #dob
+                      formControlName="studentDob"
+                      [minDate]="minStudentDate"
+                      [maxDate]="maxStudentDate"
+                      (keydown)="disableManualInput($event)"
+                      (ngModelChange)="onStudentDobChange($event)"
+                      (keydown.tab)="openDatepicker()"
+                      bsDatepicker
+                      [bsConfig]="{
+                        isAnimated: true,
+                        dateInputFormat: 'DD/MM/YYYY',
+                        showWeekNumbers: false,
+                        containerClass: colorTheme
+                      }"
+                      readonly
+                    />
+                    <div
+                      *ngIf="
+                        getStudentControl('studentDob')?.errors &&
+                        getStudentControl('studentDob')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getStudentControl('studentDob')?.errors?.['required']"
+                        >Date of birth is required</small
+                      >
+                    </div>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <div class="row no-padding">
+                      <div class="form-group-inner mobile-number">
+                        <label
+                          class="col-md-12 no-padding form-label"
+                          for="studentMobileNo"
+                          >Mobile Number<span
+                            class="form-label-span"
+                            style="color: #ff0000"
+                          >
+                            *</span
+                          ></label
+                        >
+                        <div class="delegateonline form-control">
+                          <ngx-intl-tel-input
+                            class="custom-width-container"
+                            [preferredCountries]="[
+                              CountryISO.India,
+                              CountryISO.UnitedStates,
+                              CountryISO.UnitedKingdom
+                            ]"
+                            [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="false"
+                            [searchCountryFlag]="true"
+                            [searchCountryField]="[
+                              SearchCountryField.Iso2,
+                              SearchCountryField.Name
+                            ]"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="CountryISO.India"
+                            [maxLength]="12"
+                            [phoneValidation]="true"
+                            name="mobile_number"
+                            id="studentMobileNo"
+                            #number_mobile1
+                            [separateDialCode]="true"
+                            formControlName="mobile_number"
+                            autocomplete="off"
+                            (keypress)="keyPressNumbersForStudent($event)"
+                            (keydown)="onMobileKeyDown($event, 'student')"
+                          ></ngx-intl-tel-input>
+                        </div>
+                        <small
+                          class="text-danger"
+                          *ngIf="studentMobileNumberVal"
+                        >
+                          (Country code + Mobile number) will be 7 to 15 digits
+                          based on country.
+                        </small>
+                      </div>
+                      <div class="form-group form-group-inner mobile-number">
+                        <div class="help-block with-errors"></div>
+                        <div
+                          *ngIf="
+                            getStudentControl('mobile_number')?.errors &&
+                            getStudentControl('mobile_number')?.touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="getStudentControl('mobile_number')?.touched && getStudentControl('mobile_number')?.errors?.['required']"
+                            >Mobile number is required</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              !studentMobileNumberVal &&
+                              getStudentControl('mobile_number')?.invalid &&
+                              getStudentControl('mobile_number')?.touched
+                            "
+                          >
+                            {{ getStudentPhoneErrorMessage() }}
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="studentEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                      autocomplete="off"
+                      maxlength="125"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('email')?.invalid &&
+                        getStudentControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentCountry" class="form-label"
+                      >Country<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <select
+                      class="form-control form-select"
+                      id="studentCountry"
+                      formControlName="country"
+                    >
+                      <option value="" disabled>Select country</option>
+                      <option
+                        *ngFor="let country of countryData"
+                        [value]="country.id"
+                      >
+                        {{ country.name }}
+                      </option>
+                    </select>
+
+                    <div
+                      *ngIf="
+                        getStudentControl('country')?.errors &&
+                        getStudentControl('country')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger small"
+                        *ngIf="getStudentControl('country')?.errors?.['required']"
+                        >Country is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentRelation" class="form-label"
+                      >Relation<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      autocomplete="off"
+                      class="form-control"
+                      id="studentRelation"
+                      formControlName="relation"
+                      placeholder="Enter relation"
+                      (keypress)="validateAlpha($event)"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('relation')?.invalid &&
+                        getStudentControl('relation')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a relation
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentInstitution" class="form-label"
+                      >Institution Name<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      ></label
+                    >
+                    <input
+                      type="text"
+                      autocomplete="off"
+                      class="form-control"
+                      id="studentInstitution"
+                      formControlName="institutionName"
+                      placeholder="Enter institution name"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('institutionName')?.errors &&
+                        getStudentControl('institutionName')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger small"
+                        *ngIf="getStudentControl('institutionName')?.errors?.['required']"
+                        >institute name is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
+    </div>
+
+    <div
+      class="text-center"
+      *ngIf="userType === 'student' || userType === 'delegate'"
+    >
+      <button
+        (click)="onSubmit()"
+        type="button"
+        class="btn btn-success"
+        [disabled]="delegateForm.invalid || studentForm.invalid"
+      >
+        Submit
+      </button>
     </div>
   </div>
-
-  <div class="row" *ngIf="userType === 'student'">
-    <form>
-      <div class="row">
-        <!-- Student Form (Left Side) -->
-        <div class="col-md-6 my-2">
-          <div [formGroup]="studentForm" class="border shadow p-4 h-100">
-            <h3>Student Information</h3>
-            <div class="row">
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentTitle" class="form-label">Title<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getStudentControl('title')?.hasError('required') &&
-                      getStudentControl('title')?.touched
-                    " class="text-danger small">
-                    Title is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('title')?.hasError('required') &&
-                      getStudentControl('title')?.hasError('minlength')
-                    ">
-                    Title must be at least 2 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentFname" class="form-label">First Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentFname" formControlName="first_name"
-                    placeholder="Enter first name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getStudentControl('first_name')?.hasError('required') &&
-                      getStudentControl('first_name')?.touched
-                    " class="text-danger small">
-                    First name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('first_name')?.hasError('required') &&
-                      getStudentControl('first_name')?.hasError('minlength')
-                    ">
-                    First name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentLName" class="form-label">Last Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentLName" formControlName="last_name"
-                    placeholder="Enter last name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getStudentControl('last_name')?.hasError('required') &&
-                      getStudentControl('last_name')?.touched
-                    " class="text-danger small">
-                    Last name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('last_name')?.hasError('required') &&
-                      getStudentControl('last_name')?.hasError('minlength')
-                    ">
-                    Name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="dob" class="form-label">DOB<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" placeholder="Select date of birth" id="dob" #dob
-                    formControlName="studentDob" [minDate]="minStudentDate" [maxDate]="maxStudentDate"
-                    (keydown)="disableManualInput($event)" (ngModelChange)="onStudentDobChange($event)"
-                    (keydown.tab)="openDatepicker()" bsDatepicker [bsConfig]="{
-                      isAnimated: true,
-                      dateInputFormat: 'DD/MM/YYYY',
-                      showWeekNumbers: false,
-                      containerClass: colorTheme
-                    }" readonly />
-                  <div *ngIf="
-                      getStudentControl('studentDob')?.errors &&
-                      getStudentControl('studentDob')?.touched
-                    ">
-                    <small class="text-danger" *ngIf="getStudentControl('studentDob')?.errors?.['required']">Date of
-                      birth is required</small>
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <div class="row no-padding">
-                    <div class="form-group-inner mobile-number">
-                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
-                          class="form-label-span" style="color: #ff0000">
-                          *</span></label>
-                      <div class="delegateonline form-control">
-                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
-                            CountryISO.India,
-                            CountryISO.UnitedStates,
-                            CountryISO.UnitedKingdom
-                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
-                          [searchCountryField]="[
-                            SearchCountryField.Iso2,
-                            SearchCountryField.Name
-                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
-                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
-                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
-                          (keypress)="keyPressNumbersForStudent($event)"
-                          (keydown)="onMobileKeyDown($event, 'student')"></ngx-intl-tel-input>
-                      </div>
-                      <small class="text-danger" *ngIf="studentMobileNumberVal">
-                        (Country code + Mobile number) will be 7 to 15 digits
-                        based on country.
-                      </small>
-                    </div>
-                    <div class="form-group form-group-inner mobile-number">
-                      <div class="help-block with-errors"></div>
-                      <div *ngIf="
-                          getStudentControl('mobile_number')?.errors &&
-                          getStudentControl('mobile_number')?.touched
-                        ">
-                        <small class="text-danger"
-                          *ngIf="getStudentControl('mobile_number')?.touched && getStudentControl('mobile_number')?.errors?.['required']">Mobile
-                          number is required</small>
-                        <small class="text-danger" *ngIf="
-                            !studentMobileNumberVal &&
-                            getStudentControl('mobile_number')?.invalid &&
-                            getStudentControl('mobile_number')?.touched
-                          ">
-                          {{ getStudentPhoneErrorMessage() }}
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentEmail" class="form-label">Email<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="email" class="form-control" id="studentEmail" formControlName="email"
-                    placeholder="Enter email" autocomplete="off" maxlength="125" />
-
-                  <div *ngIf="
-                      getStudentControl('email')?.invalid &&
-                      getStudentControl('email')?.touched
-                    " class="text-danger small">
-                    Please enter a valid email
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <select class="form-control form-select" id="studentCountry" formControlName="country">
-                    <option value="" disabled>Select country</option>
-                    <option *ngFor="let country of countryData" [value]="country.id">
-                      {{ country.name }}
-                    </option>
-                  </select>
-
-                  <div *ngIf="
-                      getStudentControl('country')?.errors &&
-                      getStudentControl('country')?.touched
-                    ">
-                    <small class="text-danger small" *ngIf="getStudentControl('country')?.errors?.['required']">Country
-                      is required.</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentInstitution" class="form-label">Institution Name<span class="form-label-span"
-                      style="color: #ff0000">
-                      *</span></label>
-                  <input type="text" class="form-control" autocomplete="off" id="studentInstitution" formControlName="institutionName"
-                    placeholder="Enter institution name" />
-
-                  <div *ngIf="
-                      getStudentControl('institutionName')?.errors &&
-                      getStudentControl('institutionName')?.touched
-                    ">
-                    <small class="text-danger small"
-                      *ngIf="getStudentControl('institutionName')?.errors?.['required']">institute name is
-                      required.</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="reference_no" class="form-label">Reference No</label>
-                  <input autocomplete="off" type="text" name="reference_no" maxlength="50" id="reference_no" #reference_no
-                    placeholder="Enter reference no" class="form-control"
-                    [readonly]="this.referralCode ? this.referralCode : ''" formControlName="reference_no"
-                    autocomplete="off" />
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-        </div>
-        <!-- Delegate Form (Right Side) -->
-        <div class="col-md-6 my-2">
-          <div [formGroup]="delegateForm" class="border shadow p-4 h-100">
-            <h3>Adult Information (Nominee)</h3>
-            <div class="row">
-              <!-- Column 1 -->
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentTitle" class="form-label">Title<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getDelegateControl('title')?.hasError('required') &&
-                      getDelegateControl('title')?.touched
-                    " class="text-danger small">
-                    Title is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('title')?.hasError('required') &&
-                      getStudentControl('title')?.hasError('minlength')
-                    ">
-                    Title must be at least 2 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="delgaFname" class="form-label">First Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="delgaFname" formControlName="first_name"
-                    placeholder="Enter first name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getDelegateControl('first_name')?.hasError('required') &&
-                      getDelegateControl('first_name')?.touched
-                    " class="text-danger small">
-                    First name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getDelegateControl('first_name')?.hasError('required') &&
-                      getDelegateControl('first_name')?.hasError('minlength')
-                    ">
-                    First name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="deleagetLName" class="form-label">Last Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="deleagetLName" formControlName="last_name"
-                    placeholder="Enter last name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getDelegateControl('last_name')?.hasError('required') &&
-                      getDelegateControl('last_name')?.touched
-                    " class="text-danger small">
-                    Last name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('last_name')?.hasError('required') &&
-                      getStudentControl('last_name')?.hasError('minlength')
-                    ">
-                    Last name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label" for="dob">DOB<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" placeholder="Select date of birth" id="delegateDob" #dob
-                    formControlName="delegateDob" [minDate]="minDelegateDate" [maxDate]="maxDelegateDate"
-                    (keydown)="disableManualInput($event)" (ngModelChange)="onDelegateDobChange($event)"
-                    (keydown.tab)="openDelageteDatepicker()" bsDatepicker [bsConfig]="{
-                      isAnimated: true,
-                      dateInputFormat: 'DD/MM/YYYY',
-                      showWeekNumbers: false,
-                      containerClass: colorTheme
-                    }" readonly />
-                  <div *ngIf="
-                      getDelegateControl('delegateDob')?.errors &&
-                      getDelegateControl('delegateDob')?.touched
-                    ">
-                    <small class="text-danger" *ngIf="getDelegateControl('delegateDob')?.errors?.['required']">Date of
-                      birth is required</small>
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <div class="row no-padding">
-                    <div class="form-group-inner mobile-number">
-                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
-                          class="form-label-span" style="color: #ff0000">
-                          *</span></label>
-                      <div class="delegateonline form-control">
-                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
-                            CountryISO.India,
-                            CountryISO.UnitedStates,
-                            CountryISO.UnitedKingdom
-                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
-                          [searchCountryField]="[
-                            SearchCountryField.Iso2,
-                            SearchCountryField.Name
-                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
-                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
-                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
-                          (keypress)="keyPressNumbersForDelegate($event)"
-                          (keydown)="onMobileKeyDown($event, 'delegate')"></ngx-intl-tel-input>
-                      </div>
-                      <small class="text-danger" *ngIf="deleagetMobileNumberVal">
-                        (Country code + Mobile number) will be 7 to 15 digits
-                        based on country.
-                      </small>
-                    </div>
-                    <div class="form-group form-group-inner mobile-number">
-                      <div class="help-block with-errors"></div>
-                      <div *ngIf="
-                          getDelegateControl('mobile_number')?.errors &&
-                          getDelegateControl('mobile_number')?.touched
-                        ">
-                        <small class="text-danger"
-                          *ngIf="getDelegateControl('mobile_number')?.errors?.['required']">Mobile number is
-                          required</small>
-                        <small class="text-danger" *ngIf="
-                            !deleagetMobileNumberVal &&
-                            getDelegateControl('mobile_number')?.invalid &&
-                            getDelegateControl('mobile_number')?.touched
-                          ">
-                          {{ getDelegatePhoneErrorMessage() }}
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="delegateEmail" class="form-label">Email<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="email" autocomplete="off" class="form-control" id="delegateEmail" formControlName="email"
-                    placeholder="Enter email" />
-
-                  <div *ngIf="
-                      getDelegateControl('email')?.invalid &&
-                      getDelegateControl('email')?.touched
-                    " class="text-danger small">
-                    Please enter a valid email
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <select class="form-control form-select" id="studentCountry" formControlName="country">
-                    <option value="" disabled>Select country</option>
-                    <option *ngFor="let country of countryData" [value]="country.id">
-                      {{ country.name }}
-                    </option>
-                  </select>
-                  <div *ngIf="
-                      getDelegateControl('country')?.errors &&
-                      getDelegateControl('country')?.touched
-                    ">
-                    <small class="text-danger small" *ngIf="getDelegateControl('country')?.errors?.['required']">Country
-                      is required.</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentRelation" class="form-label">Relation<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" autocomplete="off" class="form-control" id="studentRelation" formControlName="relation"
-                    placeholder="Enter relation" (keypress)="validateAlpha($event)"/>
-
-                  <div *ngIf="
-                      getStudentControl('relation')?.invalid &&
-                      getStudentControl('relation')?.touched
-                    " class="text-danger small">
-                    Please enter a relation
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <div class="row" *ngIf="userType === 'delegate'">
-    <!-- Delegate Form (Right Side) -->
-    <form>
-      <div class="row">
-        <div class="col-md-6 my-2">
-          <div [formGroup]="delegateForm" class="border shadow p-4 h-100">
-            <h3>Adult Information</h3>
-            <div class="row">
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentTitle" class="form-label">Title<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getDelegateControl('title')?.hasError('required') &&
-                      getDelegateControl('title')?.touched
-                    " class="text-danger small">
-                    Title is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('title')?.hasError('required') &&
-                      getStudentControl('title')?.hasError('minlength')
-                    ">
-                    Title must be at least 2 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="delgaFname" class="form-label">First Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="delgaFname" formControlName="first_name"
-                    placeholder="Enter first name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getDelegateControl('first_name')?.hasError('required') &&
-                      getDelegateControl('first_name')?.touched
-                    " class="text-danger small">
-                    First name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getDelegateControl('first_name')?.hasError('required') &&
-                      getDelegateControl('first_name')?.hasError('minlength')
-                    ">
-                    First name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="deleagetLName" class="form-label">Last Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="deleagetLName" formControlName="last_name"
-                    placeholder="Enter last name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getDelegateControl('last_name')?.hasError('required') &&
-                      getDelegateControl('last_name')?.touched
-                    " class="text-danger small">
-                    Last name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('last_name')?.hasError('required') &&
-                      getStudentControl('last_name')?.hasError('minlength')
-                    ">
-                    Last name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label" for="dob">DOB<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" placeholder="Select date of birth" id="delegateDob" #dob
-                    formControlName="delegateDob" [minDate]="minDelegateDate" [maxDate]="maxDelegateDate"
-                    (keydown)="disableManualInput($event)" (ngModelChange)="onDelegateDobChange($event)"
-                    (keydown.tab)="openDelageteDatepicker()" bsDatepicker [bsConfig]="{
-                      isAnimated: true,
-                      dateInputFormat: 'DD/MM/YYYY',
-                      showWeekNumbers: false,
-                      containerClass: colorTheme
-                    }" readonly />
-                  <div *ngIf="
-                      getDelegateControl('delegateDob')?.errors &&
-                      getDelegateControl('delegateDob')?.touched
-                    ">
-                    <small class="text-danger" *ngIf="getDelegateControl('delegateDob')?.errors?.['required']">Date of
-                      birth is required</small>
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <div class="row no-padding">
-                    <div class="form-group-inner mobile-number">
-                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
-                          class="form-label-span" style="color: #ff0000">
-                          *</span></label>
-                      <div class="delegateonline form-control">
-                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
-                            CountryISO.India,
-                            CountryISO.UnitedStates,
-                            CountryISO.UnitedKingdom
-                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
-                          [searchCountryField]="[
-                            SearchCountryField.Iso2,
-                            SearchCountryField.Name
-                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
-                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
-                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
-                          (keypress)="keyPressNumbersForDelegate($event)"
-                          (keydown)="onMobileKeyDown($event, 'delegate')"></ngx-intl-tel-input>
-                      </div>
-                      <small class="text-danger" *ngIf="deleagetMobileNumberVal">
-                        (Country code + Mobile number) will be 7 to 15 digits
-                        based on country.
-                      </small>
-                    </div>
-                    <div class="form-group form-group-inner mobile-number">
-                      <div class="help-block with-errors"></div>
-                      <div *ngIf="
-                          getDelegateControl('mobile_number')?.errors &&
-                          getDelegateControl('mobile_number')?.touched
-                        ">
-                        <small class="text-danger"
-                          *ngIf="getDelegateControl('mobile_number')?.errors?.['required']">Mobile number is
-                          required</small>
-                        <small class="text-danger" *ngIf="
-                            !deleagetMobileNumberVal &&
-                            getDelegateControl('mobile_number')?.invalid &&
-                            getDelegateControl('mobile_number')?.touched
-                          ">
-                          {{ getDelegatePhoneErrorMessage() }}
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="delegateEmail" class="form-label">Email<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="email" autocomplete="off" class="form-control" id="delegateEmail" formControlName="email"
-                    placeholder="Enter email" />
-
-                  <div *ngIf="
-                      getDelegateControl('email')?.invalid &&
-                      getDelegateControl('email')?.touched
-                    " class="text-danger small">
-                    Please enter a valid email
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <select class="form-control form-select" id="studentCountry" formControlName="country">
-                    <option value="" disabled>Select country</option>
-                    <option *ngFor="let country of countryData" [value]="country.id">
-                      {{ country.name }}
-                    </option>
-                  </select>
-                  <div *ngIf="
-                      getDelegateControl('country')?.errors &&
-                      getDelegateControl('country')?.touched
-                    ">
-                    <small class="text-danger small" *ngIf="getDelegateControl('country')?.errors?.['required']">Country
-                      is required.</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="reference_no" class="form-label">Reference No</label>
-                  <input type="text" autocomplete="off" name="reference_no" maxlength="50" id="reference_no" #reference_no
-                    placeholder="Enter reference no" class="form-control"
-                    [readonly]="this.referralCode ? this.referralCode : ''" formControlName="reference_no"
-                    autocomplete="off" />
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Student Form (Left Side) -->
-        <div class="col-md-6 my-2">
-          <div [formGroup]="studentForm" class="border shadow p-4 h-100">
-            <h3>Student Information (Nominee)</h3>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentTitle" class="form-label">Title<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentTitle" formControlName="title"
-                    placeholder="Enter title" autocomplete="off" maxlength="15" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getStudentControl('title')?.hasError('required') &&
-                      getStudentControl('title')?.touched
-                    " class="text-danger small">
-                    Title is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('title')?.hasError('required') &&
-                      getStudentControl('title')?.hasError('minlength')
-                    ">
-                    Title must be at least 2 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentFname" class="form-label">First Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentFname" formControlName="first_name"
-                    placeholder="Enter first name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getStudentControl('first_name')?.hasError('required') &&
-                      getStudentControl('first_name')?.touched
-                    " class="text-danger small">
-                    First name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('first_name')?.hasError('required') &&
-                      getStudentControl('first_name')?.hasError('minlength')
-                    ">
-                    First name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentLName" class="form-label">Last Name<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" id="studentLName" formControlName="last_name"
-                    placeholder="Enter last name" autocomplete="off" (keypress)="validateAlpha($event)"
-                    (paste)="onPaste($event)" />
-                  <div *ngIf="
-                      getStudentControl('last_name')?.hasError('required') &&
-                      getStudentControl('last_name')?.touched
-                    " class="text-danger small">
-                    Last name is required
-                  </div>
-
-                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
-                  <span class="text-danger small" *ngIf="
-                      !getStudentControl('last_name')?.hasError('required') &&
-                      getStudentControl('last_name')?.hasError('minlength')
-                    ">
-                    Name must be at least 3 characters long
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="dob" class="form-label">DOB<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" class="form-control" placeholder="Select date of birth" id="dob" #dob
-                    formControlName="studentDob" [minDate]="minStudentDate" [maxDate]="maxStudentDate"
-                    (keydown)="disableManualInput($event)" (ngModelChange)="onStudentDobChange($event)"
-                    (keydown.tab)="openDatepicker()" bsDatepicker [bsConfig]="{
-                      isAnimated: true,
-                      dateInputFormat: 'DD/MM/YYYY',
-                      showWeekNumbers: false,
-                      containerClass: colorTheme
-                    }" readonly />
-                  <div *ngIf="
-                      getStudentControl('studentDob')?.errors &&
-                      getStudentControl('studentDob')?.touched
-                    ">
-                    <small class="text-danger" *ngIf="getStudentControl('studentDob')?.errors?.['required']">Date of
-                      birth is required</small>
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <div class="row no-padding">
-                    <div class="form-group-inner mobile-number">
-                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
-                          class="form-label-span" style="color: #ff0000">
-                          *</span></label>
-                      <div class="delegateonline form-control">
-                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
-                            CountryISO.India,
-                            CountryISO.UnitedStates,
-                            CountryISO.UnitedKingdom
-                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
-                          [searchCountryField]="[
-                            SearchCountryField.Iso2,
-                            SearchCountryField.Name
-                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
-                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
-                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
-                          (keypress)="keyPressNumbersForStudent($event)"
-                          (keydown)="onMobileKeyDown($event, 'student')"></ngx-intl-tel-input>
-                      </div>
-                      <small class="text-danger" *ngIf="studentMobileNumberVal">
-                        (Country code + Mobile number) will be 7 to 15 digits
-                        based on country.
-                      </small>
-                    </div>
-                    <div class="form-group form-group-inner mobile-number">
-                      <div class="help-block with-errors"></div>
-                      <div *ngIf="
-                          getStudentControl('mobile_number')?.errors &&
-                          getStudentControl('mobile_number')?.touched
-                        ">
-                        <small class="text-danger"
-                          *ngIf="getStudentControl('mobile_number')?.touched && getStudentControl('mobile_number')?.errors?.['required']">Mobile
-                          number is required</small>
-                        <small class="text-danger" *ngIf="
-                            !studentMobileNumberVal &&
-                            getStudentControl('mobile_number')?.invalid &&
-                            getStudentControl('mobile_number')?.touched
-                          ">
-                          {{ getStudentPhoneErrorMessage() }}
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentEmail" class="form-label">Email<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="email" class="form-control" id="studentEmail" formControlName="email"
-                    placeholder="Enter email" autocomplete="off" maxlength="125" />
-
-                  <div *ngIf="
-                      getStudentControl('email')?.invalid &&
-                      getStudentControl('email')?.touched
-                    " class="text-danger small">
-                    Please enter a valid email
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <select class="form-control form-select" id="studentCountry" formControlName="country">
-                    <option value="" disabled>Select country</option>
-                    <option *ngFor="let country of countryData" [value]="country.id">
-                      {{ country.name }}
-                    </option>
-                  </select>
-
-                  <div *ngIf="
-                      getStudentControl('country')?.errors &&
-                      getStudentControl('country')?.touched
-                    ">
-                    <small class="text-danger small" *ngIf="getStudentControl('country')?.errors?.['required']">Country
-                      is required.</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentRelation" class="form-label">Relation<span class="form-label-span"
-                      style="color: #ff0000">*</span></label>
-                  <input type="text" autocomplete="off" class="form-control" id="studentRelation" formControlName="relation"
-                    placeholder="Enter relation" (keypress)="validateAlpha($event)"/>
-
-                  <div *ngIf="
-                      getStudentControl('relation')?.invalid &&
-                      getStudentControl('relation')?.touched
-                    " class="text-danger small">
-                    Please enter a relation
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="studentInstitution" class="form-label">Institution Name<span class="form-label-span"
-                      style="color: #ff0000">
-                      *</span></label>
-                  <input type="text" autocomplete="off" class="form-control" id="studentInstitution" formControlName="institutionName"
-                    placeholder="Enter institution name" />
-
-                  <div *ngIf="
-                      getStudentControl('institutionName')?.errors &&
-                      getStudentControl('institutionName')?.touched
-                    ">
-                    <small class="text-danger small"
-                      *ngIf="getStudentControl('institutionName')?.errors?.['required']">institute name is
-                      required.</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <div class="text-center" *ngIf="userType === 'student' || userType === 'delegate'">
-    <button (click)="onSubmit()" type="button" class="btn btn-success"
-      [disabled]="delegateForm.invalid || studentForm.invalid">
-      Submit
-    </button>
-  </div>
-
 </div>
