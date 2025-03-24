@@ -11,7 +11,7 @@
   position: relative;
   border-radius: 50%;
   box-sizing: content-box;
-  border: 4px solid #4CAF50;
+  border: 4px solid #4caf50;
 }
 
 .check-icon::before {
@@ -31,17 +31,18 @@
   animation: rotate-circle 4.25s ease-in;
 }
 
-.check-icon::before, .check-icon::after {
-  content: '';
+.check-icon::before,
+.check-icon::after {
+  content: "";
   height: 100px;
   position: absolute;
-  background: #FFFFFF;
+  background: #ffffff;
   transform: rotate(-45deg);
 }
 
 .icon-line {
   height: 5px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   display: block;
   border-radius: 2px;
   position: absolute;
@@ -84,7 +85,7 @@
   height: 85px;
   position: absolute;
   transform: rotate(-45deg);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 @keyframes rotate-circle {
@@ -156,7 +157,7 @@
 .registration-details {
   background-color: #f8f9fa;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .section-title {
@@ -169,12 +170,12 @@
 
 .form-label {
   font-weight: 500;
-  color: #495057;
+  color: #27272a;
 }
 
 .card {
   border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary {
@@ -189,7 +190,7 @@
   background-color: #0056b3;
   border-color: #0056b3;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,123,255,0.2);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 
 #mobile_number {
@@ -208,11 +209,30 @@
   border-bottom: 1px !important;
 }
 
+h1 {
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #005a93;
+}
 
-h1{
-font-weight: 700;
-font-size: clamp(1rem, 3vw, 3rem);
-line-height: 100%;
-letter-spacing: 0%;
-color: #005A93;
+.delegateBg {
+  background: linear-gradient(180deg, #ffffff 0%, #dce7b0 100%);
+}
+
+.delegateP {
+  padding: 20px;
+  font-weight: 700;
+  font-size: clamp(14px, 2.5vw, 20px);
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: capitalize;
+  position: absolute;
+  color: #ffffff;
+}
+
+.dropdown-menu{
+  z-index: 9 !important;
 }

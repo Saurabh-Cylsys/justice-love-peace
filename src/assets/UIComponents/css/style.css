@@ -1770,6 +1770,10 @@ header .nav-item .nav-link.active {
   font-weight: 600;
 }
 
+.confirmation table tr td:nth-child(3){
+  text-transform: uppercase;
+}
+
 .indexSec2 ul {
   display: flex;
   align-items: center;
@@ -3041,4 +3045,14 @@ button:focus {
 
 .drop-zone input{
   font-size: 12px;
+}
+
+.form-control::placeholder, .form-control::-ms-input-placeholder {
+  /* color: #C8C8D0; */
+  color: red !important;
+  opacity: 1; /* Firefox */
+}
+
+.dropdown-menu{
+  z-index: 99 !important;
 }
