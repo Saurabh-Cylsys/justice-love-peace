@@ -510,9 +510,11 @@ export class DelegateOnlineComponent implements OnInit {
       };
 
 
+      this.ngxService.start();
       await this.delegateService.postDelegateOnlineMP(obj).subscribe({
         next: (response: any) => {
 
+          this.ngxService.stop();
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
