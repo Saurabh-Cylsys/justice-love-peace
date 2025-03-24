@@ -56,6 +56,7 @@
           </button>
         </div>
 
+
         <div class="ui-card-container mb-2 mt-1">
           <div class="ui-card ui-card1" (click)="goToDelegatePage()">
             <div class="price-ribbon">
@@ -69,7 +70,7 @@
                 <span *ngIf="this.isStrip == 'true'">$ {{offlineDiscount}}</span>
                 <span *ngIf="this.isStrip == 'false'"> {{offlineDiscount}}</span>
               </h4>
-              <p>Be a part of a gathering of unprecedented magnitude dedicated to the ideals of Justice, Love & Peace</p>
+              <p>{{delegateOfflineDescription}}</p>
             </div>
             <!-- <div class="ui-card-buttons">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#userdelegate" aria-expanded="true" aria-controls="userdelegate">Know More</button>
@@ -89,7 +90,7 @@
                 <span *ngIf="this.isStrip == 'true'">$ {{childNominationDiscount}}</span>
                 <span *ngIf="this.isStrip == 'false'"> {{childNominationDiscount}}</span>
               </h4>
-              <p>An ideal opportunity for young school & college children to learn about justice, love & peace & network with their role-models. Pay for 1 Ticket ( USD 2800) Get 1 Ticket Free. </p>
+              <p>{{peaceStudentDescription}}</p>
             </div>
             <!-- <div class="ui-card-buttons">
       <button class="accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#studentdelegate" aria-expanded="true" aria-controls="studentdelegate">Know More</button>
@@ -109,7 +110,7 @@
                 <span *ngIf="this.isStrip == 'true'">$ {{onlineDiscount}}</span>
                 <span *ngIf="this.isStrip == 'false'"> {{onlineDiscount}}</span>
               </h4>
-              <p>Be a part of a transformative global experience from anywhere in the world by gaining exclusive virtual access to this Star-studded summit</p>
+              <p>{{delegateOnlineDescription}}</p>
             </div>
             <!-- <div class="ui-card-buttons">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#olinedelegate" aria-expanded="true" aria-controls="olinedelegate">Know More</button>
@@ -167,6 +168,8 @@
             </div>
           </div>
         </div>
+
+
       </div>
     </div>
     <!-- </div> -->

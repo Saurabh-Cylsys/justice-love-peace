@@ -32,7 +32,7 @@ export class DelegatePaymentFailComponent {
   ) {}
 
   ngOnInit() {
-    debugger;
+
     this.route.queryParams.subscribe(params => {
 
       if (params != undefined && Object.keys(params).length > 0) {

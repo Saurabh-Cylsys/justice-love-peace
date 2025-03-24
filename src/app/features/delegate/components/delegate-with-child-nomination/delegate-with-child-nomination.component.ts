@@ -198,6 +198,10 @@ export class DelegateWithChildNominationComponent {
  async ngOnInit() {
 
   this.ngxService.start();
+  setTimeout(() => {
+
+    this.ngxService.stop();
+  }, 1500);
 
     this.checkWindowSize();
     // this.dobValidator();
@@ -266,8 +270,6 @@ export class DelegateWithChildNominationComponent {
             }
           }
     });
-
-    this.ngxService.stop();
 
     this.createForm();
 
