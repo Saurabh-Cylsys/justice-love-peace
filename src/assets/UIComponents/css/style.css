@@ -1770,6 +1770,10 @@ header .nav-item .nav-link.active {
   font-weight: 600;
 }
 
+.confirmation table tr td:nth-child(3){
+  text-transform: uppercase;
+}
+
 .indexSec2 ul {
   display: flex;
   align-items: center;
