@@ -134,8 +134,6 @@ export class DelegatePaymentSuccessComponent {
           this.loading = false;
           if (response.success) {
             this.registrationData = response.data[0];
-            console.log(this.registrationData);
-
 
             this.pType = response.data[0].p_type;
 
@@ -143,8 +141,6 @@ export class DelegatePaymentSuccessComponent {
 
           if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
            const isNominee = localStorage.getItem('isNominee')
-
-           console.log("isnominee",isNominee);
 
            if(isNominee == 'student') {
             let adultData  = response.data[0].parent_details[0];
@@ -266,15 +262,13 @@ export class DelegatePaymentSuccessComponent {
     await this.delegateService.postVerifySession(body).subscribe({
       next: (response: any) => {
         this.loading = false;
-        console.log('Response:', response);
+
         if (response.success) {
 
           this.isPaymentStatus = response.session.payment_status;
 
           if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
            const isNominee = localStorage.getItem('isNominee')
-
-           console.log("isnominee",isNominee);
 
            if(isNominee == 'student') {
             let adultData  = response.savedDetails[0].parent_details[0];

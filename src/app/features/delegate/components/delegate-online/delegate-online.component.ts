@@ -10,6 +10,7 @@ import { HostListener } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { environment } from '../../../../../environments/environment';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 interface RegistrationData {
   // name: string;
@@ -90,7 +91,8 @@ export class DelegateOnlineComponent implements OnInit {
     private datePipe: DatePipe,
     private sharedService: SharedService,
     private route: ActivatedRoute,
-    private encryptionService : EncryptionService
+    private encryptionService : EncryptionService,
+    private ngxService : NgxUiLoaderService
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -404,8 +406,10 @@ export class DelegateOnlineComponent implements OnInit {
 
       }
 
+      this.ngxService.start();
       this.delegateService.postDelegateOnline(this.payload).subscribe({
         next: (response: any) => {
+          this.ngxService.stop();
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave
           this.btnDisabled = true;

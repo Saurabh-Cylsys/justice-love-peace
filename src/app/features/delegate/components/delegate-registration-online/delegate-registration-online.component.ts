@@ -774,7 +774,6 @@ async ngOnInit() {
         p_reference_by: '0'
       };
 
-
       this.ngxService.start();
       this.SharedService.registrationOnline(this.reqBody).subscribe(
         async (result: any) => {
@@ -784,7 +783,7 @@ async ngOnInit() {
             this.registrationForm.reset();
             setTimeout(() => {
                 this.router.navigateByUrl('/delegate-message');
-            }, 2000);
+            }, 1000);
 
           } else {
             this.ngxService.stop();

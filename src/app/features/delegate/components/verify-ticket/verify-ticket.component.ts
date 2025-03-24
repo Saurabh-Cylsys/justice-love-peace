@@ -67,9 +67,9 @@ export class VerifyTicketComponent {
             this.sharedService.ToastPopup('Ticket URL not found', '', 'warning');
           }
         }
-
       },error :(err)=>{
         console.log("error",err.error);
+        this.ngxService.stop();
         this.sharedService.ToastPopup(err.error['message'],'','error');
       }
     })

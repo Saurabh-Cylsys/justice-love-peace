@@ -160,6 +160,7 @@ export class DelegateWithChildNominationComponent {
 
         this.cdr.detectChanges(); // 👈 Force UI update
         if (this.country_id) {
+          this.ngxService.start();
         this.delegateService.getAllStates(this.country_id).subscribe(
           (res: any) => {
             this.ngxService.stop();
