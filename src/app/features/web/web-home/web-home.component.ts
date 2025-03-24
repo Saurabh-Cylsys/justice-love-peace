@@ -123,31 +123,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
    async ngOnInit(): Promise<void> {
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com');
-   await this.webService.getSpeakers().subscribe((data:any) => {
-      this.slides = data;
-      this.speakersList = this.webService.confirmedSpeakersList; // Move this inside the subscription
-    });
-    // fetch('assets/speakers.json')
-    //   .then(response => {
-    //     if (!response.ok) {
-    //       throw new Error('Network response was not ok ' + response.statusText);
-    //     }
-    //     return response.json();
-    //   })
-    //   .then(data => {
-    //     console.log('JSON data:', data);
-    //     this.slides = data; // Use the fetched data in your component
-    //   })
-    //   .catch(error => {
-    //     console.error('There was a problem fetching the JSON file:', error);
-    //   });
-    // this.setMetaTags();
-    // this.setCanonicalUrl('https://www.justice-love-peace.com/home');
     this.checkWindowSize();
-    // AOS.init({
-    //   duration: 1200,
-    // });
-
     console.log('home');
     this.SharedService.headerIcon = this._router.routerState.snapshot.url;
 
@@ -155,6 +131,15 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.timerInterval = setInterval(() => {
       this.updateCountdown();
     }, 1000);
+
+    // Move speakers data fetch to after initial page render
+    setTimeout(async () => {
+      await this.webService.getSpeakers().subscribe((data:any) => {
+        this.slides = data;
+        this.speakersList = this.webService.confirmedSpeakersList;
+        this.cdr.detectChanges();
+      });
+    }, 0);
   }
 
    SPEAKERS_CACHE_KEY = 'speakers_cache_v1';

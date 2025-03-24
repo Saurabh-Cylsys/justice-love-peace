@@ -22,9 +22,9 @@ export class DownloadCenterComponent {
   ngOnInit(): void {
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com/DownloadCenter');
-    AOS.init({
-      duration: 1200,
-    });
+    // AOS.init({
+    //   duration: 1200,
+    // });
     console.log('download center');
     this.checkWindowSize();
 

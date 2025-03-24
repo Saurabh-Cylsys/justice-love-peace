@@ -423,6 +423,7 @@ h5 {
   grid-area: text;
   padding: 10px;
   background: #dde8f09e;
+  border-radius: 0 0 10px 10px;
 }
 
 .ui-card-text .date {
@@ -433,7 +434,7 @@ h5 {
 
 .ui-card-text p {
   color: rgb(14, 4, 4);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 300;
 }
 

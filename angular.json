@@ -26,16 +26,12 @@
             "outputPath": "dist/justice-love-peace",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/web.config"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/web.config"],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/assets/UIComponents/css/bootstrap.min.css",
               "src/assets/UIComponents/css/style.css",
               "src/assets/UIComponents/css/font.css",
@@ -43,12 +39,10 @@
               "src/assets/UIComponents/css/slick.css",
               "src/assets/UIComponents/css/timeline.css",
               "src/assets/UIComponents/css/fullpage.css",
-              "src/assets/UIComponents/css/swiper-bundle.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "src/assets/UIComponents/css/swiper-bundle.css"
             ],
             "scripts": [
-              "src/assets/UIComponents/js/bootstrap.min.js",
-              "src/assets/UIComponents/js/script.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/UIComponents/js/fullpage.js"
             ],
             "server": "src/main.server.ts",
@@ -108,18 +102,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }

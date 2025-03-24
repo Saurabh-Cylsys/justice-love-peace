@@ -95,7 +95,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Ali Rashed Al Nuaimi, Dr',
       Country: 'UAE',
-      Credentials: 'Parliamentarian, Educationist',
+      Credentials: 'Parliamentarian and Educator : Chairman, Defense Affairs, Interior & Foreign Affairs Committee, UAE Federal National Council',
     },
 
     // list 2
@@ -137,7 +137,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Awad Bin Mohammed Bin Mejren, His Excellency',
       Country: 'UAE',
-      Credentials: 'Royalty',
+      Credentials: 'Royalty as a Speaker',
     },
     {
       // "S_No": 1,
@@ -173,14 +173,7 @@ export class WebService {
       Country: 'India',
       Credentials: 'General : Former Chief of the Indian Army',
     },
-    // {
-    //   View: 'binod',
-    //   Profile_Photo: 'speaker14.png',
-    //   Name: 'Binod Kumar Chaudhary',
-    //   Country: 'NEPAL',
-    //   Credentials:
-    //     'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
-    // },
+    
     {
       // "S_No": 4,
       View: '',
@@ -537,9 +530,9 @@ export class WebService {
       // "S_No": 30,
       View: '',
       Profile_Photo: 'speaker74.webp',
-      Name: 'Rahul V Karad, Dr',
+      Name: 'Rahul Vishwanath Karad, Dr',
       Country: 'INDIA',
-      Credentials: 'Executive President, MIT World Peace University',
+      Credentials: 'Managing Trustee & Executive President, MIT World Peace University, Pune',
     },
     {
       // "S_No": 1,
@@ -743,7 +736,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Ali Rashed Al Nuaimi, Dr',
       Country: 'UAE',
-      Credentials: 'Parliamentarian, Educationist',
+      Credentials: ' Parliamentarian and Educator : Chairman, Defense Affairs, Interior & Foreign Affairs Committee, UAE Federal National Council',
     },
     // list 2
     {
@@ -821,14 +814,7 @@ export class WebService {
       Credentials:
         'General : Former Chief of the Indian Army',
     },
-    // {
-    //   View: 'binod',
-    //   Profile_Photo: 'speaker14.png',
-    //   Name: 'Binod Kumar Chaudhary',
-    //   Country: 'NEPAL',
-    //   Credentials:
-    //     'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
-    // },
+    
     {
       // "S_No": 4,
       View: '',
@@ -1186,9 +1172,9 @@ export class WebService {
       // "S_No": 30,
       View: '',
       Profile_Photo: 'speaker74.webp',
-      Name: 'Rahul V Karad, Dr',
+      Name: 'Rahul Vishwanath Karad, Dr',
       Country: 'INDIA',
-      Credentials: 'Executive President, MIT World Peace University',
+      Credentials: 'Managing Trustee & Executive President, MIT World Peace University, Pune',
     },
     {
       // "S_No": 30,
@@ -1426,7 +1412,7 @@ export class WebService {
             Profile_Photo: null,
             Name: 'Ali Rashed Al Nuaimi, Dr',
             Country: 'UAE',
-            Credentials: 'Parliamentarian, Educationist',
+            Credentials: ' Parliamentarian and Educator : Chairman, Defense Affairs, Interior & Foreign Affairs Committee, UAE Federal National Council',
           },
           {
             // "S_No": 1,
@@ -1943,9 +1929,9 @@ export class WebService {
             // "S_No": 30,
             View: '',
             Profile_Photo: 'speaker74.webp',
-            Name: 'Rahul V Karad, Dr',
+            Name: 'Rahul Vishwanath Karad, Dr',
             Country: 'INDIA',
-            Credentials: 'Executive President, MIT World Peace University',
+            Credentials: 'Managing Trustee & Executive President, MIT World Peace University, Pune',
           },
           {
             // "S_No": 30,
