@@ -12,8 +12,10 @@ pipeline {
     stages {
         stage('Checkout UAT Branch') {
             steps {
-                echo "\uD83D\uDD0D Checking out UAT branch from GitHub"
+                echo "🔍 Forcing clean checkout of UAT branch"
+                deleteDir() // Wipe workspace before checkout
                 git branch: 'UAT', credentialsId: 'Github_Cylsys_Credentials', url: 'https://github.com/Saurabh-Cylsys/justice-love-peace.git'
+                echo "✅ Checkout complete"
             }
         }
 
