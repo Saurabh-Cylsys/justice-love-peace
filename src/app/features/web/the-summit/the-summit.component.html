@@ -475,7 +475,7 @@
                   class="carousel-item"
                   *ngFor="let group of speakersList; let i = index"
                   [class.active]="i === 0"
-                  [attr.data-bs-interval]="10000"
+                  [attr.data-bs-interval]="3000"
                 >
                   <div class="row mt-3">
                     <div class="col-md-3 mx-auto speaker-details" *ngFor="let speaker of group.speakers">
