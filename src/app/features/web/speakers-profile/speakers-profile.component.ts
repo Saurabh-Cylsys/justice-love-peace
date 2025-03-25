@@ -31,15 +31,15 @@ export class SpeakersProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private renderer: Renderer2
   ) { }
-  
-  
 
-  
+
+
+
 
   ngOnInit(): void {
     this.getrandomcolor(10)
-debugger
-this.speakerShareUrl = this.domainUrl + this.router.url 
+
+this.speakerShareUrl = this.domainUrl + this.router.url
 console.log(this.speakerShareUrl);
 
     this.route.params.subscribe((params: any) => {
@@ -58,17 +58,17 @@ console.log(this.speakerShareUrl);
 
   }
 
-  
+
   getrandomcolor(length:any) {
     let letters = '0123456789ABCDEF';
-  
+
     for (let i = 0; i < length; i++) {
       let color = '#';
       for (let j = 0; j < 6; j++) {
         color += letters[Math.floor(Math.random() * 16)];
       }    this.totalColor.push(color);
     }
-  
+
     console.log(this.totalColor);
   }
 
@@ -104,18 +104,18 @@ console.log(this.speakerShareUrl);
         }
       });
   }
- 
+
   private transformSpeakerData(data:any): any[] {
     // Group speakers into chunks of 4 speakers per group
     const groupSize = 2;
     const groups = [];
-    
+
     for (let i = 0; i < data.length; i += groupSize) {
       groups.push({
         details: data.slice(i, i + groupSize)
       });
     }
-    
+
     return groups;
   }
 
@@ -232,6 +232,6 @@ INDIA : 18002672828
     }
   }
   ngOnDestroy(): void {
-    
+
   }
 }

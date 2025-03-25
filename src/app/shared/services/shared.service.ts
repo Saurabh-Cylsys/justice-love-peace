@@ -143,4 +143,8 @@ private getRouteData(): any {
     )
   }
 
+  getDiscountAmountByCouponCode(couponCode: string) {
+    return this._apiHttpService.get(this._apiEndpointsService.getDiscountAmountEndpoint(couponCode));
+  }
+
 }

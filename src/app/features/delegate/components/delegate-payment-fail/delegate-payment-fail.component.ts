@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
+import { EncryptionService } from '../../../../shared/services/encryption.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 @Component({
@@ -13,25 +15,63 @@ export class DelegatePaymentFailComponent {
   formData: any;
   errorMessage = '';
   transactionId = '';
-  errorCode = '';
+  code = '';
+
+  email: string = '';
+  pay_type: string = '';
+  reference_no: string = '';
+  p_type: any;
 
   constructor(
     private route: ActivatedRoute,
     private paymentService: DelegateService,
     private sanitizer: DomSanitizer,
-    private router:Router
+    private router:Router,
+    private encryptionService : EncryptionService,
+    private ngxLoader : NgxUiLoaderService
   ) {}
 
   ngOnInit() {
+    debugger;
     this.route.queryParams.subscribe(params => {
-      this.errorCode = params['code'];
-      this.transactionId = params['txnId'];
+
+      if (params != undefined && Object.keys(params).length > 0) {
+
+        this.email = params['email'];
+        this.pay_type = params['p_type'];
+        this.reference_no = params['reference_no'];
+        this.code = params['code'];
+
+
+      if (params['data']) {
+        let data = params['data'].replace(/ /g, '+');
+        let decryptedData = this.encryptionService.decrypt(data);
+        console.log('Decrypted Data:', decryptedData);
+
+        // Parse key-value pairs from decryptedData
+        const paramPairs = decryptedData.split('&');
+        const parsedData: any = {};
+
+        paramPairs.forEach((pair) => {
+          const [key, value] = pair.split('=');
+          if (key && value) {
+            parsedData[key.trim()] = decodeURIComponent(value.trim());
+          }
+        });
+
+        // Assign values to class properties
+        this.email = parsedData.email;
+        this.pay_type = parsedData.p_type;
+        this.reference_no = parsedData.reference_no;
+        this.code = parsedData.code;
+      }
 
       // Get stored payment data
       const pendingData = sessionStorage.getItem('pendingPayment');
       if (pendingData) {
         this.formData = JSON.parse(pendingData).data;
       }
+    }
     });
 
     // Clear sensitive data after 5 minutes
@@ -40,26 +80,32 @@ export class DelegatePaymentFailComponent {
     }, 300000);
   }
 
-  async retryPayment() {
-    if (this.formData) {
-      let obj = {
-        "amount": 100.00,
-        "currency": "AED"
-      }
-      await this.paymentService.postDelegateOnlineMP(obj).subscribe({
-        next: (response: any) => {
-          //window.location.href = response.paymentUrl
+  retryPayment() {
 
+
+
+      let obj = {
+        "email": this.email,
+        "pay_type": this.pay_type,
+        "reference_no": this.reference_no,
+      };
+
+      this.ngxLoader.start();
+     this.paymentService.postDelegateOnlineMP(obj).subscribe({
+        next: (response: any) => {
+
+          //window.location.href = response.paymentUrl
+          this.ngxLoader.stop();
           // Redirect to the IPG gateway
           const form = document.createElement('form');
           form.method = 'POST';
-          form.action = response.paymentUrl;
+          form.action = response.gatewayUrl;
 
-          Object.keys(response.paymentData).forEach((key) => {
+          Object.keys(response.formData).forEach((key) => {
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = key;
-            input.value = response.paymentData[key];
+            input.value = response.formData[key];
             form.appendChild(input);
           });
 
@@ -72,7 +118,6 @@ export class DelegatePaymentFailComponent {
           //this.loading = false;
         }
       });
-    }
   }
 
   cancelPayment() {

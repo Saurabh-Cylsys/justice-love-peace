@@ -115,4 +115,8 @@ export class DelegateService {
   getCouponValidation(body: any): Observable<any> {
     return this._apiHttpService.post(this._apiEndpointsService.getCouponValidationEndpoint(), body);
   }
+
+  getVerifyTicketApi(body:any):Observable<any>{
+    return this._apiHttpService.post(this._apiEndpointsService.getVerifyTicketEndpoint(), body);
+  }
 }

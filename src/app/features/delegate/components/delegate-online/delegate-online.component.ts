@@ -76,7 +76,7 @@ export class DelegateOnlineComponent implements OnInit {
   ];
   selectedCountryISO: any;
   SearchCountryField = SearchCountryField;
-  delagateType: any;
+  delagateType: string = "";
   pType: string = "";
   payload: any;
   btnDisabled: boolean = false;
@@ -89,12 +89,14 @@ export class DelegateOnlineComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private datePipe: DatePipe,
     private sharedService: SharedService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private encryptionService : EncryptionService
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
-        this.delagateType = params.dType;
+        this.delagateType = this.encryptionService.decrypt(params.dType);
+        // this.delagateType = params.dType;
 
         this.fnPartialSave()
         // this.router.navigate([], {
@@ -118,9 +120,9 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   fnPartialSave() {
-    const email = this.userForm.get('email')?.value;
-    const mobile = this.userForm.get('mobile')?.value;
-    const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
+    const email = this.userForm?.get('email')?.value;
+    const mobile = this.userForm?.get('mobile')?.value;
+    const rawMobileNumber = this.userForm?.value.mobile_number?.number ?? '';
     const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
 
     if (email || formattedMobileNumber) {
@@ -194,6 +196,18 @@ export class DelegateOnlineComponent implements OnInit {
     if (!allowedPattern.test(key)) {
       event.preventDefault();
     }
+  }
+  titleValidateAlpha(event: any, controlName: string) {
+    let inputValue = event.target.value;
+
+    // Remove leading spaces
+    inputValue = inputValue.replace(/^\s+/, '');
+
+    // Remove invalid characters except letters, space, hyphen, and underscore
+    inputValue = inputValue.replace(/[^a-zA-Z\s\.‘]/g, '');
+
+    // Update the input field
+    this.userForm.controls[controlName].setValue(inputValue, { emitEvent: false });
   }
 
   getAllCountries() {
@@ -286,7 +300,6 @@ export class DelegateOnlineComponent implements OnInit {
     }
   }
 
-
   keyPressNumbers(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement; // Get the input field
     const inputId = inputElement.id;
@@ -316,7 +329,6 @@ export class DelegateOnlineComponent implements OnInit {
     this.mobile_numberVal = inputValue.length < 7;
   }
 
-
   getPhoneErrorMessage() {
     const control = this.userForm.controls['mobile_number'];
     if (control.value && control.errors) {
@@ -338,18 +350,15 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Userform", this.userForm.value);
 
     if (!this.userForm.valid || this.loading) {
       return; // Prevent submission if the form is invalid or loading
     }
 
     const returnmobileNumber = this.userForm.value.mobile_number;
-    console.log(returnmobileNumber, 'mobileNumber');
     const country_code = this.userForm.value.mobile_number.dialCode;
     const rawMobileNumber = this.userForm.value.mobile_number.number;
     let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    console.log(formattedMobileNumber);
 
     if (this.userForm.valid) {
       this.loading = true;
@@ -357,10 +366,9 @@ export class DelegateOnlineComponent implements OnInit {
       if (this.delagateType == 'offline') {
         this.pType = "DELEGATE_OFFLINE";
       }
-      else {
+      else if (this.delagateType == 'online'){
         this.pType = "DELEGATE_ONLINE";
       }
-
 
       if (this.pType == "DELEGATE_ONLINE") {
         this.payload = {
@@ -405,17 +413,21 @@ export class DelegateOnlineComponent implements OnInit {
           this.registrationData = this.payload;
 
           setTimeout(async () => {
-            if (response.isStripe)
+            if (response.isStripe == "true") {
               await this.fnStripePG(response, this.payload);
+            }
             else
+             {
               await this.fnMagnatiPG(response, this.payload);
-          }, 5000);
+             }
+
+          }, 4000);
 
           this.loading = false;
         },
         error: (error: any) => {
           console.error('Error creating delegate:', error);
-          this.sharedService.ToastPopup('Error', error.error?.message || 'Registration failed', 'error');
+          this.sharedService.ToastPopup(error.error?.message || 'Registration failed','', 'error');
           this.loading = false;
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave
@@ -483,16 +495,19 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
-    if (response.success && response.gatewayUrl) {
-      localStorage.setItem('delegateRegistration', JSON.stringify(payload));
-      //window.location.href = response.payment_link;
+
+    if (response.success) {
+
       let obj = {
         "email": this.userForm.get('email')?.value.toLowerCase(),
-        "pay_type": "DELEGATE_ONLINE",
+        "pay_type": this.pType,
+        "reference_no": (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
       };
+
 
       await this.delegateService.postDelegateOnlineMP(obj).subscribe({
         next: (response: any) => {
+
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
@@ -512,7 +527,7 @@ export class DelegateOnlineComponent implements OnInit {
 
         },
         error: (error: any) => {
-          console.error('Error creating delegate:', error);
+          console.log('Error creating delegate:', error);
           this.loading = false;
         }
       });

@@ -85,4 +85,10 @@ export class Constants {
     public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE: string = 'pre_delegate_draft_details'
 
     public readonly API_ENDPOINT_VALIDATE_COUPON: string = 'check_coupon'
+
+    public readonly API_ENDPOINT_VERIFY_TICKET: string = 'verify_ticket_id'
+
+    public readonly API_ENDPOINT_DISCOUNT_AMOUNT: string =  'discount_amount'
+
+
 }
