@@ -2597,6 +2597,7 @@ button:focus {
   letter-spacing: 0%;
   text-align: center;
   color: var(--color6);
+  white-space: nowrap;
 }
 .speaker-details .card .card-body .country {
   font-weight: 700;
