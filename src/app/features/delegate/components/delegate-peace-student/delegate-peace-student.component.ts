@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { DelegateService } from '../../services/delegate.service';
@@ -53,6 +53,7 @@ export class DelegatePeaceStudentComponent {
   isNominee : boolean = false;
   delegateEmail: string = "";
   btnDisabled: boolean = false;
+  isMobileView = false;
 
   constructor(private fb: FormBuilder,
     private delegateService: DelegateService,
@@ -544,4 +545,19 @@ private async fnStripePG(response: any, payload: any) {
     })
   }
 
+  checkWindowSize(): void {
+    if (window.innerWidth <= 900) {
+      this.sharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.sharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
+  }
   }

@@ -160,6 +160,7 @@ export class DelegateWithChildNominationComponent {
 
         this.cdr.detectChanges(); // 👈 Force UI update
         if (this.country_id) {
+          this.ngxService.start();
         this.delegateService.getAllStates(this.country_id).subscribe(
           (res: any) => {
             this.ngxService.stop();
@@ -198,6 +199,10 @@ export class DelegateWithChildNominationComponent {
  async ngOnInit() {
 
   this.ngxService.start();
+  setTimeout(() => {
+
+    this.ngxService.stop();
+  }, 1500);
 
     this.checkWindowSize();
     // this.dobValidator();
@@ -266,8 +271,6 @@ export class DelegateWithChildNominationComponent {
             }
           }
     });
-
-    this.ngxService.stop();
 
     this.createForm();
 

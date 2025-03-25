@@ -79,15 +79,6 @@ export class DelegateRegistrationOnlineComponent {
   @ViewChild('number_mobile1', { static: false })
   mobileNumberInput!: ElementRef;
   @ViewChild('dobPicker') dobPicker!: BsDatepickerDirective;
-  ipAddress: string = '';
-  deviceInfo: any = '';
-  isOTPReceive: boolean = false;
-  txtVerifyOTP: string = '';
-  countdown: number = 100; // 5 minutes in seconds
-  timerExpired: boolean = false;
-  interval: any;
-  buttonText: string = 'Send OTP';
-  mediumValue: string | null = '';
   email: string = '';
   mobileNo: string = '';
   name: string = '';
@@ -97,7 +88,6 @@ export class DelegateRegistrationOnlineComponent {
   country_id: any;
   country_code: any;
   dob: any;
-  isDisabled = true;
   pType: any;
   firstName: any;
   lastName: any;
@@ -129,8 +119,13 @@ export class DelegateRegistrationOnlineComponent {
   }
 
 async ngOnInit() {
-  this.isDisabled = true;
+
   this.ngxService.start();
+  setTimeout(() => {
+
+    this.ngxService.stop();
+  }, 1500);
+
     this.checkWindowSize();
     // this.dobValidator();
 
@@ -165,7 +160,6 @@ async ngOnInit() {
        this.setCountry();
        this.ngxService.stop();
     }
-    this.ngxService.stop();
   }
 
   setCountry() {
@@ -179,9 +173,9 @@ async ngOnInit() {
          }
         this.registrationForm.patchValue(patchFormData);
 
-
         this.cdr.detectChanges(); // 👈 Force UI update
         if (this.country_id) {
+        this.ngxService.start();
         this.delegateService.getAllStates(this.country_id).subscribe(
           (res: any) => {
             this.ngxService.stop();
@@ -189,17 +183,14 @@ async ngOnInit() {
           },
           (err: any) => {
             console.log('Err', err);
+            this.ngxService.stop();
           }
         );
       }
-      // this.registrationForm.patchValue({ country: selectedCountry });
 
     } else {
       console.warn("Country not found for ID:", this.country_id);
     }
-
-    console.log("Selected Country:", this.registrationForm.value.country);
-    console.log("Selected CountryID:", this.registrationForm.value.country_id);
   }
 
 
@@ -783,7 +774,6 @@ async ngOnInit() {
         p_reference_by: '0'
       };
 
-
       this.ngxService.start();
       this.SharedService.registrationOnline(this.reqBody).subscribe(
         async (result: any) => {
@@ -793,7 +783,7 @@ async ngOnInit() {
             this.registrationForm.reset();
             setTimeout(() => {
                 this.router.navigateByUrl('/delegate-message');
-            }, 2000);
+            }, 1000);
 
           } else {
             this.ngxService.stop();

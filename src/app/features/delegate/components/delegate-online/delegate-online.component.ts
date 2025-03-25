@@ -10,6 +10,7 @@ import { HostListener } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { environment } from '../../../../../environments/environment';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 interface RegistrationData {
   // name: string;
@@ -82,6 +83,7 @@ export class DelegateOnlineComponent implements OnInit {
   btnDisabled: boolean = false;
   private autoSaveSubscription?: Subscription;
   private isFormSubmitted = false; // Flag to track submission
+  isMobileView = false;
 
   constructor(
     private fb: FormBuilder,
@@ -90,7 +92,8 @@ export class DelegateOnlineComponent implements OnInit {
     private datePipe: DatePipe,
     private sharedService: SharedService,
     private route: ActivatedRoute,
-    private encryptionService : EncryptionService
+    private encryptionService : EncryptionService,
+    private ngxService : NgxUiLoaderService
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -168,7 +171,7 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   async ngOnInit() {
-
+    this.checkWindowSize();
     this.initializeForms();
     await this.getAllCountries();
     this.autoSaveSubscription = timer(0, 60000).subscribe(() => {
@@ -404,8 +407,10 @@ export class DelegateOnlineComponent implements OnInit {
 
       }
 
+      this.ngxService.start();
       this.delegateService.postDelegateOnline(this.payload).subscribe({
         next: (response: any) => {
+          this.ngxService.stop();
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave
           this.btnDisabled = true;
@@ -505,9 +510,11 @@ export class DelegateOnlineComponent implements OnInit {
       };
 
 
+      this.ngxService.start();
       await this.delegateService.postDelegateOnlineMP(obj).subscribe({
         next: (response: any) => {
 
+          this.ngxService.stop();
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
@@ -546,6 +553,22 @@ export class DelegateOnlineComponent implements OnInit {
     const selectedValue = e.target.value;
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.userForm.patchValue({ country_id: countryObj.id });
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 900) {
+      this.sharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.sharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
   }
 
 }

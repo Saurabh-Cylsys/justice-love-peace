@@ -18,15 +18,22 @@ export class PeacekeeperPreselectComponent {
   childNominationDiscount: any;
   offlineDiscount: any;
   isStrip: string = "";
+  delegateOfflineDescription : string = "";
+  peaceStudentDescription : string = "";
+  delegateOnlineDescription : string = "";
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private delegateService: DelegateService,
               private ngxLoader : NgxUiLoaderService,
               private sharedService : SharedService,
               private encryptionService : EncryptionService) { }
 
   ngOnInit() {
+
+    this.ngxLoader.start();
+    setTimeout(() => {
+      this.ngxLoader.stop();
+    }, 2000);
 
     this.route.queryParams.subscribe(async (params: any) => {
 
@@ -55,7 +62,6 @@ export class PeacekeeperPreselectComponent {
           });
         }
       }
-
       else {
         await this.fnValidateCoupon(0);
       }
@@ -68,31 +74,39 @@ export class PeacekeeperPreselectComponent {
     await this.sharedService.getDiscountAmountByCouponCode(referalCode).subscribe({
       next: (response: any) => {
 
-        this.ngxLoader.stop();
         if(response && response.success) {
 
           this.isStrip = response.isStripe;
 
           if(this.isStrip == "false") {
 
+            this.ngxLoader.stop();
             response.data.forEach((item:any) => {
               if (item.p_type === "DELEGATE_ONLINE") {
                 this.onlineDiscount = item.dollar_aed;
+                this.delegateOnlineDescription = item.amount_description;
               } else if (item.p_type === "DELEGATE_CHILD_NOMINATION") {
                 this.childNominationDiscount = item.dollar_aed;
+                this.peaceStudentDescription = item.amount_description;
               } else if (item.p_type === "DELEGATE_OFFLINE") {
                 this.offlineDiscount = item.dollar_aed;
+                this.delegateOfflineDescription = item.amount_description;
               }
             });
           }
           else if(this.isStrip == "true") {
+            this.ngxLoader.stop();
+
             response.data.forEach((item:any) => {
               if (item.p_type === "DELEGATE_ONLINE") {
                 this.onlineDiscount = item.discount_amount;
+                this.delegateOnlineDescription = item.amount_description;
               } else if (item.p_type === "DELEGATE_CHILD_NOMINATION") {
                 this.childNominationDiscount = item.discount_amount;
+                this.peaceStudentDescription = item.amount_description;
               } else if (item.p_type === "DELEGATE_OFFLINE") {
                 this.offlineDiscount = item.discount_amount;
+                this.delegateOfflineDescription = item.amount_description;
               }
             });
           }

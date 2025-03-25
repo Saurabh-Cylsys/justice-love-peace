@@ -3048,3 +3048,13 @@ button:focus {
 .drop-zone input{
   font-size: 12px;
 }
+
+.form-control::placeholder, .form-control::-ms-input-placeholder {
+  /* color: #C8C8D0; */
+  color: red !important;
+  opacity: 1; /* Firefox */
+}
+
+.dropdown-menu{
+  z-index: 99 !important;
+}
