@@ -7,12 +7,13 @@ pipeline {
     DEPLOY_SERVER = "103.38.50.157"
     DEPLOY_USER = "CylSrv9Mgr"
     DEPLOY_PASS = "Dwu\$CakLy@515W"
-    DEPLOY_PATH = "D:\website\Global_Justice\Global_Justice_WEB\globaljusticeuat.cylsys.com"
+    DEPLOY_PATH = "D:/website/Global_Justice/Global_Justice_WEB/globaljusticeuat.cylsys.com"
 }
 
     stages {
         stage('Checkout Code') {
             steps {
+                echo "🔍 Checking out UAT branch from GitHub"
                 git branch: 'UAT', credentialsId: 'Github_Cylsys_Credentials', url: 'https://github.com/Saurabh-Cylsys/justice-love-peace.git'
             }
         }
