@@ -23,8 +23,6 @@ export class DelegateEmailPaymentComponent {
     private delegateService: DelegateService,
     private route: ActivatedRoute,
     private encryptionService: EncryptionService,
-    private sharedService : SharedService,
-    private router : Router,
     private ngxLoader : NgxUiLoaderService
   ) {}
 
