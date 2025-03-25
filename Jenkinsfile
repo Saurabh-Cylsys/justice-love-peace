@@ -1,59 +1,50 @@
 pipeline {
     agent any
-
     environment {
-    NODE_VERSION = '20'
-    BUILD_PATH = "${WORKSPACE}/dist/justice-love-peace/browser"
-    DEPLOY_SERVER = "103.38.50.157"
-    DEPLOY_USER = "CylSrv9Mgr"
-    DEPLOY_PASS = "Dwu\$CakLy@515W"
-    DEPLOY_PATH = "D:/website/Global_Justice/Global_Justice_WEB/globaljusticeuat.cylsys.com"
-}
+        NODE_VERSION = '20'
+        BUILD_PATH = "${WORKSPACE}/dist/justice-love-peace/browser"
+        DEPLOY_SERVER = "103.38.50.157"
+        DEPLOY_USER = "CylSrv9Mgr"
+        DEPLOY_PASS = "Dwu\$CakLy@515W"
+        DEPLOY_PATH = "D:\\website\\Global_Justice\\Global_Justice_WEB\\globaljusticeuat.cylsys.com"
+    }
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout UAT Branch') {
             steps {
-                echo "🔍 Checking out UAT branch from GitHub"
+                echo "\uD83D\uDD0D Checking out UAT branch from GitHub"
                 git branch: 'UAT', credentialsId: 'Github_Cylsys_Credentials', url: 'https://github.com/Saurabh-Cylsys/justice-love-peace.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install --legacy-peer-deps' // Install dependencies with legacy flag
+                echo "\uD83D\uDCB6 Installing Node.js Dependencies"
+                sh 'npm install --legacy-peer-deps'
             }
         }
 
         stage('Build Angular App') {
             steps {
-                sh 'ng build --configuration=production' // Production build for Angular
+                echo "\uD83C\uDFE0 Building Angular Application"
+                sh 'ng build --configuration=production'
             }
         }
 
         stage('Verify Build Output') {
             steps {
+                echo "\u2705 Verifying Build Directory"
                 script {
-                    def buildExists = sh(script: "test -d ${BUILD_PATH} && echo 'exists'", returnStdout: true).trim()
-                    if (buildExists != "exists") {
-                        error "\u274c Build directory does not exist! Aborting deployment."
+                    if (!fileExists(BUILD_PATH)) {
+                        error "\u274C Build directory not found: ${BUILD_PATH}"
                     }
                 }
             }
         }
 
-        stage('Install SSHPass (if missing)') {
+        stage('Deploy to Server') {
             steps {
-                script {
-                    def sshpassExists = sh(script: "command -v sshpass", returnStatus: true) == 0
-                    if (!sshpassExists) {
-                        sh 'sudo apt update && sudo apt install -y sshpass'
-                    }
-                }
-            }
-        }
-
-        stage('Deploy to Windows Server') {
-            steps {
+                echo "\uD83D\uDE80 Deploying to UAT Server"
                 script {
                     sh '''
                         export SSHPASS="$DEPLOY_PASS"
@@ -66,10 +57,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Deployment Successful!'
+            echo '\u2705 Deployment to UAT Successful!'
         }
         failure {
-            echo '❌ Deployment Failed!'
+            echo '\u274C Deployment to UAT Failed!'
         }
     }
 }
