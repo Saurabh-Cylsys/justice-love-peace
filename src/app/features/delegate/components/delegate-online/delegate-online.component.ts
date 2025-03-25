@@ -239,44 +239,32 @@ export class DelegateOnlineComponent implements OnInit {
     return this.userForm.get(name);
   }
 
-  // handleTabKey(event: KeyboardEvent, nextFieldId: string) {
-  //   if (event.key === 'Tab') {
-  //     event.preventDefault(); // Prevent default tab behavior
-
-  //     const nextField = document.getElementById(nextFieldId) as HTMLElement;
-  //     if (nextField) {
-  //       nextField.focus(); // Move focus to DOB field
-
-  //       // Open the datepicker when moving to DOB field
-  //       if (nextFieldId === 'dob') {
-  //         this.openDatepicker();
-  //       }
-  //     }
-  //   }
-  // }
 
   handleTabKey(event: KeyboardEvent, nextFieldId: string) {
     if (event.key === 'Tab') {
       event.preventDefault(); // Prevent default tab behavior
 
       const nextField = document.getElementById(nextFieldId) as HTMLElement;
-      const dobValue = this.userForm.get('dob')?.value; // Assuming you use Reactive Forms
 
-      if (nextFieldId === 'dob' && dobValue) {
-        // If DOB is already filled, move to the next field instead
-        const afterDobField = document.getElementById('nextField') as HTMLElement;
-        if (afterDobField) {
-          afterDobField.focus();
-        }
-      } else if (nextField) {
+      if (nextField) {
         nextField.focus();
 
-        // Open datepicker when moving to the DOB field if it's empty
-        if (nextFieldId === 'dob' && !dobValue) {
+        // If moving to DOB, open the datepicker
+        if (nextFieldId === 'dob') {
           this.openDatepicker();
         }
       }
     }
+  }
+
+
+  moveToReferenceNo() {
+    setTimeout(() => {
+      const referenceNoField = document.getElementById('reference_no') as HTMLElement;
+      if (referenceNoField) {
+        referenceNoField.focus();
+      }
+    }, 100); // Small delay to ensure date selection completes before moving focus
   }
 
 
@@ -433,7 +421,7 @@ export class DelegateOnlineComponent implements OnInit {
           first_name: this.trimValue(this.userForm.get('first_name')?.value),
           last_name: this.trimValue(this.userForm.get('last_name')?.value),
           mobile_number: formattedMobileNumber,
-          email_id: this.trimValue(this.userForm.get('email')?.value.toLowerCase()),
+          email_id: this.trimValue(this.userForm.get('email')?.value?.toLowerCase()),
           country_code: this.userForm.get('mobile_number')?.value.dialCode,
           reference_no: this.referralCode ? this.referralCode : this.userForm.value.reference_no,
           dob: this.formattedDateOfBirth,
@@ -463,7 +451,6 @@ export class DelegateOnlineComponent implements OnInit {
              {
               await this.fnMagnatiPG(response, this.payload);
              }
-
           }, 4000);
 
           this.loading = false;
@@ -471,6 +458,7 @@ export class DelegateOnlineComponent implements OnInit {
         error: (error: any) => {
           console.error('Error creating delegate:', error);
           this.sharedService.ToastPopup(error.error?.message || 'Registration failed','', 'error');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           this.loading = false;
           this.ngxService.stop();
           this.isFormSubmitted = true; // Mark form as submitted

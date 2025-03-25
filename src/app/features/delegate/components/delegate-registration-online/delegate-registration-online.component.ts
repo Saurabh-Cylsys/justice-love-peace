@@ -163,6 +163,13 @@ async ngOnInit() {
   }
 
   setCountry() {
+
+    if (!this.countryData || this.countryData.length === 0) {
+      console.log("Country data not loaded yet. Retrying...");
+      setTimeout(() => this.setCountry(), 500); // Retry after 500ms
+      return;
+    }
+
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
       if (selectedCountry) {
@@ -174,6 +181,7 @@ async ngOnInit() {
         this.registrationForm.patchValue(patchFormData);
 
         this.cdr.detectChanges(); // 👈 Force UI update
+
         if (this.country_id) {
         this.ngxService.start();
         this.delegateService.getAllStates(this.country_id).subscribe(
@@ -189,10 +197,9 @@ async ngOnInit() {
       }
 
     } else {
-      console.warn("Country not found for ID:", this.country_id);
+      console.log("Country not found for ID:", this.country_id);
     }
   }
-
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -201,7 +208,6 @@ async ngOnInit() {
   onCountryChange(event: any): void {
     this.selectedCountryISO = event.iso2; // Update the selected country ISO
   }
-
 
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
@@ -707,6 +713,7 @@ async ngOnInit() {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (this.state_name == '' || this.state_name == undefined) {
       setTimeout(() => {
@@ -716,6 +723,7 @@ async ngOnInit() {
         }
       }, 100);
       this.SharedService.ToastPopup('Please Select State', '', 'error');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (this.city_name == '' || this.city_name == undefined) {
       setTimeout(() => {
@@ -725,6 +733,7 @@ async ngOnInit() {
         }
       }, 100);
       this.SharedService.ToastPopup('Please Select City', '', 'error');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (
       !this.registrationForm.value.attendee_purpose ||
@@ -735,6 +744,7 @@ async ngOnInit() {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (
       !this.registrationForm.get('conference_lever_interest')?.value ||
@@ -745,6 +755,7 @@ async ngOnInit() {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
@@ -797,6 +808,7 @@ async ngOnInit() {
           });
 
           this.SharedService.ToastPopup('', err.error.message, 'error');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       );
     }

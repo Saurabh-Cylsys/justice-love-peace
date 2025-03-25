@@ -226,7 +226,8 @@
                       [maxDate]="maxStudentDate"
                       (keydown)="disableManualInput($event)"
                       (ngModelChange)="onStudentDobChange($event)"
-                      (keydown)="handleTabKey($event, 'studentMobileNo')"
+                      (keydown)="handleTabKey($event, 'studentEmail')"
+                      (bsValueChange)="moveToStudentEmail($event)"
                       bsDatepicker
                       [bsConfig]="{
                         isAnimated: true,
@@ -249,6 +250,35 @@
                       >
                     </div>
                     <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="studentEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                      autocomplete="off"
+                      maxlength="125"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('email')?.invalid &&
+                        getStudentControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
                   </div>
                 </div>
 
@@ -329,35 +359,6 @@
                           </small>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="studentEmail" class="form-label"
-                      >Email<span class="form-label-span" style="color: #ff0000"
-                        >*</span
-                      ></label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="studentEmail"
-                      formControlName="email"
-                      placeholder="Enter email"
-                      autocomplete="off"
-                      maxlength="125"
-                    />
-
-                    <div
-                      *ngIf="
-                        getStudentControl('email')?.invalid &&
-                        getStudentControl('email')?.touched
-                      "
-                      class="text-danger small"
-                    >
-                      Please enter a valid email
                     </div>
                   </div>
                 </div>
@@ -571,6 +572,7 @@
                       autocomplete="off"
                       (keypress)="validateAlpha($event)"
                       (paste)="onPaste($event)"
+                      (keydown)="handleDelegateTabKey($event, 'delegateDob')"
                     />
                     <div
                       *ngIf="
@@ -597,7 +599,7 @@
 
                 <div class="col-md-4">
                   <div class="mb-3">
-                    <label class="form-label" for="dob"
+                    <label class="form-label" for="delegateDob"
                       >DOB<span class="form-label-span" style="color: #ff0000"
                         >*</span
                       ></label
@@ -613,7 +615,7 @@
                       [maxDate]="maxDelegateDate"
                       (keydown)="disableManualInput($event)"
                       (ngModelChange)="onDelegateDobChange($event)"
-                      (keydown.tab)="openDelageteDatepicker()"
+                      (keydown)="moveToDelegateEmail($event)"
                       bsDatepicker
                       [bsConfig]="{
                         isAnimated: true,
@@ -636,6 +638,34 @@
                       >
                     </div>
                     <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="delegateEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      autocomplete="off"
+                      class="form-control"
+                      id="delegateEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                    />
+
+                    <div
+                      *ngIf="
+                        getDelegateControl('email')?.invalid &&
+                        getDelegateControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
                   </div>
                 </div>
 
@@ -716,34 +746,6 @@
                           </small>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="delegateEmail" class="form-label"
-                      >Email<span class="form-label-span" style="color: #ff0000"
-                        >*</span
-                      ></label
-                    >
-                    <input
-                      type="email"
-                      autocomplete="off"
-                      class="form-control"
-                      id="delegateEmail"
-                      formControlName="email"
-                      placeholder="Enter email"
-                    />
-
-                    <div
-                      *ngIf="
-                        getDelegateControl('email')?.invalid &&
-                        getDelegateControl('email')?.touched
-                      "
-                      class="text-danger small"
-                    >
-                      Please enter a valid email
                     </div>
                   </div>
                 </div>
@@ -980,6 +982,7 @@
                       (keydown)="disableManualInput($event)"
                       (ngModelChange)="onDelegateDobChange($event)"
                       (keydown.tab)="openDelageteDatepicker()"
+                      (keydown)="moveToDelegateEmail($event)"
                       bsDatepicker
                       [bsConfig]="{
                         isAnimated: true,
@@ -1002,6 +1005,34 @@
                       >
                     </div>
                     <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="delegateEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      autocomplete="off"
+                      class="form-control"
+                      id="delegateEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                    />
+
+                    <div
+                      *ngIf="
+                        getDelegateControl('email')?.invalid &&
+                        getDelegateControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
                   </div>
                 </div>
 
@@ -1082,34 +1113,6 @@
                           </small>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="delegateEmail" class="form-label"
-                      >Email<span class="form-label-span" style="color: #ff0000"
-                        >*</span
-                      ></label
-                    >
-                    <input
-                      type="email"
-                      autocomplete="off"
-                      class="form-control"
-                      id="delegateEmail"
-                      formControlName="email"
-                      placeholder="Enter email"
-                    />
-
-                    <div
-                      *ngIf="
-                        getDelegateControl('email')?.invalid &&
-                        getDelegateControl('email')?.touched
-                      "
-                      class="text-danger small"
-                    >
-                      Please enter a valid email
                     </div>
                   </div>
                 </div>
@@ -1330,7 +1333,8 @@
                       [maxDate]="maxStudentDate"
                       (keydown)="disableManualInput($event)"
                       (ngModelChange)="onStudentDobChange($event)"
-                      (keydown.tab)="openDatepicker()"
+                      (keydown)="handleTabKey($event, 'studentEmail')"
+                      (bsValueChange)="moveToStudentEmail($event)"
                       bsDatepicker
                       [bsConfig]="{
                         isAnimated: true,
@@ -1353,6 +1357,35 @@
                       >
                     </div>
                     <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="studentEmail" class="form-label"
+                      >Email<span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="studentEmail"
+                      formControlName="email"
+                      placeholder="Enter email"
+                      autocomplete="off"
+                      maxlength="125"
+                    />
+
+                    <div
+                      *ngIf="
+                        getStudentControl('email')?.invalid &&
+                        getStudentControl('email')?.touched
+                      "
+                      class="text-danger small"
+                    >
+                      Please enter a valid email
+                    </div>
                   </div>
                 </div>
 
@@ -1433,35 +1466,6 @@
                           </small>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="studentEmail" class="form-label"
-                      >Email<span class="form-label-span" style="color: #ff0000"
-                        >*</span
-                      ></label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="studentEmail"
-                      formControlName="email"
-                      placeholder="Enter email"
-                      autocomplete="off"
-                      maxlength="125"
-                    />
-
-                    <div
-                      *ngIf="
-                        getStudentControl('email')?.invalid &&
-                        getStudentControl('email')?.touched
-                      "
-                      class="text-danger small"
-                    >
-                      Please enter a valid email
                     </div>
                   </div>
                 </div>

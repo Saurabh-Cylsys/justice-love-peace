@@ -146,56 +146,6 @@ export class DelegateWithChildNominationComponent {
 
   }
 
-  setCountry() {
-    const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
-
-      if (selectedCountry) {
-
-        const patchFormData = {
-          country_id: +this.country_id,
-          country: selectedCountry.name
-         }
-        this.registrationForm.patchValue(patchFormData);
-
-
-        this.cdr.detectChanges(); // 👈 Force UI update
-        if (this.country_id) {
-          this.ngxService.start();
-        this.delegateService.getAllStates(this.country_id).subscribe(
-          (res: any) => {
-            this.ngxService.stop();
-            this.statesData = res.data;
-          },
-          (err: any) => {
-            console.log('Err', err);
-          }
-        );
-      }
-
-    } else {
-      console.warn("Country not found for ID:", this.country_id);
-    }
-  }
-
-  getcontrol(name: any): AbstractControl | null {
-    return this.registrationForm.get(name);
-  }
-
-  get instagramProfileControl() {
-    return this.registrationForm.get('instagram_profile');
-  }
-
-  isInvalidInstagramProfile() {
-    return (
-      this.instagramProfileControl.hasError('pattern') &&
-      this.instagramProfileControl.touched
-    );
-  }
-
-  get f() {
-    return this.registrationForm.controls;
-  }
-
  async ngOnInit() {
 
   this.ngxService.start();
@@ -280,6 +230,63 @@ export class DelegateWithChildNominationComponent {
 
       this.setCountry();
    }
+  }
+
+  setCountry() {
+
+    if (!this.countryData || this.countryData.length === 0) {
+      console.log("Country data not loaded yet. Retrying...");
+      setTimeout(() => this.setCountry(), 500); // Retry after 500ms
+      return;
+    }
+
+    const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
+
+      if (selectedCountry) {
+
+        const patchFormData = {
+          country_id: +this.country_id,
+          country: selectedCountry.name
+         }
+        this.registrationForm.patchValue(patchFormData);
+
+
+        this.cdr.detectChanges(); // 👈 Force UI update
+        if (this.country_id) {
+          this.ngxService.start();
+        this.delegateService.getAllStates(this.country_id).subscribe(
+          (res: any) => {
+            this.ngxService.stop();
+            this.statesData = res.data;
+          },
+          (err: any) => {
+            console.log('Err', err);
+          }
+        );
+      }
+
+    } else {
+      console.warn("Country not found for ID:", this.country_id);
+    }
+  }
+
+  getcontrol(name: any): AbstractControl | null {
+    return this.registrationForm.get(name);
+  }
+
+  get instagramProfileControl() {
+    return this.registrationForm.get('instagram_profile');
+  }
+
+  isInvalidInstagramProfile() {
+    return (
+      this.instagramProfileControl.hasError('pattern') &&
+      this.instagramProfileControl.touched
+    );
+  }
+
+  get f() {
+    return this.registrationForm.controls;
   }
 
   formatDate(dateString: string): string {
@@ -765,7 +772,6 @@ export class DelegateWithChildNominationComponent {
   }
 
   submitData(): void {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // Ensure both ages are defined before proceeding
 
    if (
@@ -778,6 +784,7 @@ export class DelegateWithChildNominationComponent {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }  else if (this.state_name == '' || this.state_name == undefined) {
       setTimeout(() => {
@@ -787,6 +794,7 @@ export class DelegateWithChildNominationComponent {
         }
       }, 100);
       this.SharedService.ToastPopup('Please Select State', '', 'error');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (this.city_name == '' || this.city_name == undefined) {
       setTimeout(() => {
@@ -796,6 +804,7 @@ export class DelegateWithChildNominationComponent {
         }
       }, 100);
       this.SharedService.ToastPopup('Please Select City', '', 'error');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (
       !this.registrationForm.value.attendee_purpose ||
@@ -806,6 +815,7 @@ export class DelegateWithChildNominationComponent {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (
       !this.registrationForm.get('conference_lever_interest')?.value ||
@@ -816,6 +826,7 @@ export class DelegateWithChildNominationComponent {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (this.nomineeName.length < 2 || this.nomineeName == undefined) {
       this.renderer.selectRootElement('#nominee_name').focus();
@@ -824,6 +835,7 @@ export class DelegateWithChildNominationComponent {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 

@@ -55,6 +55,8 @@ export class DelegatePeaceStudentComponent {
   delegateEmail: string = "";
   btnDisabled: boolean = false;
   isMobileView = false;
+  previousDobValue: any = null; // Store previous value
+  previousDelegateDobValue: any = null; // Store previous value
 
   constructor(private fb: FormBuilder,
     private delegateService: DelegateService,
@@ -95,8 +97,12 @@ export class DelegatePeaceStudentComponent {
     this.initializeStudentForm();
     this.initializeDelegateForm();
 
-
     this.getAllCountries();
+
+    setTimeout(() => {
+      this.previousDobValue = this.studentForm.get('studentDob')?.value || null;
+      this.previousDelegateDobValue = this.delegateForm.get('delegateDob')?.value || null;
+    });
   }
 
   initializeStudentForm() {
@@ -197,30 +203,69 @@ export class DelegatePeaceStudentComponent {
   }
 
   handleTabKey(event: KeyboardEvent, nextFieldId: string) {
+
     if (event.key === 'Tab') {
       event.preventDefault(); // Prevent default tab behavior
 
-      debugger;
       const nextField = document.getElementById(nextFieldId) as HTMLElement;
-      const dobValue = this.studentForm.get('studentDob')?.value; // Assuming you use Reactive Forms
 
-      if (nextFieldId === 'studentDob' && dobValue) {
-        // If DOB is already filled, move to the next field instead
-        const afterDobField = document.getElementById('studentMobileNo') as HTMLElement;
-        if (afterDobField) {
-          afterDobField.focus();
-        }
-      } else if (nextField) {
+      if (nextField) {
         nextField.focus();
 
-        // Open datepicker when moving to the DOB field if it's empty
-        if (nextFieldId === 'studentDob' && !dobValue) {
+        // If moving to DOB, open the datepicker
+        if (nextFieldId === 'studentDob') {
           this.openDatepicker();
         }
       }
     }
   }
 
+  handleDelegateTabKey(event: KeyboardEvent, nextFieldId: string){
+    if (event.key === 'Tab') {
+      event.preventDefault(); // Prevent default tab behavior
+
+      const nextField = document.getElementById(nextFieldId) as HTMLElement;
+
+      if (nextField) {
+        nextField.focus();
+
+        // If moving to DOB, open the datepicker
+        if (nextFieldId === 'delegateDob') {
+          this.openDelageteDatepicker();
+        }
+      }
+    }
+  }
+
+  moveToStudentEmail(event: any) {
+    if (!event || event === this.previousDobValue) {
+      return; // Do nothing if the value is unchanged
+    }
+
+    this.previousDobValue = event; // Update the stored value
+
+    setTimeout(() => {
+      const referenceNoField = document.getElementById('studentEmail') as HTMLElement;
+      if (referenceNoField) {
+        referenceNoField.focus();
+      }
+    }, 300);
+  }
+
+  moveToDelegateEmail(event: any) {
+    if (!event || event === this.previousDelegateDobValue) {
+      return; // Do nothing if the value is unchanged
+    }
+
+    this.previousDelegateDobValue = event; // Update the stored value
+
+    setTimeout(() => {
+      const referenceNoField = document.getElementById('delegateEmail') as HTMLElement;
+      if (referenceNoField) {
+        referenceNoField.focus();
+      }
+    }, 300);
+  }
 
   onPaste(event: ClipboardEvent) {
     event.preventDefault(); // Block pasting
@@ -563,6 +608,7 @@ private async fnStripePG(response: any, payload: any) {
         this.ngxService.stop();
         console.error('Error creating delegate:', err);
         this.sharedService.ToastPopup(err.error?.message || 'Registration failed','', 'error');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       },
     })
   }
