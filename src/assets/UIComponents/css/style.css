@@ -365,7 +365,7 @@ header .nav-item .nav-link.active {
 
 .speakers h6,
 .speakers p {
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 400;
   line-height: 25.76px;
   text-align: center;
@@ -2592,7 +2592,7 @@ button:focus {
 }
 .speaker-details .card .card-body h5 {
   font-weight: 700;
-  font-size: clamp(14px, 1.5vw, 18.1px);
+  font-size: clamp(14px, 1.5vw, 16px);
   line-height: 32.33px;
   letter-spacing: 0%;
   text-align: center;
@@ -2614,6 +2614,7 @@ button:focus {
   letter-spacing: 0%;
   text-align: center;
   color: #8a8a8a;
+  margin: 0;
 }
 
 .speaker-details .card .card-footer button {

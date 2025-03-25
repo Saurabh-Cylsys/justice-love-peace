@@ -269,7 +269,7 @@
             [routerLink]="['/home']"
             *ngIf="!isHomePage"
           >
-            <video autoplay loop muted style="width: 34%;">
+            <video autoplay loop muted style="width: 34%; border-radius: 50%;">
               <source
                 src="assets/UIComponents/images/logo.webm"
                 type="video/webm"
@@ -284,7 +284,7 @@
           id="logo"
           *ngIf="isHomePage"
           /> -->
-          <video *ngIf="isHomePage" autoplay loop muted id="logo">
+          <video *ngIf="isHomePage" autoplay loop muted id="logo" style="border-radius: 50%;">
             <source
               src="assets/UIComponents/images/logo.webm"
               type="video/webm"
