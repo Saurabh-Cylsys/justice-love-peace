@@ -205,12 +205,12 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-12">
-                <h2 class="" *ngIf="!isMobileView">
+                <h2 class="d-md-block d-none" *ngIf="!isMobileView">
                   SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
                   JUSTICE, LOVE & <br />
                   PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL 2025
                 </h2>
-                <h2 class="" *ngIf="isMobileView">
+                <h2 class="d-md-none d-block" *ngIf="isMobileView">
                   SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
                   JUSTICE, LOVE & PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL
                   2025
@@ -275,7 +275,7 @@
                   </table>
                 </div>
               </div>
-              <div class="col-md-12" *ngIf="!isMobileView">
+              <div class="col-md-12 d-md-block d-none" *ngIf="!isMobileView">
                 <h2 class="">Profiles of Confirmed Speakers</h2>
 
                 <div class="row d-lg-flex d-md-none">
@@ -341,7 +341,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12" *ngIf="isMobileView">
+              <div class="col-12 d-md-none d-block" *ngIf="isMobileView">
                 <h2 class="">Profiles of Confirmed Speakers</h2>
 
                 <ul class="my-lg-3">
@@ -492,7 +492,7 @@
             style="position: relative; z-index: 1"
           >
           <div class="row h-100">
-            <div class="col-12" *ngIf="!isMobileView">
+            <div class="col-12 d-md-block d-none" *ngIf="!isMobileView">
               <div
                 class="d-lg-flex align-items-center justify-content-between"
               >
@@ -529,7 +529,7 @@
                 <div class="progress-bar" style="width: 25%"></div>
               </div>
             </div>
-            <div class="col-12" *ngIf="isMobileView">
+            <div class="col-12 d-md-none d-block" *ngIf="isMobileView">
               <div
                 class="d-lg-flex d-md-flex align-items-center justify-content-between"
               >
@@ -816,7 +816,7 @@
             
             src="assets/UIComponents/images/watermark.png"
             alt="attach images"
-            class="position-absolute"
+            class="position-absolute d-md-block d-none"
             style="left: 0; bottom: 0; width: 20rem"
             *ngIf="!isMobileView"
           />
@@ -824,7 +824,7 @@
             
             src="assets/UIComponents/images/watermark.png"
             alt="attach images"
-            class="position-absolute"
+            class="position-absolute d-md-none d-block"
             style="right: 0; bottom: 0; width: 10rem"
             *ngIf="isMobileView"
           />
