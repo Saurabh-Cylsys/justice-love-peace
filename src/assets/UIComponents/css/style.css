@@ -1545,7 +1545,12 @@ header .nav-item .nav-link.active {
   overflow: scroll;
   height: 50vh;
   inset: auto !important;
-  padding-left: 10px !important;
+}
+.mob .iti .dropdown-menu.show {
+  overflow: scroll;
+  height: 50vh;
+  inset: auto !important;
+  padding-left: 0px !important;
 }
 .iti__country-list {
   list-style: none;
