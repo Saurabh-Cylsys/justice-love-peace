@@ -1,12 +1,12 @@
 <!-- <div class="section5"> -->
-  <div class="col-xl-8 m-auto index" style="min-height: 90vh;">
-    <!-- <button class="btn btn-outline-primary position-absolute" style="top: 20px; left: 20px; z-index: 1000;"
+<div class="col-xl-8 m-auto index" style="min-height: 90vh">
+  <!-- <button class="btn btn-outline-primary position-absolute" style="top: 20px; left: 20px; z-index: 1000;"
           (click)="goBack()">
       <i class="fas fa-arrow-left me-2"></i>Back
       </button> -->
-    <div class="row align-items-center h-100 m-0">
-      <div class="col-md-12">
-        <!-- <div id="carouselExample" class="carousel slide mt-2 preCarousal" data-bs-ride="carousel">
+  <div class="row align-items-center h-100 m-0">
+    <div class="col-md-12">
+      <!-- <div id="carouselExample" class="carousel slide mt-2 preCarousal" data-bs-ride="carousel">
       <div class="carousel-inner">
       <div class="carousel-item active">
       <video class="d-block w-100" autoplay loop muted playsinline>
@@ -25,151 +25,217 @@
       </button>
       </div>
       </div> -->
-        <div id="mediaCarousel" class="carousel slide mt-2 preCarousal" data-bs-interval="18000" data-bs-ride="carousel"
-          style="width:100%; height: 240px; margin: 0 auto;">
-          <div class="carousel-inner" style="height: 100%;">
-            <!-- Video Slide with Overlay -->
-            <div class="carousel-item video-background" style="height: 100%; position: relative;">
-              <video autoplay loop muted playsinline class="w-100 h-100" controls style="object-fit: fill;">
-                <source src="assets/UIComponents/video/slider.webm" type="video/webm">
-                <source src="assets/UIComponents/video/slider.webm" type="video/webm">Your browser does not support the
-                video tag. I suggest you upgrade your browser.
-
-              </video>
-            </div>
-            <!-- Image Slide -->
-            <div class="carousel-item active" style="height: 100%;">
-              <img src="assets/UIComponents/images/pre-select/banner.webp" class="d-block w-100 h-100" alt="..."
-                style="object-fit: fill;">
-            </div>
-
-
+      <div
+        id="mediaCarousel"
+        class="carousel slide mt-2 preCarousal"
+        data-bs-ride="carousel"
+        style="width: 100%; height: 240px; margin: 0 auto"
+      >
+        <div class="carousel-inner" style="height: 100%">
+          <!-- Video Slide with Overlay -->
+          <div class="carousel-item active" style="height: 100%" data-bs-interval="5000">
+            <img
+              src="assets/UIComponents/images/pre-select/banner.webp"
+              class="d-block w-100 h-100"
+              alt="..."
+              style="object-fit: fill"
+            />
           </div>
-          <!-- Carousel Controls -->
-          <button class="carousel-control-prev" type="button" data-bs-target="#mediaCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#mediaCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <div
+            class="carousel-item video-background" data-bs-interval="37000"
+            style="height: 100%; position: relative"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              class="w-100 h-100"
+              controls
+              style="object-fit: fill"
+            >
+              <source
+                src="assets/UIComponents/video/slider.webm"
+                type="video/webm"
+              />
+              Your browser does not support the video tag. I suggest you upgrade
+              your browser.
+            </video>
+          </div>
+          <!-- Image Slide -->
+          
         </div>
+        <!-- Carousel Controls -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#mediaCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#mediaCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
-
-        <div class="ui-card-container mb-2 mt-1">
-          <div class="ui-card ui-card1" (click)="goToDelegatePage()">
-            <div class="price-ribbon">
-              <span *ngIf="this.isStrip == 'true'">$ {{this.offlineDiscount}}</span>
-              <span *ngIf="this.isStrip == 'false'"> {{this.offlineDiscount}}</span>
-            </div>
-            <div class="ui-card-image"></div>
-            <div class="ui-card-text">
-              <a class="btn btn-success" (click)="goToDelegatePage()">As a Delegate</a>
-              <h4 class="text-dark fw-bold mt-2">
-                <span *ngIf="this.isStrip == 'true'">$ {{offlineDiscount}}</span>
-                <span *ngIf="this.isStrip == 'false'"> {{offlineDiscount}}</span>
-              </h4>
-              <p>{{delegateOfflineDescription}}</p>
-            </div>
-            <!-- <div class="ui-card-buttons">
+      <div class="ui-card-container mb-2 mt-1">
+        <div class="ui-card ui-card1" (click)="goToDelegatePage()">
+          <div class="price-ribbon">
+            <span *ngIf="this.isStrip == 'true'"
+              >$ {{ this.offlineDiscount }}</span
+            >
+            <span *ngIf="this.isStrip == 'false'">
+              {{ this.offlineDiscount }}</span
+            >
+          </div>
+          <div class="ui-card-image"></div>
+          <div class="ui-card-text">
+            <a class="btn btn-success" (click)="goToDelegatePage()"
+              >As a Delegate</a
+            >
+            <h4 class="text-dark fw-bold mt-2">
+              <span *ngIf="this.isStrip == 'true'"
+                >$ {{ offlineDiscount }}</span
+              >
+              <span *ngIf="this.isStrip == 'false'">
+                {{ offlineDiscount }}</span
+              >
+            </h4>
+            <p>{{ delegateOfflineDescription }}</p>
+          </div>
+          <!-- <div class="ui-card-buttons">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#userdelegate" aria-expanded="true" aria-controls="userdelegate">Know More</button>
       <button>Register</button>
       </div> -->
-          </div>
+        </div>
 
-          <div class="ui-card ui-card2" (click)="goToChildNomination()">
-            <div class="price-ribbon">
-              <span *ngIf="this.isStrip == 'true'">$ {{childNominationDiscount}}</span>
-              <span *ngIf="this.isStrip == 'false'"> {{childNominationDiscount}}</span>
-            </div>
-            <div class="ui-card-image"></div>
-            <div class="ui-card-text">
-              <a class="btn btn-success" (click)="goToChildNomination()">As a Peace Student</a>
-              <h4 class="text-dark fw-bold mt-2">
-                <span *ngIf="this.isStrip == 'true'">$ {{childNominationDiscount}}</span>
-                <span *ngIf="this.isStrip == 'false'"> {{childNominationDiscount}}</span>
-              </h4>
-              <p>{{peaceStudentDescription}}</p>
-            </div>
-            <!-- <div class="ui-card-buttons">
+        <div class="ui-card ui-card2" (click)="goToChildNomination()">
+          <div class="price-ribbon">
+            <span *ngIf="this.isStrip == 'true'"
+              >$ {{ childNominationDiscount }}</span
+            >
+            <span *ngIf="this.isStrip == 'false'">
+              {{ childNominationDiscount }}</span
+            >
+          </div>
+          <div class="ui-card-image"></div>
+          <div class="ui-card-text">
+            <a class="btn btn-success" (click)="goToChildNomination()"
+              >As a Peace Student</a
+            >
+            <h4 class="text-dark fw-bold mt-2">
+              <span *ngIf="this.isStrip == 'true'"
+                >$ {{ childNominationDiscount }}</span
+              >
+              <span *ngIf="this.isStrip == 'false'">
+                {{ childNominationDiscount }}</span
+              >
+            </h4>
+            <p>{{ peaceStudentDescription }}</p>
+          </div>
+          <!-- <div class="ui-card-buttons">
       <button class="accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#studentdelegate" aria-expanded="true" aria-controls="studentdelegate">Know More</button>
       <button>Register</button>
       </div> -->
-          </div>
+        </div>
 
-          <div class="ui-card ui-card3" (click)="goToOnlineDelegate()">
-            <div class="price-ribbon">
-              <span *ngIf="this.isStrip == 'true'">$ {{onlineDiscount}}</span>
-              <span *ngIf="this.isStrip == 'false'"> {{onlineDiscount}}</span>
-            </div>
-            <div class="ui-card-image"></div>
-            <div class="ui-card-text">
-              <a class="btn btn-success" (click)="goToOnlineDelegate()">As an Online Delegate</a>
-              <h4 class="text-dark fw-bold mt-2">
-                <span *ngIf="this.isStrip == 'true'">$ {{onlineDiscount}}</span>
-                <span *ngIf="this.isStrip == 'false'"> {{onlineDiscount}}</span>
-              </h4>
-              <p>{{delegateOnlineDescription}}</p>
-            </div>
-            <!-- <div class="ui-card-buttons">
+        <div class="ui-card ui-card3" (click)="goToOnlineDelegate()">
+          <div class="price-ribbon">
+            <span *ngIf="this.isStrip == 'true'">$ {{ onlineDiscount }}</span>
+            <span *ngIf="this.isStrip == 'false'"> {{ onlineDiscount }}</span>
+          </div>
+          <div class="ui-card-image"></div>
+          <div class="ui-card-text">
+            <a class="btn btn-success" (click)="goToOnlineDelegate()"
+              >As an Online Delegate</a
+            >
+            <h4 class="text-dark fw-bold mt-2">
+              <span *ngIf="this.isStrip == 'true'">$ {{ onlineDiscount }}</span>
+              <span *ngIf="this.isStrip == 'false'"> {{ onlineDiscount }}</span>
+            </h4>
+            <p>{{ delegateOnlineDescription }}</p>
+          </div>
+          <!-- <div class="ui-card-buttons">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#olinedelegate" aria-expanded="true" aria-controls="olinedelegate">Know More</button>
       <button>Register</button>
       </div> -->
+        </div>
+      </div>
+
+      <div class="container-fluid" id="accordionContainer">
+        <div
+          id="userdelegate"
+          class="content-section accordion-collapse collapse"
+          aria-labelledby="userdelegate"
+          data-bs-parent="#accordionContainer"
+        >
+          <div class="list-container border-1 shadow-lg p-5">
+            <h3>Delegate Information</h3>
+            <p class="lead fw-500 mt-3">Join as a Delegate and Experience:</p>
+            <ul class="mt-4 wrap">
+              <li>Access to exclusive summit events</li>
+              <li>Networking with global leaders</li>
+              <li>Participation in peace initiatives</li>
+              <li>Leadership development opportunities</li>
+            </ul>
           </div>
         </div>
+        <div
+          id="studentdelegate"
+          class="content-section accordion-collapse collapse"
+          aria-labelledby="studentdelegate"
+          data-bs-parent="#accordionContainer"
+        >
+          <div class="list-container border-1 shadow-lg p-5">
+            <h3>Peace Student Program</h3>
 
-        <div class="container-fluid" id="accordionContainer">
-          <div id="userdelegate" class="content-section accordion-collapse collapse" aria-labelledby="userdelegate"
-            data-bs-parent="#accordionContainer">
-            <div class="list-container border-1 shadow-lg p-5">
-              <h3>Delegate Information</h3>
-              <p class="lead fw-500 mt-3">Join as a Delegate and Experience:</p>
-              <ul class="mt-4 wrap">
-                <li>Access to exclusive summit events</li>
-                <li>Networking with global leaders</li>
-                <li>Participation in peace initiatives</li>
-                <li>Leadership development opportunities</li>
-              </ul>
-            </div>
-          </div>
-          <div id="studentdelegate" class="content-section accordion-collapse collapse" aria-labelledby="studentdelegate"
-            data-bs-parent="#accordionContainer">
-            <div class="list-container border-1 shadow-lg p-5">
-              <h3>Peace Student Program</h3>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <img src="../../../../assets/UIComponents/images/pre-select/student_info.jpeg">
-                </div>
-                <div class="col-md-6">
-                  <p class="lead fw-500 mt-3">Benefits of Joining as a Peace Student:</p>
-                  <ul class="mt-4 wrap">
-                    <li>Mentorship from global leaders</li>
-                    <li>Peace education workshops</li>
-                    <li>Leadership training sessions</li>
-                    <li>International networking opportunities</li>
-                  </ul>
-                </div>
+            <div class="row">
+              <div class="col-md-6">
+                <img
+                  src="../../../../assets/UIComponents/images/pre-select/student_info.jpeg"
+                />
+              </div>
+              <div class="col-md-6">
+                <p class="lead fw-500 mt-3">
+                  Benefits of Joining as a Peace Student:
+                </p>
+                <ul class="mt-4 wrap">
+                  <li>Mentorship from global leaders</li>
+                  <li>Peace education workshops</li>
+                  <li>Leadership training sessions</li>
+                  <li>International networking opportunities</li>
+                </ul>
               </div>
             </div>
           </div>
-          <div id="olinedelegate" class="content-section accordion-collapse collapse" aria-labelledby="olinedelegate"
-            data-bs-parent="#accordionContainer">
-            <div class="list-container border-1 shadow-lg p-5">
-              <h3>Online Delegate Experience</h3>
-              <p class="lead fw-500 mt-3">Virtual Participation Benefits:</p>
-              <ul class="mt-4 wrap">
-                <li>Remote access to summit events</li>
-                <li>Digital networking platform</li>
-                <li>Online learning resources</li>
-                <li>Virtual collaboration tools</li>
-              </ul>
-            </div>
+        </div>
+        <div
+          id="olinedelegate"
+          class="content-section accordion-collapse collapse"
+          aria-labelledby="olinedelegate"
+          data-bs-parent="#accordionContainer"
+        >
+          <div class="list-container border-1 shadow-lg p-5">
+            <h3>Online Delegate Experience</h3>
+            <p class="lead fw-500 mt-3">Virtual Participation Benefits:</p>
+            <ul class="mt-4 wrap">
+              <li>Remote access to summit events</li>
+              <li>Digital networking platform</li>
+              <li>Online learning resources</li>
+              <li>Virtual collaboration tools</li>
+            </ul>
           </div>
         </div>
-
-
       </div>
     </div>
-    <!-- </div> -->
+  </div>
+  <!-- </div> -->
+</div>

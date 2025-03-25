@@ -1383,14 +1383,6 @@ export class WebService {
             Country: 'SIERRA LEONE',
             Credentials: 'Attorney General & Minister of Justice, Sierra Leone',
           },
-          
-
-        ],
-      },
-
-      {
-        speakers: [
-          // list 2
           {
             // "S_No": 1,
             View: '',
@@ -1399,6 +1391,14 @@ export class WebService {
             Country: 'Mauritius',
             Credentials: 'Her Excellency Former President of the Republic of Mauritius',
           },
+
+        ],
+      },
+
+      {
+        speakers: [
+          // list 2
+          
 
           {
             // "S_No": 1,
@@ -1416,14 +1416,6 @@ export class WebService {
             Country: 'NORWAY',
             Credentials: 'Deputy Leader, Norwegian Nobel Committee',
           },
-          
-          
-        ],
-      },
-
-      {
-        speakers: [
-          // list 3
           {
             // "S_No": 1,
             View: '',
@@ -1440,6 +1432,13 @@ export class WebService {
             Country: 'COMOROS',
             Credentials: 'Head of State, President ',
           },
+          
+        ],
+      },
+
+      {
+        speakers: [
+          // list 4
           {
             // "S_No": 1,
             View: '',
@@ -1448,15 +1447,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'World Yoga Guru',
           },
-          
-          
-
-        ],
-      },
-
-      {
-        speakers: [
-          // list 4
           {
             // "S_No": 2,
             View: '',
@@ -1519,13 +1509,6 @@ export class WebService {
               'Sports Champion : Silver Medallist at 2016 Rio Paralympics',
           },
           
-          
-
-        ],
-      },
-      {
-        speakers: [
-          // list 6
           {
             // "S_No": 6,
             View: '',
@@ -1535,6 +1518,13 @@ export class WebService {
             Credentials:
               'President : Permanent Secretariat of the World Summit of Nobel Peace Laureates',
           },
+
+        ],
+      },
+      {
+        speakers: [
+          // list 6
+          
           {
             // "S_No": 7,
             View: '',
@@ -1552,11 +1542,6 @@ export class WebService {
             Credentials:
               'Elected Representative, National Spiritual Assembly of the Bahais of Brazil',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 7
           {
             // "S_No": 10,
             View: 'habil',
@@ -1573,6 +1558,11 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'Chief Justice of the Supreme Court of Gambia',
           },
+        ],
+      },
+      {
+        speakers: [
+          // list 8
           {
             // "S_No": 12,
             View: '',
@@ -1582,12 +1572,6 @@ export class WebService {
             Credentials:
               'Politician, Royalty, Beauty Queen : Queen of the North Kenya, Miss Commonwealth Kenya 2018',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 8
           {
             // "S_No": 12,
             View: '',
@@ -1645,16 +1629,6 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'Academic Leader : Chancellor, MBZ University for Humanities',
           },
-          
-          
-        ],
-      },
-
-      {
-        speakers: [
-          // list 10
-          
-
           {
             // "S_No": 14,
             View: '',
@@ -1664,6 +1638,16 @@ export class WebService {
             Credentials:
               'Social Activist : Founder, Imad Ibn Ziaten Youth Association for Peace',
           },
+          
+        ],
+      },
+
+      {
+        speakers: [
+          // list 10
+          
+
+          
           {
             // "S_No": 14,
             View: '',
@@ -1681,16 +1665,6 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'Nobel Peace Laureate 2011',
           },
-          
-          
-        ],
-      },
-
-      {
-        speakers: [
-          // list 11
-          
-
           {
             // "S_No": 16,
             View: '',
@@ -1710,14 +1684,6 @@ export class WebService {
             Credentials:
               'Tennis Champion : Former World Number 1 Doubles Player',
           },
-          {
-            // "S_No": 18,
-            View: '',
-            Profile_Photo: 'speaker11.png',
-            Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
-            Country: 'GERMANY',
-            Credentials: 'Royalty, TV Host, Philanthropist',
-          },
           
         ],
       },
@@ -1726,7 +1692,14 @@ export class WebService {
         speakers: [
           // list 12
           
-
+          {
+            // "S_No": 18,
+            View: '',
+            Profile_Photo: 'speaker11.png',
+            Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
+            Country: 'GERMANY',
+            Credentials: 'Royalty, TV Host, Philanthropist',
+          },
           {
             // "S_No": 20,
             View: 'salam',
@@ -1787,15 +1760,6 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'Industrialist : Chairman, TAF Global',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 14
-          
-
-
           {
             // "S_No": 17,
             View: '',
@@ -1804,6 +1768,15 @@ export class WebService {
             Country: 'IRAQ',
             Credentials: 'Social Activist: Nobel Peace Laureate 2018',
           },
+        ],
+      },
+      {
+        speakers: [
+          // list 14
+          
+
+
+          
           {
             // "S_No": 25,
             View: 'nadir',
@@ -1820,14 +1793,6 @@ export class WebService {
             Country: 'GHANA',
             Credentials: 'Royalty',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 15
-
-          
           {
             // "S_No": 26,
             View: '',
@@ -1844,8 +1809,11 @@ export class WebService {
             Country: 'TUNISIA',
             Credentials: 'Nobel Peace Laureate 2015',
           },
-
-
+        ],
+      },
+      {
+        speakers: [
+          // list 16
           {
             // "S_No": 27,
             View: '',
@@ -1855,13 +1823,6 @@ export class WebService {
             Credentials:
               'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 16
-          
           {
             // "S_No": 1,
             View: '',
@@ -1918,14 +1879,6 @@ export class WebService {
             Country: 'MALAYSIA',
             Credentials: 'Royalty, Philanthropist, Peace Activist',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 18
-         
-
           {
             // "S_No": 32,
             View: '',
@@ -1934,6 +1887,14 @@ export class WebService {
             Country: 'GUINEA BISSAU',
             Credentials: 'Prime Minister',
           },
+        ],
+      },
+      {
+        speakers: [
+          // list 18
+         
+
+          
           {
             // "S_No": 1,
             View: '',
@@ -1950,13 +1911,6 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'Secretary General Indian Business & Professional Council (IBPC) Dubai, CFO Ajmal Perfumes',
           },
-
-        ],
-      },
-      {
-        speakers: [
-          // list 19
-          
           {
             // "S_No": 34,
             View: '',
@@ -1974,6 +1928,11 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'TV personality, entrepreneur',
           },
+        ],
+      },
+      {
+        speakers: [
+          // list 20
           {
             // "S_No": 33,
             View: 'satpal',
@@ -1982,13 +1941,6 @@ export class WebService {
             Country: 'USA',
             Credentials: 'Ambassador of Sikh Dharma',
           },
-
-        ],
-      },
-      {
-        speakers: [
-          // list 20
-
           
           {
             // "S_No": 34,
@@ -2051,13 +2003,6 @@ export class WebService {
             Credentials:
               'High Priest : Zoroastrian Religion Leader',
           },
-
-        ],
-      },
-      {
-        speakers: [
-          // list 22
-          
           {
             // "S_No": 36,
             View: '',
@@ -2067,6 +2012,13 @@ export class WebService {
             Credentials:
               'Buddhist Religion Leader : Vice-President, Vietnam Buddhist Sangha',
           },
+        ],
+      },
+      {
+        speakers: [
+          // list 22
+          
+          
 
 
           {
@@ -2085,11 +2037,6 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'CEO, OIC (Organisation of Islamic Countries)',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 22
           {
             // "S_No": 38,
             View: '',
@@ -2107,6 +2054,10 @@ export class WebService {
             Credentials:
               'President : Nobel Peace Laureate, 1996 (ONLINE)',
           },
+        ],
+      },
+      {
+        speakers: [
           {
             View: '',
             Profile_Photo: 'speaker61.png',
@@ -2114,11 +2065,6 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'President of Liberia (ONLINE)',
           },
-        ],
-      },
-      {
-        speakers: [
-          
           {
             View: '',
             Profile_Photo: null,
@@ -2126,8 +2072,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Chancellor : Amrita Vishwa Vidyapeetham (ONLOINE)',
           },
-
-
 
           {
             View: '',

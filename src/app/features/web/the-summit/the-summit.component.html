@@ -477,31 +477,30 @@
                   [class.active]="i === 0"
                   [attr.data-bs-interval]="3000"
                 >
-                  <div class="row">
-                    <div
-                      class="col-md-4 mx-auto"
-                      *ngFor="let speaker of group.speakers"
-                    >
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
+                  <div class="row mt-3">
+                    <div class="col-md-3 mx-auto speaker-details" *ngFor="let speaker of group.speakers">
+                      <div class="card h-100 speaker-card">
+                        <div class="card-header"></div>
+                        <div class="card-body p-0 text-center col-10 mx-auto">
                           <img
-                            loading="eager"
-                            (click)="clickToView(speaker.View)"
+                            loading="lazy"
                             [src]="
                               speaker.Profile_Photo
                                 ? 'assets/UIComponents/images/speakers/' +
                                   speaker.Profile_Photo
                                 : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
-                            "
-                            alt="{{ speakers.Name }}"
-                            class="profile-photo"
+                            
+                            "onerror="this.onerror=null; this.src='assets/UIComponents/images/speakers/ProfileAavtar.png';"
+                            alt="{{ speaker.speaker_name }}"
+                            class="profile-photo img-fluid"
+                            width="50%"
                           />
-
                           <h5>{{ speaker.Name }}</h5>
-                          <label>({{ speaker.Country }})</label>
-                          <h6>{{ speaker.Credentials }}</h6>
-                        </li>
-                      </ul>
+                          <label class="country">({{ speaker.Country }})</label>
+                          <h6 class="credentials">{{ speaker.Credentials }}</h6>
+                          
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -548,12 +547,12 @@
                     data-bs-interval="3000"
                   >
                     <div class="row">
-                      <div class="col-md-4">
-                        <ul class="list-unstyled p-0">
-                          <li class="p-3 text-center">
-
+                      <div class="col-md-3 mx-auto speaker-details">
+                        <div class="card h-100 speaker-card">
+                          <div class="card-header"></div>
+                          <div class="card-body p-0 text-center col-10 mx-auto">
                             <img
-                              loading="eager"
+                              loading="lazy"
                               (click)="clickToView(speakers.View)"
                               [src]="
                                 speakers.Profile_Photo
@@ -562,13 +561,15 @@
                                   : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
                               "
                               alt="attach image"
-                              class="profile-photo"
+                              class="profile-photo img-fluid"
+                              width="50%"
                             />
                             <h5>{{ speakers.Name }}</h5>
-                            <label>({{ speakers.Country }})</label>
-                            <h6>{{ speakers.Credentials }}</h6>
-                          </li>
-                        </ul>
+                            <label class="country">({{ speakers.Country }})</label>
+                            <h6 class="credentials">{{ speakers.Credentials }}</h6>
+                            
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -601,7 +602,7 @@
             </div>
             
           </div>
-          <div class="col-12">
+          <div class="col-12 mt-3">
             <a
             [routerLink]="['/speaker-details']"
             class="see-all-button btn btn-success"
