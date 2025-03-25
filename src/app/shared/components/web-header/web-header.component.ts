@@ -73,7 +73,7 @@ export class WebHeaderComponent implements OnInit {
   onWindowScroll() {
     const scrollY = window.scrollY;
     this.isScrolled = scrollY > 50; // Change logo size after 50px of scroll
-    
+
     // Logo resize functionality converted from script.js
     const logoElement = document.getElementById('logo');
     if (logoElement) {
@@ -100,8 +100,6 @@ export class WebHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.checkWindowSize();
     this.headerIcon = this.SharedService.headerIcon;
-    console.log(this.headerIcon, 'hhhhhh');
-    console.log(this._activeRouter.url, 'WebHeaderComponent initialized');
 
     this._router.events.subscribe(() => {
       this.isHomePage = this._router.url === '/'; // Check if the route is home
@@ -210,82 +208,70 @@ export class WebHeaderComponent implements OnInit {
     switch (route) {
       case 'summit':
         this._router.navigate(['/the-summit'],{ fragment }).then(() => {
-          console.log("Navigated to 'home'");
+
           location.reload();
         });
         break;
       case 'awards':
         this._router.navigate(['/awards']).then(() => {
-          console.log("Navigated to 'awards'");
           location.reload();
         });
         break;
       case 'OurLengcy':
         this._router.navigate(['/OurLengcy']).then(() => {
-          console.log("Navigated to 'OurLengcy'");
           location.reload();
         });
         break;
       case 'JoinOurmailingList':
         this._router.navigate(['/JoinOurmailingList']).then(() => {
-          console.log("Navigated to 'JoinOurmailingList'");
           location.reload();
         });
         break;
       case 'Photos':
         this._router.navigate(['/Photos']).then(() => {
-          console.log("Navigated to 'Photos'");
           location.reload();
         });
         break;
       case 'speaker-registration':
         this._router.navigate(['/speaker-registration']).then(() => {
-          console.log("Navigated to 'speaker-registration'");
           location.reload();
         });
         break;
       case 'speaker':
         this._router.navigate(['/speaker']).then(() => {
-          console.log("Navigated to 'speaker'");
           location.reload();
         });
         break;
       case 'pastspeakers':
         this._router.navigate(['/pastspeakers']).then(() => {
-          console.log("Navigated to 'pastspeakers'");
           location.reload();
         });
         break;
       case 'agenda':
         this._router.navigate(['/agenda']).then(() => {
-          console.log("Navigated to 'agenda'");
           location.reload();
         });
         break;
       case 'WhoShouldAttend':
         this._router.navigate(['/WhoShouldAttend']).then(() => {
-          console.log("Navigated to 'WhoShouldAttend'");
           location.reload();
         });
         break;
 
       case 'EventPartners':
         this._router.navigate(['/EventPartners']).then(() => {
-          console.log("Navigated to 'EventPartners'");
           location.reload();
         });
         break;
 
       case 'MediaPartners':
         this._router.navigate(['/MediaPartners']).then(() => {
-          console.log("Navigated to 'MediaPartners'");
           location.reload();
         });
         break;
 
       case 'DownloadCenter':
         this._router.navigate(['/DownloadCenter']).then(() => {
-          console.log("Navigated to 'DownloadCenter'");
           location.reload();
         });
         break;

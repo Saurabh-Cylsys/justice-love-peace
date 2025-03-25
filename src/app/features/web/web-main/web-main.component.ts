@@ -17,8 +17,6 @@ export class WebMainComponent {
   //     duration: 1200,
 
   // })
-  console.log("web main");
-  console.log("router", this.router.url);
   this.url = this.router.url;
 
   }

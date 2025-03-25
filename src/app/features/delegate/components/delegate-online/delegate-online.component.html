@@ -37,12 +37,11 @@
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
           <div class="row">
             <div class="mb-3 col-md-6">
-              <label for="name" class="form-label"
+              <label for="title" class="form-label"
                 >Title<span class="form-label" style="color: #ff0000"
                   >*</span
                 ></label
               >
-
               <input
                 type="text"
                 class="form-control"
@@ -52,9 +51,8 @@
                 required
                 autocomplete="off"
                 maxlength="15"
-                (keypress)="validateAlpha($event)"
+                (keypress)="titleValidateAlpha($event)"
               />
-
               <div
                 *ngIf="
                   userForm.get('title')?.hasError('required') &&
@@ -78,7 +76,7 @@
             </div>
 
             <div class="mb-3 col-md-6">
-              <label for="name" class="form-label"
+              <label for="fname" class="form-label"
                 >First Name<span class="form-label" style="color: #ff0000"
                   >*</span
                 ></label
@@ -86,7 +84,7 @@
               <input
                 type="text"
                 class="form-control"
-                id="name"
+                id="fname"
                 placeholder="Enter first name"
                 formControlName="first_name"
                 required
@@ -118,7 +116,7 @@
             </div>
 
             <div class="mb-3 col-md-6">
-              <label for="name" class="form-label"
+              <label for="lname" class="form-label"
                 >Last Name<span class="form-label" style="color: #ff0000"
                   >*</span
                 ></label
@@ -126,7 +124,7 @@
               <input
                 type="text"
                 class="form-control"
-                id="name"
+                id="lname"
                 placeholder="Enter last name"
                 formControlName="last_name"
                 required
@@ -189,7 +187,7 @@
                 <div class="form-group form-group-inner mobile-number">
                   <label
                     class="col-md-12 no-padding p-0 form-label"
-                    for="mobile1"
+                    for="mobile_number"
                     >Mobile Number<span
                       class="form-label-span"
                       style="color: #ff0000"
@@ -223,6 +221,7 @@
                       formControlName="mobile_number"
                       autocomplete="off"
                       (keypress)="keyPressNumbers($event)"
+                      (paste)="onPasteMobileNumber($event)"
                     ></ngx-intl-tel-input>
                   </div>
                   <small class="text-danger small" *ngIf="mobile_numberVal">
@@ -275,6 +274,7 @@
                   formControlName="country"
                   #country
                   name="India"
+                  (keydown)="handleTabKey($event, 'dob')"
                 >
                   <option value="" disabled>Select Country</option>
                   <option
@@ -317,7 +317,7 @@
                 [maxDate]="maxDate"
                 (keydown)="disableManualInput($event)"
                 (ngModelChange)="onDateChange($event)"
-                (keydown.tab)="openDatepicker()"
+                (keydown)="handleTabKey($event, 'reference_no')"
                 bsDatepicker
                 [bsConfig]="{
                   isAnimated: true,

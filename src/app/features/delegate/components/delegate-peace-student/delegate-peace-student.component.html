@@ -33,7 +33,7 @@
               id="student"
               [checked]="userType === 'student'"
             />
-            <label for="student" class="overlay">
+            <label for="student" class="overlay" style="cursor: pointer;">
               <i class="fas fa-user-graduate"></i>
               <span class="mt-2"><img src="assets/UIComponents/images/student.svg" alt="" width="30px" /> Student</span>
             </label>
@@ -60,7 +60,7 @@
               [checked]="userType === 'delegate'"
             />
 
-            <label for="delegate" class="overlay">
+            <label for="delegate" class="overlay" style="cursor: pointer;">
               <i class="fas fa-users"></i>
               <span class="mt-2"><img src="assets/UIComponents/images/adult.svg" alt=""  width="30px" /> Adult</span>
             </label>
@@ -95,7 +95,7 @@
                       placeholder="Enter title"
                       autocomplete="off"
                       maxlength="15"
-                      (keypress)="validateAlpha($event)"
+                      (keypress)="titleValidateAlpha($event)"
                       (paste)="onPaste($event)"
                     />
                     <div
@@ -183,6 +183,7 @@
                       autocomplete="off"
                       (keypress)="validateAlpha($event)"
                       (paste)="onPaste($event)"
+                      (keydown)="handleTabKey($event, 'studentDob')"
                     />
                     <div
                       *ngIf="
@@ -218,14 +219,14 @@
                       type="text"
                       class="form-control"
                       placeholder="Select date of birth"
-                      id="dob"
+                      id="studentDob"
                       #dob
                       formControlName="studentDob"
                       [minDate]="minStudentDate"
                       [maxDate]="maxStudentDate"
                       (keydown)="disableManualInput($event)"
                       (ngModelChange)="onStudentDobChange($event)"
-                      (keydown.tab)="openDatepicker()"
+                      (keydown)="handleTabKey($event, 'studentMobileNo')"
                       bsDatepicker
                       [bsConfig]="{
                         isAnimated: true,
@@ -292,6 +293,7 @@
                             autocomplete="off"
                             (keypress)="keyPressNumbersForStudent($event)"
                             (keydown)="onMobileKeyDown($event, 'student')"
+                            (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
                         <small
@@ -480,7 +482,7 @@
                       placeholder="Enter title"
                       autocomplete="off"
                       maxlength="15"
-                      (keypress)="validateAlpha($event)"
+                      (keypress)="titleValidateAlpha($event)"
                       (paste)="onPaste($event)"
                     />
                     <div
@@ -678,6 +680,7 @@
                             autocomplete="off"
                             (keypress)="keyPressNumbersForDelegate($event)"
                             (keydown)="onMobileKeyDown($event, 'delegate')"
+                            (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
                         <small
@@ -845,7 +848,7 @@
                       placeholder="Enter title"
                       autocomplete="off"
                       maxlength="15"
-                      (keypress)="validateAlpha($event)"
+                      (keypress)="titleValidateAlpha($event)"
                       (paste)="onPaste($event)"
                     />
                     <div
@@ -1043,6 +1046,7 @@
                             autocomplete="off"
                             (keypress)="keyPressNumbersForDelegate($event)"
                             (keydown)="onMobileKeyDown($event, 'delegate')"
+                            (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
                         <small
@@ -1196,7 +1200,7 @@
                       placeholder="Enter title"
                       autocomplete="off"
                       maxlength="15"
-                      (keypress)="validateAlpha($event)"
+                      (keypress)="titleValidateAlpha($event)"
                       (paste)="onPaste($event)"
                     />
                     <div
@@ -1393,6 +1397,7 @@
                             autocomplete="off"
                             (keypress)="keyPressNumbersForStudent($event)"
                             (keydown)="onMobileKeyDown($event, 'student')"
+                            (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
                         <small

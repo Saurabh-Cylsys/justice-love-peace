@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiEndpointsService } from "../../../../app/core/services/api-endpoints.service";
 import { ApiHttpService } from "../../../../app/core/services/api-http.service";
+import { HttpHeaders } from '@angular/common/http';
+import { SharedService } from '../../../shared/services/shared.service';
 
 
 @Injectable({
@@ -13,6 +15,7 @@ export class DelegateService {
     private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
     // private translate: TranslateService
+    private sharedService : SharedService
   ) { }
   getSpeakers() {
     return this._apiHttpService.get(this._apiEndpointsService.getSpeakersEndpoint());
@@ -89,10 +92,16 @@ export class DelegateService {
   }
 
  postDelegateOnlineMP(body: any): Observable<any> {
-    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body);
+  const jwtToken = this.sharedService.getJWTToken();
+
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${jwtToken}`, // Make sure the backend expects 'Authtoken' and not 'Authorization'
+  });
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body, {headers});
   }
 
   getDataByTransactionIdApi(transactionId: any): Observable<any> {
+
     return this._apiHttpService.get(this._apiEndpointsService.getDataByTransactionIdEndpoint(transactionId));
   }
 
@@ -102,7 +111,6 @@ export class DelegateService {
   postPreDelegateNominationApi(body: any): Observable<any> {
     return this._apiHttpService.post(this._apiEndpointsService.postPreDelegateNominationEndpoint(), body);
   }
-
 
   getAmbassadorURL(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)

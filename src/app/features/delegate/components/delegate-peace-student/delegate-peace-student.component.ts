@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { EncryptionService } from '../../../../shared/services/encryption.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'app-delegate-peace-student',
   templateUrl: './delegate-peace-student.component.html',
@@ -59,7 +60,8 @@ export class DelegatePeaceStudentComponent {
     private delegateService: DelegateService,
     private datePipe: DatePipe,
     private sharedService:SharedService,
-    private route: ActivatedRoute,private encryptionService : EncryptionService) {
+    private route: ActivatedRoute,private encryptionService : EncryptionService,
+    private ngxService: NgxUiLoaderService) {
 
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -175,33 +177,50 @@ export class DelegatePeaceStudentComponent {
     }
   }
 
-  validateStudentTitle(event: any, controlName: string) {
+  titleValidateAlpha(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    const key = event.key;
+    const currentValue = input.value;
+    const cursorPos = input.selectionStart;
 
-    let inputValue = event.target.value;
+    // Block space at the beginning
+    if (key === ' ' && (cursorPos === 0 || currentValue === '')) {
+      event.preventDefault();
+      return;
+    }
 
-    // Remove leading spaces
-    inputValue = inputValue.replace(/^\s+/, '');
-
-    // Remove invalid characters except letters, space, hyphen, and underscore
-    inputValue = inputValue.replace(/[^a-zA-Z\s\.‘]/g, '');
-
-    // Update the input field
-    this.studentForm.controls[controlName].setValue(inputValue, { emitEvent: false });
+    // Allow letters, spaces (not at start),
+    const allowedPattern = /^[a-zA-Z\s\.'‘]$/;
+    if (!allowedPattern.test(key)) {
+      event.preventDefault();
+    }
   }
 
-  validateDelegateTitle(event: any, controlName: string) {
+  handleTabKey(event: KeyboardEvent, nextFieldId: string) {
+    if (event.key === 'Tab') {
+      event.preventDefault(); // Prevent default tab behavior
 
-    let inputValue = event.target.value;
+      debugger;
+      const nextField = document.getElementById(nextFieldId) as HTMLElement;
+      const dobValue = this.studentForm.get('studentDob')?.value; // Assuming you use Reactive Forms
 
-    // Remove leading spaces
-    inputValue = inputValue.replace(/^\s+/, '');
+      if (nextFieldId === 'studentDob' && dobValue) {
+        // If DOB is already filled, move to the next field instead
+        const afterDobField = document.getElementById('studentMobileNo') as HTMLElement;
+        if (afterDobField) {
+          afterDobField.focus();
+        }
+      } else if (nextField) {
+        nextField.focus();
 
-    // Remove invalid characters except letters, space, hyphen, and underscore
-    inputValue = inputValue.replace(/[^a-zA-Z\s\.‘]/g, '');
-
-    // Update the input field
-    this.delegateForm.controls[controlName].setValue(inputValue, { emitEvent: false });
+        // Open datepicker when moving to the DOB field if it's empty
+        if (nextFieldId === 'studentDob' && !dobValue) {
+          this.openDatepicker();
+        }
+      }
+    }
   }
+
 
   onPaste(event: ClipboardEvent) {
     event.preventDefault(); // Block pasting
@@ -229,7 +248,7 @@ export class DelegatePeaceStudentComponent {
   }
 
   openDatepicker() {
-    const dobInput = document.getElementById('dob') as HTMLInputElement;
+    const dobInput = document.getElementById('studentDob') as HTMLInputElement;
     if (dobInput) {
       dobInput.click(); // Open ngx-bootstrap datepicker
     }
@@ -432,7 +451,7 @@ private async fnStripePG(response: any, payload: any) {
     const delegaterawMobileNumber = this.delegateForm.value.mobile_number.number;
     let delegateMobileNumber = delegaterawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
 
-    const studentrawMobileNumber = this.delegateForm.value.mobile_number.number;
+    const studentrawMobileNumber = this.studentForm.value.mobile_number.number;
     let studentMobileNumber = studentrawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
 
 
@@ -520,11 +539,14 @@ private async fnStripePG(response: any, payload: any) {
       localStorage.setItem('isNominee','student');
     }
 
+    this.ngxService.start();
     this.delegateService.postPreDelegateNominationApi(this.requestBody).subscribe({
       next: async (response: any) => {
         if (response.success) {
           this.sharedService.ToastPopup('', response.message, 'success');
           this.btnDisabled = true;
+          this.ngxService.stop();
+          this.sharedService.setJWTToken(response.token);
           setTimeout(async () => {
 
             if(response.isStripe == "true") {
@@ -538,7 +560,7 @@ private async fnStripePG(response: any, payload: any) {
         }
       },
       error: (err) => {
-
+        this.ngxService.stop();
         console.error('Error creating delegate:', err);
         this.sharedService.ToastPopup(err.error?.message || 'Registration failed','', 'error');
       },
@@ -559,5 +581,17 @@ private async fnStripePG(response: any, payload: any) {
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only numbers (0-9)
+    if (/^\d+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid numbers
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
   }

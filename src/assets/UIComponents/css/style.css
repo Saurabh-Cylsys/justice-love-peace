@@ -94,9 +94,9 @@ header .nav-item .nav-link.active {
   /* background-image: url(../images/index/banner.gif); */
   /* background-size: 90% 100%; */
   /* background-size: 85% 100%;
-  background-position: center; 
+  background-position: center;
   background-repeat: no-repeat; */
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
  .logo {
@@ -3055,4 +3055,8 @@ button:focus {
 
 .dropdown-menu{
   z-index: 99 !important;
+}
+
+.iti__country-list{
+  padding: 0 !important;
 }
