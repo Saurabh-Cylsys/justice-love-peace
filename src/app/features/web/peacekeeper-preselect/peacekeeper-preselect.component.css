@@ -486,7 +486,7 @@ h5 {
 
 /* Card Variations */
 .ui-card2 .ui-card-image {
-  background: url("../../../../assets/UIComponents/images/pre-select/student.jpeg") center/cover;
+  background: url("../../../../assets/UIComponents/images/pre-select/student.png") center/cover;
 }
 .ui-card2 .ui-card-text .date {
   color: rgb(255, 77, 7);
