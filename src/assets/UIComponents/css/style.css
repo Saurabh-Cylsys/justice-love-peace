@@ -3067,3 +3067,11 @@ button:focus {
 .iti__country-list{
   padding: 0 !important;
 }
+
+.toast-container {
+  pointer-events: none;
+  position: fixed;
+  z-index: 999999;
+  top: 12px;
+  right: 12px;
+  }
