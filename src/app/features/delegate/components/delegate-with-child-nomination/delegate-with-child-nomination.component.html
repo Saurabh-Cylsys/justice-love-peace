@@ -152,7 +152,10 @@
                                       *</span
                                     ></label
                                   >
-                                    <label>{{country_code}} {{this.mobile_number}}</label>
+                                    <!-- <label>{{country_code}} {{this.mobile_number}}</label> -->
+                                    <div class="form-control p-0">
+                                      <label class="p-0">{{country_code}} {{this.mobile_number}}</label>
+                                    </div>
                                   </div>
 
 
@@ -700,9 +703,12 @@
                                             <label class="col-md-12 no-padding p-0" for="mobile1">Mobile Number<span
                                                 class="form-label-span" style="color: #ff0000">
                                                 *</span></label>
-                                            <div class="">
 
-                                              {{nominee_CountryCode}} {{this.nominee_mobile_number}}
+
+                                            <div class="form-control p-0">
+
+                                              <!-- {{nominee_CountryCode}} {{this.nominee_mobile_number}} -->
+                                              <label class="p-0">{{nominee_CountryCode}} {{this.nominee_mobile_number}}</label>
 
                                               <!-- <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
                                                   CountryISO.India,

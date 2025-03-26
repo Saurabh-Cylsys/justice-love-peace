@@ -318,7 +318,7 @@
                 (keydown)="disableManualInput($event)"
                 (ngModelChange)="onDateChange($event)"
                 (keydown)="handleTabKey($event, 'reference_no')"
-                (bsValueChange)="moveToReferenceNo()"
+                (bsValueChange)="moveToReferenceNo($event)"
                 bsDatepicker
                 [bsConfig]="{
                   isAnimated: true,

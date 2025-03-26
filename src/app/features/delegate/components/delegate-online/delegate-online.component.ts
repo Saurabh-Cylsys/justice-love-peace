@@ -84,6 +84,7 @@ export class DelegateOnlineComponent implements OnInit {
   private autoSaveSubscription?: Subscription;
   private isFormSubmitted = false; // Flag to track submission
   isMobileView = false;
+  previousDobValue: any;
 
   constructor(
     private fb: FormBuilder,
@@ -180,6 +181,10 @@ export class DelegateOnlineComponent implements OnInit {
         this.fnPartialSave();
       }
     });
+
+    setTimeout(() => {
+      this.previousDobValue = this.userForm.get('dob')?.value || null;
+    });
   }
 
   validateAlpha(event: KeyboardEvent) {
@@ -258,7 +263,12 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
 
-  moveToReferenceNo() {
+  moveToReferenceNo(event:any) {
+    if (!event || event === this.previousDobValue) {
+      return; // Do nothing if the value is unchanged
+    }
+
+    this.previousDobValue = event; // Update the stored value
     setTimeout(() => {
       const referenceNoField = document.getElementById('reference_no') as HTMLElement;
       if (referenceNoField) {

@@ -629,15 +629,39 @@ private async fnStripePG(response: any, payload: any) {
     this.checkWindowSize();
   }
 
-  onPasteMobileNumber(event: ClipboardEvent) {
-    event.preventDefault(); // Block default paste action
-    const text = event.clipboardData?.getData('text') || '';
+  // onPasteMobileNumber(event: ClipboardEvent) {
+  //   event.preventDefault(); // Block default paste action
+  //   const text = event.clipboardData?.getData('text') || '';
 
-    // Allow only numbers (0-9)
-    if (/^\d+$/.test(text)) {
+  //   // Allow only numbers (0-9)
+  //   if (/^\d+$/.test(text)) {
+  //     const input = event.target as HTMLInputElement;
+  //     input.value += text; // Append only valid numbers
+  //     input.dispatchEvent(new Event('input')); // Update Angular form control
+  //   }
+  // }
+
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Prevent default paste action
+
+    const pastedText = event.clipboardData?.getData('text') || '';
+    const onlyNumbers = pastedText.replace(/\D/g, ''); // Remove non-numeric characters
+
+    if (onlyNumbers) {
       const input = event.target as HTMLInputElement;
-      input.value += text; // Append only valid numbers
-      input.dispatchEvent(new Event('input')); // Update Angular form control
+      const start = input.selectionStart || 0;
+      const end = input.selectionEnd || 0;
+
+      // Insert the valid numbers at the cursor position
+      const newValue =
+        input.value.substring(0, start) + onlyNumbers + input.value.substring(end);
+
+      input.value = newValue;
+      input.setSelectionRange(start + onlyNumbers.length, start + onlyNumbers.length);
+      input.dispatchEvent(new Event('input')); // Trigger Angular form update
     }
   }
+
+
+
 }
