@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
 import { EncryptionService } from '../../../../shared/services/encryption.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class DelegatePaymentFailComponent {
   pay_type: string = '';
   reference_no: string = '';
   p_type: any;
+  token: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +30,8 @@ export class DelegatePaymentFailComponent {
     private sanitizer: DomSanitizer,
     private router:Router,
     private encryptionService : EncryptionService,
-    private ngxLoader : NgxUiLoaderService
+    private ngxLoader : NgxUiLoaderService,
+    private sharedService : SharedService
   ) {}
 
   ngOnInit() {
@@ -64,6 +67,8 @@ export class DelegatePaymentFailComponent {
         this.pay_type = parsedData.p_type;
         this.reference_no = parsedData.reference_no;
         this.code = parsedData.code;
+        this.token = parsedData.token;
+        this.sharedService.setJWTToken(this.token);
       }
 
       // Get stored payment data
@@ -81,8 +86,6 @@ export class DelegatePaymentFailComponent {
   }
 
   retryPayment() {
-
-
 
       let obj = {
         "email": this.email,

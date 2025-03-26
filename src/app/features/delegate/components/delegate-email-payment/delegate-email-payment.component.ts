@@ -1,8 +1,8 @@
+import { SharedService } from './../../../../shared/services/shared.service';
 import { Component } from '@angular/core';
 import { DelegateService } from '../../services/delegate.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from '../../../../shared/services/encryption.service';
-import { SharedService } from '../../../../shared/services/shared.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { debug } from 'console';
 
@@ -18,12 +18,14 @@ export class DelegateEmailPaymentComponent {
   loading: boolean = false;
   paymentData: any;
   message: string = "";
+  token : string ="";
 
   constructor(
     private delegateService: DelegateService,
     private route: ActivatedRoute,
     private encryptionService: EncryptionService,
-    private ngxLoader : NgxUiLoaderService
+    private ngxLoader : NgxUiLoaderService,
+    private sharedService : SharedService
   ) {}
 
   async ngOnInit() {
@@ -31,7 +33,7 @@ export class DelegateEmailPaymentComponent {
     this.ngxLoader.start();
     setTimeout(() => {
       this.ngxLoader.stop();
-    }, 1000);
+    }, 1500);
 
     this.route.queryParams.subscribe(async (params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -54,9 +56,11 @@ export class DelegateEmailPaymentComponent {
           this.email = parsedData.email;
           this.pay_type = parsedData.p_type;
           this.reference_no = parsedData.reference_no;
+          this.token = parsedData.token;
+          this.sharedService.setJWTToken(this.token);
         }
       }
-      if (this.email != '' && this.pay_type != '' && this.reference_no != '') {
+      if (this.email != '' && this.pay_type != '' && this.reference_no != '' && this.token) {
         await this.fnMagnatiPG();
       }
     });
