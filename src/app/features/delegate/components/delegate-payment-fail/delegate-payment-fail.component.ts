@@ -40,12 +40,6 @@ export class DelegatePaymentFailComponent {
 
       if (params != undefined && Object.keys(params).length > 0) {
 
-        this.email = params['email'];
-        this.pay_type = params['p_type'];
-        this.reference_no = params['reference_no'];
-        this.code = params['code'];
-
-
       if (params['data']) {
         let data = params['data'].replace(/ /g, '+');
         let decryptedData = this.encryptionService.decrypt(data);
