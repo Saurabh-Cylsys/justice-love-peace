@@ -175,4 +175,10 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
 
     return '';
   }
+
+  // encodeSpeakerName(name: string): string {
+  //   let decodedName = decodeURIComponent(name); // Decode double encoded values
+  //   return decodedName.replace(/[, ]/g, '-');  // Space and comma ko '-' se replace karega
+  //     }              
+  // 
 }
