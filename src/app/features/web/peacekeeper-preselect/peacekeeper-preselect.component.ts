@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -21,6 +21,7 @@ export class PeacekeeperPreselectComponent {
   delegateOfflineDescription : string = "";
   peaceStudentDescription : string = "";
   delegateOnlineDescription : string = "";
+  isMobileView = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -29,7 +30,7 @@ export class PeacekeeperPreselectComponent {
               private encryptionService : EncryptionService) { }
 
   ngOnInit() {
-
+    this.checkWindowSize();
     this.ngxLoader.start();
     setTimeout(() => {
       this.ngxLoader.stop();
@@ -211,5 +212,20 @@ export class PeacekeeperPreselectComponent {
         queryParams: { dType: encryptedParams }
       });
     }
+  }
+  checkWindowSize(): void {
+    if (window.innerWidth <= 900) {
+      this.sharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.sharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
   }
 }
