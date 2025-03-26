@@ -297,7 +297,7 @@ export class DelegateOnlineComponent implements OnInit {
       email: ['',
         [Validators.required,
         Validators.email,
-        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]
+        Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]
       ],
       // countryCode: ['-1', Validators.required],
       mobile_number: ['', [Validators.required, Validators.minLength(7)]],

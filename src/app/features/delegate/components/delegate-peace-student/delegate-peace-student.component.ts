@@ -113,7 +113,7 @@ export class DelegatePeaceStudentComponent {
       last_name: ['', [Validators.required, Validators.minLength(2)]],
       studentDob :['', [Validators.required]],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       country: ['', [Validators.required]],
       institutionName: ['', [Validators.required]],
       reference_no: [this.referralCode ? this.referralCode : ''],
@@ -128,7 +128,7 @@ export class DelegatePeaceStudentComponent {
       first_name: ['', [Validators.required, Validators.minLength(3)]],
       last_name: ['', [Validators.required, Validators.minLength(2)]],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       country: ['', [Validators.required]],
       delegateDob :['', [Validators.required]],
       reference_no: [this.referralCode ? this.referralCode : ''],
@@ -358,6 +358,7 @@ export class DelegatePeaceStudentComponent {
 }
 
   keyPressNumbersForStudent(event: KeyboardEvent) {
+    debugger
     const inputValue = this.studentForm.controls['mobile_number'].value; // Get value from form control
     if (inputValue && inputValue.number) {
       if (inputValue.number.length < 7) {
@@ -642,6 +643,7 @@ private async fnStripePG(response: any, payload: any) {
   // }
 
   onPasteMobileNumber(event: ClipboardEvent) {
+    debugger
     event.preventDefault(); // Prevent default paste action
 
     const pastedText = event.clipboardData?.getData('text') || '';

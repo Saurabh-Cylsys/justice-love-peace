@@ -308,7 +308,8 @@
                             [enablePlaceholder]="false"
                             [searchCountryFlag]="true"
                             [searchCountryField]="[
-                              SearchCountryField.Iso2,
+                                SearchCountryField.Iso2,
+                                SearchCountryField.Name,
                               SearchCountryField.Name
                             ]"
                             [selectFirstCountry]="false"
@@ -321,8 +322,7 @@
                             [separateDialCode]="true"
                             formControlName="mobile_number"
                             autocomplete="off"
-                            (keypress)="keyPressNumbersForStudent($event)"
-                            (keydown)="onMobileKeyDown($event, 'student')"
+                            (keypress)="onMobileKeyDown($event, 'student')"
                             (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
@@ -708,8 +708,7 @@
                             [separateDialCode]="true"
                             formControlName="mobile_number"
                             autocomplete="off"
-                            (keypress)="keyPressNumbersForDelegate($event)"
-                            (keydown)="onMobileKeyDown($event, 'delegate')"
+                            (keypress)="onMobileKeyDown($event, 'delegate')"
                             (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
@@ -1075,8 +1074,7 @@
                             [separateDialCode]="true"
                             formControlName="mobile_number"
                             autocomplete="off"
-                            (keypress)="keyPressNumbersForDelegate($event)"
-                            (keydown)="onMobileKeyDown($event, 'delegate')"
+                            (keypress)="onMobileKeyDown($event, 'delegate')"
                             (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
@@ -1428,8 +1426,7 @@
                             [separateDialCode]="true"
                             formControlName="mobile_number"
                             autocomplete="off"
-                            (keypress)="keyPressNumbersForStudent($event)"
-                            (keydown)="onMobileKeyDown($event, 'student')"
+                            (keypress)="onMobileKeyDown($event, 'student')"
                             (paste)="onPasteMobileNumber($event)"
                           ></ngx-intl-tel-input>
                         </div>
