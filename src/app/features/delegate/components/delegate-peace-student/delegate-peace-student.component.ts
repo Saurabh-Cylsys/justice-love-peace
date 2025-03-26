@@ -640,4 +640,4 @@ private async fnStripePG(response: any, payload: any) {
       input.dispatchEvent(new Event('input')); // Update Angular form control
     }
   }
-  }
+}

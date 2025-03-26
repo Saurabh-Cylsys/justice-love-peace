@@ -27,6 +27,12 @@ export class DelegateEmailPaymentComponent {
   ) {}
 
   async ngOnInit() {
+
+    this.ngxLoader.start();
+    setTimeout(() => {
+      this.ngxLoader.stop();
+    }, 1000);
+
     this.route.queryParams.subscribe(async (params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         if (params['data']) {
@@ -44,7 +50,6 @@ export class DelegateEmailPaymentComponent {
               parsedData[key.trim()] = decodeURIComponent(value.trim());
             }
           });
-
           // Assign values to class properties
           this.email = parsedData.email;
           this.pay_type = parsedData.p_type;
