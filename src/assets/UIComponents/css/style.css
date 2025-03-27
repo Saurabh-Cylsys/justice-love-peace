@@ -2596,13 +2596,20 @@ button:focus {
   padding: 20px 0 !important;
 }
 .speaker-details .card .card-body h5 {
-  font-weight: 700;
+  /* font-weight: 700;
   font-size: clamp(14px, 1.5vw, 16px);
   line-height: 32.33px;
   letter-spacing: 0%;
   text-align: center;
   color: var(--color6);
-  white-space: nowrap;
+  white-space: nowrap; */
+  font-weight: 700;
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 18.33px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color6);
+  white-space: wrap;
 }
 .speaker-details .card .card-body .country {
   font-weight: 700;
@@ -2948,7 +2955,7 @@ button:focus {
 
 .chiefGuest p {
   font-weight: 900;
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(14px, 2vw, 16px);
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
