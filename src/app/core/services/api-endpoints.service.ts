@@ -372,5 +372,7 @@ export class ApiEndpointsService {
   public getDiscountAmountEndpoint(couponCode:string) {
     return this.createUrl(this._constants.API_ENDPOINT_DISCOUNT_AMOUNT + '/' + couponCode);
   }
-
+  public getAllSpeakersListEndpoint(data:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS_LIST);
+  }
 }

@@ -485,9 +485,8 @@
                           <img
                             loading="lazy"
                             [src]="
-                              speaker.Profile_Photo
-                                ? 'assets/UIComponents/images/speakers/' +
-                                  speaker.Profile_Photo
+                              speaker.profile_photo
+                                ? speaker.profile_photo
                                 : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
                             
                             "onerror="this.onerror=null; this.src='assets/UIComponents/images/speakers/ProfileAavtar.png';"
@@ -495,10 +494,13 @@
                             class="profile-photo img-fluid"
                             width="50%"
                           />
-                          <h5>{{ speaker.Name }}</h5>
-                          <label class="country">({{ speaker.Country }})</label>
-                          <h6 class="credentials">{{ speaker.Credentials }}</h6>
+                          <h5>{{ speaker.speaker_name }}</h5>
+                          <label class="country">({{ speaker.speaker_country }})</label>
+                          <h6 class="credentials">{{ speaker.speaker_credentials }}</h6>
                           
+                        </div>
+                        <div class="card-footer text-center bg-transparent border-0">
+                          <button class="btn btn-primary hover-scale col-md-6" [routerLink]="['/speaker-details', speaker.speaker_id , speaker.speaker_name] " >View Profile</button>
                         </div>
                       </div>
                     </div>
@@ -555,19 +557,21 @@
                               loading="lazy"
                               (click)="clickToView(speakers.View)"
                               [src]="
-                                speakers.Profile_Photo
-                                  ? 'assets/UIComponents/images/speakers/' +
-                                    speakers.Profile_Photo
+                                speakers.profile_photo
+                                  ? speakers.profile_photo
                                   : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
                               "
                               alt="attach image"
                               class="profile-photo img-fluid"
                               width="50%"
                             />
-                            <h5>{{ speakers.Name }}</h5>
-                            <label class="country">({{ speakers.Country }})</label>
-                            <h6 class="credentials">{{ speakers.Credentials }}</h6>
+                            <h5>{{ speakers.speaker_name }}</h5>
+                            <label class="country">({{ speakers.speaker_country }})</label>
+                            <h6 class="credentials">{{ speakers.speaker_credentials }}</h6>
                             
+                          </div>
+                          <div class="card-footer text-center bg-transparent border-0">
+                            <button class="btn btn-primary hover-scale col-md-6" [routerLink]="['/speaker-details', speakers.speaker_id , speakers.speaker_name] " >View Profile</button>
                           </div>
                         </div>
                       </div>

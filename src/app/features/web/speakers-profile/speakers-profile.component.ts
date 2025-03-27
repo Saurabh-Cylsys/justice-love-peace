@@ -74,10 +74,9 @@ export class SpeakersProfileComponent implements OnInit {
 
   loadSpeakers() {
     this.isLoading = true;
-    debugger
     // Prepare the search text - if country is selected, include it in the search
 
-    this.webService.getSpeakersList('', '73', this.speakersId)
+    this.webService.getSpeakersList('', '100', this.speakersId)
       .subscribe({
 
         next: (response: any) => {
