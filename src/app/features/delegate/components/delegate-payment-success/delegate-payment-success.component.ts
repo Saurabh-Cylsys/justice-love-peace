@@ -116,27 +116,132 @@ export class DelegatePaymentSuccessComponent {
         }
         else {
           this.transactionId = params.txnId;
-          this.getUserDataByTransactionId();
+          if(this.transactionId) {
+            await this.getUserDataByTransactionId();
+          }
         }
       }
     });
-
   }
 
-  getUserDataByTransactionId() {
+  async getUserDataByTransactionId() {
+
     this.loading = true;
-    this.delegateService
+    await this.delegateService
       .getDataByTransactionIdApi(this.transactionId)
       .subscribe(
         (response: any) => {
           this.loading = false;
-          if (response) {
+          if (response.success) {
             this.registrationData = response.data[0];
-            console.log(this.registrationData);
-            this.showPaymentSuccess = true;
-          } else {
-            this.showPaymentSuccess = false;
+
+            this.pType = response.data[0].p_type;
+
+          // this.isPaymentStatus = response.session.payment_status;
+
+          if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
+           const isNominee = localStorage.getItem('isNominee')
+
+           if(isNominee == 'student') {
+            let adultData  = response.data[0].parent_details[0];
+            let peaceStudentData = response.data[0].nominations[0];
+
+            this.peaceStudentData = {
+              studentTitle: peaceStudentData?.title_nom,
+              studentFirstName: peaceStudentData?.first_name_nom,
+              studentLastName: peaceStudentData.last_name_nom,
+              studentEmail: peaceStudentData.email_id_nom,
+              studentCountry_id: peaceStudentData.country_id_nom,
+              studentMobileNumber: peaceStudentData.mobile_no_nom,
+              studentCountry_Code: peaceStudentData.country_code_nom,
+              studentDob: peaceStudentData.dob_nom,
+              studentRelation: peaceStudentData.relation,
+              studentInstituteName: peaceStudentData.institution_name_nom,
+
+              adultTitle: adultData.title,
+              adultFirstName: adultData.first_name,
+              adultLastName: adultData.last_name,
+              adultEmail: adultData.email_id,
+              adultCountryCode :adultData.country_code,
+              adultMobileNumber: adultData.mobile_no,
+              adultCountryId: adultData.country_id,
+              adultDob:adultData.dob,
+              referralCode : adultData.reference_no,
+
+              transcation_id: this.transactionId,
+              transcation_json:  response.data[0]['transcation_json'].status,
+            }
+           }
+           else if(isNominee == 'adult') {
+            let peaceStudentData = response.data[0].parent_details[0];
+            let adultData = response.data[0].nominations[0];
+
+            this.peaceStudentData = {
+              studentTitle: peaceStudentData?.title,
+              studentFirstName: peaceStudentData?.first_name,
+              studentLastName: peaceStudentData.last_name,
+              studentEmail: peaceStudentData.email_id,
+              studentCountry_id: peaceStudentData.country_id,
+              studentMobileNumber: peaceStudentData.mobile_no,
+              studentCountry_Code: peaceStudentData.country_code,
+              studentDob: peaceStudentData.dob,
+              studentRelation: peaceStudentData.relation,
+              studentInstituteName: adultData.institution_name_nom,
+              referralCode : peaceStudentData.reference_no,
+
+              adultTitle: adultData.title_nom,
+              adultFirstName: adultData.first_name_nom,
+              adultLastName: adultData.last_name_nom,
+              adultEmail: adultData.email_id_nom,
+              adultCountryCode :adultData.country_code_nom,
+              adultMobileNumber: adultData.mobile_no_nom,
+              adultCountryId: adultData.country_id_nom,
+              adultDob:adultData.dob_nom,
+
+
+              transcation_id: this.transactionId,
+              transcation_json: response.data[0]['transcation_json'].status,
+           }
+        };
+      }
+          else if(this.pType == 'DELEGATE_ONLINE' || this.pType == 'DELEGATE_OFFLINE'){
+            this.registrationData = {
+              title: response.data[0].title,
+              first_name: response.data[0].first_name,
+              last_name: response.data[0].last_name,
+              email: response.data[0].email_id ,
+              country_code :response.data[0].country_code,
+              mobile_number: response.data[0].mobile_number,
+              country_id :response.data[0].country_id,
+              transcation_id: response.data[0].transcation_id,
+              transcation_json: { status: response.data[0]['transcation_json'].status },
+              dob : response.data[0].dob,
+              referralCode : response.data[0].reference_no
+            };
+            if (this.registrationData) {
+              this.registrationData.email = response.data[0].email_id ;
+              this.registrationData.transcation_id = response.data[0].transcation_id;
+              this.registrationData.transcation_json.status = response.data[0]['transcation_json'].status;
+              this.registrationData = {
+                title: response.data[0].title,
+              first_name: response.data[0].first_name,
+              last_name: response.data[0].last_name,
+              email: response.data[0].email_id ,
+              country_code :response.data[0].country_code,
+              mobile_number: response.data[0].mobile_number,
+              country_id :response.data[0].country_id,
+              transcation_id: response.data[0].transcation_id,
+              transcation_json: { status: response.data[0]['transcation_json'].status },
+              dob : response.data[0].dob,
+              referralCode : response.data[0].reference_no
+              };
+            }
           }
+          this.transactionVerified = true;
+          this.showPaymentSuccess = true;
+        } else {
+          this.isPaymentStatus = 'failed';
+        }
         },
         (err) => {
           this.loading = false;
@@ -152,7 +257,6 @@ export class DelegatePaymentSuccessComponent {
       // sessionId: "cs_test_a1wx1VFhgcGnSFpvXZ36uXOna2QbD3gYfXdi1ZefYj9MYOwUv6bpj1v2Ak"
       sessionId: this.sessionId,
       p_type: this.pType
-
     }
     const EncryptData = this.encryptionService.encrypt(body);
     let reqBody = {
@@ -171,8 +275,6 @@ export class DelegatePaymentSuccessComponent {
 
           if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
            const isNominee = localStorage.getItem('isNominee')
-
-           console.log("isnominee",isNominee);
 
            if(isNominee == 'student') {
             let adultData  = decryptData.savedDetails[0].parent_details[0];

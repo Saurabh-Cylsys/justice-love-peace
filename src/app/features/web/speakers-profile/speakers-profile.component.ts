@@ -23,6 +23,7 @@ export class SpeakersProfileComponent implements OnInit {
   domainUrl: string = environment.domainUrl;
   speakerShareUrl: string = '';
 
+  isCorrectSpeaker: boolean = true;
   constructor(
     private webService: WebService,
     private datePipe: DatePipe,
@@ -84,7 +85,7 @@ export class SpeakersProfileComponent implements OnInit {
 
   loadSpeakers() {
     this.isLoading = true;
-
+    debugger
     // Prepare the search text - if country is selected, include it in the search
 
     this.webService.getSpeakersList('', '73', this.speakersId)
@@ -94,6 +95,15 @@ export class SpeakersProfileComponent implements OnInit {
           if (response?.encryptedData) {
             let decryptedObj:any = this.encryptionService.decrypt(response.encryptedData);
             decryptedObj = JSON.parse(decryptedObj);
+
+                // Decode and clean the name
+                let cleanName = decryptedObj?.data[0].speaker_name
+          
+                // If the URL is manually modified and does not match the expected format, redirect
+                if (this.speakersName !== cleanName) {
+                  this.isCorrectSpeaker = false; // Redirect user to an error page or home
+                  return false;
+                }
             this.speakersDetails = decryptedObj?.data;
             this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
             this.speakersDetails[0].qr_code = this.speakersDetails[0].url
@@ -108,6 +118,7 @@ export class SpeakersProfileComponent implements OnInit {
 
           }
           this.isLoading = false;
+          return;
         },
         error: (error) => {
           let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
@@ -161,55 +172,6 @@ export class SpeakersProfileComponent implements OnInit {
     // const shareURL = this.speakersDetails.qr_code;
 
     const shareTitle = `
-    *✨ 12 REASONS TO ATTEND GLOBAL JUSTICE, LOVE & PEACE SUMMIT AT DUBAI ON 12, 13 APRIL, 2025 ✨*
-
-👑 *Chief Guest:* His Excellency Sheikh Nahayan Mabarak Al Nahayan, Minister of Tolerance & Co-Existence, UAE
-
-🌍 *Chairman of the Summit:* Dr. Huzaifa Khorakiwala
-
-🌟 *A STAR-STUDDED, SENSITIVE, SPECIAL, SOCIABLE, SAGACIOUS, SWEET, & SATISFYING Summit!*
-
-🎤 *1. OUTSTANDING, GLOBAL SPEAKERS* 🎓🌎
-72 outstanding, global speakers including *10 Nobel Peace Laureates* 🕊️ (including *Lech Walesa*), *Baba Ramdev*, *Sri Sri Ravishankar* (live online), *Jacqueline Fernandez*, *The Great Khali*, etc.
-
-🌐 *2. 2800 DELEGATES (PEACEKEEPERS)* 🤝💙
-Surely, one of the world’s *largest private summits* on *justice, love, & peace*, a great place to *network* with *noble & noteworthy Delegates (Peacekeepers).*
-
-📅 *3. PEACE NETWORKING* 🤲📍
-*28 Peace Networking Tables* to do *private networking* by fixing up *meetings before the event* with Delegates of your choice.
-
-🏅 *4. PAX AWARDS* 🎖️✨
-*28 Awards* amongst *112 nominees* at a *glittering Awards ceremony.*
-
-🍛 *5. PEACE MENU* 🌍🍽️
-*28 dishes* from *28 different countries* in an exotic *Peace Menu* over 1 meal, so with *2 Lunches & 2 Dinners*, there will be *112 dishes from 28 countries!*
-
-📸 *6. PRIVATE PHOTOS WITH SPEAKERS* 📷✨
-Each Speaker agrees to take *individual, private pictures* with *28 Delegates*—you could be *one of them!*
-
-🥇 *7. INVITATION TO EXCLUSIVE VIP LUNCHES & DINNERS* 🏆🍴
-*12%* of Delegates will get a *Special Invite* to a *VIP Lunch or Dinner* where *Speakers & Awardees* are likely to be present. Hence, *48%* of Delegates will receive an invite to *one of the 4 Lunches or Dinners.*
-
-🎁 *8. PEACE GIFTS* 🎀📦
-Every Delegate will receive *exquisite Peace Gifts*, which include a *Peace Calendar*, *Peace Coffee Mug*, *Peace Chocolates*, etc.
-
-🎭 *9. SPEAKERS CUT-OUTS* 🖼️📷
-Each Delegate can *take photos* with *Speakers’ Cut-Outs!*
-
-✊ *10. I AM PEACEKEEPER MOVEMENT* ✨🫶
-Become part of a *Global “I am Peacekeeper” Movement* & network with *Global Peacekeepers* while receiving *attractive offers & discounts!*
-
-👗 *11. PEACE FASHION* 🌎🧵
-See a *unique Peace Fashion Show* featuring *7 leading fashion designers* from different continents.
-
-🎼 *12. PEACE SONGS* 🎶🎙️
-Experience *inspiring Peace Songs* live!
-
-🚀 *SOME OCCASIONS & EXPERIENCES ARE JUST NOT TO BE MISSED*
-
-_"where every smile counts"_ 😊✨
-
-📢 *Register as a DELEGATE (Peacekeeper) through my personal link below & get 7% discount on the Summit Pass of $2800.*
 
  ${this.speakerShareUrl}
 
@@ -219,11 +181,9 @@ INDIA : 18002672828
 
 🌐 www.justice-love-peace.com
 `
-    // Construct WhatsApp Share URL
-    // const whatsappURL = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareURL}`;
+
 
     const whatsappURL = `https://wa.me/?text=${encodeURIComponent(shareTitle)}`;
-    // const teamsURL = `https://teams.microsoft.com/l/chat/0/0?users=&message=${encodeURIComponent(shareTitle)}`;
 
 
     // Check if Web Share API is supported

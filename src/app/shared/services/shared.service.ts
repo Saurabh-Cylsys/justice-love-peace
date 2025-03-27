@@ -119,7 +119,6 @@ private getRouteData(): any {
     )
   }
 
-
   registratiotjoin(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.registratiotjoinEndpoint(), data
     )
@@ -143,4 +142,15 @@ private getRouteData(): any {
     )
   }
 
+  getDiscountAmountByCouponCode(couponCode: string) {
+    return this._apiHttpService.get(this._apiEndpointsService.getDiscountAmountEndpoint(couponCode));
+  }
+
+  setJWTToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getJWTToken() {
+    return localStorage.getItem('token');
+  }
 }

@@ -79,15 +79,6 @@ export class DelegateRegistrationOnlineComponent {
   @ViewChild('number_mobile1', { static: false })
   mobileNumberInput!: ElementRef;
   @ViewChild('dobPicker') dobPicker!: BsDatepickerDirective;
-  ipAddress: string = '';
-  deviceInfo: any = '';
-  isOTPReceive: boolean = false;
-  txtVerifyOTP: string = '';
-  countdown: number = 100; // 5 minutes in seconds
-  timerExpired: boolean = false;
-  interval: any;
-  buttonText: string = 'Send OTP';
-  mediumValue: string | null = '';
   email: string = '';
   mobileNo: string = '';
   name: string = '';
@@ -97,7 +88,6 @@ export class DelegateRegistrationOnlineComponent {
   country_id: any;
   country_code: any;
   dob: any;
-  isDisabled = true;
   pType: any;
   firstName: any;
   lastName: any;
@@ -129,7 +119,13 @@ export class DelegateRegistrationOnlineComponent {
   }
 
 async ngOnInit() {
-  this.isDisabled = true;
+
+  this.ngxService.start();
+  setTimeout(() => {
+
+    this.ngxService.stop();
+  }, 1500);
+
     this.checkWindowSize();
     // this.dobValidator();
 
@@ -160,22 +156,23 @@ async ngOnInit() {
     this.createForm();    // this.getdates()
     await this.getAllCountries();
 
-    console.log("this.countryData", this.countryData);
-
    if (this.countryData.length > 0) {
        this.setCountry();
+       this.ngxService.stop();
     }
   }
 
   setCountry() {
+
+    if (!this.countryData || this.countryData.length === 0) {
+      console.log("Country data not loaded yet. Retrying...");
+      setTimeout(() => this.setCountry(), 500); // Retry after 500ms
+      return;
+    }
+
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
       if (selectedCountry) {
-
-        // this.registrationForm.patchValue({
-        //   country: selectedCountry.name,
-        //   country_id: +selectedCountry.id
-        // });
 
         const patchFormData = {
           country_id: +this.country_id,
@@ -183,11 +180,11 @@ async ngOnInit() {
          }
         this.registrationForm.patchValue(patchFormData);
 
-
         this.cdr.detectChanges(); // 👈 Force UI update
       const encryptedObj = this.encryptionService.encrypt(this.country_id);
 
         if (this.country_id) {
+          this.ngxService.start();
         this.delegateService.getAllStates(encryptedObj).subscribe(
           (res: any) => {
             let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
@@ -196,21 +193,19 @@ async ngOnInit() {
               this.statesData = decryptData.data;
           },
           (err: any) => {
+            this.ngxService.stop();
+
             let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
             decryptErr = JSON.parse(decryptErr);
+
             console.error('Error ', decryptErr);          }
         );
       }
-      // this.registrationForm.patchValue({ country: selectedCountry });
 
     } else {
-      console.warn("Country not found for ID:", this.country_id);
+      console.log("Country not found for ID:", this.country_id);
     }
-
-    console.log("Selected Country:", this.registrationForm.value.country);
-    console.log("Selected CountryID:", this.registrationForm.value.country_id);
   }
-
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -219,7 +214,6 @@ async ngOnInit() {
   onCountryChange(event: any): void {
     this.selectedCountryISO = event.iso2; // Update the selected country ISO
   }
-
 
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
@@ -335,7 +329,9 @@ async ngOnInit() {
   }
 
  async getAllCountries() {
+
   try {
+
     const response = await this.delegateService.getAllCountryApi();
     let encryptedData = response.encryptedData;
     let decryptData = this.encryptionService.decrypt(encryptedData);
@@ -418,18 +414,6 @@ async ngOnInit() {
     if (allowedPattern.test(text)) {
       const input = event.target as HTMLInputElement;
       input.value += text; // Append only valid text
-      input.dispatchEvent(new Event('input')); // Update Angular form control
-    }
-  }
-
-  onPasteMobileNumber(event: ClipboardEvent) {
-    event.preventDefault(); // Block default paste action
-    const text = event.clipboardData?.getData('text') || '';
-
-    // Allow only numbers (0-9)
-    if (/^\d+$/.test(text)) {
-      const input = event.target as HTMLInputElement;
-      input.value += text; // Append only valid numbers
       input.dispatchEvent(new Event('input')); // Update Angular form control
     }
   }
@@ -566,51 +550,6 @@ async ngOnInit() {
     };
   }
 
-  getPhoneErrorMessage() {
-    const control = this.registrationForm.controls['mobile_number'];
-    if (control.value) {
-      if (control.errors.validatePhoneNumber['valid']) {
-        return '';
-      } else {
-        return 'Invalid mobile number for selected country.';
-      }
-    }
-    return '';
-  }
-
-  onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
-    if (inputValue !== null) {
-      // Prevent space at the beginning
-      if (
-        event.key === ' ' &&
-        event.code === 'Space' &&
-        inputValue.number.length === 0
-      ) {
-        event.preventDefault();
-        return;
-      }
-
-      // Allow only numbers, Backspace, Delete, Arrow Keys, and Tab
-      if (
-        !/^[0-9]$/.test(event.key) &&
-        !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
-          event.key
-        )
-      ) {
-        event.preventDefault();
-        return;
-      }
-
-      // Handle backspace validation
-      if (event.code === 'Backspace') {
-        if (inputValue.number.length < 7) {
-          this.mobile_numberVal = true;
-        } else {
-          this.mobile_numberVal = false;
-        }
-      }
-    }
-  }
 
   onKeyDown(
     event: KeyboardEvent,
@@ -796,6 +735,7 @@ async ngOnInit() {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (this.state_name == '' || this.state_name == undefined) {
       setTimeout(() => {
@@ -805,6 +745,7 @@ async ngOnInit() {
         }
       }, 100);
       this.SharedService.ToastPopup('Please Select State', '', 'error');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (this.city_name == '' || this.city_name == undefined) {
       setTimeout(() => {
@@ -814,6 +755,7 @@ async ngOnInit() {
         }
       }, 100);
       this.SharedService.ToastPopup('Please Select City', '', 'error');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (
       !this.registrationForm.value.attendee_purpose ||
@@ -824,6 +766,7 @@ async ngOnInit() {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     } else if (
       !this.registrationForm.get('conference_lever_interest')?.value ||
@@ -834,6 +777,7 @@ async ngOnInit() {
         '',
         'error'
       );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
@@ -885,7 +829,7 @@ async ngOnInit() {
             this.registrationForm.reset();
             setTimeout(() => {
                 this.router.navigateByUrl('/delegate-message');
-            }, 3000);
+            }, 1000);
 
           } else {
             this.ngxService.stop();
@@ -901,16 +845,12 @@ async ngOnInit() {
           });
 
           this.SharedService.ToastPopup('', decryptErr.message, 'error');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       );
     }
   }
 
-  openPopup() {
-    this.showPopup = true;
-    this.display = 'block';
-    this.formdisplay = false;
-  }
 
   closeModal() {
     this.display = 'none';

@@ -113,4 +113,9 @@ export class Constants {
 
     public readonly API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT: string = 'get_speaker_list/encryption'
 
+    public readonly API_ENDPOINT_VERIFY_TICKET: string = 'verify_ticket_id'
+
+    public readonly API_ENDPOINT_DISCOUNT_AMOUNT: string =  'discount_amount'
+
+
 }

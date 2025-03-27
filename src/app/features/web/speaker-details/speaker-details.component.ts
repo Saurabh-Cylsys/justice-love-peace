@@ -198,4 +198,9 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
       queryParams: {  data: encryptedParams }
     });
   }
+  // encodeSpeakerName(name: string): string {
+  //   let decodedName = decodeURIComponent(name); // Decode double encoded values
+  //   return decodedName.replace(/[, ]/g, '-');  // Space and comma ko '-' se replace karega
+  //     }              
+  // 
 }

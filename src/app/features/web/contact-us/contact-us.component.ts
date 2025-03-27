@@ -222,6 +222,19 @@ export class ContactUsComponent {
 
   }
 
+  validateTitle(event: any, controlName: string) {
+    let inputValue = event.target.value;
+
+    // Remove leading spaces
+    inputValue = inputValue.replace(/^\s+/, '');
+
+    // Remove invalid characters except letters, space, hyphen, and underscore
+    inputValue = inputValue.replace(/[^a-zA-Z\s\.‘]/g, '');
+
+    // Update the input field
+    this.contactUsForm.controls[controlName].setValue(inputValue, { emitEvent: false });
+  }
+
   containsConsecutiveZeros(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;

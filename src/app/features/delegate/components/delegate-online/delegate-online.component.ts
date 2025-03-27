@@ -10,6 +10,7 @@ import { HostListener } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { environment } from '../../../../../environments/environment';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 interface RegistrationData {
   // name: string;
@@ -76,12 +77,14 @@ export class DelegateOnlineComponent implements OnInit {
   ];
   selectedCountryISO: any;
   SearchCountryField = SearchCountryField;
-  delagateType: any;
+  delagateType: string = "";
   pType: string = "";
   payload: any;
   btnDisabled: boolean = false;
   private autoSaveSubscription?: Subscription;
   private isFormSubmitted = false; // Flag to track submission
+  isMobileView = false;
+  previousDobValue: any;
 
   constructor(
     private fb: FormBuilder,
@@ -90,17 +93,14 @@ export class DelegateOnlineComponent implements OnInit {
     private datePipe: DatePipe,
     private sharedService: SharedService,
     private route: ActivatedRoute,
-    private encryptionService: EncryptionService
-
+    private encryptionService : EncryptionService,
+    private ngxService : NgxUiLoaderService
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
-        const decryptedData = this.encryptionService.decryptData(params['data']);
-
-        if (decryptedData) {
-          this.referralCode = decryptedData.code;
-          this.delagateType = decryptedData.dType;
-        }
+        this.referralCode = params.code;
+        this.delagateType = this.encryptionService.decrypt(params.dType);
+        // this.delagateType = params.dType;
 
         this.fnPartialSave()
         // this.router.navigate([], {
@@ -124,9 +124,9 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   fnPartialSave() {
-    const email = this.userForm.get('email')?.value;
-    const mobile = this.userForm.get('mobile')?.value;
-    const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
+    const email = this.userForm?.get('email')?.value;
+    const mobile = this.userForm?.get('mobile')?.value;
+    const rawMobileNumber = this.userForm?.value.mobile_number?.number ?? '';
     const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
 
     if (email || formattedMobileNumber) {
@@ -173,6 +173,7 @@ export class DelegateOnlineComponent implements OnInit {
 
   async ngOnInit() {
 
+    this.checkWindowSize();
     this.initializeForms();
     await this.getAllCountries();
     this.autoSaveSubscription = timer(0, 60000).subscribe(() => {
@@ -181,6 +182,9 @@ export class DelegateOnlineComponent implements OnInit {
       }
     });
 
+    setTimeout(() => {
+      this.previousDobValue = this.userForm.get('dob')?.value || null;
+    });
   }
 
   validateAlpha(event: KeyboardEvent) {
@@ -197,6 +201,25 @@ export class DelegateOnlineComponent implements OnInit {
 
     // Allow letters, spaces (not at start),
     const allowedPattern = /^[a-zA-Z\s\'‘]$/;
+    if (!allowedPattern.test(key)) {
+      event.preventDefault();
+    }
+  }
+
+  titleValidateAlpha(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    const key = event.key;
+    const currentValue = input.value;
+    const cursorPos = input.selectionStart;
+
+    // Block space at the beginning
+    if (key === ' ' && (cursorPos === 0 || currentValue === '')) {
+      event.preventDefault();
+      return;
+    }
+
+    // Allow letters, spaces (not at start),
+    const allowedPattern = /^[a-zA-Z\s\.'‘]$/;
     if (!allowedPattern.test(key)) {
       event.preventDefault();
     }
@@ -224,21 +247,39 @@ export class DelegateOnlineComponent implements OnInit {
     return this.userForm.get(name);
   }
 
+
   handleTabKey(event: KeyboardEvent, nextFieldId: string) {
     if (event.key === 'Tab') {
       event.preventDefault(); // Prevent default tab behavior
 
       const nextField = document.getElementById(nextFieldId) as HTMLElement;
-      if (nextField) {
-        nextField.focus(); // Move focus to DOB field
 
-        // Open the datepicker when moving to DOB field
+      if (nextField) {
+        nextField.focus();
+
+        // If moving to DOB, open the datepicker
         if (nextFieldId === 'dob') {
           this.openDatepicker();
         }
       }
     }
   }
+
+
+  moveToReferenceNo(event:any) {
+    if (!event || event === this.previousDobValue) {
+      return; // Do nothing if the value is unchanged
+    }
+
+    this.previousDobValue = event; // Update the stored value
+    setTimeout(() => {
+      const referenceNoField = document.getElementById('reference_no') as HTMLElement;
+      if (referenceNoField) {
+        referenceNoField.focus();
+      }
+    }, 100); // Small delay to ensure date selection completes before moving focus
+  }
+
 
   openDatepicker() {
     const dobInput = document.getElementById('dob') as HTMLInputElement;
@@ -259,7 +300,7 @@ export class DelegateOnlineComponent implements OnInit {
       email: ['',
         [Validators.required,
         Validators.email,
-        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]
+        Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]
       ],
       // countryCode: ['-1', Validators.required],
       mobile_number: ['', [Validators.required, Validators.minLength(7)]],
@@ -295,7 +336,6 @@ export class DelegateOnlineComponent implements OnInit {
     }
   }
 
-
   keyPressNumbers(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement; // Get the input field
     const inputId = inputElement.id;
@@ -325,7 +365,6 @@ export class DelegateOnlineComponent implements OnInit {
     this.mobile_numberVal = inputValue.length < 7;
   }
 
-
   getPhoneErrorMessage() {
     const control = this.userForm.controls['mobile_number'];
     if (control.value && control.errors) {
@@ -346,19 +385,22 @@ export class DelegateOnlineComponent implements OnInit {
       this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
+  private trimValue(value: any): any {
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      return trimmed; // returns '' if only whitespace
+    }
+    return value;
+  }
+
   onSubmit() {
-    console.log("Userform", this.userForm.value);
 
     if (!this.userForm.valid || this.loading) {
       return; // Prevent submission if the form is invalid or loading
     }
 
-    const returnmobileNumber = this.userForm.value.mobile_number;
-    console.log(returnmobileNumber, 'mobileNumber');
-    const country_code = this.userForm.value.mobile_number.dialCode;
     const rawMobileNumber = this.userForm.value.mobile_number.number;
     let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    console.log(formattedMobileNumber);
 
     if (this.userForm.valid) {
       this.loading = true;
@@ -366,18 +408,17 @@ export class DelegateOnlineComponent implements OnInit {
       if (this.delagateType == 'offline') {
         this.pType = "DELEGATE_OFFLINE";
       }
-      else {
+      else if (this.delagateType == 'online'){
         this.pType = "DELEGATE_ONLINE";
       }
 
-
       if (this.pType == "DELEGATE_ONLINE") {
         this.payload = {
-          title: this.userForm.get('title')?.value,
-          first_name: this.userForm.get('first_name')?.value,
-          last_name: this.userForm.get('last_name')?.value,
+          title: this.trimValue(this.userForm.get('title')?.value),
+          first_name: this.trimValue(this.userForm.get('first_name')?.value),
+          last_name: this.trimValue(this.userForm.get('last_name')?.value),
           mobile_number: formattedMobileNumber,
-          email_id: this.userForm.get('email')?.value.toLowerCase(),
+          email_id: this.trimValue(this.userForm.get('email')?.value.toLowerCase()),
           country_code: this.userForm.get('mobile_number')?.value.dialCode,
           reference_no: this.referralCode ? this.referralCode : this.userForm.value.reference_no,
           dob: this.formattedDateOfBirth,
@@ -389,11 +430,11 @@ export class DelegateOnlineComponent implements OnInit {
       }
       else if (this.pType == "DELEGATE_OFFLINE") {
         this.payload = {
-          title: this.userForm.get('title')?.value,
-          first_name: this.userForm.get('first_name')?.value,
-          last_name: this.userForm.get('last_name')?.value,
+          title: this.trimValue(this.userForm.get('title')?.value),
+          first_name: this.trimValue(this.userForm.get('first_name')?.value),
+          last_name: this.trimValue(this.userForm.get('last_name')?.value),
           mobile_number: formattedMobileNumber,
-          email_id: this.userForm.get('email')?.value.toLowerCase(),
+          email_id: this.trimValue(this.userForm.get('email')?.value?.toLowerCase()),
           country_code: this.userForm.get('mobile_number')?.value.dialCode,
           reference_no: this.referralCode ? this.referralCode : this.userForm.value.reference_no,
           dob: this.formattedDateOfBirth,
@@ -402,7 +443,6 @@ export class DelegateOnlineComponent implements OnInit {
           p_type: this.pType,
           p_reference_by: "0"
         };
-
       }
       const EncryptData = this.encryptionService.encrypt(this.payload);
       let reqBody = {
@@ -419,13 +459,14 @@ export class DelegateOnlineComponent implements OnInit {
           this.btnDisabled = true;
           this.sharedService.ToastPopup(decryptData.message, '', 'success');
           this.registrationData = this.payload;
+          this.sharedService.setJWTToken(response.token);
 
           setTimeout(async () => {
-            if (response.isStripe)
+            if (decryptData.isStripe  == "true")
               await this.fnStripePG(decryptData, this.payload);
             else
               await this.fnMagnatiPG(decryptData, this.payload);
-          }, 5000);
+          }, 4000);
 
           this.loading = false;
         },
@@ -434,7 +475,9 @@ export class DelegateOnlineComponent implements OnInit {
           decryptErr = JSON.parse(decryptErr);
           console.error('Error creating delegate:', decryptErr);
           this.sharedService.ToastPopup('Error', decryptErr?.message || 'Registration failed', 'error');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           this.loading = false;
+          this.ngxService.stop();
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave
         }
@@ -452,46 +495,6 @@ export class DelegateOnlineComponent implements OnInit {
     this.stopAutoSave(); // Cleanup on component destruction
   }
 
-  //   @HostListener('window:beforeunload', ['$event'])
-  // beforeUnloadHandler(event: BeforeUnloadEvent): void {
-  //   const email = this.userForm.get('email')?.value;
-  //   const mobile = this.userForm.get('mobile')?.value;
-  //   const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
-  //   const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
-
-  //   if (email || formattedMobileNumber) {
-  //     event.preventDefault();
-  //     event.returnValue = true; // Show confirmation message
-
-  //     const payload = {
-  //       title: this.userForm.get('title')?.value ?? '',
-  //       first_name: this.userForm.get('first_name')?.value ?? '',
-  //       last_name: this.userForm.get('last_name')?.value ?? '',
-  //       mobile_number: formattedMobileNumber ?? '',
-  //       email_id: this.userForm.get('email')?.value?.toLowerCase() ?? '',
-  //       country_code: this.userForm.get('mobile_number')?.value?.dialCode ?? '',
-  //       reference_no: (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
-  //       dob: this.formattedDateOfBirth ?? '',
-  //       country_id: this.userForm.value.country ?? ''
-  //     };
-
-  //     try {
-  //       // Convert object to URL-encoded format
-  //       const params = new URLSearchParams();
-  //       Object.entries(payload).forEach(([key, value]) => {
-  //         params.append(key, value);
-  //       });
-
-  //       // Send data using navigator.sendBeacon()
-  //       navigator.sendBeacon(environment.apiUrl + '/pre_delegate_draft_details', params);
-  //     } catch (e) {
-  //       console.warn('Draft save failed:', e);
-  //       localStorage.setItem('delegateFormDraft', JSON.stringify(payload));
-  //     }
-  //   }
-  // }
-
-
   private async fnStripePG(response: any, payload: any) {
     if (response.success && response.gatewayUrl) {
       window.location.href = response.gatewayUrl;
@@ -501,16 +504,20 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
-    if (response.success && response.gatewayUrl) {
-      localStorage.setItem('delegateRegistration', JSON.stringify(payload));
-      //window.location.href = response.payment_link;
+
+    if (response.success) {
+
       let obj = {
         "email": this.userForm.get('email')?.value.toLowerCase(),
-        "pay_type": "DELEGATE_ONLINE",
+        "pay_type": this.pType,
+        "reference_no": (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
       };
 
+      this.ngxService.start();
       await this.delegateService.postDelegateOnlineMP(obj).subscribe({
         next: (response: any) => {
+
+          this.ngxService.stop();
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
@@ -530,13 +537,14 @@ export class DelegateOnlineComponent implements OnInit {
 
         },
         error: (error: any) => {
-          console.error('Error creating delegate:', error);
+          this.ngxService.stop();
+          this.sharedService.ToastPopup(error.error['message'],'','error');
+          console.log('Error creating delegate:', error);
           this.loading = false;
         }
       });
     }
   }
-
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: any) {
@@ -551,4 +559,31 @@ export class DelegateOnlineComponent implements OnInit {
     this.userForm.patchValue({ country_id: countryObj.id });
   }
 
+  checkWindowSize(): void {
+    if (window.innerWidth <= 900) {
+      this.sharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.sharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
+  }
+
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only numbers (0-9)
+    if (/^\d+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid numbers
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
 }

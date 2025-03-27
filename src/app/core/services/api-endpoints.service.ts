@@ -242,11 +242,11 @@ export class ApiEndpointsService {
 
 
 
-  public approveRegisrationEndpoint(user_id:any): string {
+  public approveRegisrationEndpoint(user_id: any): string {
     return this.createUrl(this._constants.API_ENDPOINT_approveRegisration + '/' + user_id);
   }
 
-  public unapproveRegisrationEndpoint(user_id:any): string {
+  public unapproveRegisrationEndpoint(user_id: any): string {
     return this.createUrl(this._constants.API_ENDPOINT_unapproveRegisration + '/' + user_id);
   }
   public getSpeakersEndpoint(): string {
@@ -263,17 +263,17 @@ export class ApiEndpointsService {
   }
 
 
-  public getAllStatesEndpoint(country_id:any): string {
+  public getAllStatesEndpoint(country_id: any): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_STATES + '/' + country_id);
   }
 
-  public getAllCitiesEndpoint(state_id:any): string {
+  public getAllCitiesEndpoint(state_id: any): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_CITIES + '/' + state_id);
   }
   public Download_Badge(): string {
     return this.createUrl(this._constants.API_ENDPOINT_Download_Badge);
   }
-  public getPeacekeeper_Badge_Data(id:any) {
+  public getPeacekeeper_Badge_Data(id: any) {
     return this.createUrl(this._constants.API_ENDPOINT_DOWNLOAD_PEACEKEEPER_BADGE + id);
   }
   public postCheckoutSessionEndpoint() {
@@ -287,16 +287,16 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY_ENCRYPT);
   }
 
-  public getStatesByCountryEndpoint(country_id:any): string {
-    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT ,
+  public getStatesByCountryEndpoint(country_id: any): string {
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT,
       (qs: QueryStringParameters) => {
         qs.push('encryptedData', country_id);
       }
     );
   }
 
-  public getCityByStateEndpoint(state_id:any): string {
-    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_CITY_BY_STATE_ENCRYPT ,
+  public getCityByStateEndpoint(state_id: any): string {
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_CITY_BY_STATE_ENCRYPT,
       (qs: QueryStringParameters) => {
         qs.push('encryptedData', state_id);
       }
@@ -318,19 +318,19 @@ export class ApiEndpointsService {
   public getCreateNominationProfileEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE_ENCRYPT);
 
-  // public postPeaceDeleteAccEndpoint() {
-  //   return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
-  // }
+    // public postPeaceDeleteAccEndpoint() {
+    //   return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
+    // }
   }
 
   public postPeaceDeleteAccEndpoint(
 
-    queryParamsObj:any
+    queryParamsObj: any
   ): string {
     return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_DELETE_PEACEKEEPER_ACC,
       (qs: QueryStringParameters) => {
         qs.push('email', queryParamsObj['email']),
-        qs.push('role', queryParamsObj['role'])
+          qs.push('role', queryParamsObj['role'])
       });
   }
 
@@ -350,7 +350,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP);
   }
 
-  public getDataByTransactionIdEndpoint(transactionId:any): string {
+  public getDataByTransactionIdEndpoint(transactionId: any): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID + '/' + transactionId);
   }
 
@@ -373,8 +373,15 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VALIDATE_COUPON);
   }
 
-    public getAllSpeakersListEndpoint(data:any): string {
-    return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT );
+  public getAllSpeakersListEndpoint(data: any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT);
+  }
+  public getVerifyTicketEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_TICKET);
+  }
+
+  public getDiscountAmountEndpoint(couponCode: string) {
+    return this.createUrl(this._constants.API_ENDPOINT_DISCOUNT_AMOUNT + '/' + couponCode);
   }
 
 }

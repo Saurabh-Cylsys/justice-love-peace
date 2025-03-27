@@ -1,5 +1,5 @@
 <div class="section5">
-  <main class="global-justice col-lg-6">
+  <main class="global-justice col-lg-6" *ngIf="isCorrectSpeaker">
     <div class="all-frames-wrapper shadow">
       <div class="all-frames" *ngFor="let speaker of this.speakersDetails">
         <header class="element">
@@ -279,5 +279,11 @@
         </section>
       </div>
     </div>
-  </main></div>
+  </main>
+
+  <div *ngIf="!isCorrectSpeaker">
+    <h5 class="align-items-center d-flex justify-content-center"  style="text-align: center; height: 50vh;"><span >No Data Found</span></h5>
+  </div>
+
+</div>
   
