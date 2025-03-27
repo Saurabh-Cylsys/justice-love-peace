@@ -497,7 +497,7 @@
                             width="50%"
                           />
                           <h5>{{ speaker.speaker_name }}</h5>
-                          <label class="country">({{ speaker.speaker_country }})</label>
+                          <label class="country">{{ formatCountry(speaker.speaker_country) }}</label>
                           <h6 class="credentials">{{ speaker.speaker_credentials }}</h6>
                           
                         </div>
@@ -568,7 +568,7 @@
                               width="50%"
                             />
                             <h5>{{ speakers.speaker_name }}</h5>
-                            <label class="country">({{ speakers.speaker_country }})</label>
+                            <label class="country">{{ formatCountry(speakers.speaker_country) }}</label>
                             <h6 class="credentials">{{ speakers.speaker_credentials }}</h6>
                             
                           </div>
