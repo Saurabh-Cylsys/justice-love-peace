@@ -337,7 +337,7 @@ header .nav-item .nav-link.active {
   font-weight: 700;
   line-height: 25.76px;
   text-align: center;
-  text-decoration-line: underline;
+  /* text-decoration-line: underline; */
   text-decoration-style: solid;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
