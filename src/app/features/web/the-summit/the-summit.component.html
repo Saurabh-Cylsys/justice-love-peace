@@ -444,15 +444,14 @@
     </div>
   </section>
   <div class="section" id="ts3">
-    <div
-      class="section6 speakers scroll position-relative"
-      style="z-index: 1"
-    >
+    <div class="section6 speakers scroll position-relative" style="z-index: 1">
       <div class="container-fluid h-100">
         <div class="row align-items-center align-content-center h-100">
           <div class="col-md-12">
             <h2 class="mb-0">Speakers (Peace Ambassadors)</h2>
-            <h6 class="m-0">Names in Alphabetic Order; All with Written Confirmations</h6>
+            <h6 class="m-0">
+              Names in Alphabetic Order; All with Written Confirmations
+            </h6>
             <div
               id="carouselExampleAutoplaying"
               class="carousel carousel-dark slide"
@@ -478,18 +477,21 @@
                   [attr.data-bs-interval]="3000"
                 >
                   <div class="row mt-3">
-                    <div class="col-md-3 mx-auto speaker-details" *ngFor="let speaker of group.speakers">
+                    <div
+                      class="col-md-3 mx-auto speaker-details"
+                      *ngFor="let speaker of group.speakers"
+                    >
                       <div class="card h-100 speaker-card">
                         <div class="card-header"></div>
-                        <div class="card-body p-0 text-center col-10 mx-auto">
+                        <div class="card-body p-0 text-center mx-auto">
                           <img
                             loading="lazy"
                             [src]="
                               speaker.profile_photo
                                 ? speaker.profile_photo
                                 : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
-                            
-                            "onerror="this.onerror=null; this.src='assets/UIComponents/images/speakers/ProfileAavtar.png';"
+                            "
+                            onerror="this.onerror=null; this.src='assets/UIComponents/images/speakers/ProfileAavtar.png';"
                             alt="{{ speaker.speaker_name }}"
                             class="profile-photo img-fluid"
                             width="50%"
@@ -549,7 +551,7 @@
                     data-bs-interval="3000"
                   >
                     <div class="row">
-                      <div class="col-md-3 mx-auto speaker-details">
+                      <div class="col-md-8 mx-auto speaker-details">
                         <div class="card h-100 speaker-card">
                           <div class="card-header"></div>
                           <div class="card-body p-0 text-center col-10 mx-auto">
@@ -604,16 +606,15 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-            
           </div>
           <div class="col-12 mt-3">
             <a
-            [routerLink]="['/speaker-details']"
-            class="see-all-button btn btn-success"
-          >
-            See all Speakers
-          </a>
-        </div>
+              [routerLink]="['/speaker-details']"
+              class="see-all-button btn btn-success"
+            >
+              See all Speakers
+            </a>
+          </div>
         </div>
       </div>
       <img
@@ -1558,22 +1559,24 @@
     <div class="container-fluid h-100" style="position: relative; z-index: 1">
       <div class="row h-100">
         <div class="col-12" *ngIf="!isMobileView">
-          <div
-            class="d-lg-flex align-items-center justify-content-between"
-          >
+          <div class="d-lg-flex align-items-center justify-content-between">
             <div class="date">
               <h3>12th -13th <span>April, 2025</span></h3>
               <!-- <h5>10:00 AM - 11:00 PM</h5> -->
             </div>
-            <h3 style="
-            font-weight: 700;
-            font-size: clamp(18px, 2vw, 35px);
-            line-height: 150%;
-            letter-spacing: 30%;
-            vertical-align: middle;
-            color: #004D85;
-            text-transform: uppercase;
-            ">Agenda</h3>
+            <h3
+              style="
+                font-weight: 700;
+                font-size: clamp(18px, 2vw, 35px);
+                line-height: 150%;
+                letter-spacing: 30%;
+                vertical-align: middle;
+                color: #004d85;
+                text-transform: uppercase;
+              "
+            >
+              Agenda
+            </h3>
             <h4 class="location">
               <a
                 href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
@@ -1623,13 +1626,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          <h2
-            style="
-              font-size: 20px;
-              color: var(--color3);
-              font-weight: bold;
-            "
-          >
+          <h2 style="font-size: 20px; color: var(--color3); font-weight: bold">
             Day 1 - 12th April 2025 (Saturday)
           </h2>
 
@@ -1648,102 +1645,62 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="background-color: #128940">
-                    10:30 AM - 11:00 AM
-                  </td>
+                  <td style="background-color: #128940">10:30 AM - 11:00 AM</td>
                   <td style="background-color: #64a15a">
                     Welcome and Opening remarks by chairman
                   </td>
                   <td style="background-color: #65a15a"></td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    11:00 AM - 12:15 PM
-                  </td>
-                  <td style="background-color: #005b94">
-                    Justice (Session 1)
-                  </td>
-                  <td style="background-color: #005b94">
-                    Love (Session 7)
-                  </td>
+                  <td style="background-color: #024d88">11:00 AM - 12:15 PM</td>
+                  <td style="background-color: #005b94">Justice (Session 1)</td>
+                  <td style="background-color: #005b94">Love (Session 7)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    12:15 PM - 1:30 PM
-                  </td>
-                  <td style="background-color: #64a15a">
-                    Justice (Session 2)
-                  </td>
-                  <td style="background-color: #65a15a">
-                    Love (Session 8)
-                  </td>
+                  <td style="background-color: #128940">12:15 PM - 1:30 PM</td>
+                  <td style="background-color: #64a15a">Justice (Session 2)</td>
+                  <td style="background-color: #65a15a">Love (Session 8)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    1:30 PM - 3:00 PM
-                  </td>
+                  <td style="background-color: #024d88">1:30 PM - 3:00 PM</td>
                   <td style="background-color: #005b94">
                     Lunch Break + Networking
                   </td>
                   <td style="background-color: #005b94"></td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    3:00 PM - 4:15 PM
-                  </td>
-                  <td style="background-color: #64a15a">
-                    Love (Session 3)
-                  </td>
-                  <td style="background-color: #65a15a">
-                    Peace (Session 9)
-                  </td>
+                  <td style="background-color: #128940">3:00 PM - 4:15 PM</td>
+                  <td style="background-color: #64a15a">Love (Session 3)</td>
+                  <td style="background-color: #65a15a">Peace (Session 9)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    4:15 PM - 5:30 PM
-                  </td>
-                  <td style="background-color: #005b94">
-                    Love (Session 4)
-                  </td>
-                  <td style="background-color: #005b94">
-                    Peace (Session 10)
-                  </td>
+                  <td style="background-color: #024d88">4:15 PM - 5:30 PM</td>
+                  <td style="background-color: #005b94">Love (Session 4)</td>
+                  <td style="background-color: #005b94">Peace (Session 10)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    5:30 PM - 6:30 PM
-                  </td>
+                  <td style="background-color: #128940">5:30 PM - 6:30 PM</td>
                   <td style="background-color: #64a15a">
                     Special Meditation Session + World Yoga Session
                   </td>
                   <td style="background-color: #65a15a"></td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    6:30 PM - 7:45 PM
-                  </td>
-                  <td style="background-color: #005b94">
-                    Peace (Session 5)
-                  </td>
+                  <td style="background-color: #024d88">6:30 PM - 7:45 PM</td>
+                  <td style="background-color: #005b94">Peace (Session 5)</td>
                   <td style="background-color: #005b94">
                     Justice (Session 11)
                   </td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    7:45 PM - 9:00 PM
-                  </td>
-                  <td style="background-color: #64a15a">
-                    Peace (Session 6)
-                  </td>
+                  <td style="background-color: #128940">7:45 PM - 9:00 PM</td>
+                  <td style="background-color: #64a15a">Peace (Session 6)</td>
                   <td style="background-color: #65a15a">
                     Justice (Session 12)
                   </td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    9:00 PM - 10:30 PM
-                  </td>
+                  <td style="background-color: #024d88">9:00 PM - 10:30 PM</td>
                   <td style="background-color: #005b94" colspan="2">
                     Gala Dinner
                   </td>
@@ -1753,13 +1710,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          <h2
-            style="
-              font-size: 20px;
-              color: var(--color3);
-              font-weight: bold;
-            "
-          >
+          <h2 style="font-size: 20px; color: var(--color3); font-weight: bold">
             Day 2 - 13th April 2025 (Sunday)
           </h2>
 
@@ -1778,94 +1729,66 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="background-color: #128940">
-                    10:30 AM - 11:00 AM
-                  </td>
+                  <td style="background-color: #128940">10:30 AM - 11:00 AM</td>
                   <td style="background-color: #64a15a">
                     Key Not address by Chief Guest
                   </td>
                   <td style="background-color: #65a15a"></td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    11:00 AM - 12:15 PM
-                  </td>
-                  <td style="background-color: #005b94">
-                    Love (Session 13)
-                  </td>
+                  <td style="background-color: #024d88">11:00 AM - 12:15 PM</td>
+                  <td style="background-color: #005b94">Love (Session 13)</td>
                   <td style="background-color: #005b94">
                     Justice (Session 17)
                   </td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    12:15 PM - 1:30 PM
-                  </td>
-                  <td style="background-color: #64a15a">
-                    Love (Session 14)
-                  </td>
+                  <td style="background-color: #128940">12:15 PM - 1:30 PM</td>
+                  <td style="background-color: #64a15a">Love (Session 14)</td>
                   <td style="background-color: #65a15a">
                     Justice (Session 18)
                   </td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    1:30 PM - 3:00 PM
-                  </td>
+                  <td style="background-color: #024d88">1:30 PM - 3:00 PM</td>
                   <td style="background-color: #005b94" colspan="2">
                     Lunch Break + Networking
                   </td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    3:00 PM - 4:15 PM
-                  </td>
+                  <td style="background-color: #128940">3:00 PM - 4:15 PM</td>
                   <td style="background-color: #64a15a">
                     Justice (Session 15)
                   </td>
-                  <td style="background-color: #65a15a">
-                    Love (Session 18)
-                  </td>
+                  <td style="background-color: #65a15a">Love (Session 18)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    4:15 PM - 5:30 PM
-                  </td>
+                  <td style="background-color: #024d88">4:15 PM - 5:30 PM</td>
                   <td style="background-color: #005b94">
                     Justice (Session 16)
                   </td>
-                  <td style="background-color: #005b94">
-                    Love (Session 19)
-                  </td>
+                  <td style="background-color: #005b94">Love (Session 19)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    5:30 PM - 7:00 PM
-                  </td>
+                  <td style="background-color: #128940">5:30 PM - 7:00 PM</td>
                   <td style="background-color: #64a15a">
                     Nobel Peace Laureates Panel Discussion (Session 21)
                   </td>
                   <td style="background-color: #65a15a"></td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    7:00 PM - 7:45 PM
-                  </td>
+                  <td style="background-color: #024d88">7:00 PM - 7:45 PM</td>
                   <td style="background-color: #005b94" colspan="2">
                     Tea Break + Networking
                   </td>
                 </tr>
                 <tr>
-                  <td style="background-color: #128940">
-                    7:45 PM - 9:00 PM
-                  </td>
+                  <td style="background-color: #128940">7:45 PM - 9:00 PM</td>
                   <td style="background-color: #64a15a">Eirene Awards</td>
                   <td style="background-color: #65a15a"></td>
                 </tr>
                 <tr>
-                  <td style="background-color: #024d88">
-                    9:00 PM - 10:30 PM
-                  </td>
+                  <td style="background-color: #024d88">9:00 PM - 10:30 PM</td>
                   <td style="background-color: #005b94" colspan="2">
                     Gala Dinner
                   </td>
@@ -1874,7 +1797,6 @@
             </table>
           </div>
         </div>
-        
       </div>
     </div>
     <img
