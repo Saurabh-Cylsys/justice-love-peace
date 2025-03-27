@@ -153,6 +153,10 @@
     background-repeat: no-repeat;
     min-height: 85vh; /* Keeps the height relative to the viewport */
   }
+
+  .speaker-details .card .card-body h5{
+    white-space: wrap;
+  }
 }
 
 @media (min-width: 1440px) {
