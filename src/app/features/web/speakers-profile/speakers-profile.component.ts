@@ -45,19 +45,20 @@ export class SpeakersProfileComponent implements OnInit {
     this.speakerShareUrl = this.domainUrl + this.router.url
     console.log(this.speakerShareUrl);
 
-    this.route.queryParams.subscribe((params: any) => {
+    this.route.params.subscribe((params: any) => {
       console.log("Params", params);
       if (params != undefined && Object.keys(params).length > 0) {
+        this.speakersId = params.speakerId
+        this.speakersName = params.speakerName
+        // if (params['data']) {
+        //   let decryptedData = this.encryptionService.decryptData(params['data']);
 
-        if (params['data']) {
-          let decryptedData = this.encryptionService.decryptData(params['data']);
+        //   if (decryptedData) {
 
-          if (decryptedData) {
-
-            this.speakersId = decryptedData.speakerId
-            this.speakersName = decryptedData.speakerName
-          }
-        }
+        //     this.speakersId = decryptedData.speakerId
+        //     this.speakersName = decryptedData.speakerName
+        //   }
+        // }
 
       }
     });
@@ -85,7 +86,6 @@ export class SpeakersProfileComponent implements OnInit {
 
   loadSpeakers() {
     this.isLoading = true;
-    debugger
     // Prepare the search text - if country is selected, include it in the search
 
     this.webService.getSpeakersList('', '73', this.speakersId)
@@ -123,7 +123,8 @@ export class SpeakersProfileComponent implements OnInit {
         error: (error) => {
           let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
           decryptErr = JSON.parse(decryptErr);
-          console.error('Error fetching speakers:', decryptErr);          this.isLoading = false;
+          console.error('Error fetching speakers:', decryptErr);
+          this.isLoading = false;
           this.speakersDetails = [];
         }
       });
