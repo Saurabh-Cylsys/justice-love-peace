@@ -175,7 +175,7 @@ export class WebService {
       Name: 'Chandra Kumar Bose',
       Country: 'INDIA',
       Credentials:
-        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
+        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( Grandnephew of Subhash Chandra Bose )',
     },
     {
       // "S_No": 4,
@@ -795,7 +795,7 @@ export class WebService {
       Name: 'Chandra Kumar Bose',
       Country: 'INDIA',
       Credentials:
-        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
+        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( Grandnephew of Subhash Chandra Bose )',
     },
     {
       // "S_No": 4,
@@ -1472,7 +1472,7 @@ export class WebService {
             Name: 'Chandra Kumar Bose',
             Country: 'INDIA',
             Credentials:
-              'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
+              'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( Grandnephew of Subhash Chandra Bose )',
           },
 
         ],
