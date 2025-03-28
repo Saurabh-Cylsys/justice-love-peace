@@ -298,11 +298,11 @@
                             <p>TRN104766727200003</p>
                             <p>
                               <i class="bi bi-geo-alt-fill"></i>
-                              Address : F1-503, Property Investment Office 
-                              4, Plot No. 598-676, Dubai Investment Park 
+                              Address : F1-503, Property Investment Office
+                              4, Plot No. 598-676, Dubai Investment Park
                               First, Dubai, U.A.E,
                               PO. BOX : 47626
-                              
+
                             </p>
                             <p>
                               <img
@@ -310,7 +310,7 @@
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Contact: 
+                              Contact:
                               <a
                                 href="tel:+971543257125"
                                 style="text-decoration: none; color: #fff"
@@ -390,12 +390,12 @@
                   <label for="title">Title</label> -->
                   <label class="col-md-12 no-padding px-0" for="nametitle1"
                     >Title
-                    <!-- <span
+                    <span
                       class="form-label-span"
                       style="color: #ff0000"
                     >
                       *</span
-                    > -->
+                    >
                   </label>
                   <input
                     type="text"
@@ -411,7 +411,7 @@
                     (input)="onInput($event, 'title')"
                   />
 
-                  <!-- <div
+                  <div
                     *ngIf="
                       getcontrol('title')?.errors &&
                       getcontrol('title')?.touched
@@ -422,23 +422,29 @@
                       *ngIf="getcontrol('title')?.errors?.['required']"
                       >Title is required</small
                     >
-                  </div> -->
+                  </div>
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="mb-4 col-md-4">
                 <div class="">
-                  <label for="FirstName" class="p-0">First Name</label>
+                  <label for="FirstName" class="p-0">First Name<span
+                    class="form-label-span"
+                    style="color: #ff0000"
+                  >
+                    *</span
+                  ></label>
                   <input
                     type="text"
                     class="form-control p-0"
                     id="FirstName"
+                    (paste)="onPaste($event)"
                     formControlName="firstName"
                     name="firstName"
                     placeholder="Enter first name"
                     required
-                    value=""
-                    (input)="onInput($event, 'firstName')"
+                    maxlength="60"
+                    (keypress)="validateAlpha($event)"
                   />
 
                   <div
@@ -459,17 +465,23 @@
               </div>
               <div class="mb-4 col-md-4">
                 <div class="">
-                  <label for="LastName" class="px-0">Last Name</label>
+                  <label for="LastName" class="px-0">Last Name <span
+                    class="form-label-span"
+                    style="color: #ff0000"
+                  >
+                    *</span
+                  ></label>
                   <input
                     type="text"
                     class="form-control p-0"
                     formControlName="lastName"
                     name="lastName"
                     id="LastName"
+                    (paste)="onPaste($event)"
                     required
+                    maxlength="60"
                     placeholder="Enter last name"
-                    value=""
-                    (input)="onInput($event, 'lastName')"
+                    (keypress)="validateAlpha($event)"
                   />
 
                   <div
@@ -489,7 +501,12 @@
               </div>
 
               <div class="mb-4 col-md-6">
-                <label for="mobileNomber" class="px-0">Phone Number</label>
+                <label for="mobileNomber" class="px-0">Phone Number <span
+                  class="form-label-span"
+                  style="color: #ff0000"
+                >
+                  *</span
+                ></label>
                 <div class="form-floating">
                   <ngx-intl-tel-input
                     type="tel"
@@ -514,8 +531,9 @@
                     [(ngModel)]="mobile_number"
                     formControlName="phoneNumber"
                     name="phoneNumber"
-                    (keydown)="onMobileKeyDown($event, mobile_number)"
-                    (keypress)="keyPressNumbers($event, mobile_number)"
+                    id="mobile_number"
+                    (paste)="onPasteMobileNumber($event)"
+                    (keypress)="keyPressNumbers($event)"
                   ></ngx-intl-tel-input>
                   <small class="text-danger" *ngIf="mobile_numberVal">
                     (Country code + Mobile number) will be 7 to 15 digits based
@@ -563,27 +581,27 @@
               </div>
               <div class="col-md-6">
                 <div class="">
-                  <label for="email" class="px-0">Email</label>
+                  <label for="email" class="px-0">Email<span
+                    class="form-label-span"
+                    style="color: #ff0000"
+                  >
+                    *</span
+                  ></label>
                   <input
                     type="email"
                     class="form-control p-0"
                     id="email"
                     placeholder="Enter email"
-                    pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                    pattern="^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                     formControlName="email"
+                    (paste)="onPaste($event)"
+                    (keydown)="validateEmailKeyDown($event)"
                     required
-                    (keydown)="onKeyDown($event, mobile_number)"
                     name="email"
-                    value=""
-                    (input)="onInput($event, 'email')"
                   />
 
                   <div class="help-block with-errors"></div>
-                  <div
-                    *ngIf="
-                      getcontrol('email')?.errors && getcontrol('email')?.dirty
-                    "
-                  >
+                  <div>
                     <small
                       class="text-danger"
                       *ngIf="getcontrol('email')?.errors?.['required'] && getcontrol('email')?.touched"
@@ -627,7 +645,12 @@
 
               <div class="mb-4 col-md-12">
                 <div class="form-group">
-                  <label for="question">Your Query</label>
+                  <label for="question">Your Query<span
+                    class="form-label-span"
+                    style="color: #ff0000"
+                  >
+                    *</span
+                  ></label>
                   <textarea
                     type="text"
                     class="form-control position-relative"
@@ -637,6 +660,8 @@
                     name="yourQuestion"
                     id="question"
                     maxlength="500"
+                    (keypress)="validateAlphaforQuery($event)"
+                    (paste)="onQueryPaste($event)"
                     style="
                       border: 1px dotted;
                       border-radius: 10px !important;
@@ -645,6 +670,19 @@
                     "
                   >
                   </textarea>
+
+                  <div
+                    *ngIf="
+                      getcontrol('yourQuestion')?.errors &&
+                      getcontrol('yourQuestion')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('yourQuestion')?.errors?.['required']"
+                      >Query is required</small
+                    >
+                  </div>
                 </div>
               </div>
               <div class="mb-4 col-md-12 text-center">
@@ -652,6 +690,7 @@
                   type="submit"
                   class="btn btn-success p-2 w-50 text-center position-relative"
                   style="z-index: 1"
+
                   [disabled]="this.contactUsForm.invalid"
                 >
                   Send

@@ -70,8 +70,9 @@ export class WebService {
       p_type: type
     };
 
-    return this.http.post<any>(`${this.API_BASE_URL}/get_speaker_list`, payload);
+   return this._apiHttpService.post(this._apiEndpointsService.getAllSpeakersListEndpoint(payload),payload);
   }
+  
 
   confirmedSpeakersList: any[] = [
     // list 1

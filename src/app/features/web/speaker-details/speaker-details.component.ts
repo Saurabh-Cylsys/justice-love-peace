@@ -87,7 +87,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
       searchQuery = searchQuery ? `${searchQuery} ${this.selectedCountry}` : this.selectedCountry;
     }
 
-    this.webService.getSpeakersList(searchQuery, '73', 'All')
+    this.webService.getSpeakersList(searchQuery, '100', 'All')
     .subscribe({
       next: (response: any) => {
         if (response?.data) {
@@ -146,7 +146,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
   loadCountries() {
     // Extract countries from nested speakers array
     const allCountries = this.speakersList.flatMap(group =>
-      group.speakers.map((speaker: Speaker) => speaker.speaker_country)
+      group.speakers.map((speaker: Speaker) => this.formatCountry(speaker.speaker_country))
     );
 
     // Get unique countries and sort them, excluding the specified countries
@@ -179,6 +179,6 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
   // encodeSpeakerName(name: string): string {
   //   let decodedName = decodeURIComponent(name); // Decode double encoded values
   //   return decodedName.replace(/[, ]/g, '-');  // Space and comma ko '-' se replace karega
-  //     }              
-  // 
+  //     }
+  //
 }
