@@ -538,7 +538,7 @@ h5 {
 @media (min-width: 1024px) {
   /* Tablets */
   .ui-card-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 0fr);
   }
   .carousel-control-prev-icon, .carousel-control-next-icon {
     background-color: #ffffff;
