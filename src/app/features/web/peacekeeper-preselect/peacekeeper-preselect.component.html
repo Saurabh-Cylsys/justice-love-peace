@@ -53,6 +53,7 @@
               class="w-100 h-100"
               controls
               style="object-fit: fill"
+              [muted]="true"
             >
               <source
                 src="assets/UIComponents/video/slider.mp4"
@@ -164,7 +165,7 @@
       </div> -->
         </div>
 
-        <div class="ui-card ui-card3" (click)="goToOnlineDelegate()">
+        <!-- <div class="ui-card ui-card3" (click)="goToOnlineDelegate()">
           <div class="price-ribbon">
             <span *ngIf="this.isStrip == 'true'">$ {{ onlineDiscount }}</span>
             <span *ngIf="this.isStrip == 'false'"> {{ onlineDiscount }}</span>
@@ -180,11 +181,7 @@
             </h4>
             <p>{{ delegateOnlineDescription }}</p>
           </div>
-          <!-- <div class="ui-card-buttons">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#olinedelegate" aria-expanded="true" aria-controls="olinedelegate">Know More</button>
-      <button>Register</button>
-      </div> -->
-        </div>
+        </div> -->
       </div>
 
       <div class="container-fluid" id="accordionContainer">

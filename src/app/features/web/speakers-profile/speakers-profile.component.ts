@@ -6,11 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../../../app/shared/services/shared.service';
 import { environment } from '../../../../environments/environment';
 
-
 @Component({
   selector: 'app-speakers-profile',
   templateUrl: './speakers-profile.component.html',
-  styleUrls: ['./speakers-profile.component.css']
+  styleUrls: ['./speakers-profile.component.css'],
 })
 export class SpeakersProfileComponent implements OnInit {
   speakersDetails: any[] = [];
@@ -30,34 +29,24 @@ export class SpeakersProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private renderer: Renderer2
-  ) { }
-
-
-
-
+  ) {}
 
   ngOnInit(): void {
-    this.getrandomcolor(10)
+    this.getrandomcolor(10);
 
-    this.speakerShareUrl = this.domainUrl + this.router.url
+    this.speakerShareUrl = this.domainUrl + this.router.url;
     console.log(this.speakerShareUrl);
 
     this.route.params.subscribe((params: any) => {
-      console.log("Params", params);
+      console.log('Params', params);
       if (params != undefined && Object.keys(params).length > 0) {
-
-        this.speakersId = params.speakerId
-        this.speakersName = params.speakerName
-
+        this.speakersId = params.speakerId;
+        this.speakersName = params.speakerName;
       }
     });
 
-
-    this.loadSpeakers()
-
-
+    this.loadSpeakers();
   }
-
 
   getrandomcolor(length: any) {
     let letters = '0123456789ABCDEF';
@@ -66,7 +55,8 @@ export class SpeakersProfileComponent implements OnInit {
       let color = '#';
       for (let j = 0; j < 6; j++) {
         color += letters[Math.floor(Math.random() * 16)];
-      } this.totalColor.push(color);
+      }
+      this.totalColor.push(color);
     }
 
     console.log(this.totalColor);
@@ -76,41 +66,38 @@ export class SpeakersProfileComponent implements OnInit {
     this.isLoading = true;
     // Prepare the search text - if country is selected, include it in the search
 
-    this.webService.getSpeakersList('', '100', this.speakersId)
-      .subscribe({
+    this.webService.getSpeakersList('', '73', this.speakersId).subscribe({
+      next: (response: any) => {
+        if (response?.data) {
+          // Decode and clean the name
+          let cleanName = response?.data[0].speaker_name;
 
-        next: (response: any) => {
-          if (response?.data) {
-            // Decode and clean the name
-            let cleanName = response?.data[0].speaker_name
-          
-            // If the URL is manually modified and does not match the expected format, redirect
-            if (this.speakersName !== cleanName) {
-              this.isCorrectSpeaker = false; // Redirect user to an error page or home
-              return false;
-            }
-            this.speakersDetails = response?.data;
-            this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
-            this.speakersDetails[0].qr_code = this.speakersDetails[0].url
-            console.log(this.speakersDetails, 'list of speakers');
-
-
-            // this.speakersDetails[0].speaker_details = this.transformSpeakerData(this.speakersDetails[0].speaker_details);
-            // this.speakersDetails[0].speaker_details = [...this.speakersDetails[0].speaker_details];
-
-          } else {
-            this.speakersDetails = [];
-
+          // If the URL is manually modified and does not match the expected format, redirect
+          if (this.speakersName !== cleanName) {
+            this.isCorrectSpeaker = false; // Redirect user to an error page or home
+            return false;
           }
-          this.isLoading = false;
-          return;
-        },
-        error: (error) => {
-          console.error('Error fetching speakers:', error);
-          this.isLoading = false;
+          this.speakersDetails = response?.data;
+          this.speakersDetails[0].speaker_details = JSON.parse(
+            this.speakersDetails[0].speaker_details
+          );
+          this.speakersDetails[0].qr_code = this.speakersDetails[0].url;
+          console.log(this.speakersDetails, 'list of speakers');
+
+          // this.speakersDetails[0].speaker_details = this.transformSpeakerData(this.speakersDetails[0].speaker_details);
+          // this.speakersDetails[0].speaker_details = [...this.speakersDetails[0].speaker_details];
+        } else {
           this.speakersDetails = [];
         }
-      });
+        this.isLoading = false;
+        return;
+      },
+      error: (error) => {
+        console.error('Error fetching speakers:', error);
+        this.isLoading = false;
+        this.speakersDetails = [];
+      },
+    });
   }
 
   private transformSpeakerData(data: any): any[] {
@@ -120,7 +107,7 @@ export class SpeakersProfileComponent implements OnInit {
 
     for (let i = 0; i < data.length; i += groupSize) {
       groups.push({
-        details: data.slice(i, i + groupSize)
+        details: data.slice(i, i + groupSize),
       });
     }
 
@@ -131,52 +118,79 @@ export class SpeakersProfileComponent implements OnInit {
     const tinyUrlWithParams = `${this.speakersDetails[0].url}`;
     // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
     window.location.href = tinyUrlWithParams;
-
   }
 
   copyInputMessage(inputElement: HTMLInputElement) {
     if (inputElement && inputElement.value) {
-      navigator.clipboard.writeText(inputElement.value).then(() => {
-        this._sharedService.ToastPopup("Copied to clipboard!", "", "success");
-      }).catch(err => {
-        console.error("Failed to copy: ", err);
-      });
+      navigator.clipboard
+        .writeText(inputElement.value)
+        .then(() => {
+          this._sharedService.ToastPopup('Copied to clipboard!', '', 'success');
+        })
+        .catch((err) => {
+          console.error('Failed to copy: ', err);
+        });
     }
   }
 
   shareContent(): void {
-
     // Ensure that speakersDetails.qr_code is available
     if (!this.speakerShareUrl) {
-      this._sharedService.ToastPopup("QR Code URL is missing.", '', 'error');
+      this._sharedService.ToastPopup('QR Code URL is missing.', '', 'error');
       return;
     }
-
     // const shareTitle = 'Global Justice, Love and Peace Summit | Dubai';
     // const shareURL = this.speakersDetails.qr_code;
-
     const shareTitle = `
+    *✨ 12 REASONS TO ATTEND GLOBAL JUSTICE, LOVE & PEACE SUMMIT AT DUBAI ON 12, 13 APRIL, 2025 ✨*
+👑 *Chief Guest:* His Excellency Sheikh Nahayan Mabarak Al Nahayan, Minister of Tolerance & Co-Existence, UAE
+🌍 *Chairman of the Summit:* Dr. Huzaifa Khorakiwala
+🌟 *A STAR-STUDDED, SENSITIVE, SPECIAL, SOCIABLE, SAGACIOUS, SWEET, & SATISFYING Summit!*
+🎤 *1. OUTSTANDING, GLOBAL SPEAKERS* 🎓🌎
+72 outstanding, global speakers including *10 Nobel Peace Laureates* 🕊️ (including *Lech Walesa*), *Baba Ramdev*, *Sri Sri Ravishankar* (live online), *Jacqueline Fernandez*, *The Great Khali*, etc.
+🌐 *2. 2800 DELEGATES (PEACEKEEPERS)* 🤝💙
+Surely, one of the world’s *largest private summits* on *justice, love, & peace*, a great place to *network* with *noble & noteworthy Delegates (Peacekeepers).*
+📅 *3. PEACE NETWORKING* 🤲📍
+*28 Peace Networking Tables* to do *private networking* by fixing up *meetings before the event* with Delegates of your choice.
+🏅 *4. PAX AWARDS* 🎖️✨
+*28 Awards* amongst *112 nominees* at a *glittering Awards ceremony.*
+🍛 *5. PEACE MENU* 🌍🍽️
+*28 dishes* from *28 different countries* in an exotic *Peace Menu* over 1 meal, so with *2 Lunches & 2 Dinners*, there will be *112 dishes from 28 countries!*
+📸 *6. PRIVATE PHOTOS WITH SPEAKERS* 📷✨
+Each Speaker agrees to take *individual, private pictures* with *28 Delegates*—you could be *one of them!*
+🥇 *7. INVITATION TO EXCLUSIVE VIP LUNCHES & DINNERS* 🏆🍴
+*12%* of Delegates will get a *Special Invite* to a *VIP Lunch or Dinner* where *Speakers & Awardees* are likely to be present. Hence, *48%* of Delegates will receive an invite to *one of the 4 Lunches or Dinners.*
+🎁 *8. PEACE GIFTS* 🎀📦
+Every Delegate will receive *exquisite Peace Gifts*, which include a *Peace Calendar*, *Peace Coffee Mug*, *Peace Chocolates*, etc.
+🎭 *9. SPEAKERS CUT-OUTS* 🖼️📷
+Each Delegate can *take photos* with *Speakers’ Cut-Outs!*
+✊ *10. I AM PEACEKEEPER MOVEMENT* ✨🫶
+Become part of a *Global “I am Peacekeeper” Movement* & network with *Global Peacekeepers* while receiving *attractive offers & discounts!*
+👗 *11. PEACE FASHION* 🌎🧵
+See a *unique Peace Fashion Show* featuring *7 leading fashion designers* from different continents.
+🎼 *12. PEACE SONGS* 🎶🎙️
+Experience *inspiring Peace Songs* live!
+🚀 *SOME OCCASIONS & EXPERIENCES ARE JUST NOT TO BE MISSED*
+_"where every smile counts"_ 😊✨
+📢 *Register as a DELEGATE (Peacekeeper) through my personal link below & get 7% discount on the Summit Pass of $2800.*
 
- ${this.speakerShareUrl}
-
+${this.speakerShareUrl}
 📞 *Summit Helpline* ☎️
 INTERNATIONAL : +971543257125
 INDIA : 18002672828
-
 🌐 www.justice-love-peace.com
-`
-
+`;
 
     const whatsappURL = `https://wa.me/?text=${encodeURIComponent(shareTitle)}`;
 
-
     // Check if Web Share API is supported
     if (navigator.share) {
-      navigator.share({
-        text: shareTitle
-      })
+      navigator
+        .share({
+          text: shareTitle,
+        })
         .then(() => console.log('Thanks for sharing!'))
-        .catch(err => {
+        .catch((err) => {
           if (err.name === 'AbortError') {
             console.warn('User canceled the sharing action.');
           } else {
@@ -188,7 +202,5 @@ INDIA : 18002672828
       window.open(whatsappURL, '_blank');
     }
   }
-  ngOnDestroy(): void {
-
-  }
+  ngOnDestroy(): void {}
 }
