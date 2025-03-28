@@ -74,15 +74,18 @@ export class PeacekeeperPreselectComponent {
     this.ngxLoader.start();
     await this.sharedService.getDiscountAmountByCouponCode(referalCode).subscribe({
       next: (response: any) => {
+        let decryptData = this.encryptionService.decrypt(response.encryptedData);
+        let resDecrypt = JSON.parse(decryptData);   
+        console.log( 'decrypt',resDecrypt);
+        
+        if(resDecrypt && resDecrypt.success) {
 
-        if(response && response.success) {
-
-          this.isStrip = response.isStripe;
+          this.isStrip = resDecrypt.isStripe;
 
           if(this.isStrip == "false") {
 
             this.ngxLoader.stop();
-            response.data.forEach((item:any) => {
+            resDecrypt.data.forEach((item:any) => {
               if (item.p_type === "DELEGATE_ONLINE") {
                 this.onlineDiscount = item.dollar_aed;
                 this.delegateOnlineDescription = item.amount_description;
@@ -98,7 +101,7 @@ export class PeacekeeperPreselectComponent {
           else if(this.isStrip == "true") {
             this.ngxLoader.stop();
 
-            response.data.forEach((item:any) => {
+            resDecrypt.data.forEach((item:any) => {
               if (item.p_type === "DELEGATE_ONLINE") {
                 this.onlineDiscount = item.discount_amount;
                 this.delegateOnlineDescription = item.amount_description;
@@ -115,8 +118,10 @@ export class PeacekeeperPreselectComponent {
       },
       error: (error: any) => {
         this.ngxLoader.stop();
-        console.log("Eror",error);
-        this.sharedService.ToastPopup(error.error['error'],'','error');
+        let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error :', decryptErr);
+        this.sharedService.ToastPopup(decryptErr['error'],'','error');
       }
     });
   }

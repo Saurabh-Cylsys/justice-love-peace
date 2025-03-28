@@ -124,6 +124,7 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   fnPartialSave() {
+    
     const email = this.userForm?.get('email')?.value;
     const mobile = this.userForm?.get('mobile')?.value;
     const rawMobileNumber = this.userForm?.value.mobile_number?.number ?? '';
@@ -153,13 +154,23 @@ export class DelegateOnlineComponent implements OnInit {
         // Send data using navigator.sendBeacon()
         //this..sendBeacon(environment.apiUrl + '/pre_delegate_draft_details', params);
 
+        const EncryptData = this.encryptionService.encrypt(payload);
+        let reqBody = {
+          encryptedData: EncryptData
+        }
 
 
-        this.delegateService.postDelegateDraft(this.payload).subscribe({
+        this.delegateService.postDelegateDraft(reqBody).subscribe({
           next: (response: any) => {
-
+            let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+            decryptData = JSON.parse(decryptData);
+            console.log(decryptData,'decryptData');
+            
           },
           error: (error: any) => {
+            let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+            decryptErr = JSON.parse(decryptErr);
+            console.error('Error creating delegate:', decryptErr);
           }
         });
 
@@ -513,22 +524,30 @@ export class DelegateOnlineComponent implements OnInit {
         "reference_no": (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
       };
 
-      this.ngxService.start();
-      await this.delegateService.postDelegateOnlineMP(obj).subscribe({
-        next: (response: any) => {
+      const EncryptData = this.encryptionService.encrypt(obj);
+      let reqBody = {
+        encryptedData: EncryptData
+      }
 
+
+      this.ngxService.start();
+      await this.delegateService.postDelegateOnlineMP(reqBody).subscribe({
+        next: (response: any) => {
+          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          decryptData = JSON.parse(decryptData);
+          console.log(decryptData,'decryptData');
           this.ngxService.stop();
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
           form.method = 'POST';
-          form.action = response.gatewayUrl;
+          form.action = decryptData.gatewayUrl;
 
-          Object.keys(response.formData).forEach((key) => {
+          Object.keys(decryptData.formData).forEach((key) => {
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = key;
-            input.value = response.formData[key];
+            input.value = decryptData.formData[key];
             form.appendChild(input);
           });
 
@@ -537,9 +556,11 @@ export class DelegateOnlineComponent implements OnInit {
 
         },
         error: (error: any) => {
+          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error creating delegate:', decryptErr);
           this.ngxService.stop();
-          this.sharedService.ToastPopup(error.error['message'],'','error');
-          console.log('Error creating delegate:', error);
+          this.sharedService.ToastPopup(decryptErr['message'],'','error');
           this.loading = false;
         }
       });

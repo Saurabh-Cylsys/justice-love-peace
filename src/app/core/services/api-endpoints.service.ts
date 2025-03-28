@@ -343,11 +343,11 @@ export class ApiEndpointsService {
   }
 
   public postRegistrationOnlineEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE);
+    return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE_ENCRYPT);
   }
 
   public postCreateDelegateOnlineMPEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP);
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP_ENCRYPT);
   }
 
   public getDataByTransactionIdEndpoint(transactionId: any): string {
@@ -366,7 +366,7 @@ export class ApiEndpointsService {
   }
 
   public postCreateDelegateOraftEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_CREATE_DRAFT_DELEGATE);
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_DRAFT_DELEGATE_ENCRYPT);
   }
 
   public getCouponValidationEndpoint() {
@@ -377,13 +377,10 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT);
   }
   public getVerifyTicketEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_TICKET);
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_TICKET_ENCRYPT);
   }
 
   public getDiscountAmountEndpoint(couponCode: string) {
-    return this.createUrl(this._constants.API_ENDPOINT_DISCOUNT_AMOUNT + '/' + couponCode);
-  }
-  public getAllSpeakersListEndpoint(data:any): string {
-    return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS_LIST);
+    return this.createUrl(this._constants.API_ENDPOINT_DISCOUNT_AMOUNT_ENCRYPT + '/' + couponCode);
   }
 }

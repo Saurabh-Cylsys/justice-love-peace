@@ -371,7 +371,6 @@ export class DelegatePeaceStudentComponent {
   }
 
   keyPressNumbersForStudent(event: KeyboardEvent) {
-    debugger
     const inputValue = this.studentForm.controls['mobile_number'].value; // Get value from form control
     if (inputValue && inputValue.number) {
       if (inputValue.number.length < 7) {
@@ -464,20 +463,28 @@ export class DelegatePeaceStudentComponent {
         "pay_type": "DELEGATE_CHILD_NOMINATION",
         "reference_no": (this.referralCode ? this.referralCode : this.delegateForm.value.reference_no) ?? '',
       };
+      const EncryptData = this.encryptionService.encrypt(obj);
+      let reqBody = {
+        encryptedData: EncryptData
+      }
 
-      await this.delegateService.postDelegateOnlineMP(obj).subscribe({
+
+      await this.delegateService.postDelegateOnlineMP(reqBody).subscribe({
         next: (response: any) => {
+          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          decryptData = JSON.parse(decryptData);
+          console.log(decryptData,'decryptData');
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
           form.method = 'POST';
-          form.action = response.gatewayUrl;
+          form.action = decryptData.gatewayUrl;
 
-          Object.keys(response.formData).forEach((key) => {
+          Object.keys(decryptData.formData).forEach((key) => {
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = key;
-            input.value = response.formData[key];
+            input.value = decryptData.formData[key];
             form.appendChild(input);
           });
 
@@ -486,7 +493,9 @@ export class DelegatePeaceStudentComponent {
 
         },
         error: (error: any) => {
-          console.error('Error creating delegate:', error);
+          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error creating delegate:', decryptErr);
           // this.loading = false;
         }
       });
@@ -665,7 +674,6 @@ export class DelegatePeaceStudentComponent {
   // }
 
   onPasteMobileNumber(event: ClipboardEvent) {
-    debugger
     event.preventDefault(); // Prevent default paste action
 
     const pastedText = event.clipboardData?.getData('text') || '';

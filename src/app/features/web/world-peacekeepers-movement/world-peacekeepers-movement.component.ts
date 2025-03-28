@@ -737,7 +737,6 @@ onDateChange(event: string): void {
     // Call the service to submit data
     this.SharedService.postPeacekeeper(encryptedPayload).subscribe(
       (response: any) => {
-        debugger
         let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
         decryptData = JSON.parse(decryptData);
 

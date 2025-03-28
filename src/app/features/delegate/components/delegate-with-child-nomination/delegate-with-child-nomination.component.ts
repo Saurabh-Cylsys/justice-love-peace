@@ -252,15 +252,23 @@ export class DelegateWithChildNominationComponent {
 
 
         this.cdr.detectChanges(); // 👈 Force UI update
+        const encryptedObj = this.encryptionService.encrypt(this.country_id);
+
         if (this.country_id) {
           this.ngxService.start();
-        this.delegateService.getAllStates(this.country_id).subscribe(
+        this.delegateService.getAllStates(encryptedObj).subscribe(
           (res: any) => {
             this.ngxService.stop();
-            this.statesData = res.data;
-          },
+            let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+            decryptData = JSON.parse(decryptData);
+              this.statesData = decryptData.data;
+            },
           (err: any) => {
-            console.log('Err', err);
+            let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+            decryptErr = JSON.parse(decryptErr);
+    
+            console.error('Error ', decryptErr); 
+                    this.ngxService.stop();
           }
         );
       }
@@ -394,7 +402,11 @@ export class DelegateWithChildNominationComponent {
   async getAllCountries() {
     try {
       const response = await this.delegateService.getAllCountryApi();
-      this.countryData = response.data;
+      let decryptData = this.encryptionService.decrypt(response.encryptedData);
+      let countryDcrypt = JSON.parse(decryptData);         
+      
+      this.countryData = countryDcrypt.data;  
+
 
     } catch (error) {
       console.log("Error fetching countries:", error);
@@ -406,16 +418,22 @@ export class DelegateWithChildNominationComponent {
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ country_id: countryObj.id });
     this.country_name = countryObj.name;
+    const encryptedObj = this.encryptionService.encrypt(countryObj.id);
 
     this.ngxService.start();
-    this.delegateService.getAllStates(countryObj.id).subscribe(
+    this.delegateService.getAllStates(encryptedObj).subscribe(
       (res: any) => {
         this.ngxService.stop();
-        this.statesData = res.data;
-      },
+        let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+        decryptData = JSON.parse(decryptData);
+          this.statesData = decryptData.data;
+        },
       (err: any) => {
-        console.log('Err', err);
-        this.ngxService.stop();
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+
+        console.error('Error ', decryptErr); 
+                this.ngxService.stop();
       }
     );
   }
@@ -425,12 +443,22 @@ export class DelegateWithChildNominationComponent {
     const stateObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ state_id: stateObj.id });
     this.state_name = stateObj.name;
+    const encryptedObj = this.encryptionService.encrypt(stateObj.id);
 
     this.ngxService.start();
-    this.delegateService.getAllCities(stateObj.id).subscribe((res: any) => {
-      this.ngxService.stop();
-      this.cityData = res.data;
-    });
+    this.delegateService.getAllCities(encryptedObj).subscribe((res: any) => {
+      let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+      decryptData = JSON.parse(decryptData);
+        this.ngxService.stop();
+        this.cityData = decryptData.data;
+    },     (err: any) => {
+      let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+      decryptErr = JSON.parse(decryptErr);
+
+      console.error('Error ', decryptErr); 
+              this.ngxService.stop();
+    }
+  );
   }
 
   changeCity(e: any) {

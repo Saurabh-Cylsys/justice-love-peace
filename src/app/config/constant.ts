@@ -99,6 +99,8 @@ export class Constants {
 
     public readonly API_ENDPOINT_CREATE_ONLINE_MP: string = 'initiate-payment'
 
+    public readonly API_ENDPOINT_CREATE_ONLINE_MP_ENCRYPT: string = 'initiate-payment/encryption'
+
     public readonly API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID: string = 'transaction'
 
     public readonly API_ENDPOINT_VERIFY_PAYMENT_STATUS : string = 'verify-payment-status'
@@ -108,15 +110,21 @@ export class Constants {
 
     public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE: string = 'pre_delegate_draft_details'
 
+    public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE_ENCRYPT: string = 'pre_delegate_draft_details/encryption'
+
     public readonly API_ENDPOINT_VALIDATE_COUPON: string = 'check_coupon'
+
     public readonly API_ENDPOINT_GET_SPEAKERS_LIST: string = 'get_speaker_list'
 
     public readonly API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT: string = 'get_speaker_list/encryption'
 
     public readonly API_ENDPOINT_VERIFY_TICKET: string = 'verify_ticket_id'
 
+    public readonly API_ENDPOINT_VERIFY_TICKET_ENCRYPT: string = 'verify_ticket_id/encryption'
+
     public readonly API_ENDPOINT_DISCOUNT_AMOUNT: string =  'discount_amount'
 
-    public readonly API_ENDPOINT_GET_SPEAKERS_LIST: string = 'get_speaker_list'
+    public readonly API_ENDPOINT_DISCOUNT_AMOUNT_ENCRYPT: string =  'discount_amount_encryption'
+
 
 }

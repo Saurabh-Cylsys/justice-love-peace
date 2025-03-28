@@ -52,14 +52,21 @@ export class VerifyTicketComponent {
       "p_type": this.type,
       "p_ticket_no": this.ticketId
   }
-
+  const EncryptData = this.encryptionService.encrypt(body);
+  let reqBody = {
+    encryptedData: EncryptData
+  }
     this.ngxService.start();
-    this.delegateService.getVerifyTicketApi(body).subscribe({
+    this.delegateService.getVerifyTicketApi(reqBody).subscribe({
       next : (res)=>{
-        if(res.success) {
+        let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+          decryptData = JSON.parse(decryptData);
+          console.log(decryptData,'decryptData');
+
+        if(decryptData.success) {
 
           this.ngxService.stop();
-          this.verifyTicketData = res.data[0];
+          this.verifyTicketData = decryptData.data[0];
 
           if (this.verifyTicketData.ticket_url) {
             window.open(this.verifyTicketData.ticket_url);
@@ -68,9 +75,11 @@ export class VerifyTicketComponent {
           }
         }
       },error :(err)=>{
-        console.log("error",err.error);
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error :', decryptErr);
         this.ngxService.stop();
-        this.sharedService.ToastPopup(err.error['message'],'','error');
+        this.sharedService.ToastPopup(decryptErr['message'],'','error');
       }
     })
   }
