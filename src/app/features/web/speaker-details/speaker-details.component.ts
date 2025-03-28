@@ -93,7 +93,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
       searchQuery = searchQuery ? `${searchQuery} ${this.selectedCountry}` : this.selectedCountry;
     }
 
-    this.webService.getSpeakersList(searchQuery, '73', 'All')
+    this.webService.getSpeakersList(searchQuery, '100', 'All')
     .subscribe({
       next: (response: any) => {
         if (response?.encryptedData) {

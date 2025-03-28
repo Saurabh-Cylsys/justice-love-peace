@@ -76,8 +76,10 @@ export class WebService {
     const payload = {
       "encryptedData": encryptedData
     };
-    return this._apiHttpService.post(this._apiEndpointsService.getAllSpeakersListEndpoint(payload),payload);
+
+   return this._apiHttpService.post(this._apiEndpointsService.getAllSpeakersListEndpoint(payload),payload);
   }
+  
 
   confirmedSpeakersList: any[] = [
     // list 1
