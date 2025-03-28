@@ -203,4 +203,25 @@ INDIA : 18002672828
     }
   }
   ngOnDestroy(): void {}
+
+  formatCountry(countries: string | string[]): string {
+    if (!countries) return ''; // Handle undefined/null cases
+
+    if (typeof countries === 'string') {
+      try {
+        const parsed = JSON.parse(countries);
+        if (Array.isArray(parsed)) {
+          return parsed.join(", ");
+        }
+      } catch (e) {
+        return countries; // If parsing fails, return as-is
+      }
+    }
+
+    if (Array.isArray(countries)) {
+      return countries.join(", ");
+    }
+
+    return '';
+  }
 }
