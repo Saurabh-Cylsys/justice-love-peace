@@ -21,12 +21,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { WebService } from '../webz-services/web.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
-interface Speaker {
-  speaker_name: string;
-  speaker_country: string;
-  speaker_credentials: string;
-  profile_photo?: string;
-}
+
 @Component({
   selector: 'app-the-summit',
   templateUrl: './the-summit.component.html',
@@ -68,9 +63,6 @@ export class TheSummitComponent implements OnInit {
   ];
 
   speakers: any;
-  isLoading:boolean = true;
-  private excludedCountries = ['Morocco', 'France']; // Countries to exclude
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -86,21 +78,16 @@ export class TheSummitComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document
   ) {}
   ngOnInit(): void {
-    this.loadSpeakers();
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com/the-summit');
+    this.isMobilespeakersList = this.webService.speakersList;
 
-
-    // this.isMobilespeakersList = this.webService.speakersList;
-
-    // this.speakersList = this.webService.getSpeakersListData();
-    // console.log('list', this.speakersList);
+    this.speakersList = this.webService.getSpeakersListData();
+    console.log('list', this.speakersList);
 
     this.checkWindowSize();
 
     this.getInviteSpeakers();
-
-
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.handleFragment();
@@ -121,65 +108,6 @@ export class TheSummitComponent implements OnInit {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  }
-
-
- 
-  loadSpeakers() {
-    this.isLoading = true;
-
-    this.webService.getSpeakersList('', '100', 'All')
-    .subscribe({
-      next: (response: any) => {
-        if (response?.data) {
-
-            // Map the API response data and filter out excluded countries
-            const mappedData = response.data
-              .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
-              .map((item: any) => ({
-                speaker_id: item.speaker_id || '',
-                speaker_name: item.speaker_name || '',
-                speaker_country: item.speaker_country || '',
-                speaker_credentials: item.speaker_credentials || '',
-                profile_photo: item.photo_1 || ''
-              }));
-              this.isMobilespeakersList = mappedData
-
-            console.log(this.isMobilespeakersList , 'list of speakers for Mobile');
-
-            // Transform the mapped data into groups
-            this.speakersList = this.transformSpeakerData(mappedData);
-
-            // Load countries from the initial data
-          
-            console.log(this.speakersList , 'list of speakers');
-
-          } else {
-            this.speakersList = [];
-          }
-          this.isLoading = false;
-        },
-        error: (error) => {
-          console.error('Error fetching speakers:', error);
-          this.isLoading = false;
-          this.speakersList = [];
-          
-        }
-      });
-  }
-
-  private transformSpeakerData(data: Speaker[]): any[] {
-    // Group speakers into chunks of 4 speakers per group
-    const groupSize = 4;
-    const groups = [];
-
-    for (let i = 0; i < data.length; i += groupSize) {
-      groups.push({
-        speakers: data.slice(i, i + groupSize)
-      });
-    }
-
-    return groups;
   }
 
   getInviteSpeakers() {
@@ -292,26 +220,5 @@ export class TheSummitComponent implements OnInit {
     this.renderer.setAttribute(link, 'rel', 'canonical');
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.appendChild(this.document.head, link);
-  }
-  formatCountry(countries: string | string[]): string {
-    debugger
-    if (!countries) return ''; // Handle undefined/null cases
-
-    if (typeof countries === 'string') {
-      try {
-        const parsed = JSON.parse(countries);
-        if (Array.isArray(parsed)) {
-          return parsed.join(", ");
-        }
-      } catch (e) {
-        return countries; // If parsing fails, return as-is
-      }
-    }
-
-    if (Array.isArray(countries)) {
-      return countries.join(", ");
-    }
-
-    return '';
   }
 }
