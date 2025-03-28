@@ -9,7 +9,7 @@
                 <div class="text">
                   <h1 class="text-wrapper">{{ speaker.title_name }}</h1>
                   <p class="p">
-                    {{ speaker.speaker_country }} :
+                    {{ formatCountry(speaker.speaker_country) }} :
                     {{ speaker.speaker_credentials }}
                   </p>
                 </div>
@@ -229,7 +229,7 @@
                         type="text"
                         id="link-input"
                         class="link-input"
-                        value="{{speakerShareUrl}}"                      
+                        value="{{speakerShareUrl}}"
                         readonly
                         #webQRcode
                         aria-label="Link to share"
@@ -286,4 +286,3 @@
   </div>
 
 </div>
-  

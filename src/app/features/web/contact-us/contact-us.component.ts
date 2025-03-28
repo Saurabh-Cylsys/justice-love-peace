@@ -175,12 +175,15 @@ export class ContactUsComponent {
     private encryptionService: EncryptionService,
         @Inject(DOCUMENT) private document: Document
   ) {}
+
   getcontrol(name: any): AbstractControl | null {
     return this.contactUsForm.get(name);
   }
+
   get f() {
     return this.contactUsForm.controls;
   }
+
   ngOnInit(): void {
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com/contact-us');
@@ -188,17 +191,17 @@ export class ContactUsComponent {
     this.checkWindowSize();
 
     this.contactUsForm = this.formBuilder.group({
-      title: [''],
+      title: ['',[Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       countryCode: [''],
       phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
-      email: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      yourQuestion: [''],
+      email: ['', [Validators.required,Validators.email,
+        Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]], // Using Validators.email for email format validation
+      yourQuestion: ['',[Validators.required]]
     });
-
-    console.log(this.contactUsForm.value, 'contect');
   }
+
   noRepeatingDigits(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;
@@ -213,13 +216,42 @@ export class ContactUsComponent {
     };
   }
 
-  ValidateAlpha(event: any) {
-    var keyCode = (event.which) ? event.which : event.keyCode
+  validateAlpha(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    const key = event.key;
+    const currentValue = input.value;
+    const cursorPos = input.selectionStart;
 
-    if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32)
-      return false;
-    return true;
+    // Block space at the beginning
+    if (key === ' ' && (cursorPos === 0 || currentValue === '')) {
+      event.preventDefault();
+      return;
+    }
 
+    // Allow letters, spaces (not at start),
+    const allowedPattern = /^[a-zA-Z\s\'‘]$/;
+    if (!allowedPattern.test(key)) {
+      event.preventDefault();
+    }
+  }
+
+  validateAlphaforQuery(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    const key = event.key;
+    const currentValue = input.value;
+    const cursorPos = input.selectionStart;
+
+    // Block space at the beginning
+    if (key === ' ' && (cursorPos === 0 || currentValue === '')) {
+      event.preventDefault();
+      return;
+    }
+
+    // Allow letters, spaces (not at start), and specific special characters
+    const allowedPattern = /^[a-zA-Z0-9.,()#@'‘\s]$/;
+    if (!allowedPattern.test(key)) {
+      event.preventDefault();
+    }
   }
 
   validateTitle(event: any, controlName: string) {
@@ -253,6 +285,30 @@ export class ContactUsComponent {
     if (/^[a-zA-Z\s]*$/.test(text)) {
       const input = event.target as HTMLInputElement;
       input.value += text; // Append only valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
+  onEmailPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
+    if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid characters
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
+  onQueryPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only valid email characters (a-z, A-Z, 0-9, @, .,)
+    if (/^[a-zA-Z0-9@.#,()\s]*$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid characters
       input.dispatchEvent(new Event('input')); // Update Angular form control
     }
   }
@@ -309,31 +365,57 @@ export class ContactUsComponent {
     this.contactUsForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
 
- /** ✅ Function to Display Validation Message */
- getPhoneErrorMessage() {
+getPhoneErrorMessage() {
   const control = this.contactUsForm.controls['phoneNumber'];
-
-  if (control.errors.validatePhoneNumber['valid']) {
-    return '';
-  } else {
-    return 'Invalid mobile number for selected country.';
+  if (control.value && control.errors) {
+    const phoneError = control.errors['validatePhoneNumber']; // Use bracket notation
+    if (phoneError?.valid) {
+      return '';
+    } else {
+      return 'Invalid mobile number for selected country.';
+    }
   }
+  return '';
 }
 
-  keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    if(inputValue !== null){
+keyPressNumbers(event: KeyboardEvent) {
+  const inputElement = event.target as HTMLInputElement; // Get the input field
+  const inputId = inputElement.id;
 
-      if(inputValue.number.length<7){
-        this.mobile_numberVal = true;
-        // event.preventDefault()
-      } else {
-        this.mobile_numberVal = false;
-      }
-     }
+  // Allow only numbers (0-9)
+  if (inputId === 'phoneNumber') {
+    const allowedPattern = /^[0-9]$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
+    }
   }
+
+  // Allow Backspace, Delete, Arrow keys for user convenience
+  const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+  if (allowedKeys.includes(event.key)) {
+    return; // Allow these keys
+  }
+
+  // Prevent non-numeric input
+  if (!/^[0-9]$/.test(event.key)) {
+    event.preventDefault();
+  }
+
+  // Validate mobile number length (min 7 digits)
+  const inputValue = this.contactUsForm.controls['phoneNumber'].value || ''; // Get value from form control
+  this.mobile_numberVal = inputValue.length < 7;
+}
 
 
   submitData(): void {
+
+    if(this.contactUsForm.invalid){
+      this.contactUsForm.markAllAsTouched();
+      this.SharedService.ToastPopup('Please fill required fields','','error');
+      return;
+    }
+
     const rawMobileNumber = this.contactUsForm.value.phoneNumber.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
     console.log(formattedMobileNumber);
@@ -425,7 +507,7 @@ export class ContactUsComponent {
         property: 'og:description',
         content: "Reach out to the Justice, Love, and Peace Movement for inquiries, support, or collaboration opportunities. Our dedicated team is here to assist you in promoting global harmony and equality."
       },
-      
+
     ]);
   }
   setCanonicalUrl(url: string): void {
@@ -439,4 +521,38 @@ export class ContactUsComponent {
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.appendChild(this.document.head, link);
   }
+
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only numbers (0-9)
+    if (/^\d+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid numbers
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
+validateEmailKeyDown(event: KeyboardEvent): void {
+    // Allow navigation and deletion keys
+    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+      return;
+    }
+
+    // Prevent spaces in the email field
+    if (event.key === ' ') {
+      event.preventDefault();
+      return;
+    }
+
+    // Allowed characters: Letters, numbers, @, ., _, and -
+    const allowedPattern = /^[a-zA-Z0-9@._-]$/;
+
+    // Block invalid characters
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault();
+    }
+  }
+
 }
