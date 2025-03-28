@@ -14,6 +14,8 @@ import { WebService } from '../webz-services/web.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import SwiperCore, { EffectCards, Navigation, Pagination, SwiperOptions, Autoplay } from 'swiper';
+import { de } from 'intl-tel-input/i18n';
+import { EncryptionService } from '../../../shared/services/encryption.service';
 
 // Install Swiper modules
 SwiperCore.use([EffectCards, Navigation, Pagination, Autoplay]);
@@ -90,6 +92,8 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private metaService: Meta,
     private renderer: Renderer2,
+    private encryptionService: EncryptionService,
+    
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -131,12 +135,13 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.timerInterval = setInterval(() => {
       this.updateCountdown();
     }, 1000);
-
     // Move speakers data fetch to after initial page render
     setTimeout(async () => {
       await this.webService.getSpeakers().subscribe((data:any) => {
         this.slides = data;
-        this.speakersList = this.webService.confirmedSpeakersList;
+        const confirmedSpeakers = this.webService.getConfirmedSpeakers();
+        let decryptSpeakers = this.encryptionService.decryptData(confirmedSpeakers)
+        this.speakersList = Array.isArray(decryptSpeakers) ? decryptSpeakers : JSON.parse(decryptSpeakers || '[]');
         this.cdr.detectChanges();
       });
     }, 0);

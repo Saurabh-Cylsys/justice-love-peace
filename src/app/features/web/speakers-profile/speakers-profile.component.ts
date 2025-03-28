@@ -90,43 +90,43 @@ export class SpeakersProfileComponent implements OnInit {
     this.webService.getSpeakersList('', '100', this.speakersId)
       .subscribe({
 
-      next: (response: any) => {
-        if (response?.encryptedData) {
-          let decryptedObj:any = this.encryptionService.decrypt(response.encryptedData);
-          decryptedObj = JSON.parse(decryptedObj);
+        next: (response: any) => {
+          if (response?.encryptedData) {
+            let decryptedObj: any = this.encryptionService.decrypt(response.encryptedData);
+            decryptedObj = JSON.parse(decryptedObj);
 
-              // Decode and clean the name
-              let cleanName = decryptedObj?.data[0].speaker_name
-        
-              // If the URL is manually modified and does not match the expected format, redirect
-              if (this.speakersName !== cleanName) {
-                this.isCorrectSpeaker = false; // Redirect user to an error page or home
-                return false;
-              }
-          this.speakersDetails = decryptedObj?.data;
-          this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
-          this.speakersDetails[0].qr_code = this.speakersDetails[0].url
-          console.log(this.speakersDetails, 'list of speakers');
+            // Decode and clean the name
+            let cleanName = decryptedObj?.data[0].speaker_name
+
+            // If the URL is manually modified and does not match the expected format, redirect
+            if (this.speakersName !== cleanName) {
+              this.isCorrectSpeaker = false; // Redirect user to an error page or home
+              return false;
+            }
+            this.speakersDetails = decryptedObj?.data;
+            this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
+            this.speakersDetails[0].qr_code = this.speakersDetails[0].url
+            console.log(this.speakersDetails, 'list of speakers');
 
 
-          // this.speakersDetails[0].speaker_details = this.transformSpeakerData(this.speakersDetails[0].speaker_details);
-          // this.speakersDetails[0].speaker_details = [...this.speakersDetails[0].speaker_details];
+            // this.speakersDetails[0].speaker_details = this.transformSpeakerData(this.speakersDetails[0].speaker_details);
+            // this.speakersDetails[0].speaker_details = [...this.speakersDetails[0].speaker_details];
 
-        } else {
+          } else {
+            this.speakersDetails = [];
+          }
+          this.isLoading = false;
+          return; // Explicitly return undefined
+        },
+        error: (error) => {
+          let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error fetching speakers:', decryptErr);
+          this.isLoading = false;
           this.speakersDetails = [];
-        }
-        this.isLoading = false;
-        return undefined; // Explicitly return undefined
-      },
-      error: (error) => {
-        let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
-        decryptErr = JSON.parse(decryptErr);
-        console.error('Error fetching speakers:', decryptErr);
-        this.isLoading = false;
-        this.speakersDetails = [];
-     
-      },
-    });
+
+        },
+      });
   }
 
   private transformSpeakerData(data: any): any[] {
@@ -231,7 +231,7 @@ INDIA : 18002672828
       window.open(whatsappURL, '_blank');
     }
   }
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 
   formatCountry(countries: string | string[]): string {
     if (!countries) return ''; // Handle undefined/null cases

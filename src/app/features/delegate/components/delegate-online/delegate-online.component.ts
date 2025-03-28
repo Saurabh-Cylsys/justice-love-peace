@@ -462,6 +462,7 @@ export class DelegateOnlineComponent implements OnInit {
         
 
       this.delegateService.postDelegateOnline(reqBody).subscribe({
+        
         next: (response: any) => {
           let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
           decryptData = JSON.parse(decryptData);
@@ -470,7 +471,7 @@ export class DelegateOnlineComponent implements OnInit {
           this.btnDisabled = true;
           this.sharedService.ToastPopup(decryptData.message, '', 'success');
           this.registrationData = this.payload;
-          this.sharedService.setJWTToken(response.token);
+          this.sharedService.setJWTToken(decryptData.token);
 
           setTimeout(async () => {
             if (decryptData.isStripe  == "true")

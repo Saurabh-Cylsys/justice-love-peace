@@ -2096,6 +2096,13 @@ export class WebService {
   }
 
 
+  getConfirmedSpeakers(){
+
+    let confirmedSpeakers = this.encryptionService.encryptData(this.confirmedSpeakersList);
+
+    return confirmedSpeakers
+
+  }
   getSpeakerCategories() {
     return this.http.get('assets/speaker_categories.json');
   }
