@@ -68,7 +68,7 @@ export class TheSummitComponent implements OnInit {
   ];
 
   speakers: any;
-  isLoading:boolean = true;
+  isLoading: boolean = true;
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
 
@@ -84,7 +84,7 @@ export class TheSummitComponent implements OnInit {
     private metaService: Meta,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.loadSpeakers();
     this.setMetaTags();
@@ -124,15 +124,14 @@ export class TheSummitComponent implements OnInit {
   }
 
 
- 
+
   loadSpeakers() {
     this.isLoading = true;
 
     this.webService.getSpeakersList('', '100', 'All')
-    .subscribe({
-      next: (response: any) => {
-        if (response?.data) {
-
+      .subscribe({
+        next: (response: any) => {
+          if (response?.data) {
             // Map the API response data and filter out excluded countries
             const mappedData = response.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
@@ -143,16 +142,15 @@ export class TheSummitComponent implements OnInit {
                 speaker_credentials: item.speaker_credentials || '',
                 profile_photo: item.photo_1 || ''
               }));
-              this.isMobilespeakersList = mappedData
-
-            console.log(this.isMobilespeakersList , 'list of speakers for Mobile');
+            this.isMobilespeakersList = mappedData
+            console.log(this.isMobilespeakersList, 'list of speakers for Mobile');
 
             // Transform the mapped data into groups
             this.speakersList = this.transformSpeakerData(mappedData);
 
             // Load countries from the initial data
-          
-            console.log(this.speakersList , 'list of speakers');
+
+            console.log(this.speakersList, 'list of speakers');
 
           } else {
             this.speakersList = [];
@@ -163,7 +161,7 @@ export class TheSummitComponent implements OnInit {
           console.error('Error fetching speakers:', error);
           this.isLoading = false;
           this.speakersList = [];
-          
+
         }
       });
   }
@@ -270,7 +268,7 @@ export class TheSummitComponent implements OnInit {
         name: 'title',
         content: "The Summit | Global Justice, Love, and Peace Summit 2025"
       },
-      
+
       {
         property: 'og:title',
         content: 'The Summit | Global Justice, Love, and Peace Summit 2025'
