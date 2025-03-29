@@ -78,6 +78,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     },
   };
 
+  private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
 
   slides : any = []
@@ -139,9 +140,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     setTimeout(async () => {
       await this.webService.getSpeakers().subscribe((data:any) => {
         this.slides = data;
-        const confirmedSpeakers = this.webService.getConfirmedSpeakers();
-        let decryptSpeakers = this.encryptionService.decryptData(confirmedSpeakers)
-        this.speakersList = Array.isArray(decryptSpeakers) ? decryptSpeakers : JSON.parse(decryptSpeakers || '[]');
+        this.loadSpeakers();
         this.cdr.detectChanges();
       });
     }, 0);
@@ -303,5 +302,63 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.renderer.setAttribute(link, 'rel', 'canonical');
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.appendChild(this.document.head, link);
+  }
+  
+  loadSpeakers() {
+
+    this.webService.getSpeakersList('', '100', 'All')
+      .subscribe({
+        next: (response: any) => {
+          if (response?.data) {
+            debugger
+            // Map the API response data and filter out excluded countries
+            const mappedData = response.data
+              .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
+              .map((item: any) => ({
+                speaker_id: item.speaker_id || '',
+                speaker_name: item.speaker_name || '',
+                speaker_country: item.speaker_country || '',
+                speaker_credentials: item.speaker_credentials || '',
+                profile_photo: item.photo_1 || ''
+              }));
+
+            // Transform the mapped data into groups
+            this.speakersList = mappedData;
+
+            // Load countries from the initial data
+
+            console.log(this.speakersList, 'list of speakers');
+
+          } else {
+            this.speakersList = [];
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching speakers:', error);
+          this.speakersList = [];
+
+        }
+      });
+  }
+
+  formatCountry(countries: string | string[]): string {
+    if (!countries) return ''; // Handle undefined/null cases
+
+    if (typeof countries === 'string') {
+      try {
+        const parsed = JSON.parse(countries);
+        if (Array.isArray(parsed)) {
+          return parsed.join(", ");
+        }
+      } catch (e) {
+        return countries; // If parsing fails, return as-is
+      }
+    }
+
+    if (Array.isArray(countries)) {
+      return countries.join(", ");
+    }
+
+    return '';
   }
 }

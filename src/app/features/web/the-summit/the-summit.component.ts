@@ -42,6 +42,7 @@ export class TheSummitComponent implements OnInit {
   isMobilespeakersList: any[] = [];
   visibleCount: number = 5; // Initial number of events to show
   isVisibleCount: boolean = false;
+    currentSection = 'ts1';
   events_day1 = [
     { title: 'Registration / Refreshment', time: '8:00 AM-10:00 AM' },
     { title: 'Opening Session', time: '10:00 AM-10:30 AM' },
@@ -69,7 +70,7 @@ export class TheSummitComponent implements OnInit {
   ];
 
   speakers: any;
-  isLoading:boolean = true;
+  isLoading: boolean = true;
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
 
@@ -86,7 +87,7 @@ export class TheSummitComponent implements OnInit {
     private renderer: Renderer2,
     private encryptionService: EncryptionService,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.loadSpeakers();
     this.setMetaTags();
@@ -126,7 +127,7 @@ export class TheSummitComponent implements OnInit {
   }
 
 
- 
+
   loadSpeakers() {
     this.isLoading = true;
 
@@ -168,7 +169,7 @@ export class TheSummitComponent implements OnInit {
           console.error('Error fetching speakers:', decryptErr);
           this.isLoading = false;
           this.speakersList = [];
-          
+
         }
       });
   }
@@ -273,7 +274,7 @@ export class TheSummitComponent implements OnInit {
         name: 'title',
         content: "The Summit | Global Justice, Love, and Peace Summit 2025"
       },
-      
+
       {
         property: 'og:title',
         content: 'The Summit | Global Justice, Love, and Peace Summit 2025'
@@ -316,4 +317,42 @@ export class TheSummitComponent implements OnInit {
 
     return '';
   }
+  
+  
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const sections = ['ts1', 'ts2', 'ts3', 'ts4', 'ts5', 'ts6', 'ts7', 'ts8', 'ts9'];
+    let currentSection = '';
+    
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          currentSection = section;
+          break;
+        }
+      }
+    }
+    
+    if (currentSection && this.currentSection !== currentSection) {
+      this.currentSection = currentSection;
+      this.updateActiveDot();
+    }
+  }
+
+  updateActiveDot() {
+    // Remove active class from all dots
+    const dots = document.querySelectorAll('.navbarDots .dot');
+    dots.forEach(dot => {
+      dot.classList.remove('active');
+    });
+
+    // Add active class to current section's dot
+    const activeDot = document.querySelector(`.navbarDots .dot[data-scroll="${this.currentSection}"]`);
+    if (activeDot) {
+      activeDot.classList.add('active');
+    }
+  }
+
 }

@@ -11,6 +11,7 @@ import { SharedService } from '../../../../app/shared/services/shared.service';
 })
 export class AwardsComponent {
   isMobileView = false;
+  currentSection = 'aw1';
   constructor(
     private _activeRouter: ActivatedRoute,
     private SharedService: SharedService,
@@ -81,5 +82,41 @@ export class AwardsComponent {
     this.renderer.setAttribute(link, 'rel', 'canonical');
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.appendChild(this.document.head, link);
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const sections = ['aw1', 'aw3'];
+    let currentSection = '';
+    
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          currentSection = section;
+          break;
+        }
+      }
+    }
+    
+    if (currentSection && this.currentSection !== currentSection) {
+      this.currentSection = currentSection;
+      this.updateActiveDot();
+    }
+  }
+
+  updateActiveDot() {
+    // Remove active class from all dots
+    const dots = document.querySelectorAll('.navbarDots .dot');
+    dots.forEach(dot => {
+      dot.classList.remove('active');
+    });
+
+    // Add active class to current section's dot
+    const activeDot = document.querySelector(`.navbarDots .dot[data-scroll="${this.currentSection}"]`);
+    if (activeDot) {
+      activeDot.classList.add('active');
+    }
   }
 }
