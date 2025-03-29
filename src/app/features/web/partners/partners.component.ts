@@ -11,6 +11,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class PartnersComponent {
   isMobileView = false;
+  currentSection = 'p1';
   // headerIcon:any
   constructor(
     private SharedService: SharedService,
@@ -85,5 +86,41 @@ export class PartnersComponent {
     this.renderer.setAttribute(link, 'rel', 'canonical');
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.appendChild(this.document.head, link);
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const sections = ['p1', 'p2', 'p3', 'p4', 'p5'];
+    let currentSection = '';
+    
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          currentSection = section;
+          break;
+        }
+      }
+    }
+    
+    if (currentSection && this.currentSection !== currentSection) {
+      this.currentSection = currentSection;
+      this.updateActiveDot();
+    }
+  }
+
+  updateActiveDot() {
+    // Remove active class from all dots
+    const dots = document.querySelectorAll('.navbarDots .dot');
+    dots.forEach(dot => {
+      dot.classList.remove('active');
+    });
+
+    // Add active class to current section's dot
+    const activeDot = document.querySelector(`.navbarDots .dot[data-scroll="${this.currentSection}"]`);
+    if (activeDot) {
+      activeDot.classList.add('active');
+    }
   }
 }
