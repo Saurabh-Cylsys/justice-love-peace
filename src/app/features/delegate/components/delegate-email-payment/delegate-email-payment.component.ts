@@ -40,13 +40,12 @@ export class DelegateEmailPaymentComponent {
         if (params['data']) {
           let data = params['data'].replace(/ /g, '+');
           let decryptedData = this.encryptionService.decrypt(data);
-console.log(decryptedData);
 
           // Parse key-value pairs from decryptedData
           const paramPairs = decryptedData.split('&');
           const parsedData: any = {};
 
-          paramPairs.forEach((pair) => {
+          paramPairs.forEach((pair:any) => {
             const [key, value] = pair.split('=');
             if (key && value) {
               parsedData[key.trim()] = decodeURIComponent(value.trim());
