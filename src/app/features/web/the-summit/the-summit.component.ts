@@ -294,7 +294,6 @@ export class TheSummitComponent implements OnInit {
     this.renderer.appendChild(this.document.head, link);
   }
   formatCountry(countries: string | string[]): string {
-    debugger
     if (!countries) return ''; // Handle undefined/null cases
 
     if (typeof countries === 'string') {
