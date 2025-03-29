@@ -145,7 +145,6 @@ export class DelegateRegistrationComponent {
     this.checkWindowSize();
 
     this.route.queryParams.subscribe((params: any) => {
-      console.log('Params', params);
 
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
@@ -298,8 +297,10 @@ export class DelegateRegistrationComponent {
         });
       },
       (err: any) => {
-        console.log('error', err);
-      }
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+     
+          }
     );
   }
 
@@ -314,13 +315,12 @@ export class DelegateRegistrationComponent {
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
         let decryptData: any = this.encryptionService.decrypt(res);
-        console.log("Country decryptData:", decryptData);
 
         this.countryData = decryptData.data;
       },
       (err: any) => {
-        console.log('error', err);
-      }
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);      }
     );
   }
 
@@ -337,8 +337,8 @@ export class DelegateRegistrationComponent {
         this.statesData = res.data;
       },
       (err: any) => {
-        console.log('Err', err);
-        // this.ngxService.stop();
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);        // this.ngxService.stop();
       }
     );
   }
@@ -911,11 +911,9 @@ export class DelegateRegistrationComponent {
 
     const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
-    console.log(returnmobileNumber, 'mobileNumber');
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
     let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    console.log(formattedMobileNumber);
 
     this.registrationForm.patchValue({
       country_code: this.registrationForm.value.mobile_number.dialCode,
@@ -947,14 +945,12 @@ export class DelegateRegistrationComponent {
           let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
           decryptedObj = JSON.parse(decryptedObj);
           if (decryptedObj.success) {
-            console.log("decryptedObj", decryptedObj);
 
             // this.ngxService.stop();
             this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
             setTimeout(() => {
-              console.log('get payment URL', decryptedObj.url);
               this.ngxService.stop();
               if (decryptedObj.url) {
                 window.location.href = decryptedObj.url; // Redirect to Stripe Checkout

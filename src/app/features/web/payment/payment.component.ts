@@ -32,7 +32,6 @@ export class PaymentComponent implements OnInit {
  
   ngOnInit() {
 this.checkoutSession();
-console.log('email',this.email);
 
   }
 checkoutSession(){

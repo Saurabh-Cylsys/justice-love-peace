@@ -32,7 +32,6 @@ export class SuccessComponent implements OnInit {
 
   }
 verifySession(){
-  console.log( this.transactionVerified , 'transactionVerified.....22');
 
 let body={
   // sessionId: "cs_test_a1wx1VFhgcGnSFpvXZ36uXOna2QbD3gYfXdi1ZefYj9MYOwUv6bpj1v2Ak"
@@ -42,10 +41,8 @@ let body={
   this.DelegateService.postVerifySession(body).subscribe({
     next: (response:any) => {
               if (response.success) {
-                console.log('Session Verified:', response.session);
                 this.isPaymentStatus = response.session.status;
                 this.transactionVerified = true;
-                console.log( this.isPaymentStatus , 'transactionVerified.....22');
 
               } else {
                 // this.isPaymentStatus = response.session.status;

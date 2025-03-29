@@ -25,7 +25,6 @@ export class DownloadCenterComponent {
     // AOS.init({
     //   duration: 1200,
     // });
-    console.log('download center');
     this.checkWindowSize();
 
     this.router.fragment.subscribe((fragment) => {

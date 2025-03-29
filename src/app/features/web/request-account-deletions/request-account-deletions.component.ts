@@ -67,13 +67,11 @@ deletePeacekeeperAcc() {
     email: this.userForm.controls['email'].value,
     role: this.userForm.controls['role'].value,
   }
-console.log(peaceDeleteAcc,'peaceDeleteAcc');
 
 
   this.ngxService.start();
   
   this.delegateService.postPeaceDeleteAcc(peaceDeleteAcc).subscribe((res: any) => {
-    console.log("res",res);
        
     this.sharedService.ToastPopup(res.message, '', 'success');
 this.ngxService.stop();

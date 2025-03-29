@@ -40,7 +40,7 @@ export class DelegateEmailPaymentComponent {
         if (params['data']) {
           let data = params['data'].replace(/ /g, '+');
           let decryptedData = this.encryptionService.decrypt(data);
-          console.log('Decrypted Data:', decryptedData);
+console.log(decryptedData);
 
           // Parse key-value pairs from decryptedData
           const paramPairs = decryptedData.split('&');
@@ -72,30 +72,35 @@ export class DelegateEmailPaymentComponent {
       pay_type: this.pay_type,
       reference_no: this.reference_no,
     };
-
+    const EncryptData = this.encryptionService.encrypt(obj);
+    let reqBody = {
+      encryptedData: EncryptData
+    }
     this.ngxLoader.start();
     this.loading = true;
-    await this.delegateService.postDelegateOnlineMP(obj).subscribe({
+    await this.delegateService.postDelegateOnlineMP(reqBody).subscribe({
       next: (response: any) => {
+        let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+        decryptData = JSON.parse(decryptData);
         //window.location.href = response.paymentUrl
         // Redirect to the IPG gateway
         this.loading = false;
         this.ngxLoader.stop();
-        if(response.success) {
+        if(decryptData.success) {
           // this.sharedService.ToastPopup(response.message,'','success');
-          this.paymentData = response.data[0];
-          this.message = response.message;
+          this.paymentData = decryptData.data[0];
+          this.message = decryptData.message;
         }
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = response.gatewayUrl;
+        form.action = decryptData.gatewayUrl;
 
-        Object.keys(response.formData).forEach((key) => {
-          if (response.formData[key] !== null && response.formData[key] !== undefined) {
+        Object.keys(decryptData.formData).forEach((key) => {
+          if (decryptData.formData[key] !== null && decryptData.formData[key] !== undefined) {
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = key;
-            input.value = response.formData[key];
+            input.value = decryptData.formData[key];
             form.appendChild(input);
           }
         });
@@ -104,9 +109,11 @@ export class DelegateEmailPaymentComponent {
         form.submit();
       },
       error: (error: any) => {
+        let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        this.sharedService.ToastPopup(decryptErr['message'],'','error');
         this.loading = false;
         this.ngxLoader.stop();
-        console.log('Error creating delegate:', error);
       },
     });
   }

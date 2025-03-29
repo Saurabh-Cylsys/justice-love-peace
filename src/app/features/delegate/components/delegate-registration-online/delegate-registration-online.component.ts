@@ -203,7 +203,7 @@ async ngOnInit() {
       }
 
     } else {
-      console.log("Country not found for ID:", this.country_id);
+      // console.log("Country not found for ID:", this.country_id);
     }
   }
 
@@ -384,7 +384,8 @@ async ngOnInit() {
       // this.ngxService.stop();
       let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
       decryptData = JSON.parse(decryptData);
-      this.cityData = decryptData.data;    });
+      this.cityData = decryptData.data;  
+      });
   }
 
   changeCity(e: any) {
@@ -822,7 +823,6 @@ async ngOnInit() {
           decryptedObj = JSON.parse(decryptedObj);
 
           if (decryptedObj.success) {
-            console.log("decryptedObj", decryptedObj);
 
             this.ngxService.stop();
             this.SharedService.ToastPopup('', decryptedObj.message, 'success');

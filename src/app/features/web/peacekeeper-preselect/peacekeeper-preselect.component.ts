@@ -54,7 +54,7 @@ export class PeacekeeperPreselectComponent {
         }
 
         else if (!params.medium) {
-          console.log('Medium value not found, redirecting...');
+          // console.log('Medium value not found, redirecting...');
           if (this.referralCode) {
             await this.fnValidateCoupon(this.referralCode);
           }
@@ -76,7 +76,6 @@ export class PeacekeeperPreselectComponent {
       next: (response: any) => {
         let decryptData = this.encryptionService.decrypt(response.encryptedData);
         let resDecrypt = JSON.parse(decryptData);   
-        console.log( 'decrypt',resDecrypt);
         
         if(resDecrypt && resDecrypt.success) {
 

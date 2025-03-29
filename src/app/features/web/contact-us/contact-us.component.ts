@@ -316,7 +316,6 @@ export class ContactUsComponent {
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe(
       (res: any) => {
-        console.log('code', res.data);
         this.code = res.data;
         // Define the country name you want to find (e.g., "India (+91)")
         const countryToFind = 'India (+91)';
@@ -325,7 +324,6 @@ export class ContactUsComponent {
         const indiaCodeObject = this.code.find(
           (item: any) => item.country_mobile_code === countryToFind
         );
-        console.log(indiaCodeObject);
 
         this.contactUsForm.patchValue({
           countryCode: indiaCodeObject.country_mobile_code,
@@ -418,7 +416,7 @@ keyPressNumbers(event: KeyboardEvent) {
 
     const rawMobileNumber = this.contactUsForm.value.phoneNumber.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
-    console.log(formattedMobileNumber);
+    // console.log(formattedMobileNumber);
 
     this.contactUsForm.patchValue({
       countryCode: this.contactUsForm.value.phoneNumber.countryCode,
@@ -427,7 +425,7 @@ keyPressNumbers(event: KeyboardEvent) {
         ' ' +
         formattedMobileNumber,
     });
-    console.log(this.contactUsForm);
+    // console.log(this.contactUsForm);
     this.submitted = true;
     // if (this.contactUsForm.invalid) {
     //   return console.log('Invalid Details');
@@ -443,8 +441,6 @@ keyPressNumbers(event: KeyboardEvent) {
         yourQuestion: this.contactUsForm.value.yourQuestion
       };
       const encryptData = this.encryptionService.encrypt(this.reqBody);
-      console.log('encryptData', encryptData);
-      console.log('this.contactUsForm.value', this.contactUsForm.value);
       this.ngxService.start();
       let body = {
         encryptedData: encryptData
@@ -454,10 +450,8 @@ keyPressNumbers(event: KeyboardEvent) {
           let decryptData:any = this.encryptionService.decrypt(result.encryptedData);
 
           decryptData = JSON.parse(decryptData);
-          console.log('decryptData', decryptData);
 
           if (decryptData.success) {
-            console.log('result', result);
             this.ngxService.stop();
             this.contactUsForm.reset();
             this.SharedService.ToastPopup('', decryptData.message, 'success');
@@ -467,7 +461,6 @@ keyPressNumbers(event: KeyboardEvent) {
           this.ngxService.stop();
           let decryptedErr:any = this.encryptionService.decrypt(err.error.encryptedData);
           decryptedErr = JSON.parse(decryptedErr);
-          console.log("decryptedObj", decryptedErr);
           this.SharedService.ToastPopup('', decryptedErr.message, 'error');
         }
       );

@@ -150,14 +150,12 @@ export class TheSummitComponent implements OnInit {
               }));
               this.isMobilespeakersList = mappedData
 
-            console.log(this.isMobilespeakersList , 'list of speakers for Mobile');
 
             // Transform the mapped data into groups
             this.speakersList = this.transformSpeakerData(mappedData);
 
             // Load countries from the initial data
           
-            console.log(this.speakersList , 'list of speakers');
 
           } else {
             this.speakersList = [];
@@ -166,7 +164,6 @@ export class TheSummitComponent implements OnInit {
         },
         error: (error) => {
           let decryptErr = this.encryptionService.decrypt(error.error.encryptedData);
-          console.log(JSON.parse(decryptErr), 'decrypted data');
           decryptErr = JSON.parse(decryptErr);
           console.error('Error fetching speakers:', decryptErr);
           this.isLoading = false;
@@ -193,7 +190,6 @@ export class TheSummitComponent implements OnInit {
   getInviteSpeakers() {
     this.DelegateService.getSpeakers().subscribe(
       (res: any) => {
-        console.log('speakers', res.data);
         this.speakers = res.data;
       },
       (err: any) => {
@@ -202,7 +198,6 @@ export class TheSummitComponent implements OnInit {
     );
   }
   clickToView(viewToId: any) {
-    console.log('id', viewToId);
     this.isSpeaker = viewToId;
     this.display = 'block';
     this.showPopup = true;

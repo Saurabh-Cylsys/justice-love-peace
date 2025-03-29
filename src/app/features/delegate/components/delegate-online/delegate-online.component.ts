@@ -164,7 +164,6 @@ export class DelegateOnlineComponent implements OnInit {
           next: (response: any) => {
             let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
             decryptData = JSON.parse(decryptData);
-            console.log(decryptData,'decryptData');
             
           },
           error: (error: any) => {
@@ -245,7 +244,9 @@ export class DelegateOnlineComponent implements OnInit {
         
         this.countryData = countryDcrypt.data;      },
       (err: any) => {
-        console.log('error', err);
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        this.sharedService.ToastPopup(decryptErr['message'],'','error');
       }
     );
   }
@@ -536,7 +537,6 @@ export class DelegateOnlineComponent implements OnInit {
         next: (response: any) => {
           let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
           decryptData = JSON.parse(decryptData);
-          console.log(decryptData,'decryptData');
           this.ngxService.stop();
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway

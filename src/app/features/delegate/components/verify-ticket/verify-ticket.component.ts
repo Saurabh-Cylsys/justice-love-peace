@@ -61,7 +61,6 @@ export class VerifyTicketComponent {
       next : (res)=>{
         let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
           decryptData = JSON.parse(decryptData);
-          console.log(decryptData,'decryptData');
 
         if(decryptData.success) {
 

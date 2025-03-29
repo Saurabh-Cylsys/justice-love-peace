@@ -121,7 +121,6 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
               this.loadCountries();
             }
 
-            console.log(this.speakersList , 'list of speakers');
 
           } else {
             this.speakersList = [];
@@ -131,7 +130,6 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           let decryptErr = this.encryptionService.decrypt(error.error.encryptedData);
-          console.log(JSON.parse(decryptErr), 'decrypted data');
           decryptErr = JSON.parse(decryptErr);
           console.error('Error fetching speakers:', decryptErr);
           this.isLoading = false;

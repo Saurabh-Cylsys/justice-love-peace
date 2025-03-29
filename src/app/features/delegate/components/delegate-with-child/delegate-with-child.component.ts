@@ -155,7 +155,7 @@ export class DelegateWithChildComponent {
         delete updatedParams['code'];
       }
 
-       console.log("params after filtering:", updatedParams);
+      //  console.log("params after filtering:", updatedParams);
 
        // Navigate with the updated query params to remove 'code' from the URL
        this.router.navigate([], {
@@ -334,7 +334,7 @@ export class DelegateWithChildComponent {
 
     if (this.userAge !== newAge) {
       this.userAge = newAge;
-      console.log('User Age Updated:', this.userAge);
+      // console.log('User Age Updated:', this.userAge);
     } else {
       console.log('No Change in User Age, Skipping Update');
     }
@@ -358,7 +358,7 @@ export class DelegateWithChildComponent {
 
     if (this.nomineeAge !== newAge) {
       this.nomineeAge = newAge;
-      console.log('Nominee Age Updated:', this.nomineeAge);
+      // console.log('Nominee Age Updated:', this.nomineeAge);
     } else {
       console.log('No Change in Nominee Age, Skipping Update');
     }
@@ -1131,7 +1131,7 @@ export class DelegateWithChildComponent {
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
     let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    console.log(formattedMobileNumber);
+    // console.log(formattedMobileNumber);
 
     // Nominee Mobile Number
     let formattedNomineeMobileNumber = '';
@@ -1263,7 +1263,7 @@ export class DelegateWithChildComponent {
           if (decryptedObj.success) {
 
 
-            console.log('Registration Successful:', decryptedObj);
+            // console.log('Registration Successful:', decryptedObj);
             this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
@@ -1316,7 +1316,7 @@ export class DelegateWithChildComponent {
         let decryptedObj: any = this.encryptionService.decrypt(res.encryptedData);
         decryptedObj = JSON.parse(decryptedObj);
         this.ngxService.stop();
-        console.log('Nomination Profile Response:', decryptedObj);
+        // console.log('Nomination Profile Response:', decryptedObj);
 
         if (decryptedObj.success && paymentUrl) {
           window.location.href = paymentUrl; // Redirect to payment
@@ -1465,7 +1465,7 @@ export class DelegateWithChildComponent {
     };
     this.delegateService.getRelationDataApi(body).subscribe({
       next: (res) => {
-        console.log('Res', res);
+        // console.log('Res', res);
         this.relationData = res;
       },
     });
@@ -1510,7 +1510,7 @@ export class DelegateWithChildComponent {
 
       if (confirmation) {
         this.userType = selectedType;
-        console.log('User Type Selected:', this.userType);
+        // console.log('User Type Selected:', this.userType);
         // this.clearFormState();
         this.isFormDirty = false; // Reset dirty flag
         // this.registrationForm.reset();
@@ -1520,7 +1520,7 @@ export class DelegateWithChildComponent {
       }
     } else {
       this.userType = selectedType;
-      console.log('User Type Selected:', this.userType);
+      // console.log('User Type Selected:', this.userType);
     }
   }
 

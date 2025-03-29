@@ -22,7 +22,6 @@ export class AmbassadorComponent {
           "coupon_code": this.name
         }
         await this.delegateService.getAmbassadorURL(body).subscribe((resp: any) => {
-          console.log(resp);
           /**{
           "url": "https://www.justice-love-peace.com/delegate-registration?code=COIND-0000072-A",
           "success": true,
@@ -40,7 +39,7 @@ export class AmbassadorComponent {
             // Extract the 'code' parameter
             const code = params.get('code');
 
-            console.log(code); // Output: COIND-0000072-A
+            // console.log(code); // Output: COIND-0000072-A
             // Navigate to the new URL with the 'code' parameter
             if (code) {
               this.router.navigate(['/peacekeeper-preselect'], { queryParams: { code: code } });

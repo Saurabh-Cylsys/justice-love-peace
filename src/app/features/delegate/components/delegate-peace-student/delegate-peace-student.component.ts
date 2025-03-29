@@ -76,7 +76,6 @@ export class DelegatePeaceStudentComponent {
             this.delagateType = decryptedData.dType;
           }
         }
-        console.log('params', params);
 
         // this.router.navigate([], {
         //   relativeTo: this.route,
@@ -427,14 +426,14 @@ export class DelegatePeaceStudentComponent {
         this.countryData = countryDcrypt.data;
       },
       (err: any) => {
-        console.log('error', err);
-      }
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        this.sharedService.ToastPopup(decryptErr['message'],'','error');      }
     );
   }
 
   changeCountry(e: any) {
     const selectedValue = e.target.value;
-    console.log('selectedValue', selectedValue);
   }
 
   // Helper function to trim a string value.
@@ -473,7 +472,6 @@ export class DelegatePeaceStudentComponent {
         next: (response: any) => {
           let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
           decryptData = JSON.parse(decryptData);
-          console.log(decryptData,'decryptData');
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
           const form = document.createElement('form');
@@ -513,8 +511,6 @@ export class DelegatePeaceStudentComponent {
   // Handle form submission
   onSubmit() {
     if (this.studentForm.invalid || this.delegateForm.invalid) {
-      console.log('Student Form Data:', this.studentForm.value);
-      console.log('Delegate Form Data:', this.delegateForm.value);
       this.sharedService.ToastPopup('Please enter required Fields', '', 'error');
       return;
     }

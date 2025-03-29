@@ -43,7 +43,6 @@ export class DelegatePaymentFailComponent {
       if (params['data']) {
         let data = params['data'].replace(/ /g, '+');
         let decryptedData = this.encryptionService.decrypt(data);
-        console.log('Decrypted Data:', decryptedData);
 
         // Parse key-value pairs from decryptedData
         const paramPairs = decryptedData.split('&');
@@ -86,23 +85,28 @@ export class DelegatePaymentFailComponent {
         "pay_type": this.pay_type,
         "reference_no": this.reference_no,
       };
+      const EncryptData = this.encryptionService.encrypt(obj);
+      let reqBody = {
+        encryptedData: EncryptData
+      }
 
       this.ngxLoader.start();
-     this.paymentService.postDelegateOnlineMP(obj).subscribe({
+     this.paymentService.postDelegateOnlineMP(reqBody).subscribe({
         next: (response: any) => {
-
+          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          decryptData = JSON.parse(decryptData);
           //window.location.href = response.paymentUrl
           this.ngxLoader.stop();
           // Redirect to the IPG gateway
           const form = document.createElement('form');
           form.method = 'POST';
-          form.action = response.gatewayUrl;
+          form.action = decryptData.gatewayUrl;
 
-          Object.keys(response.formData).forEach((key) => {
+          Object.keys(decryptData.formData).forEach((key) => {
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = key;
-            input.value = response.formData[key];
+            input.value = decryptData.formData[key];
             form.appendChild(input);
           });
 
@@ -111,7 +115,10 @@ export class DelegatePaymentFailComponent {
 
         },
         error: (error: any) => {
-          console.error('Error creating delegate:', error);
+          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          this.ngxLoader.stop();
+          this.sharedService.ToastPopup(decryptErr['message'],'','error');
           //this.loading = false;
         }
       });

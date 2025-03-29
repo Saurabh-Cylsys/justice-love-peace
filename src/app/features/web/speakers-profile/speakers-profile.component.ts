@@ -42,10 +42,8 @@ export class SpeakersProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getrandomcolor(10)
     this.speakerShareUrl = this.domainUrl + this.router.url
-    console.log(this.speakerShareUrl);
 
     this.route.params.subscribe((params: any) => {
-      console.log('Params', params);
       if (params != undefined && Object.keys(params).length > 0) {
         this.speakersId = params.speakerId
         this.speakersName = params.speakerName
@@ -80,7 +78,6 @@ export class SpeakersProfileComponent implements OnInit {
       this.totalColor.push(color);
     }
 
-    console.log(this.totalColor);
   }
 
   loadSpeakers() {
@@ -106,7 +103,6 @@ export class SpeakersProfileComponent implements OnInit {
             this.speakersDetails = decryptedObj?.data;
             this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
             this.speakersDetails[0].qr_code = this.speakersDetails[0].url
-            console.log(this.speakersDetails, 'list of speakers');
 
 
             // this.speakersDetails[0].speaker_details = this.transformSpeakerData(this.speakersDetails[0].speaker_details);

@@ -120,7 +120,7 @@ export class DelegateWithChildNominationComponent {
 
   markDirty(): void {
     this.isFormDirty = true;
-    console.log('Form is now dirty'); // Debugging log
+    // console.log('Form is now dirty'); // Debugging log
   }
 
   changePreferredCountries() {
@@ -235,7 +235,7 @@ export class DelegateWithChildNominationComponent {
   setCountry() {
 
     if (!this.countryData || this.countryData.length === 0) {
-      console.log("Country data not loaded yet. Retrying...");
+      // console.log("Country data not loaded yet. Retrying...");
       setTimeout(() => this.setCountry(), 500); // Retry after 500ms
       return;
     }
@@ -409,7 +409,7 @@ export class DelegateWithChildNominationComponent {
 
 
     } catch (error) {
-      console.log("Error fetching countries:", error);
+      // console.log("Error fetching countries:", error);
     }
     }
 
@@ -905,9 +905,7 @@ export class DelegateWithChildNominationComponent {
           decryptedObj = JSON.parse(decryptedObj);
           this.ngxService.stop();
           if (decryptedObj.success) {
-            console.log("decryptedObj", decryptedObj);
-
-            console.log('Registration Successful:', result);
+            
             this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
@@ -922,7 +920,6 @@ export class DelegateWithChildNominationComponent {
         error: (err) => {
           let decryptedErr: any = this.encryptionService.decrypt(err.error.encryptedData);
           decryptedErr = JSON.parse(decryptedErr);
-          console.log("decryptedObj", decryptedErr);
           this.ngxService.stop();
 
           this.SharedService.ToastPopup('', decryptedErr.message, 'error');

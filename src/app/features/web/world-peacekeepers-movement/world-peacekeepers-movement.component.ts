@@ -108,7 +108,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   onCountryChange(event: any): void {
-    console.log('Country Changed:', event); // Logs the selected country
+    // console.log('Country Changed:', event); // Logs the selected country
     this.selectedCountryISO = event.iso2; // Update the selected country ISO
   }
   // configOption: ConfigurationOptions = new ConfigurationOptions;
@@ -488,7 +488,6 @@ onDateChange(event: string): void {
         },
       } as any;
       this.fileChangeEvent(fileInputEvent);
-      console.log(this.peacekeepersForm);
     }
 
   }
@@ -568,7 +567,6 @@ onDateChange(event: string): void {
 
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.objectUrl;
-    console.log(this.imageFileName, 'cropping');
 
     // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
     fetch(this.croppedImage)
@@ -596,7 +594,6 @@ onDateChange(event: string): void {
           this.previewUrl = e.target.result; // Set the preview URL
         };
         reader.readAsDataURL(newFile);
-        console.log('Selected file:', this.selectedFile);
 
         // Proceed with your request or any other operation with 'payload'
       })
@@ -728,9 +725,7 @@ onDateChange(event: string): void {
       );
     }
 
-    console.log('encryptedPayload', encryptedPayload);
-    console.log('Payload', formData);
-
+ 
     // Show loader
     this.ngxService.start();
 
@@ -745,7 +740,6 @@ onDateChange(event: string): void {
 
           this.btnDisabled = false;
           this.ngxService.stop();
-          console.log('response', decryptData);
           // this.peacekeeperBadgeResponse = response.QR_code
           this.peacekeeperBadgeResponse =
             'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png';
@@ -767,7 +761,6 @@ onDateChange(event: string): void {
       (err) => {
         let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
         decryptErr = JSON.parse(decryptErr);
-        console.log('decryptErr', decryptErr);
           this.peacekeepersForm.patchValue({
           mobile_number: returnmobileNumber,
           dob: returnDOB,
@@ -858,7 +851,6 @@ onDateChange(event: string): void {
           // event.preventDefault()
 
         } else {
-          console.log('form',this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber['valid']);
           this.mobile_numberVal = false;
         }
       }
@@ -881,7 +873,6 @@ onDateChange(event: string): void {
   getCountrycode(code: any) {
     let countryName = this.peacekeepersForm.value.country;
     const indiaCodeObject = code.find((item: any) => item.name === countryName);
-    console.log(indiaCodeObject);
 
     this.peacekeepersForm.patchValue({
       // is_active :1,
@@ -920,7 +911,6 @@ onDateChange(event: string): void {
 
   downloadQRCode(parent: any) {
     //
-    console.log(parent);
 
     let parentElement = null;
 
