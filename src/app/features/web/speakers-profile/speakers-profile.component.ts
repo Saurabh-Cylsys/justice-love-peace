@@ -134,13 +134,11 @@ export class SpeakersProfileComponent implements OnInit {
   }
 
   shareContent(): void {
-    // Ensure that speakersDetails.qr_code is available
     if (!this.speakerShareUrl) {
       this._sharedService.ToastPopup('QR Code URL is missing.', '', 'error');
       return;
     }
-    // const shareTitle = 'Global Justice, Love and Peace Summit | Dubai';
-    // const shareURL = this.speakersDetails.qr_code;
+
     const shareTitle = `The Global Justice, Love & Peace Summit scheduled on April 12-13, 2025 in Dubai is a star-studded, once-in-a-lifetime experience bringing together world leaders, celebrities, and change-makers to champion justice, unity, and global harmony. Set against the backdrop of Dubai’s visionary landscape, this extraordinary event will feature powerful discussions, inspiring performances, and transformative initiatives aimed at fostering peace, love, and equality  worldwide. Join Us
 
 ${this.speakerShareUrl}`;

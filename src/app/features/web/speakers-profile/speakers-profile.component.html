@@ -17,28 +17,14 @@
                 <div class="ellipse-2" aria-hidden="true"></div>
                 <div class="ellipse-3" aria-hidden="true"></div>
                 <div class="ellipse-4" aria-hidden="true"></div>
-                <img
-                  class="image"
-                  src="assets/UIComponents/images/Logo_with_Date.svg"
-                  alt="Logo"
-                />
+                <img class="image" src="assets/UIComponents/images/Logo_with_Date.svg" alt="Logo" />
               </div>
-              <img
-                class="img"
-                *ngIf="speaker.photo"
-                [src]="speaker.photo"
-                alt="{{ speaker.title_name }} portrait"
-              />
+              <img class="img" *ngIf="speaker.photo" [src]="speaker.photo" alt="{{ speaker.title_name }} portrait" />
             </div>
             <div class="scroll">
               <p class="text-wrapper-2">Join Me</p>
-              <a
-                type="btn"
-                class="btn btn-success me-2"
-                (click)="navigateUrl()"
-                style="width: 150px; margin: -10px 0 0 0"
-                >Be a Delegate</a
-              >
+              <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
+                style="width: 150px; margin: -10px 0 0 0">Be a Delegate</a>
             </div>
           </div>
         </header>
@@ -140,12 +126,8 @@
         <section class="element-10">
           <div class="frame-4">
             <div class="col-5">
-              <img
-                *ngIf="speaker.photo"
-                [src]="speaker.photo"
-                class="image-2"
-                alt="{{ speaker.title_name }} at an event"
-              />
+              <img *ngIf="speaker.photo" [src]="speaker.photo" class="image-2"
+                alt="{{ speaker.title_name }} at an event" />
             </div>
             <div class="col-7">
               <h2 class="text-wrapper-9">Meet me at</h2>
@@ -166,51 +148,30 @@
                 </h2>
               </div>
               <div class="col-md-6">
-                <img
-                  src="assets/UIComponents/images/share.svg"
-                  alt="Share illustration"
-                  class="img-fluid"
-                  width="100%"
-                />
+                <img src="assets/UIComponents/images/share.svg" alt="Share illustration" class="img-fluid"
+                  width="100%" />
               </div>
               <div class="col-md-6 text-center">
-                <ul
-                  style="
+                <ul style="
                     display: flex;
                     justify-content: space-around;
                     list-style: none;
                     padding: 0;
-                  "
-                >
+                  ">
                   <li>
-                    <img
-                      src="assets/UIComponents/images/index/fb.svg"
-                      alt="Facebook"
-                    />
+                    <img src="assets/UIComponents/images/index/fb.svg" alt="Facebook" />
                   </li>
                   <li>
-                    <img
-                      src="assets/UIComponents/images/index/insta.svg"
-                      alt="insta"
-                    />
+                    <img src="assets/UIComponents/images/index/insta.svg" alt="insta" />
                   </li>
                   <li>
-                    <img
-                      src="assets/UIComponents/images/index/whatsapp.svg"
-                      alt="wa"
-                    />
+                    <img src="assets/UIComponents/images/index/whatsapp.svg" alt="wa" />
                   </li>
                   <li>
-                    <img
-                      src="assets/UIComponents/images/index/linkedIn.svg"
-                      alt="link"
-                    />
+                    <img src="assets/UIComponents/images/index/linkedIn.svg" alt="link" />
                   </li>
                   <li>
-                    <img
-                      src="assets/UIComponents/images/index/telegram.svg"
-                      alt="tel"
-                    />
+                    <img src="assets/UIComponents/images/index/telegram.svg" alt="tel" />
                   </li>
                 </ul>
                 <!-- <div class="input-group">
@@ -225,15 +186,8 @@
                   <div class="link-container">
                     <label for="link-input" class="link-label">Link</label>
                     <div class="link-input-wrapper">
-                      <input
-                        type="text"
-                        id="link-input"
-                        class="link-input"
-                        value="{{speakerShareUrl}}"
-                        readonly
-                        #webQRcode
-                        aria-label="Link to share"
-                      />
+                      <input type="text" id="link-input" class="link-input" value="{{speakerShareUrl}}" readonly
+                        #webQRcode aria-label="Link to share" />
                       <button class="copy-button" (click)="
                       copyInputMessage(webQRcode)
                     " value="click to copy" aria-label="Copy link">
@@ -243,12 +197,9 @@
                   </div>
                 </div>
                 <div class="col-12 mx-auto text-center mt-5 d-flex align-items-center justify-content-center">
-                  <button
-                    #shareBtn
-                    class="btn btn-success d-flex align-items-center justify-content-around"
-                    (click)="shareContent()"
-                  >
-                  <img src="assets/UIComponents/images/share_icon.svg" alt="" style="width: 30%;">
+                  <button #shareBtn class="btn btn-success d-flex align-items-center justify-content-around"
+                    (click)="shareContent()">
+                    <img src="assets/UIComponents/images/share_icon.svg" alt="" style="width: 30%;">
                     Share
                   </button>
                 </div>
@@ -273,16 +224,16 @@
               🚀 Some experiences are too powerful to miss—be there!
             </p>
           </div>
-          <a (click)="navigateUrl()" class="frame-7" role="button"
-            ><span class="text-wrapper-11">Register as a Delegate</span></a
-          >
+          <a (click)="navigateUrl()" class="frame-7" role="button"><span class="text-wrapper-11">Register as a
+              Delegate</span></a>
         </section>
       </div>
     </div>
   </main>
 
   <div *ngIf="!isCorrectSpeaker">
-    <h5 class="align-items-center d-flex justify-content-center"  style="text-align: center; height: 50vh;"><span >No Data Found</span></h5>
+    <h5 class="align-items-center d-flex justify-content-center" style="text-align: center; height: 50vh;"><span>No Data
+        Found</span></h5>
   </div>
 
 </div>

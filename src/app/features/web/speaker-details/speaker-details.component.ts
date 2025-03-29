@@ -28,7 +28,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
   private countrySubscription?: Subscription;
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
-  constructor(private webService: WebService) {}
+  constructor(private webService: WebService) { }
 
   ngOnInit() {
     this.setupSearchDebounce();
@@ -88,9 +88,9 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     }
 
     this.webService.getSpeakersList(searchQuery, '100', 'All')
-    .subscribe({
-      next: (response: any) => {
-        if (response?.data) {
+      .subscribe({
+        next: (response: any) => {
+          if (response?.data) {
 
             // Map the API response data and filter out excluded countries
             const mappedData = response.data
@@ -112,7 +112,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
               this.loadCountries();
             }
 
-            console.log(this.speakersList , 'list of speakers');
+            console.log(this.speakersList, 'list of speakers');
 
           } else {
             this.speakersList = [];
