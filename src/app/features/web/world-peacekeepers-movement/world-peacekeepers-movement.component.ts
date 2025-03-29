@@ -99,7 +99,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   minDate1 : any;
   colorTheme: string = 'theme-dark-blue';
   btnDisabled : boolean = false;
-  peacebookwebAppurl : string = environment.peacebookWebAppUrl
+  peacebookwebAppurl : string = environment.peacebookWebAppUrl;
+  currentSection = 'pe1';
 
 
   changePreferredCountries() {
@@ -973,4 +974,40 @@ onDateChange(event: string): void {
     }
   }
 
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const sections = ['pe1', 'pe2', 'pe3', 'pe4', 'pe5'];
+    let currentSection = '';
+    
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          currentSection = section;
+          break;
+        }
+      }
+    }
+    
+    if (currentSection && this.currentSection !== currentSection) {
+      this.currentSection = currentSection;
+      this.updateActiveDot();
+    }
+  }
+
+  updateActiveDot() {
+    // Remove active class from all dots
+    const dots = document.querySelectorAll('.navbarDots .dot');
+    dots.forEach(dot => {
+      dot.classList.remove('active');
+    });
+
+    // Add active class to current section's dot
+    const activeDot = document.querySelector(`.navbarDots .dot[data-scroll="${this.currentSection}"]`);
+    if (activeDot) {
+      activeDot.classList.add('active');
+    }
+  }
 }
