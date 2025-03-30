@@ -231,7 +231,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let row of speakersList; let i = index">
+                      <tr *ngFor="let row of inPersonSpeakers; let i = index">
                         <td>{{ i + 1 }}</td>
                         <td>{{ row.speaker_name }}</td>
                         <td>{{ formatCountry(row.speaker_country) }}</td>
@@ -265,12 +265,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let row of joinOnline; let i = index">
+                      <tr *ngFor="let row of onlineSpeakers; let i = index">
                         <td>{{ i + 1 }}</td>
-                        <td>{{ row.Name }}</td>
-                        <td>{{ row.Country }}</td>
+                        <td>{{ row.speaker_name }}</td>
+                        <td>{{ formatCountry(row.speaker_country) }}</td>
                         <td>
-                          <span>{{ row.Credentials }}</span>
+                          <span>{{ row.speaker_credentials }}</span>
                         </td>
                       </tr>
                     </tbody>

@@ -34,6 +34,8 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   private timerInterval: any;
   isMobileView = false;
   speakersList: any[] = [];
+  inPersonSpeakers: any[] = [];
+  onlineSpeakers: any[] = [];
   visibleCount: number = 5; // Initial number of events to show
   isVisibleCount: boolean = false;
 
@@ -310,7 +312,6 @@ export class WebHomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response: any) => {
           if (response?.data) {
-            debugger
             // Map the API response data and filter out excluded countries
             const mappedData = response.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
@@ -319,15 +320,15 @@ export class WebHomeComponent implements OnInit, OnDestroy {
                 speaker_name: item.speaker_name || '',
                 speaker_country: item.speaker_country || '',
                 speaker_credentials: item.speaker_credentials || '',
-                profile_photo: item.photo_1 || ''
+                profile_photo: item.photo_1 || '',
+                is_online: item.is_online
               }));
 
             // Transform the mapped data into groups
             this.speakersList = mappedData;
-
+            this.inPersonSpeakers = this.speakersList.filter(speaker => speaker.is_online === 0);
+            this.onlineSpeakers = this.speakersList.filter(speaker => speaker.is_online === 1);
             // Load countries from the initial data
-
-            console.log(this.speakersList, 'list of speakers');
 
           } else {
             this.speakersList = [];
