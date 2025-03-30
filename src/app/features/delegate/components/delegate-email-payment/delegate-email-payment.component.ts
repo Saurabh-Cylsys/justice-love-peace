@@ -39,20 +39,24 @@ export class DelegateEmailPaymentComponent {
       debugger
       if (params != undefined && Object.keys(params).length > 0) {
         if (params['data']) {
-          let data = params['data'];
 
-          console.log("🔹 Raw Encrypted URL Data:", data);
+
+          let data = params['data'].replace(/ /g, '+');
+          let decryptedData = this.encryptionService.decrypt(data);
+          // let data = params['data'];
+
+          // console.log("🔹 Raw Encrypted URL Data:", data);
       
-          // 🔹 Proper URL decoding
-          let decodedData = decodeURIComponent(data).replace(/ /g, '+');
-          console.log("🔹 Decoded Encrypted Data:", decodedData);
+          // // 🔹 Proper URL decoding
+          // let decodedData = decodeURIComponent(data).replace(/ /g, '+');
+          // console.log("🔹 Decoded Encrypted Data:", decodedData);
       
-          let decryptedData = this.encryptionService.decrypt1(decodedData);
+          // let decryptedData = this.encryptionService.decrypt1(decodedData);
       
-          if (!decryptedData) {
-              console.error("❌ Decryption failed or returned empty data");
-              return;
-          }
+          // if (!decryptedData) {
+          //     console.error("❌ Decryption failed or returned empty data");
+          //     return;
+          // }
       
       
           // Parse key-value pairs from decryptedData
