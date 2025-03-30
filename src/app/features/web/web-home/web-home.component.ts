@@ -307,13 +307,17 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   }
   
   loadSpeakers() {
-
+debugger
     this.webService.getSpeakersList('', '100', 'All')
       .subscribe({
         next: (response: any) => {
-          if (response?.data) {
-            // Map the API response data and filter out excluded countries
-            const mappedData = response.data
+          if (response?.encryptedData) {
+            // Decrypt the response data
+            let encryptedData = response.encryptedData;
+            let decryptData = this.encryptionService.decrypt(encryptedData);
+            let data = JSON.parse(decryptData);
+              // Map the API response data and filter out excluded countries
+              const mappedData = data.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
               .map((item: any) => ({
                 speaker_id: item.speaker_id || '',
@@ -335,7 +339,9 @@ export class WebHomeComponent implements OnInit, OnDestroy {
           }
         },
         error: (error) => {
-          console.error('Error fetching speakers:', error);
+          let decryptErr = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error fetching speakers:', decryptErr);
           this.speakersList = [];
 
         }
