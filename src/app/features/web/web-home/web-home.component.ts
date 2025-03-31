@@ -307,7 +307,6 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   }
   
   loadSpeakers() {
-debugger
     this.webService.getSpeakersList('', '100', 'All')
       .subscribe({
         next: (response: any) => {
