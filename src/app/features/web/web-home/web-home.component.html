@@ -96,9 +96,9 @@
                         /></a>
                       </li>
                       <li class="p-1">
-                        <a [routerLink]="['/peace-menu']">
+                        <a (click)="openPdf('peace-menu','peace-menu.jpeg','PEACE_IMG')" role="button">
                         <img fetchpriority="high" loading="eager"
-                          src="assets/UIComponents/images/peaceBtn2.svg"
+                          src="assets/UIComponents/images/peaceBtn4.svg"
                           alt="peaceBtn2"
                           class="img-fluid"
                           width="130"
@@ -106,7 +106,7 @@
                         /></a>
                       </li>
                       <li class="p-1">
-                        <a href="assets/UIComponents/files/agendaBook.pdf" target="_blank">
+                        <a (click)="openPdf('agendaBook','agendaBook.pdf','PEACE_PDF')" role="button" target="_blank">
                           <img fetchpriority="high" loading="eager"
                             src="assets/UIComponents/images/agendaBook.svg"
                             alt="agendaBook"

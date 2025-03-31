@@ -367,4 +367,19 @@ export class WebHomeComponent implements OnInit, OnDestroy {
 
     return '';
   }
+
+  openPdf(filePath: string, fileName: string,fileType:string) {
+    switch(fileType){
+         case 'PEACE_IMG':
+        filePath = 'assets/UIComponents/images/'+fileName;
+      break;
+
+      case 'PEACE_PDF':
+        filePath = 'assets/UIComponents/files/'+fileName;
+      break;
+
+    }
+    window.open(filePath, '_blank');
+
+  }
 }
