@@ -401,7 +401,7 @@ h5 {
     auto-fit,
     minmax(300px, 1fr)
   ); /* Responsive grid */
-  gap: 20px; /* Spacing between cards */
+  gap: 30px; /* Spacing between cards */
   justify-content: center;
   padding: 20px;
   position: relative;
@@ -538,7 +538,7 @@ h5 {
 @media (min-width: 1024px) {
   /* Tablets */
   .ui-card-container {
-    grid-template-columns: repeat(2, 0fr);
+    grid-template-columns: repeat(3, 0fr);
   }
   .carousel-control-prev-icon, .carousel-control-next-icon {
     background-color: #ffffff;

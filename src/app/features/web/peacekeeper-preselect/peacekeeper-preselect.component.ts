@@ -22,6 +22,7 @@ export class PeacekeeperPreselectComponent {
   peaceStudentDescription : string = "";
   delegateOnlineDescription : string = "";
   isMobileView = false;
+  isOnline: number=0;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -75,8 +76,9 @@ export class PeacekeeperPreselectComponent {
     await this.sharedService.getDiscountAmountByCouponCode(referalCode).subscribe({
       next: (response: any) => {
         let decryptData = this.encryptionService.decrypt(response.encryptedData);
-        let resDecrypt = JSON.parse(decryptData);   
-        
+        let resDecrypt = JSON.parse(decryptData);
+        console.log(resDecrypt);
+
         if(resDecrypt && resDecrypt.success) {
 
           this.isStrip = resDecrypt.isStripe;
@@ -102,6 +104,7 @@ export class PeacekeeperPreselectComponent {
 
             resDecrypt.data.forEach((item:any) => {
               if (item.p_type === "DELEGATE_ONLINE") {
+                this.isOnline = item.is_online;
                 this.onlineDiscount = item.discount_amount;
                 this.delegateOnlineDescription = item.amount_description;
               } else if (item.p_type === "DELEGATE_CHILD_NOMINATION") {
@@ -184,7 +187,7 @@ export class PeacekeeperPreselectComponent {
 
   goToChildNomination() {
    let params = {
-    dType: 'offline', 
+    dType: 'offline',
     code: this.referralCode
     };
     const encryptedParams = this.encryptionService.encryptData(params);
