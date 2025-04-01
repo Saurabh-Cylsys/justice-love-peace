@@ -88,6 +88,7 @@ export class PeacekeeperPreselectComponent {
             this.ngxLoader.stop();
             resDecrypt.data.forEach((item:any) => {
               if (item.p_type === "DELEGATE_ONLINE") {
+                this.isOnline = item.is_online;
                 this.onlineDiscount = item.dollar_aed;
                 this.delegateOnlineDescription = item.amount_description;
               } else if (item.p_type === "DELEGATE_CHILD_NOMINATION") {
