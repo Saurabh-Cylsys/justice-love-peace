@@ -126,5 +126,7 @@ export class Constants {
 
     public readonly API_ENDPOINT_DISCOUNT_AMOUNT_ENCRYPT: string =  'discount_amount_encryption'
 
+    public readonly API_ENDPOINT_SPEAKERS_CARDS_ENCRYPT: string =  'speakers-slider'
+
 
 }

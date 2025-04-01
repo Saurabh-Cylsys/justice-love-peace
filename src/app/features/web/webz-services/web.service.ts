@@ -2106,4 +2106,8 @@ export class WebService {
   getSpeakerCategories() {
     return this.http.get('assets/speaker_categories.json');
   }
+
+  getSpeakersCards() {
+    return this._apiHttpService.get(this._apiEndpointsService.getSpeakerCardsEndpoint());
+  }
 }

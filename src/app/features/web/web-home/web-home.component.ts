@@ -140,10 +140,16 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     }, 1000);
     // Move speakers data fetch to after initial page render
     setTimeout(async () => {
-      await this.webService.getSpeakers().subscribe((data:any) => {
-        this.slides = data;
-        this.loadSpeakers();
-        this.cdr.detectChanges();
+      await this.webService.getSpeakersCards().subscribe((data:any) => {
+        if (data?.encryptedData) {
+          // Decrypt the response data
+          let decryptData = this.encryptionService.decrypt(data.encryptedData);
+          let decryptedData = JSON.parse(decryptData);
+          
+          this.slides = decryptedData;
+          this.loadSpeakers();
+          this.cdr.detectChanges();
+        }
       });
     }, 0);
   }
