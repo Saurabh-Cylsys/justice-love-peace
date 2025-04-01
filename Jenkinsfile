@@ -6,7 +6,7 @@ pipeline {
         DEPLOY_SERVER = "103.38.50.157"
         DEPLOY_USER = "CylSrv9Mgr"
         DEPLOY_PASS = "Dwu\$CakLy@515W"
-        DEPLOY_PATH = "D:\\website\\Global_Justice\\Global_Justice_WEB\\globaljusticeuat.cylsys.com"
+        DEPLOY_PATH = "D:/CI_CD/test_angular/"
     }
 
     stages {
@@ -59,10 +59,18 @@ pipeline {
 
     post {
         success {
-            echo '\u2705 Deployment to UAT Successful!'
+            echo '✅ Deployment Successful!'
+					emailext(
+                        subject: "Test Email from Jenkins",
+                        body: "Deployment Successful.",
+                        to: "priyanshu.sahu@cylsys.com"
         }
         failure {
-            echo '\u274C Deployment to UAT Failed!'
+            echo '✅ Deployment Failed!'
+					emailext(
+                        subject: "Test Email from Jenkins",
+                        body: "Deployment failed.",
+                        to: "priyanshu.sahu@cylsys.com"
         }
     }
 }
