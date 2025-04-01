@@ -124,7 +124,7 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   fnPartialSave() {
-    
+
     const email = this.userForm?.get('email')?.value;
     const mobile = this.userForm?.get('mobile')?.value;
     const rawMobileNumber = this.userForm?.value.mobile_number?.number ?? '';
@@ -164,7 +164,7 @@ export class DelegateOnlineComponent implements OnInit {
           next: (response: any) => {
             let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
             decryptData = JSON.parse(decryptData);
-            
+
           },
           error: (error: any) => {
             let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
@@ -240,8 +240,8 @@ export class DelegateOnlineComponent implements OnInit {
       (res: any) => {
         let encryptedData = res.encryptedData;
         let decryptData = this.encryptionService.decrypt(encryptedData);
-        let countryDcrypt = JSON.parse(decryptData);         
-        
+        let countryDcrypt = JSON.parse(decryptData);
+
         this.countryData = countryDcrypt.data;      },
       (err: any) => {
         let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
@@ -460,10 +460,10 @@ export class DelegateOnlineComponent implements OnInit {
       let reqBody = {
         encryptedData: EncryptData
       }
-        
+
 
       this.delegateService.postDelegateOnline(reqBody).subscribe({
-        
+
         next: (response: any) => {
           let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
           decryptData = JSON.parse(decryptData);
@@ -487,7 +487,7 @@ export class DelegateOnlineComponent implements OnInit {
           let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
           decryptErr = JSON.parse(decryptErr);
           console.error('Error creating delegate:', decryptErr);
-          this.sharedService.ToastPopup('Error', decryptErr?.message || 'Registration failed', 'error');
+          this.sharedService.ToastPopup(decryptErr?.message || 'Registration failed','', 'error');
           window.scrollTo({ top: 0, behavior: 'smooth' });
           this.loading = false;
           this.ngxService.stop();
