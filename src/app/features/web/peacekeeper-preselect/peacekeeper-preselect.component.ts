@@ -77,13 +77,14 @@ export class PeacekeeperPreselectComponent {
       next: (response: any) => {
         let decryptData = this.encryptionService.decrypt(response.encryptedData);
         let resDecrypt = JSON.parse(decryptData);
-        console.log(resDecrypt);
 
         if(resDecrypt && resDecrypt.success) {
 
           this.isStrip = resDecrypt.isStripe;
 
           if(this.isStrip == "false") {
+
+            // This is for Magneti
 
             this.ngxLoader.stop();
             resDecrypt.data.forEach((item:any) => {
@@ -101,6 +102,9 @@ export class PeacekeeperPreselectComponent {
             });
           }
           else if(this.isStrip == "true") {
+
+            // this is for stripe
+
             this.ngxLoader.stop();
 
             resDecrypt.data.forEach((item:any) => {

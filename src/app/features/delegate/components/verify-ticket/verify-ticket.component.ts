@@ -31,19 +31,24 @@ export class VerifyTicketComponent {
 
         let ticketData = params['data'].replace(/ /g, '+');
 
-        let decryptedData = this.encryptionService.decrypt(ticketData);
+        try {
 
-        // Parse the decrypted string into key-value pairs
-        const urlParams = new URLSearchParams(decryptedData);
+          let decryptedData = this.encryptionService.decryptParameter(ticketData);
+          const urlParams = new URLSearchParams(decryptedData);
+          this.ticketId = urlParams.get('ticket_id');
+          this.ticketUrl = urlParams.get('ticket_url');
+          this.type = urlParams.get('type');
 
-        // Extract values
-        this.ticketId = urlParams.get('ticket_id');
-        this.ticketUrl = urlParams.get('ticket_url');
-        this.type = urlParams.get('type');
+          if(this.ticketId && this.type){
+              this.verifyTicket();
+          }
+
+        } catch (error:any) {
+          console.log("errr",error);
+          this.sharedService.ToastPopup(error,'','error');
+        }
       }
     });
-
-    this.verifyTicket();
   }
 
   verifyTicket(){
@@ -60,12 +65,17 @@ export class VerifyTicketComponent {
     this.delegateService.getVerifyTicketApi(reqBody).subscribe({
       next : (res)=>{
         let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
-          decryptData = JSON.parse(decryptData);
+         let decryptedData = JSON.parse(decryptData);
 
-        if(decryptData.success) {
+
+          if (typeof decryptedData === "string") {
+            decryptedData = JSON.parse(decryptedData); // First parse to remove extra string quotes
+          }
+
+        if(decryptedData.success) {
 
           this.ngxService.stop();
-          this.verifyTicketData = decryptData.data[0];
+          this.verifyTicketData = decryptedData.data[0];
 
           if (this.verifyTicketData.ticket_url) {
             window.open(this.verifyTicketData.ticket_url);

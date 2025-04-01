@@ -42,7 +42,7 @@ export class DelegatePaymentFailComponent {
 
       if (params['data']) {
         let data = params['data'].replace(/ /g, '+');
-        let decryptedData = this.encryptionService.decrypt(data);
+        let decryptedData = this.encryptionService.decryptParameter(data);
 
         // Parse key-value pairs from decryptedData
         const paramPairs = decryptedData.split('&');
