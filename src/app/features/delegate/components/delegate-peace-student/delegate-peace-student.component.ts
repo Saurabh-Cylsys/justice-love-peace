@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { DelegateService } from '../../services/delegate.service';
@@ -13,7 +13,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   styleUrls: ['./delegate-peace-student.component.css'],
 
 })
-export class DelegatePeaceStudentComponent {
+export class DelegatePeaceStudentComponent implements OnInit, OnDestroy {
   userType: 'student' | 'delegate' | null = null; // Tracks user selection
   step: number = 1; // Tracks the current step
   studentForm!: FormGroup;
@@ -65,6 +65,14 @@ export class DelegatePeaceStudentComponent {
     private route: ActivatedRoute, private encryptionService: EncryptionService,
     private ngxService: NgxUiLoaderService) {
 
+    let userType = localStorage.getItem('peaceUserType');
+    if (userType) {
+      let decryptUserType: any = this.encryptionService.decrypt(userType);
+      this.userType = decryptUserType;
+    } else {
+      this.userType = null;
+    }
+
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
 
@@ -102,6 +110,10 @@ export class DelegatePeaceStudentComponent {
     // Min date is 120 years ago from today
     this.minDelegateDate = new Date(today.getFullYear() - 120, 0, 1);
 
+  }
+  ngOnDestroy(): void {
+
+    localStorage.removeItem('peaceUserType');
   }
 
   ngOnInit() {
@@ -154,6 +166,8 @@ export class DelegatePeaceStudentComponent {
     if (this.userType === type) return;
 
     this.userType = type; // Update only after confirmation
+    let encryptType = this.encryptionService.encrypt(type);
+    localStorage.setItem('peaceUserType', encryptType);
     this.resetForms();
   }
 
@@ -426,9 +440,10 @@ export class DelegatePeaceStudentComponent {
         this.countryData = countryDcrypt.data;
       },
       (err: any) => {
-        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
         decryptErr = JSON.parse(decryptErr);
-        this.sharedService.ToastPopup(decryptErr['message'],'','error');      }
+        this.sharedService.ToastPopup(decryptErr['message'], '', 'error');
+      }
     );
   }
 
@@ -470,7 +485,7 @@ export class DelegatePeaceStudentComponent {
 
       await this.delegateService.postDelegateOnlineMP(reqBody).subscribe({
         next: (response: any) => {
-          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          let decryptData: any = this.encryptionService.decrypt(response.encryptedData);
           decryptData = JSON.parse(decryptData);
           //window.location.href = response.paymentUrl
           // Redirect to the IPG gateway
@@ -491,7 +506,7 @@ export class DelegatePeaceStudentComponent {
 
         },
         error: (error: any) => {
-          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
           decryptErr = JSON.parse(decryptErr);
           console.error('Error creating delegate:', decryptErr);
           // this.loading = false;

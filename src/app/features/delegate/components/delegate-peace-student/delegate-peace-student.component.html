@@ -26,13 +26,13 @@
             [class.active]="userType === 'student'"
             (click)="setUserType('student', $event)"
           >
-            <input
+            <!-- <input
               type="radio"
               name="userType"
               value="student"
               id="student"
               [checked]="userType === 'student'"
-            />
+            /> -->
             <label for="student" class="overlay" style="cursor: pointer;">
               <i class="fas fa-user-graduate"></i>
               <span class="mt-2"><img src="assets/UIComponents/images/student.svg" alt="" width="30px" /> Student</span>
@@ -52,13 +52,13 @@
             [class.active]="userType === 'delegate'"
             (click)="setUserType('delegate', $event)"
           >
-            <input
+            <!-- <input
               type="radio"
               name="userType"
               value="delegate"
               id="delegate"
               [checked]="userType === 'delegate'"
-            />
+            /> -->
 
             <label for="delegate" class="overlay" style="cursor: pointer;">
               <i class="fas fa-users"></i>
