@@ -11,6 +11,7 @@ declare var AOS: any;
 })
 export class DownloadCenterComponent {
   isMobileView = false;
+  currentSection = 'dc1';
   constructor(
     private router: ActivatedRoute,
     private SharedService: SharedService,
@@ -114,4 +115,39 @@ export class DownloadCenterComponent {
     document.body.removeChild(a);
   }
   
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const sections = ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc10', 'dc11'];
+    let currentSection = '';
+    
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          currentSection = section;
+          break;
+        }
+      }
+    }
+    
+    if (currentSection && this.currentSection !== currentSection) {
+      this.currentSection = currentSection;
+      this.updateActiveDot();
+    }
+  }
+
+  updateActiveDot() {
+    // Remove active class from all dots
+    const dots = document.querySelectorAll('.navbarDots .dot');
+    dots.forEach(dot => {
+      dot.classList.remove('active');
+    });
+
+    // Add active class to current section's dot
+    const activeDot = document.querySelector(`.navbarDots .dot[data-scroll="${this.currentSection}"]`);
+    if (activeDot) {
+      activeDot.classList.add('active');
+    }
+  }
 }
