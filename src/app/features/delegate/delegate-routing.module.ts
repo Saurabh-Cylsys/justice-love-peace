@@ -14,6 +14,7 @@ import { DelegateWithChildNominationComponent } from './components/delegate-with
 import { AmbassadorComponent } from './components/ambassador/ambassador.component';
 import { DelegateEmailPaymentComponent } from './components/delegate-email-payment/delegate-email-payment.component';
 import { VerifyTicketComponent } from './components/verify-ticket/verify-ticket.component';
+import { PeacekeeperComponent } from './components/peacekeeper/peacekeeper.component';
 const routes: Routes = [
   {
     path: '',
@@ -33,6 +34,7 @@ const routes: Routes = [
       {path:'delegate-student-nomination',component:DelegateWithChildNominationComponent},
       {path:'delegate-ad',component:DelegateRegistrationSeoComponent},
       {path:'ambassador/:name', component: AmbassadorComponent },
+      {path:'peacekeeper/:name', component: PeacekeeperComponent },
       {path :'delegate-email-payment', component:DelegateEmailPaymentComponent},
       {path :'verify_ticket', component:VerifyTicketComponent},
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}

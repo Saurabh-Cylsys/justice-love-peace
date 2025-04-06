@@ -19,6 +19,7 @@ import { DelegatePaymentFailComponent } from './components/delegate-payment-fail
 import { DelegateWithChildNominationComponent } from './components/delegate-with-child-nomination/delegate-with-child-nomination.component';
 import { AmbassadorComponent } from './components/ambassador/ambassador.component';
 import { DelegateEmailPaymentComponent } from './components/delegate-email-payment/delegate-email-payment.component';
+import { PeacekeeperComponent } from './components/peacekeeper/peacekeeper.component';
 @NgModule({
   declarations: [
     DelegateMainComponent,
@@ -33,7 +34,8 @@ import { DelegateEmailPaymentComponent } from './components/delegate-email-payme
     DelegatePaymentFailComponent,
     DelegateWithChildNominationComponent,
     AmbassadorComponent,
-    DelegateEmailPaymentComponent
+    DelegateEmailPaymentComponent,
+    PeacekeeperComponent
   ],
   imports: [
     CommonModule,
