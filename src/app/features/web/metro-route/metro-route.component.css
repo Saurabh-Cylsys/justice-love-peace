@@ -1,0 +1,16 @@
+p {
+  font-weight: 500;
+  font-size: clamp(16px, 2vw, 26px);
+  /* line-height: 100%; */
+  letter-spacing: 0%;
+  color: #005b94;
+  margin: 1.5rem 0;
+}
+
+p span {
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 26px);
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #128940;
+}

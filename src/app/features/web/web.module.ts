@@ -48,6 +48,7 @@ import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
 import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
 import { PeaceShopComponent } from './peace-shop/peace-shop.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { MetroRouteComponent } from './metro-route/metro-route.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     PeaceFashionComponent,
     PeaceMenuComponent,
     PeaceShopComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    MetroRouteComponent
   ],
   imports: [
     CommonModule,
