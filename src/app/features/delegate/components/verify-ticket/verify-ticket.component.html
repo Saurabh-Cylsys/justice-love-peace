@@ -1,10 +1,15 @@
 <div class="col-xl-8 m-auto index" style="min-height: 90vh">
   <div class="row align-items-center h-100 m-0">
     <div class="col-md-12">
+      <!-- Modal for Ticket Image -->
+      <div *ngIf="showTicketModal" class="ticket-modal">
+        <div class="ticket-content">
+          <button class="close-btn cursor-pointer" (click)="closeModal()">×</button>
 
-
-
-
+          <!-- Show image -->
+          <img [src]="ticketImageUrl" alt="Ticket" class="ticket-img" />
+        </div>
+      </div>
     </div>
   </div>
 </div>

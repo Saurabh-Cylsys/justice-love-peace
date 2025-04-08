@@ -322,6 +322,31 @@ export class WebHomeComponent implements OnInit, OnDestroy {
             let decryptData = this.encryptionService.decrypt(encryptedData);
             let data = JSON.parse(decryptData);
               // Map the API response data and filter out excluded countries
+
+               // List of titles to ignore in sorting
+               const titlesToIgnore = [
+                'Dr.',
+                'General',
+                'Gertraud Thekla',
+                'MaharajKumar',
+                'Nawabzada',
+                'Pujya',
+                'Bhai Sahib',
+                'Swami',
+                'Excellency Dr.'
+              ];
+
+                          // Function to clean title from the beginning if it matches the ignore list
+                const cleanSpeakerName = (name: string): string => {
+                  for (const title of titlesToIgnore) {
+                    const regex = new RegExp('^' + title + '\\s+', 'i');
+                    if (regex.test(name)) {
+                      return name.replace(regex, '').trim().toLowerCase();
+                    }
+                  }
+                  return name.toLowerCase();
+                };
+
               const mappedData = data.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
               .map((item: any) => ({
@@ -333,9 +358,9 @@ export class WebHomeComponent implements OnInit, OnDestroy {
                 is_online: item.is_online
               }))
 
-              .sort((a:any, b:any) => {
-                const nameA = a.speaker_name.replace(/^Dr\. /i, '').toLowerCase();
-                const nameB = b.speaker_name.replace(/^Dr\. /i, '').toLowerCase();
+              .sort((a: any, b: any) => {
+                const nameA = cleanSpeakerName(a.speaker_name);
+                const nameB = cleanSpeakerName(b.speaker_name);
                 return nameA.localeCompare(nameB);
               });
 
@@ -354,7 +379,6 @@ export class WebHomeComponent implements OnInit, OnDestroy {
           decryptErr = JSON.parse(decryptErr);
           console.error('Error fetching speakers:', decryptErr);
           this.speakersList = [];
-
         }
       });
   }
