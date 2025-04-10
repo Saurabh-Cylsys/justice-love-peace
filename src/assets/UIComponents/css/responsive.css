@@ -11,7 +11,7 @@
     background-size: cover;  */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    height: 79.4vh; /* Keeps the height relative to the viewport */
+    height: 79.4vh; 
   }
 
   .main-body .scroll {
@@ -43,7 +43,7 @@
     background-size: cover;  */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 67vh; /* Keeps the height relative to the viewport */
+    min-height: 67vh; 
   }
   .ui-card {
     display: grid
@@ -76,7 +76,7 @@
     background-size: cover;  */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 79vh; /* Keeps the height relative to the viewport */
+    min-height: 79vh; 
   }
 }
 
@@ -100,7 +100,7 @@
     background-size: cover;  */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 90vh; /* Keeps the height relative to the viewport */
+    min-height: 90vh; 
   }
 }
 
@@ -116,7 +116,7 @@
     background-size: 85% 100%;
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 60vh; /* Keeps the height relative to the viewport */
+    min-height: 60vh; 
   }
 
   .index .section2 .mainCard .cardP {
@@ -151,7 +151,7 @@
     background-size: 85% 100%;
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 85vh; /* Keeps the height relative to the viewport */
+    min-height: 85vh; 
   }
 
   .speaker-details .card .card-body h5{
@@ -171,7 +171,7 @@
     background-size: 85% 100%;
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 95vh; /* Keeps the height relative to the viewport */
+    min-height: 85vh; 
   }
 }
 

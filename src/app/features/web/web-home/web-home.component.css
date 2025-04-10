@@ -659,3 +659,25 @@ html {
 }
 
 
+.eventFrame .card{
+  border: 2.5px solid #005B94;
+  border-radius: 10px;
+}
+
+.eventFrame p{
+font-weight: 700;
+font-size: clamp(14px, 1.5vw, 18px);
+line-height: 100%;
+letter-spacing: 0%;
+text-align: justify;
+color: #005B94B2;
+}
+
+.eventFrame p span{
+font-weight: 900;
+font-size: clamp(14px, 1.5vw, 18px);
+line-height: 100%;
+letter-spacing: 0%;
+text-align: justify;
+color: #005B94 !important;
+}

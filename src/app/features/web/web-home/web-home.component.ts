@@ -127,11 +127,10 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   ];
 
 
-   async ngOnInit(): Promise<void> {
+    ngOnInit(): void {
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com');
     this.checkWindowSize();
-    console.log('home');
     this.SharedService.headerIcon = this._router.routerState.snapshot.url;
 
     this.updateCountdown();
