@@ -96,7 +96,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     private metaService: Meta,
     private renderer: Renderer2,
     private encryptionService: EncryptionService,
-    
+
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -145,7 +145,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
           // Decrypt the response data
           let decryptData = this.encryptionService.decrypt(data.encryptedData);
           let decryptedData = JSON.parse(decryptData);
-          
+
           this.slides = decryptedData;
           this.loadSpeakers();
           this.cdr.detectChanges();
@@ -296,7 +296,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
         property: 'og:description',
         content: 'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!'
       },
-      
+
     ]);
   }
 
@@ -311,7 +311,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.appendChild(this.document.head, link);
   }
-  
+
   loadSpeakers() {
     this.webService.getSpeakersList('', '100', 'All')
       .subscribe({
@@ -322,6 +322,31 @@ export class WebHomeComponent implements OnInit, OnDestroy {
             let decryptData = this.encryptionService.decrypt(encryptedData);
             let data = JSON.parse(decryptData);
               // Map the API response data and filter out excluded countries
+
+               // List of titles to ignore in sorting
+               const titlesToIgnore = [
+                'Dr.',
+                'General',
+                'Gertraud Thekla',
+                'MaharajKumar',
+                'Nawabzada',
+                'Pujya',
+                'Bhai Sahib',
+                'Swami',
+                'Excellency Dr.'
+              ];
+
+                          // Function to clean title from the beginning if it matches the ignore list
+                const cleanSpeakerName = (name: string): string => {
+                  for (const title of titlesToIgnore) {
+                    const regex = new RegExp('^' + title + '\\s+', 'i');
+                    if (regex.test(name)) {
+                      return name.replace(regex, '').trim().toLowerCase();
+                    }
+                  }
+                  return name.toLowerCase();
+                };
+
               const mappedData = data.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
               .map((item: any) => ({
@@ -331,7 +356,13 @@ export class WebHomeComponent implements OnInit, OnDestroy {
                 speaker_credentials: item.speaker_credentials || '',
                 profile_photo: item.photo_1 || '',
                 is_online: item.is_online
-              }));
+              }))
+
+              .sort((a: any, b: any) => {
+                const nameA = cleanSpeakerName(a.speaker_name);
+                const nameB = cleanSpeakerName(b.speaker_name);
+                return nameA.localeCompare(nameB);
+              });
 
             // Transform the mapped data into groups
             this.speakersList = mappedData;
@@ -348,7 +379,6 @@ export class WebHomeComponent implements OnInit, OnDestroy {
           decryptErr = JSON.parse(decryptErr);
           console.error('Error fetching speakers:', decryptErr);
           this.speakersList = [];
-
         }
       });
   }

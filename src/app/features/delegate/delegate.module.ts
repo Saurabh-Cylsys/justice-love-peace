@@ -20,6 +20,7 @@ import { DelegateWithChildNominationComponent } from './components/delegate-with
 import { AmbassadorComponent } from './components/ambassador/ambassador.component';
 import { DelegateEmailPaymentComponent } from './components/delegate-email-payment/delegate-email-payment.component';
 import { PeacekeeperComponent } from './components/peacekeeper/peacekeeper.component';
+import { VerifyTicketComponent } from './components/verify-ticket/verify-ticket.component';
 @NgModule({
   declarations: [
     DelegateMainComponent,
@@ -35,7 +36,8 @@ import { PeacekeeperComponent } from './components/peacekeeper/peacekeeper.compo
     DelegateWithChildNominationComponent,
     AmbassadorComponent,
     DelegateEmailPaymentComponent,
-    PeacekeeperComponent
+    PeacekeeperComponent,
+    VerifyTicketComponent
   ],
   imports: [
     CommonModule,

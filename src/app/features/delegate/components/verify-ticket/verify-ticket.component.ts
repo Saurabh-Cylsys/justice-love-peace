@@ -15,6 +15,8 @@ export class VerifyTicketComponent {
   ticketUrl: any = "";
   type: any = "";
   verifyTicketData: any;
+  ticketImageUrl: any;
+  showTicketModal: boolean = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute ,
@@ -73,12 +75,19 @@ export class VerifyTicketComponent {
           }
 
         if(decryptedData.success) {
-
           this.ngxService.stop();
           this.verifyTicketData = decryptedData.data[0];
 
-          if (this.verifyTicketData.ticket_url) {
-            window.open(this.verifyTicketData.ticket_url);
+          // if (this.verifyTicketData.ticket_url) {
+          //   window.open(this.verifyTicketData.ticket_url);
+
+          // } else {
+          //   this.sharedService.ToastPopup('Ticket URL not found', '', 'warning');
+          // }
+
+          if (this.verifyTicketData?.ticket_url) {
+            this.ticketImageUrl = this.verifyTicketData.ticket_url;  // assign image URL
+            this.showTicketModal = true;  // show modal
           } else {
             this.sharedService.ToastPopup('Ticket URL not found', '', 'warning');
           }
@@ -91,5 +100,10 @@ export class VerifyTicketComponent {
         this.sharedService.ToastPopup(decryptErr['message'],'','error');
       }
     })
+  }
+
+  closeModal(){
+    this.showTicketModal = false;
+    this.router.navigate(['/home']);
   }
 }
