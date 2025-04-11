@@ -681,3 +681,18 @@ letter-spacing: 0%;
 text-align: justify;
 color: #005B94 !important;
 }
+
+.navList{
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.navList a{
+font-weight: 700;
+font-size: clamp(11px, 1.5vw, 18px);
+line-height: 100%;
+letter-spacing: 0%;
+color: #005B94;
+text-decoration: none;
+}

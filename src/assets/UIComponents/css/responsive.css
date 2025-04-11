@@ -6,13 +6,6 @@
   #p5 .card {
     font-size: 14px
   }
-  .index .section1 {
-    /* background: url(../images/index/bannermob.gif);
-    background-size: cover;  */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat;
-    height: 79.4vh; 
-  }
 
   .main-body .scroll {
     min-height: 90vh;
@@ -222,7 +215,8 @@
   }
 
   .index .section1 .bgColor {
-    background: var(--gradient5);
+    /* background: var(--gradient5); */
+    background-color: transparent;
   }
 
   .index .section1 .logo {
@@ -568,7 +562,8 @@
 @media (max-width: 425px) {
 
   .index .section1 .bgColor {
-    background: var(--gradient5);
+    /* background: var(--gradient5); */
+    background-color: transparent;
   }
 
   .index .section1 .logo {

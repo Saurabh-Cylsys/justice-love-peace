@@ -13,7 +13,13 @@ import { SharedService } from '../../../../app/shared/services/shared.service';
 import { WebService } from '../webz-services/web.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
-import SwiperCore, { EffectCards, Navigation, Pagination, SwiperOptions, Autoplay } from 'swiper';
+import SwiperCore, {
+  EffectCards,
+  Navigation,
+  Pagination,
+  SwiperOptions,
+  Autoplay,
+} from 'swiper';
 import { de } from 'intl-tel-input/i18n';
 import { EncryptionService } from '../../../shared/services/encryption.service';
 
@@ -43,14 +49,12 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     {
       Name: 'Jose Manuel Ramos Horta, His Excellency',
       Country: 'EAST TIMOR',
-      Credentials:
-        'President, East Timor & Nobel Peace Laureate, 1996',
+      Credentials: 'President, East Timor & Nobel Peace Laureate, 1996',
     },
     {
       Name: 'Joseph Boakai, His Excellency',
       Country: 'LIBERIA',
-      Credentials:
-        'President of Liberia',
+      Credentials: 'President of Liberia',
     },
     {
       Name: 'Mata Amritanandamayi',
@@ -60,13 +64,12 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     {
       Name: 'Sri Sri Ravishankar, Gurudev',
       Country: 'INDIA',
-      Credentials:
-        'World Spiritual Guru : Founder, Art of Living',
+      Credentials: 'World Spiritual Guru : Founder, Art of Living',
     },
   ];
 
   swiperConfig: SwiperOptions = {
-    effect: "cards",
+    effect: 'cards',
     grabCursor: true,
     initialSlide: 2,
     speed: 500,
@@ -82,8 +85,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
 
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
-
-  slides : any = []
+  slides: any = [];
 
   // headerIcon:any
   constructor(
@@ -114,20 +116,25 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     { title: 'Dinner & Networking', time: '7:30 PM-9:30 PM' },
   ];
   events_day2 = [
-    { title: 'Session 4 HAll 1 LOVE  HAll 2 JUSTICE', time: '10:00 AM-12:30 PM' },
+    {
+      title: 'Session 4 HAll 1 LOVE  HAll 2 JUSTICE',
+      time: '10:00 AM-12:30 PM',
+    },
     { title: 'Lunch', time: '12:30 PM-1:30 PM' },
     {
       title: 'Session 5 HAll 1 JUSTICE HAll 2 LOVE',
       time: '1:30 PM- 3:30 PM',
     },
     { title: 'Refreshment', time: '3:30 PM - 4:30 PM' },
-    { title: 'Session 6 Nobel Peace Laureates Session', time: '4:30 PM- 6:30 PM' },
+    {
+      title: 'Session 6 Nobel Peace Laureates Session',
+      time: '4:30 PM- 6:30 PM',
+    },
     { title: 'Awards & Closing Session', time: '7:30 PM-9:00 PM' },
     { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];
 
-
-    ngOnInit(): void {
+  ngOnInit(): void {
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com');
     this.checkWindowSize();
@@ -139,7 +146,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     }, 1000);
     // Move speakers data fetch to after initial page render
     setTimeout(async () => {
-      await this.webService.getSpeakersCards().subscribe((data:any) => {
+      await this.webService.getSpeakersCards().subscribe((data: any) => {
         if (data?.encryptedData) {
           // Decrypt the response data
           let decryptData = this.encryptionService.decrypt(data.encryptedData);
@@ -153,8 +160,8 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
-   SPEAKERS_CACHE_KEY = 'speakers_cache_v1';
-   CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
+  SPEAKERS_CACHE_KEY = 'speakers_cache_v1';
+  CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
 
   async fetchSpeakersWithCaching() {
     const cachedData = localStorage.getItem(this.SPEAKERS_CACHE_KEY);
@@ -169,18 +176,21 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     }
 
     try {
-      const response = await fetch("assets/speakers.json");
+      const response = await fetch('assets/speakers.json');
       const speakers = await response.json();
 
       // Cache the data
-      localStorage.setItem(this.SPEAKERS_CACHE_KEY, JSON.stringify({
-        timestamp: Date.now(),
-        data: speakers
-      }));
+      localStorage.setItem(
+        this.SPEAKERS_CACHE_KEY,
+        JSON.stringify({
+          timestamp: Date.now(),
+          data: speakers,
+        })
+      );
 
       return speakers;
     } catch (error) {
-      console.error("Error fetching speakers:", error);
+      console.error('Error fetching speakers:', error);
       return [];
     }
   }
@@ -281,26 +291,29 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.metaService.addTags([
       {
         name: 'description',
-        content: 'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!'
+        content:
+          'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!',
       },
       {
         name: 'title',
-        content: 'Global Justice, Love and Peace Summit | Dubai'
+        content: 'Global Justice, Love and Peace Summit | Dubai',
       },
       {
         property: 'og:title',
-        content: 'Global Justice, Love and Peace Summit | Dubai'
+        content: 'Global Justice, Love and Peace Summit | Dubai',
       },
       {
         property: 'og:description',
-        content: 'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!'
+        content:
+          'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!',
       },
-
     ]);
   }
 
   setCanonicalUrl(url: string): void {
-    const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
+    const existingLink: HTMLLinkElement | null = this.document.querySelector(
+      'link[rel="canonical"]'
+    );
     if (existingLink) {
       this.renderer.removeChild(this.document.head, existingLink);
     }
@@ -312,74 +325,81 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   }
 
   loadSpeakers() {
-    this.webService.getSpeakersList('', '100', 'All')
-      .subscribe({
-        next: (response: any) => {
-          if (response?.encryptedData) {
-            // Decrypt the response data
-            let encryptedData = response.encryptedData;
-            let decryptData = this.encryptionService.decrypt(encryptedData);
-            let data = JSON.parse(decryptData);
-              // Map the API response data and filter out excluded countries
+    this.webService.getSpeakersList('', '100', 'All').subscribe({
+      next: (response: any) => {
+        if (response?.encryptedData) {
+          // Decrypt the response data
+          let encryptedData = response.encryptedData;
+          let decryptData = this.encryptionService.decrypt(encryptedData);
+          let data = JSON.parse(decryptData);
+          // Map the API response data and filter out excluded countries
 
-               // List of titles to ignore in sorting
-               const titlesToIgnore = [
-                'Dr.',
-                'General',
-                'Gertraud Thekla',
-                'MaharajKumar',
-                'Nawabzada',
-                'Pujya',
-                'Bhai Sahib',
-                'Swami',
-                'Excellency Dr.'
-              ];
+          // List of titles to ignore in sorting
+          const titlesToIgnore = [
+            'Dr.',
+            'General',
+            'Gertraud Thekla',
+            'MaharajKumar',
+            'Nawabzada',
+            'Pujya',
+            'Bhai Sahib',
+            'Swami',
+            'Excellency Dr.',
+          ];
 
-                          // Function to clean title from the beginning if it matches the ignore list
-                const cleanSpeakerName = (name: string): string => {
-                  for (const title of titlesToIgnore) {
-                    const regex = new RegExp('^' + title + '\\s+', 'i');
-                    if (regex.test(name)) {
-                      return name.replace(regex, '').trim().toLowerCase();
-                    }
-                  }
-                  return name.toLowerCase();
-                };
+          // Function to clean title from the beginning if it matches the ignore list
+          const cleanSpeakerName = (name: string): string => {
+            for (const title of titlesToIgnore) {
+              const regex = new RegExp('^' + title + '\\s+', 'i');
+              if (regex.test(name)) {
+                return name.replace(regex, '').trim().toLowerCase();
+              }
+            }
+            return name.toLowerCase();
+          };
 
-              const mappedData = data.data
-              .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
-              .map((item: any) => ({
-                speaker_id: item.speaker_id || '',
-                speaker_name: item.speaker_name || '',
-                speaker_country: item.speaker_country || '',
-                speaker_credentials: item.speaker_credentials || '',
-                profile_photo: item.photo_1 || '',
-                is_online: item.is_online
-              }))
+          const mappedData = data.data
+            .filter(
+              (item: any) =>
+                !this.excludedCountries.includes(item.speaker_country)
+            )
+            .map((item: any) => ({
+              speaker_id: item.speaker_id || '',
+              speaker_name: item.speaker_name || '',
+              speaker_country: item.speaker_country || '',
+              speaker_credentials: item.speaker_credentials || '',
+              profile_photo: item.photo_1 || '',
+              is_online: item.is_online,
+            }))
 
-              .sort((a: any, b: any) => {
-                const nameA = cleanSpeakerName(a.speaker_name);
-                const nameB = cleanSpeakerName(b.speaker_name);
-                return nameA.localeCompare(nameB);
-              });
+            .sort((a: any, b: any) => {
+              const nameA = cleanSpeakerName(a.speaker_name);
+              const nameB = cleanSpeakerName(b.speaker_name);
+              return nameA.localeCompare(nameB);
+            });
 
-            // Transform the mapped data into groups
-            this.speakersList = mappedData;
-            this.inPersonSpeakers = this.speakersList.filter(speaker => speaker.is_online === 0);
-            this.onlineSpeakers = this.speakersList.filter(speaker => speaker.is_online === 1);
-            // Load countries from the initial data
-
-          } else {
-            this.speakersList = [];
-          }
-        },
-        error: (error) => {
-          let decryptErr = this.encryptionService.decrypt(error.error.encryptedData);
-          decryptErr = JSON.parse(decryptErr);
-          console.error('Error fetching speakers:', decryptErr);
+          // Transform the mapped data into groups
+          this.speakersList = mappedData;
+          this.inPersonSpeakers = this.speakersList.filter(
+            (speaker) => speaker.is_online === 0
+          );
+          this.onlineSpeakers = this.speakersList.filter(
+            (speaker) => speaker.is_online === 1
+          );
+          // Load countries from the initial data
+        } else {
           this.speakersList = [];
         }
-      });
+      },
+      error: (error) => {
+        let decryptErr = this.encryptionService.decrypt(
+          error.error.encryptedData
+        );
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error fetching speakers:', decryptErr);
+        this.speakersList = [];
+      },
+    });
   }
 
   formatCountry(countries: string | string[]): string {
@@ -389,7 +409,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
       try {
         const parsed = JSON.parse(countries);
         if (Array.isArray(parsed)) {
-          return parsed.join(", ");
+          return parsed.join(', ');
         }
       } catch (e) {
         return countries; // If parsing fails, return as-is
@@ -397,24 +417,22 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     }
 
     if (Array.isArray(countries)) {
-      return countries.join(", ");
+      return countries.join(', ');
     }
 
     return '';
   }
 
-  openPdf(filePath: string, fileName: string,fileType:string) {
-    switch(fileType){
-         case 'PEACE_IMG':
-        filePath = 'assets/UIComponents/images/'+fileName;
-      break;
+  openPdf(filePath: string, fileName: string, fileType: string) {
+    switch (fileType) {
+      case 'PEACE_IMG':
+        filePath = 'assets/UIComponents/images/' + fileName;
+        break;
 
       case 'PEACE_PDF':
-        filePath = 'assets/UIComponents/files/'+fileName;
-      break;
-
+        filePath = 'assets/UIComponents/files/' + fileName;
+        break;
     }
     window.open(filePath, '_blank');
-
   }
 }

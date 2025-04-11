@@ -6,7 +6,7 @@
           <div class="container-fluid section1 position-relative">
             <div class="row justify-content-between bgColor h-100">
               <div
-                class="col-md-8 d-md-block d-none p-0 h-100"
+                class="col-md-8 d-md-block d-none p-0 h-100 position-relative"
                 style="left: 0; right: 0"
                 *ngIf="!isMobileView"
               >
@@ -28,7 +28,7 @@
 
                 <div class="col-12 tableBox">
                   <ul class="list-unstyled justify-content-center">
-                    <li class="p-1">
+                    <!-- <li class="p-1">
                       <a [routerLink]="['/metro-route']">
                         <img
                           fetchpriority="high"
@@ -39,7 +39,7 @@
                           width="250"
                           height="20"
                       /></a>
-                    </li>
+                    </li> -->
                     <li class="p-1">
                       <a
                         (click)="
@@ -83,7 +83,58 @@
                 style="left: 0; right: 0"
                 *ngIf="isMobileView"
               >
-                <video class="position-absolute" style="z-index: -1;"
+                <div class="col-md-12 position-absolute" style="z-index: 1">
+                  <ul class="d-flex list-unstyled justify-content-center">
+                    <!-- <li class="p-1">
+                      <a [routerLink]="['/metro-route']">
+                        <img
+                          fetchpriority="high"
+                          loading="eager"
+                          src="assets/UIComponents/images/metroRoute.webp"
+                          alt="metroRoute"
+                          class="img-fluid"
+                          width="250"
+                          height="20"
+                      /></a>
+                    </li> -->
+                    <li class="p-1">
+                      <a
+                        (click)="
+                          openPdf('peace-menu', 'peace-menu.jpeg', 'PEACE_IMG')
+                        "
+                        role="button"
+                      >
+                        <img
+                          fetchpriority="high"
+                          loading="eager"
+                          src="assets/UIComponents/images/peaceBtn4.svg"
+                          alt="peaceBtn2"
+                          class="img-fluid"
+                          width="250"
+                          height="20"
+                      /></a>
+                    </li>
+                    <li class="p-1">
+                      <a
+                        (click)="
+                          openPdf('agendaBook', 'agendaBook.pdf', 'PEACE_PDF')
+                        "
+                        role="button"
+                        target="_blank"
+                      >
+                        <img
+                          fetchpriority="high"
+                          loading="eager"
+                          src="assets/UIComponents/images/agendaBook.svg"
+                          alt="agendaBook"
+                          class="img-fluid"
+                          width="250"
+                          height="20"
+                      /></a>
+                    </li>
+                  </ul>
+                </div>
+                <video
                   autoplay
                   loop
                   muted
@@ -98,71 +149,14 @@
                   />
                   Your browser does not support the video tag.
                 </video>
-                  <div class="col-md-12">
-                    <ul class="d-flex list-unstyled justify-content-center">
-                      <li class="p-1">
-                        <a [routerLink]="['/metro-route']">
-                          <img
-                            fetchpriority="high"
-                            loading="eager"
-                            src="assets/UIComponents/images/metroRoute.webp"
-                            alt="metroRoute"
-                            class="img-fluid"
-                            width="250"
-                            height="20"
-                        /></a>
-                      </li>
-                      <li class="p-1">
-                        <a
-                          (click)="
-                            openPdf(
-                              'peace-menu',
-                              'peace-menu.jpeg',
-                              'PEACE_IMG'
-                            )
-                          "
-                          role="button"
-                        >
-                          <img
-                            fetchpriority="high"
-                            loading="eager"
-                            src="assets/UIComponents/images/peaceBtn4.svg"
-                            alt="peaceBtn2"
-                            class="img-fluid"
-                            width="250"
-                            height="20"
-                        /></a>
-                      </li>
-                      <li class="p-1">
-                        <a
-                          (click)="
-                            openPdf('agendaBook', 'agendaBook.pdf', 'PEACE_PDF')
-                          "
-                          role="button"
-                          target="_blank"
-                        >
-                          <img
-                            fetchpriority="high"
-                            loading="eager"
-                            src="assets/UIComponents/images/agendaBook.svg"
-                            alt="agendaBook"
-                            class="img-fluid"
-                            width="250"
-                            height="20"
-                        /></a>
-                      </li>
-                    </ul>
-                  </div>
               </div>
               <div class="col-md-4 eventFrame">
                 <div class="card h-75">
-                  <div class="card-body">
-                    Video coming soon...
-                  </div>
+                  <div class="card-body">Video coming soon...</div>
                 </div>
-                <p><span>About Event :</span></p>
+                <p *ngIf="!isMobileView"><span>About Event :</span></p>
 
-                <p>
+                <p *ngIf="!isMobileView">
                   The Global Justice, Love & Peace Summit is a forthcoming event
                   scheduled for the 12th & 13th April 2025 in Dubai. A
                   Star-studded gathering of unprecedented magnitude dedicated to
@@ -170,6 +164,14 @@
                   organized by Jupiter Events L.L.C under the able leadership of
                    Dr. Huzaifa Khorakiwala.
                 </p>
+              </div>
+
+              <div class="col-md-8">
+                <div class="row navList">
+                  <div class="col-4 p-0 text-center"><a [routerLink]="['/speaker-details']">Speakers List</a></div>
+                  <div class="col-4 p-0 border-start border-end text-center"><a [routerLink]="['/metro-route']">Metro Route</a></div>
+                  <div class="col-4 p-0 text-center"><a href="assets/UIComponents/files/GJLPS-Brochure-01-ENGLISH-241227.pdf" target="_blank">Download Brochure</a></div>
+                </div>
               </div>
             </div>
           </div>
@@ -593,122 +595,105 @@
                   Day 1 - 12th April 2025 (Saturday)
                 </h2>
 
-              <div class="table-responsive">
-                <table class="table text-center align-middle agenda">
-                  <thead class="table-dark">
-                    <tr>
-                      <th style="background-color: #d9d9d9"></th>
-                      <th style="background-color: #363636" colspan="2">
-                        Mahatma Gandhi Justice, Love & Peace Hall
-                      </th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style="background-color: #128940">
-                        10:15 AM - 11:00 AM (GST)
-                      </td>
-                      <td style="background-color: #64a15a" colspan="2">
-                        Welcome and Opening Session
-
-                    </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        11:00 AM - 12:15 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94">
-                        <b>
-                          Session 1
-                        </b>
-
-                      </td>
-                      <td style="background-color: #005b94">
-                        Building blocks of Peace & Justice
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        12:15 PM - 1:30 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a">
-                        <b>
-                          Session 2
-                        </b>
-                      </td>
-                      <td style="background-color: #65a15a">
-                        Leading with Love
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        1:30 PM - 3:00 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94" colspan="2">
-                        Lunch Break
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        3:00 PM - 4:15 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a">
-                        <b>
-                    Session 3
-                  </b>
-
-                      </td>
-                      <td style="background-color: #65a15a">
-                        Beloved Mother Earth, Our Home
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        4:15 PM - 5:30 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94">
-
-                       <b>
-                        Session 4
-
-                       </b>
-                      </td>
-                      <td style="background-color: #005b94">
-                        The Power of Love
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        5:30 PM - 6:00 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a"colspan="2">
-                        Gurudev Sri Sri Ravishankar Online Session
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        6:00 PM - 6:30 PM (GST)
-                      </td>
-                      <td style="background-color: #024d88" colspan="2">
-                        Tea break
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        6:30 PM - 7:15 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a">
-                        <b>
-                          Session 5
-
-                        </b>
-                      </td>
-                      <td style="background-color: #64a15a">
-                        The Heartbeat of Humanity
-                      </td>
-                    </tr>
-                    <!-- <tr>
+                <div class="table-responsive">
+                  <table class="table text-center align-middle agenda">
+                    <thead class="table-dark">
+                      <tr>
+                        <th style="background-color: #d9d9d9"></th>
+                        <th style="background-color: #363636" colspan="2">
+                          Mahatma Gandhi Justice, Love & Peace Hall
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="background-color: #128940">
+                          10:15 AM - 11:00 AM (GST)
+                        </td>
+                        <td style="background-color: #64a15a" colspan="2">
+                          Welcome and Opening Session
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          11:00 AM - 12:15 PM (GST)
+                        </td>
+                        <td style="background-color: #005b94">
+                          <b> Session 1 </b>
+                        </td>
+                        <td style="background-color: #005b94">
+                          Building blocks of Peace & Justice
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          12:15 PM - 1:30 PM (GST)
+                        </td>
+                        <td style="background-color: #64a15a">
+                          <b> Session 2 </b>
+                        </td>
+                        <td style="background-color: #65a15a">
+                          Leading with Love
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          1:30 PM - 3:00 PM (GST)
+                        </td>
+                        <td style="background-color: #005b94" colspan="2">
+                          Lunch Break
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          3:00 PM - 4:15 PM (GST)
+                        </td>
+                        <td style="background-color: #64a15a">
+                          <b> Session 3 </b>
+                        </td>
+                        <td style="background-color: #65a15a">
+                          Beloved Mother Earth, Our Home
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          4:15 PM - 5:30 PM (GST)
+                        </td>
+                        <td style="background-color: #005b94">
+                          <b> Session 4 </b>
+                        </td>
+                        <td style="background-color: #005b94">
+                          The Power of Love
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          5:30 PM - 6:00 PM (GST)
+                        </td>
+                        <td style="background-color: #64a15a" colspan="2">
+                          Gurudev Sri Sri Ravishankar Online Session
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          6:00 PM - 6:30 PM (GST)
+                        </td>
+                        <td style="background-color: #024d88" colspan="2">
+                          Tea break
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          6:30 PM - 7:15 PM (GST)
+                        </td>
+                        <td style="background-color: #64a15a">
+                          <b> Session 5 </b>
+                        </td>
+                        <td style="background-color: #64a15a">
+                          The Heartbeat of Humanity
+                        </td>
+                      </tr>
+                      <!-- <tr>
                       <td style="background-color: #128940">
                         7:15 PM - 9:00 PM
                       </td>
@@ -719,174 +704,167 @@
                         Justice (Session 12)
                       </td>
                     </tr> -->
-                    <tr>
-                      <td style="background-color: #024d88">
-                        8:00 PM (GST) Onwards
-                      </td>
-                      <td style="background-color: #005b94" colspan="2">
-                       Dinner
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-md-12">
-                <h2
-                  style="
-                    font-size: 20px;
-                    color: var(--color3);
-                    font-weight: bold;
-                  "
-                >
-                  Day 2 - 13th April 2025 (Sunday)
-                </h2>
-
-                <div class="table-responsive">
-                  <table class="table text-center align-middle agenda">
-                    <thead class="table-dark">
                       <tr>
-                        <th style="background-color: #d9d9d9"></th>
-                        <th style="background-color: #363636" colspan="2">
-                          Mahatma Gandhi Justice, Love & Peace Hall
-                        </th>
-                        <!-- <th style="background-color: #4f4f4f">
+                        <td style="background-color: #024d88">
+                          8:00 PM (GST) Onwards
+                        </td>
+                        <td style="background-color: #005b94" colspan="2">
+                          Dinner
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-12">
+                  <h2
+                    style="
+                      font-size: 20px;
+                      color: var(--color3);
+                      font-weight: bold;
+                    "
+                  >
+                    Day 2 - 13th April 2025 (Sunday)
+                  </h2>
+
+                  <div class="table-responsive">
+                    <table class="table text-center align-middle agenda">
+                      <thead class="table-dark">
+                        <tr>
+                          <th style="background-color: #d9d9d9"></th>
+                          <th style="background-color: #363636" colspan="2">
+                            Mahatma Gandhi Justice, Love & Peace Hall
+                          </th>
+                          <!-- <th style="background-color: #4f4f4f">
                         Nelson Mandela Love Hall
                       </th> -->
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style="background-color: #128940">
-                        10:15 AM - 11:00 AM (GST)
-                      </td>
-                      <td style="background-color: #64a15a" colspan="2">
-                        Keynote Speech by Chief Guest
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        11:00 AM - 12:15 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94">
-                        <b>
-                          Session 6
-                        </b>
-                      </td>
-                      <td style="background-color: #005b94">
-                        Faith as a Bridge
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        12:15 PM - 1:30 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a">
-
-                        <b>
-                        Session 7
-                       </b>
-                      </td>
-                      <td style="background-color: #65a15a">
-                        Justice with Heart
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        1:30 PM - 2:30 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94" colspan="2">
-                        Lunch Break
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        2:30 PM - 3:45 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a">
-                        <b>
-                          Session 8
-
-                        </b>
-                      </td>
-                      <td style="background-color: #65a15a">
-                        Reviving Romance
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        3:45 PM - 5:00 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94">
-                       <b>
-                         Session 9
-                       </b>
-                      </td>
-                      <td style="background-color: #005b94">
-                        Human Values
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        5:00 PM - 5:30 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a"colspan="2">
-                        Baba Ramdev Session
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        5:30 PM - 7:00 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94"><b> Session 10</b></td>
-                      <td style="background-color: #005b94">A Love Letter to Humanity by Nobel Peace Laureates</td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        7:00 PM - 7:30 PM (GST)
-                      </td>
-                      <td style="background-color: #64a15a" colspan="2">
-                        Tea Break
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #024d88">
-                        7:30 PM - 9:00 PM (GST)
-                      </td>
-                      <td style="background-color: #005b94" colspan="2">
-                        Eirene Awards
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="background-color: #128940">
-                        9:00 PM (GST) Onwards
-                      </td>
-                      <td style="background-color: #64a15a" colspan="2">
-                        Gala Dinner
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="background-color: #128940">
+                            10:15 AM - 11:00 AM (GST)
+                          </td>
+                          <td style="background-color: #64a15a" colspan="2">
+                            Keynote Speech by Chief Guest
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #024d88">
+                            11:00 AM - 12:15 PM (GST)
+                          </td>
+                          <td style="background-color: #005b94">
+                            <b> Session 6 </b>
+                          </td>
+                          <td style="background-color: #005b94">
+                            Faith as a Bridge
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #128940">
+                            12:15 PM - 1:30 PM (GST)
+                          </td>
+                          <td style="background-color: #64a15a">
+                            <b> Session 7 </b>
+                          </td>
+                          <td style="background-color: #65a15a">
+                            Justice with Heart
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #024d88">
+                            1:30 PM - 2:30 PM (GST)
+                          </td>
+                          <td style="background-color: #005b94" colspan="2">
+                            Lunch Break
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #128940">
+                            2:30 PM - 3:45 PM (GST)
+                          </td>
+                          <td style="background-color: #64a15a">
+                            <b> Session 8 </b>
+                          </td>
+                          <td style="background-color: #65a15a">
+                            Reviving Romance
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #024d88">
+                            3:45 PM - 5:00 PM (GST)
+                          </td>
+                          <td style="background-color: #005b94">
+                            <b> Session 9 </b>
+                          </td>
+                          <td style="background-color: #005b94">
+                            Human Values
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #128940">
+                            5:00 PM - 5:30 PM (GST)
+                          </td>
+                          <td style="background-color: #64a15a" colspan="2">
+                            Baba Ramdev Session
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #024d88">
+                            5:30 PM - 7:00 PM (GST)
+                          </td>
+                          <td style="background-color: #005b94">
+                            <b> Session 10</b>
+                          </td>
+                          <td style="background-color: #005b94">
+                            A Love Letter to Humanity by Nobel Peace Laureates
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #128940">
+                            7:00 PM - 7:30 PM (GST)
+                          </td>
+                          <td style="background-color: #64a15a" colspan="2">
+                            Tea Break
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #024d88">
+                            7:30 PM - 9:00 PM (GST)
+                          </td>
+                          <td style="background-color: #005b94" colspan="2">
+                            Eirene Awards
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #128940">
+                            9:00 PM (GST) Onwards
+                          </td>
+                          <td style="background-color: #64a15a" colspan="2">
+                            Gala Dinner
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
-
-          </div>
-          </div>
-          <img loading="lazy"
-
-            src="assets/UIComponents/images/watermark.png"
-            alt="attach images"
-            class="position-absolute d-md-block d-none"
-            style="left: 0; bottom: 0; width: 20rem"
-            *ngIf="!isMobileView"
-          />
-          <img loading="lazy"
-
-            src="assets/UIComponents/images/watermark.png"
-            alt="attach images"
-            class="position-absolute d-md-none d-block"
-            style="right: 0; bottom: 0; width: 10rem"
-            *ngIf="isMobileView"
-          />
+            <img
+              loading="lazy"
+              src="assets/UIComponents/images/watermark.png"
+              alt="attach images"
+              class="position-absolute d-md-block d-none"
+              style="left: 0; bottom: 0; width: 20rem"
+              *ngIf="!isMobileView"
+            />
+            <img
+              loading="lazy"
+              src="assets/UIComponents/images/watermark.png"
+              alt="attach images"
+              class="position-absolute d-md-none d-block"
+              style="right: 0; bottom: 0; width: 10rem"
+              *ngIf="isMobileView"
+            />
           </div>
         </section>
         <section class="section8 p-lg-5 venueBg">
@@ -903,8 +881,8 @@
                   title="Dubai Exhibition Centre"
                 ></iframe>
 
-                <img loading="lazy"
-
+                <img
+                  loading="lazy"
                   src="assets/UIComponents/images/index/GHD.webp"
                   alt="Second Image"
                   class="position-absolute second-image col-md-4"
