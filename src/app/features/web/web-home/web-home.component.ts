@@ -321,10 +321,31 @@ export class WebHomeComponent implements OnInit, OnDestroy {
             let encryptedData = response.encryptedData;
             let decryptData = this.encryptionService.decrypt(encryptedData);
             let data = JSON.parse(decryptData);
+
+            console.log('speakers data:', data);
               // Map the API response data and filter out excluded countries
 
                // List of titles to ignore in sorting
-               const titlesToIgnore = [
+              //  const titlesToIgnore = [
+              //   'Dr.',
+              //   'General',
+              //   'Gertraud Thekla',
+              //   'MaharajKumar',
+              //   'Nawabzada',
+              //   'Pujya',
+              //   'Bhai Sahib',
+              //   'Swami',
+              //   'Excellency Dr.',
+              //   'Father, Dr.',
+              //   'Father, Dr.',
+              //   'Father,Dr.',
+              //   'His Excellency, Judge',
+              //   'His Excellency, Judge',
+              //   'Imam ,',
+              //   'Prof, Deshmanya'
+              // ];
+
+              const titlesToIgnore = [
                 'Dr.',
                 'General',
                 'Gertraud Thekla',
@@ -333,19 +354,39 @@ export class WebHomeComponent implements OnInit, OnDestroy {
                 'Pujya',
                 'Bhai Sahib',
                 'Swami',
-                'Excellency Dr.'
+                'Excellency Dr.',
+                'Father, Dr.',
+                'Father,Dr.',
+                'Father, Dr.', // Add all variants if spacing is inconsistent
+                'His Excellency, Judge',
+                'Imam ,',
+                'Prof. Deshmanya,'
               ];
 
-                          // Function to clean title from the beginning if it matches the ignore list
-                const cleanSpeakerName = (name: string): string => {
-                  for (const title of titlesToIgnore) {
-                    const regex = new RegExp('^' + title + '\\s+', 'i');
-                    if (regex.test(name)) {
-                      return name.replace(regex, '').trim().toLowerCase();
-                    }
+              const escapeRegex = (str: string) =>
+                str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+              const cleanSpeakerName = (name: string): string => {
+                for (const title of titlesToIgnore) {
+                  const escapedTitle = escapeRegex(title.trim());
+                  const regex = new RegExp('^' + escapedTitle + '\\s*', 'i');
+                  if (regex.test(name)) {
+                    return name.replace(regex, '').trim().toLowerCase();
                   }
-                  return name.toLowerCase();
-                };
+                }
+                return name.toLowerCase();
+              };
+
+              // Function to clean title from the beginning if it matches the ignore list
+                // const cleanSpeakerName = (name: string): string => {
+                //   for (const title of titlesToIgnore) {
+                //     const regex = new RegExp('^' + title + '\\s+', 'i');
+                //     if (regex.test(name)) {
+                //       return name.replace(regex, '').trim().toLowerCase();
+                //     }
+                //   }
+                //   return name.toLowerCase();
+                // };
 
               const mappedData = data.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
