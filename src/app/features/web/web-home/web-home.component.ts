@@ -87,7 +87,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
   slides: any = [];
-  liveStreamingUrl: any = '';
+  liveStreamingUrl: any;
   // headerIcon:any
   constructor(
     private _router: Router,
@@ -417,11 +417,8 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     }
     this.webService.getLiveStream(body).subscribe({
       next: (response: any) => {
-console.log(response,"res");
-this.liveStreamingUrl = response[0]['lookup_code']
-console.log(this.liveStreamingUrl);
-
-
+        this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(response[0]['lookup_code'] + `?autoplay=1`
+        );
       }
     })
 
