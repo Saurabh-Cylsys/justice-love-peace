@@ -2110,4 +2110,10 @@ export class WebService {
   getSpeakersCards() {
     return this._apiHttpService.get(this._apiEndpointsService.getSpeakerCardsEndpoint());
   }
+
+
+  getLiveStream(body: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.getLiveStreamEndpoint(),body);
+
+  }
 }

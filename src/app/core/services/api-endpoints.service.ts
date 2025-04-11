@@ -387,4 +387,8 @@ export class ApiEndpointsService {
   public getSpeakerCardsEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_SPEAKERS_CARDS_ENCRYPT);
   }
+
+  public getLiveStreamEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_LIVE_STREAM);
+  }
 }

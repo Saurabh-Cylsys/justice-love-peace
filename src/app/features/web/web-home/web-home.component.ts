@@ -103,10 +103,10 @@ export class WebHomeComponent implements OnInit, OnDestroy {
 
     @Inject(DOCUMENT) private document: Document
   ) {
-    this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://www.youtube.com/embed/3SViIOqesmg'
-    );
-    // https://www.youtube.com/embed/mtYoCptiKow?autoplay=1&mute=1&controls=0&loop=1&playlist=mtYoCptiKow
+    this.getLiveStream();
+    // this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+    //   'https://www.youtube.com/embed/3SViIOqesmg'
+    // );
 
   }
 
@@ -410,6 +410,22 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  getLiveStream() {
+    let body = {
+      parent_code: "LIVE",
+      type: "CHILD"
+    }
+    this.webService.getLiveStream(body).subscribe({
+      next: (response: any) => {
+console.log(response,"res");
+this.liveStreamingUrl = response[0]['lookup_code']
+console.log(this.liveStreamingUrl);
+
+
+      }
+    })
+
+  }
   formatCountry(countries: string | string[]): string {
     if (!countries) return ''; // Handle undefined/null cases
 

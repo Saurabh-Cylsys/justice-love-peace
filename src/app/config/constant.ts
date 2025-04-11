@@ -128,5 +128,7 @@ export class Constants {
 
     public readonly API_ENDPOINT_SPEAKERS_CARDS_ENCRYPT: string =  'speakers-slider'
 
+    public readonly API_ENDPOINT_LIVE_STREAM: string =  'getLookupData'
+
 
 }
