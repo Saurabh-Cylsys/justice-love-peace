@@ -103,7 +103,9 @@ export class WebHomeComponent implements OnInit, OnDestroy {
 
     @Inject(DOCUMENT) private document: Document
   ) {
-    this.getLiveStream();
+
+    // this.getLiveStream();
+
     // this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     //   'https://www.youtube.com/embed/3SViIOqesmg'
     // );
@@ -166,6 +168,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
         }
       });
     }, 0);
+
   }
 
   SPEAKERS_CACHE_KEY = 'speakers_cache_v1';
@@ -418,7 +421,9 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.webService.getLiveStream(body).subscribe({
       next: (response: any) => {
         this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(response[0]['lookup_code'] + `?autoplay=1`
+          
         );
+        console.log(  this.liveStreamingUrl , '  this.liveStreamingUrl');
       }
     })
 
