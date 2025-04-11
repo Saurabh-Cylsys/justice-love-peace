@@ -22,6 +22,7 @@ import SwiperCore, {
 } from 'swiper';
 import { de } from 'intl-tel-input/i18n';
 import { EncryptionService } from '../../../shared/services/encryption.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 // Install Swiper modules
 SwiperCore.use([EffectCards, Navigation, Pagination, Autoplay]);
@@ -86,7 +87,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
   slides: any = [];
-
+  liveStreamingUrl: any = '';
   // headerIcon:any
   constructor(
     private _router: Router,
@@ -98,9 +99,16 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     private metaService: Meta,
     private renderer: Renderer2,
     private encryptionService: EncryptionService,
+    private sanitizer: DomSanitizer,
 
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) {
+    this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://www.youtube.com/embed/2X6v0g1q4aE?autoplay=1&mute=1&controls=0&loop=1&playlist=2X6v0g1q4aE'
+    );
+    // https://www.youtube.com/embed/mtYoCptiKow?autoplay=1&mute=1&controls=0&loop=1&playlist=mtYoCptiKow
+
+  }
 
   events_day1 = [
     { title: 'Registration / Refreshment', time: '8:00 AM-10:00 AM' },
