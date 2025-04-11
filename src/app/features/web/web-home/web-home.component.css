@@ -695,4 +695,22 @@ line-height: 100%;
 letter-spacing: 0%;
 color: #005B94;
 text-decoration: none;
+display: flex
+;
+    align-items: center;
+    justify-content: center;
+}
+
+.navList a img {
+  margin: 0 5px 0 0;
+}
+
+.eventFrame .card{
+  height: 75%;
+}
+
+@media (max-width: 420px) {
+  .eventFrame .card{
+    height: 100%;
+  }
 }
