@@ -104,7 +104,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document
   ) {
     this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://www.youtube.com/embed/2X6v0g1q4aE?autoplay=1&mute=1&controls=0&loop=1&playlist=2X6v0g1q4aE'
+      'https://www.youtube.com/embed/3SViIOqesmg'
     );
     // https://www.youtube.com/embed/mtYoCptiKow?autoplay=1&mute=1&controls=0&loop=1&playlist=mtYoCptiKow
 
