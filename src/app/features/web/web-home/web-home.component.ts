@@ -337,82 +337,117 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.renderer.appendChild(this.document.head, link);
   }
 
+ 
   loadSpeakers() {
-    this.webService.getSpeakersList('', '100', 'All').subscribe({
-      next: (response: any) => {
-        if (response?.encryptedData) {
-          // Decrypt the response data
-          let encryptedData = response.encryptedData;
-          let decryptData = this.encryptionService.decrypt(encryptedData);
-          let data = JSON.parse(decryptData);
-          // Map the API response data and filter out excluded countries
+    this.webService.getSpeakersList('', '100', 'All')
+      .subscribe({
+        next: (response: any) => {
+          if (response?.encryptedData) {
+            // Decrypt the response data
+            let encryptedData = response.encryptedData;
+            let decryptData = this.encryptionService.decrypt(encryptedData);
+            let data = JSON.parse(decryptData);
 
-          // List of titles to ignore in sorting
-          const titlesToIgnore = [
-            'Dr.',
-            'General',
-            'Gertraud Thekla',
-            'MaharajKumar',
-            'Nawabzada',
-            'Pujya',
-            'Bhai Sahib',
-            'Swami',
-            'Excellency Dr.',
-          ];
+            console.log('speakers data:', data);
+              // Map the API response data and filter out excluded countries
 
-          // Function to clean title from the beginning if it matches the ignore list
-          const cleanSpeakerName = (name: string): string => {
-            for (const title of titlesToIgnore) {
-              const regex = new RegExp('^' + title + '\\s+', 'i');
-              if (regex.test(name)) {
-                return name.replace(regex, '').trim().toLowerCase();
-              }
-            }
-            return name.toLowerCase();
-          };
+               // List of titles to ignore in sorting
+              //  const titlesToIgnore = [
+              //   'Dr.',
+              //   'General',
+              //   'Gertraud Thekla',
+              //   'MaharajKumar',
+              //   'Nawabzada',
+              //   'Pujya',
+              //   'Bhai Sahib',
+              //   'Swami',
+              //   'Excellency Dr.',
+              //   'Father, Dr.',
+              //   'Father, Dr.',
+              //   'Father,Dr.',
+              //   'His Excellency, Judge',
+              //   'His Excellency, Judge',
+              //   'Imam ,',
+              //   'Prof, Deshmanya'
+              // ];
 
-          const mappedData = data.data
-            .filter(
-              (item: any) =>
-                !this.excludedCountries.includes(item.speaker_country)
-            )
-            .map((item: any) => ({
-              speaker_id: item.speaker_id || '',
-              speaker_name: item.speaker_name || '',
-              speaker_country: item.speaker_country || '',
-              speaker_credentials: item.speaker_credentials || '',
-              profile_photo: item.photo_1 || '',
-              is_online: item.is_online,
-            }))
+              const titlesToIgnore = [
+                'Dr.',
+                'General',
+                'Gertraud Thekla',
+                'MaharajKumar',
+                'Nawabzada',
+                'Pujya',
+                'Bhai Sahib',
+                'Swami',
+                'Excellency Dr.',
+                'Father, Dr.',
+                'Father,Dr.',
+                'Father, Dr.', // Add all variants if spacing is inconsistent
+                'His Excellency, Judge',
+                'Imam ,',
+                'Prof. Deshmanya,'
+              ];
 
-            .sort((a: any, b: any) => {
-              const nameA = cleanSpeakerName(a.speaker_name);
-              const nameB = cleanSpeakerName(b.speaker_name);
-              return nameA.localeCompare(nameB);
-            });
+              const escapeRegex = (str: string) =>
+                str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-          // Transform the mapped data into groups
-          this.speakersList = mappedData;
-          this.inPersonSpeakers = this.speakersList.filter(
-            (speaker) => speaker.is_online === 0
-          );
-          this.onlineSpeakers = this.speakersList.filter(
-            (speaker) => speaker.is_online === 1
-          );
-          // Load countries from the initial data
-        } else {
+              const cleanSpeakerName = (name: string): string => {
+                for (const title of titlesToIgnore) {
+                  const escapedTitle = escapeRegex(title.trim());
+                  const regex = new RegExp('^' + escapedTitle + '\\s*', 'i');
+                  if (regex.test(name)) {
+                    return name.replace(regex, '').trim().toLowerCase();
+                  }
+                }
+                return name.toLowerCase();
+              };
+
+              // Function to clean title from the beginning if it matches the ignore list
+                // const cleanSpeakerName = (name: string): string => {
+                //   for (const title of titlesToIgnore) {
+                //     const regex = new RegExp('^' + title + '\\s+', 'i');
+                //     if (regex.test(name)) {
+                //       return name.replace(regex, '').trim().toLowerCase();
+                //     }
+                //   }
+                //   return name.toLowerCase();
+                // };
+
+              const mappedData = data.data
+              .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
+              .map((item: any) => ({
+                speaker_id: item.speaker_id || '',
+                speaker_name: item.speaker_name || '',
+                speaker_country: item.speaker_country || '',
+                speaker_credentials: item.speaker_credentials || '',
+                profile_photo: item.photo_1 || '',
+                is_online: item.is_online
+              }))
+
+              .sort((a: any, b: any) => {
+                const nameA = cleanSpeakerName(a.speaker_name);
+                const nameB = cleanSpeakerName(b.speaker_name);
+                return nameA.localeCompare(nameB);
+              });
+
+            // Transform the mapped data into groups
+            this.speakersList = mappedData;
+            this.inPersonSpeakers = this.speakersList.filter(speaker => speaker.is_online === 0);
+            this.onlineSpeakers = this.speakersList.filter(speaker => speaker.is_online === 1);
+            // Load countries from the initial data
+
+          } else {
+            this.speakersList = [];
+          }
+        },
+        error: (error) => {
+          let decryptErr = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error fetching speakers:', decryptErr);
           this.speakersList = [];
         }
-      },
-      error: (error) => {
-        let decryptErr = this.encryptionService.decrypt(
-          error.error.encryptedData
-        );
-        decryptErr = JSON.parse(decryptErr);
-        console.error('Error fetching speakers:', decryptErr);
-        this.speakersList = [];
-      },
-    });
+      });
   }
 
   getLiveStream() {
