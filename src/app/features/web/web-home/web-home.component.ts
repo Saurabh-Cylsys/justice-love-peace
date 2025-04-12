@@ -145,6 +145,8 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
+    const unsafeUrl = "https://www.youtube.com/embed/VtyDgIxnYMM";
+    this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeUrl);
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com');
     this.checkWindowSize();
@@ -420,10 +422,10 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     }
     this.webService.getLiveStream(body).subscribe({
       next: (response: any) => {
-        this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(response[0]['lookup_code'] + `?autoplay=1`
-          
+        this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(response[0]['lookup_code']
+
         );
-        console.log(  this.liveStreamingUrl , '  this.liveStreamingUrl');
+        console.log(this.liveStreamingUrl, '  this.liveStreamingUrl');
       }
     })
 
