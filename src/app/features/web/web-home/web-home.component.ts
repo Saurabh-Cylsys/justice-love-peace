@@ -151,7 +151,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.setCanonicalUrl('https://www.justice-love-peace.com');
     this.checkWindowSize();
     this.SharedService.headerIcon = this._router.routerState.snapshot.url;
-
+    this.loadSpeakers();
     this.updateCountdown();
     this.timerInterval = setInterval(() => {
       this.updateCountdown();
@@ -165,7 +165,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
           let decryptedData = JSON.parse(decryptData);
 
           this.slides = decryptedData;
-          this.loadSpeakers();
+          // this.loadSpeakers();
           this.cdr.detectChanges();
         }
       });
