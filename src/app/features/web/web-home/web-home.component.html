@@ -6,7 +6,7 @@
           <div class="container-fluid section1 position-relative">
             <div class="row justify-content-between bgColor h-100">
               <div
-                class="col-md-7 d-md-block d-none p-0 h-100 position-relative"
+                class="col-lg-7 d-md-block d-none p-0 h-100 position-relative"
                 style="left: 0; right: 0"
                 *ngIf="!isMobileView"
               >
@@ -150,7 +150,7 @@
                   Your browser does not support the video tag.
                 </video>
               </div>
-              <div class="col-md-5 eventFrame py-2">
+              <div class="col-lg-5 eventFrame py-2">
                 <div class="card">
                   <div class="card-body">
                     <!-- Video coming soon... -->
@@ -160,9 +160,9 @@
 
                   </div>
                 </div>
-                <p *ngIf="!isMobileView" class="mt-2"><span>About Event :</span></p>
+                <p *ngIf="!isMobileView" class="mt-2 d-lg-block d-none"><span>About Event :</span></p>
 
-                <p *ngIf="!isMobileView">
+                <p *ngIf="!isMobileView" class="d-lg-block d-none">
                   The Global Justice, Love & Peace Summit is a forthcoming event
                   scheduled for the 12th & 13th April 2025 in Dubai. A
                   Star-studded gathering of unprecedented magnitude dedicated to
@@ -172,7 +172,7 @@
                 </p>
               </div>
 
-              <div class="col-md-8">
+              <div class="col-lg-7">
                 <div class="row navList">
                   <div class="col-4 p-0 text-center"><a [routerLink]="['/speaker-details']"><img src="assets/UIComponents/images/speakerList.svg" alt=""> Speakers List</a></div>
                   <div class="col-4 p-0 text-center"><a [routerLink]="['/metro-route']"><img src="assets/UIComponents/images/metroRoute.svg" alt=""> Metro Route</a></div>
@@ -182,7 +182,7 @@
             </div>
           </div>
         </section>
-        <section class="section6 chiefGuest">
+        <section class="section6 chiefGuest" style="background-color: transparent;">
           <div class="container">
             <div class="row justify-content-center">
               <!-- <div class="col-md-12 text-center">

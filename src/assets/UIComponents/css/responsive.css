@@ -144,7 +144,7 @@
     background-size: 85% 100%;
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 85vh; 
+    min-height: 50vh; 
   }
 
   .speaker-details .card .card-body h5{

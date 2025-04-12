@@ -662,6 +662,7 @@ html {
 .eventFrame .card{
   border: 2.5px solid #005B94;
   border-radius: 10px;
+  height: 75%;
 }
 
 .eventFrame p{
@@ -705,11 +706,9 @@ display: flex
   margin: 0 5px 0 0;
 }
 
-.eventFrame .card{
-  height: 75%;
-}
 
-@media (max-width: 420px) {
+
+@media (max-width: 900px) {
   .eventFrame .card{
     height: 100%;
   }
