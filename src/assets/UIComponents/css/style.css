@@ -1448,7 +1448,7 @@ header .nav-item .nav-link.active {
 #logo {
   transition: 0.4s;
   position: absolute;
-  width: 100%;
+  width: 70%;
 }
 
 .small-logo {

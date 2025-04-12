@@ -82,7 +82,7 @@ export class WebHeaderComponent implements OnInit {
         logoElement.style.top = '0';
         logoElement.style.position = 'relative';
       } else {
-        logoElement.style.width = '100%';
+        logoElement.style.width = '70%';
         logoElement.style.top = '0rem';
         logoElement.style.position = 'absolute';
       }
