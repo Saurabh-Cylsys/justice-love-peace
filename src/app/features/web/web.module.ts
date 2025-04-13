@@ -50,6 +50,7 @@ import { PeaceShopComponent } from './peace-shop/peace-shop.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { MetroRouteComponent } from './metro-route/metro-route.component';
 import { AuctionComponent } from './auction/auction.component';
+import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { AuctionComponent } from './auction/auction.component';
     PeaceShopComponent,
     AboutUsComponent,
     MetroRouteComponent,
-    AuctionComponent
+    AuctionComponent,
+    StayTunedComponent
   ],
   imports: [
     CommonModule,

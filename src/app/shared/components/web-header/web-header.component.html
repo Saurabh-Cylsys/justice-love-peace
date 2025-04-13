@@ -263,11 +263,11 @@
     <div class="row align-items-center">
       <div class="col-lg-2 col-md-1 col-1" *ngIf="!isMobileView">
         <div class="position-relative">
-          <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+          
           <a
             class="navbar-brand logo"
             [routerLink]="['/home']"
-            *ngIf="!isHomePage"
+            *ngIf="isHomePage"
           >
             <video autoplay loop muted style="width: 34%; border-radius: 50%;">
               <source
@@ -277,30 +277,14 @@
               Your browser does not support the video tag.
             </video>
           </a>
-          <!-- <img
-          loading="lazy"
-          src="assets/UIComponents/images/logo.gif"
-          alt="attach images"
-          id="logo"
-          *ngIf="isHomePage"
-          /> -->
-          <video *ngIf="isHomePage" autoplay loop muted id="logo" style="border-radius: 50%;">
-            <source
-              src="assets/UIComponents/images/logo.webm"
-              type="video/webm"
-            />
-            Your browser does not support the video tag.
-          </video>
-          <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+          
         </div>
       </div>
-      <div class="col-ld col-md">
+      <!-- <div class="col-ld col-md">
         <ul
           class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
         >
-          <!-- <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/home']">Home</a>
-          </li> -->
+          
           <li
             class="nav-item"
             routerLinkActive="active"
@@ -318,13 +302,7 @@
                 The Summit
               </button>
               <div class="hover-dropdown-content">
-                <!-- <a
-                  *ngFor="let link of summitLinks"
-                  [routerLink]="['/the-summit']"
-                  [fragment]="link.fragment || undefined"
-                >
-                  {{ link.label }}
-                </a> -->
+                
                 <a
                   *ngFor="let link of summitLinks"
                   (click)="navigateToSection(link.fragment)"
@@ -371,11 +349,7 @@
                 >
                   {{ link.label }}
                 </a>
-                <!-- <a
-                  [routerLink]="['/committee']"
-                >
-                  Committee
-                </a> -->
+                
               </div>
             </div>
           </li>
@@ -404,30 +378,7 @@
               <button class="dropbtn" [routerLink]="['/media/videos']">
                 Media
               </button>
-              <!-- <div class="hover-dropdown-content">
-                <button
-                  class="btn btn-success"
-                  [routerLink]="['/download-brochure']"
-                  style="
-                    font-size: 14px;
-                    margin: 0 0;
-                    text-align: center;
-                    width: 100%;
-                    border-radius: 0;
-                  "
-                >
-                  Download Brochure
-                </button>
-                <a
-                  *ngFor="let link of downloadLinks"
-                  [routerLink]="['/DownloadCenter']"
-                  (click)="navigateToSection(link.fragment)"
-                  fragment="{{ link.fragment }}"
-                >
-                  {{ link.label }}
-                </a>
-                
-              </div> -->
+              
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
@@ -452,17 +403,11 @@
       </div>
       <div class="col-lg-2 col-md-2">
         <form class="d-flex justify-content-end" role="search">
-          <!-- [routerLink]="['/delegate-registration']" -->
+         
           <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
             >Register As a Delegate</a
           >
-          <!-- <select
-            name=""
-            id=""
-            class="form-select w-auto bg-transparent text-white"
-          >
-            <option value="">Eng</option>
-          </select> -->
+          
           <a
             class="nav-link"
             routerLinkActive="active"
@@ -488,7 +433,7 @@
           />
         </a>
         </form>
-      </div>
+      </div> -->
     </div>
   </div>
 </header>
