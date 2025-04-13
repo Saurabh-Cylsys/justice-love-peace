@@ -49,6 +49,7 @@ import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
 import { PeaceShopComponent } from './peace-shop/peace-shop.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { MetroRouteComponent } from './metro-route/metro-route.component';
+import { AuctionComponent } from './auction/auction.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { MetroRouteComponent } from './metro-route/metro-route.component';
     PeaceMenuComponent,
     PeaceShopComponent,
     AboutUsComponent,
-    MetroRouteComponent
+    MetroRouteComponent,
+    AuctionComponent
   ],
   imports: [
     CommonModule,

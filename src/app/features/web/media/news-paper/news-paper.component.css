@@ -98,3 +98,7 @@ table tbody tr td:nth-child(2) .title {
 .left-scrollbar table {
   direction: ltr;
 }
+
+table tbody tr td img{
+  width: 100%;
+}
