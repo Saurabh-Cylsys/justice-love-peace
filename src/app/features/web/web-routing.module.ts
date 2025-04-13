@@ -35,6 +35,7 @@ import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
 import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { MetroRouteComponent } from './metro-route/metro-route.component';
+import { AuctionComponent } from './auction/auction.component';
 const routes: Routes = [
   {
     path: '',
@@ -213,6 +214,10 @@ const routes: Routes = [
       {
         path: 'metro-route',
         component: MetroRouteComponent,
+      },
+      {
+        path: 'auction',
+        component: AuctionComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
