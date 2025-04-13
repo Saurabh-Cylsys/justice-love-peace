@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-lg-12 position-relative">
         <h1>“The Global Justice, Love and Peace Summit 2025 (Dubai, Apr 12-13) was just the beginning – stay tuned for more!”</h1>
-        <img src="assets/UIComponents/images/index/banner.gif" alt="banner" class="img-fluid" />
+        <img src="assets/UIComponents/images/index/banner.gif" alt="banner" class="img-fluid" *ngIf="!isMobileView" />
+        <img src="assets/UIComponents/images/index/bannermob.gif" alt="banner" class="img-fluid" *ngIf="isMobileView" />
       </div>
     </div>
   </div>

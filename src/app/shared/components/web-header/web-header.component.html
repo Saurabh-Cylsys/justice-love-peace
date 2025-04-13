@@ -269,13 +269,14 @@
             [routerLink]="['/home']"
             *ngIf="isHomePage"
           >
-            <video autoplay loop muted style="width: 34%; border-radius: 50%;">
+            <!-- <video autoplay loop muted style="width: 34%; border-radius: 50%;">
               <source
                 src="assets/UIComponents/images/logo.webm"
                 type="video/webm"
               />
               Your browser does not support the video tag.
-            </video>
+            </video> -->
+            <img src="assets/UIComponents/images/logo.gif" alt="logo" class="img-fluid" width="34%" height="100%" loading="lazy" />
           </a>
           
         </div>
@@ -451,15 +452,8 @@
           alt="attach image"
           class="col-lg-12 col-md-12 col-6"
         />
-        <!-- <video autoplay loop muted class="col-lg-12 col-md-12 col-6">
-          <source
-            src="assets/UIComponents/images/logo.webm"
-            type="video/webm"
-          />
-          Your browser does not support the video tag.
-        </video> -->
       </a>
-      <button
+      <!-- <button
         class="navbar-toggler border-white list"
         type="button"
         data-bs-toggle="offcanvas"
@@ -470,7 +464,7 @@
         aria-label="Toggle navigation"
       >
         <i class="bi bi-list text-white"></i>
-      </button>
+      </button> -->
       <!-- <div class="collapse navbar-collapse py-3" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto">
           <li class="nav-item">
