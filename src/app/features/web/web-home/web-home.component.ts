@@ -145,7 +145,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    const unsafeUrl = "https://www.youtube.com/embed/o62k1_sTKTk";
+    const unsafeUrl = "https://www.youtube.com/embed/o62k1_sTKTk?autoplay=1&mute=0";
     this.liveStreamingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeUrl);
     this.setMetaTags();
     this.setCanonicalUrl('https://www.justice-love-peace.com');
