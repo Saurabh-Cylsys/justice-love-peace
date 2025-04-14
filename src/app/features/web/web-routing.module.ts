@@ -46,11 +46,11 @@ const routes: Routes = [
       { path: 'stay-tuned', redirectTo: '', pathMatch: 'full' }, // Redirect /home to /
       { path: '', component: StayTunedComponent, data: { metaKey: 'home' } },
       // { path: '', component: WebHomeComponent, data: { metaKey: 'home' } },
-      // {path:'home',component:WebHomeComponent,
-      //   data: {
-      //     metaKey: 'home'
-      //   },
-      // },
+      {path:'home',component:StayTunedComponent,
+        data: {
+          metaKey: 'home'
+        },
+      },
       // {
       //   path: 'the-summit',
       //   component: TheSummitComponent,
@@ -72,13 +72,13 @@ const routes: Routes = [
       //     metaKey: 'awards',
       //   },
       // },
-      // {
-      //   path: 'world-peacekeepers-movement',
-      //   component: WorldPeacekeepersMovementComponent,
-      //   data: {
-      //     metaKey: 'world-peacekeepers-movement',
-      //   },
-      // },
+      {
+        path: 'world-peacekeepers-movement',
+        component: WorldPeacekeepersMovementComponent,
+        data: {
+          metaKey: 'world-peacekeepers-movement',
+        },
+      },
       // {
       //   path: 'DownloadCenter',
       //   component: DownloadCenterComponent,
@@ -86,21 +86,21 @@ const routes: Routes = [
       //     metaKey: 'DownloadCenter',
       //   },
       // },
-      // {
-      //   path: 'chairman-corner',
-      //   component: ChairmanCornerComponent,
-      //   data: {
-      //     metaKey: 'chairman-corner',
-      //   },
-      // },
+      {
+        path: 'chairman-corner',
+        component: ChairmanCornerComponent,
+        data: {
+          metaKey: 'chairman-corner',
+        },
+      },
 
-      // {
-      //   path: 'contact-us',
-      //   component: ContactUsComponent,
-      //   data: {
-      //     metaKey: 'contact-us',
-      //   },
-      // },
+      {
+        path: 'contact-us',
+        component: ContactUsComponent,
+        data: {
+          metaKey: 'contact-us',
+        },
+      },
 
       // {
       //   path: 'privacy-policy',
@@ -167,18 +167,18 @@ const routes: Routes = [
       //   component: CommitteeComponent,
       // },
 
-      // {
-      //   path: 'media/videos',
-      //   component: VideoComponent,
-      // },
-      // {
-      //   path: 'media/photos',
-      //   component: PhotosComponent,
-      // },
-      // {
-      //   path: 'media/news-paper',
-      //   component: NewsPaperComponent,
-      // },
+      {
+        path: 'media/videos',
+        component: VideoComponent,
+      },
+      {
+        path: 'media/photos',
+        component: PhotosComponent,
+      },
+      {
+        path: 'media/news-paper',
+        component: NewsPaperComponent,
+      },
 
       // {
       //   path: 'speaker-details',
@@ -217,14 +217,14 @@ const routes: Routes = [
       { path: '', redirectTo: 'stay-tuned', pathMatch: 'full' },
     ],
   },
-  {
-    path: '',
-    component: PaymentMainComponent,
-    children: [
-      { path: 'payment-status', component: PaymentComponent },
-      { path: 'success', component: SuccessComponent },
-    ],
-  },
+  // {
+  //   path: '',
+  //   component: PaymentMainComponent,
+  //   children: [
+  //     { path: 'payment-status', component: PaymentComponent },
+  //     { path: 'success', component: SuccessComponent },
+  //   ],
+  // },
 ];
 
 @NgModule({
