@@ -38,6 +38,7 @@ import {
 } from 'ngx-image-cropper';
 import { DatePipe, DOCUMENT } from '@angular/common';
 import { EncryptionService } from '../../../shared/services/encryption.service';
+import { WebService } from '../webz-services/web.service';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -102,6 +103,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   btnDisabled : boolean = false;
   peacebookwebAppurl : string = environment.peacebookWebAppUrl;
   currentSection = 'pe1';
+  loading = false;
+  payload: any;
 
 
   changePreferredCountries() {
@@ -117,6 +120,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   constructor(private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private DelegateService: DelegateService,
+    private webService: WebService,
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private route: ActivatedRoute,
@@ -325,7 +329,7 @@ onDateChange(event: string): void {
     // this.peacekeeperBadgeId = 495
     if (this.peacekeeperBadgeId) {
       let id = this.peacekeeperBadgeId;
-      this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
+      this.webService.getPeacekeeper_Badge(id).subscribe((res: any) => {
         this.peacekeeperData = res.data;
         this.qrCodeImg = res.QR_code;
         this.fileUrl = this.peacekeeperData.file_urls[0];
@@ -414,7 +418,7 @@ onDateChange(event: string): void {
     this.isPeaceOn = 1;
   }
   getAllCountrycode() {
-    this.DelegateService.getAllCountrycode().subscribe(
+    this.webService.getAllCountrycode().subscribe(
       (res: any) => {
 
         let encryptedData = res.encryptedData;
@@ -700,7 +704,7 @@ onDateChange(event: string): void {
 
     // Create FormData object
      // Create FormData object
-     const formData = {
+     this.payload = {
       full_name: this.peacekeepersForm.value.full_name,
       dob: this.peacekeepersForm.value.dob,
       country: this.peacekeepersForm.value.country,
@@ -713,7 +717,7 @@ onDateChange(event: string): void {
     };
     
 
-    const EncryptData = this.encryptionService.encrypt(formData);
+    const EncryptData = this.encryptionService.encrypt(this.payload);
     const encryptedPayload = new FormData();
     encryptedPayload.append('encryptedData', EncryptData);
     this.getAllCountrycode();
@@ -738,8 +742,16 @@ onDateChange(event: string): void {
 
         if (decryptData.success) {
           this.submitted = true;
+          this.SharedService.ToastPopup('', decryptData.message, 'success');
+          // this.btnDisabled = false;
+          setTimeout(async () => {
+            if (decryptData.isStripe  == "true")
+              await this.fnStripePG(decryptData, this.payload);
+            else
+              await this.fnMagnatiPG(decryptData, this.payload);
+          }, 4000);
 
-          this.btnDisabled = false;
+          this.loading = false;
           this.ngxService.stop();
           // this.peacekeeperBadgeResponse = response.QR_code
           this.peacekeeperBadgeResponse =
@@ -747,7 +759,6 @@ onDateChange(event: string): void {
           this.peacekeeperBadge = decryptData.batch;
 
           this.peacekeeperBadgeId = decryptData.peacekeeper_id;
-          this.SharedService.ToastPopup('', decryptData.message, 'success');
           this.is_selectedFile = false;
           this.peacekeepersForm.reset();
 
@@ -771,6 +782,64 @@ onDateChange(event: string): void {
         this.SharedService.ToastPopup('', decryptErr.message, 'error');
       }
     );
+  }
+
+  private async fnStripePG(response: any, payload: any) {
+    if (response.success && response.gatewayUrl) {
+      window.location.href = response.gatewayUrl;
+    } else {
+      this.SharedService.ToastPopup('Error', response.message || 'Payment failed', 'error');
+    }
+  }
+
+  private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
+
+    if (response.success) {
+
+      let obj = {
+        "email": this.peacekeepersForm.get('email')?.value.toLowerCase(),
+      };
+
+      const EncryptData = this.encryptionService.encrypt(obj);
+      let reqBody = {
+        encryptedData: EncryptData
+      }
+
+
+      this.ngxService.start();
+      await this.webService.postPeaceBookPayMP(reqBody).subscribe({
+        next: (response: any) => {
+          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          decryptData = JSON.parse(decryptData);
+          this.ngxService.stop();
+          //window.location.href = response.paymentUrl
+          // Redirect to the IPG gateway
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = decryptData.gatewayUrl;
+
+          Object.keys(decryptData.formData).forEach((key) => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = decryptData.formData[key];
+            form.appendChild(input);
+          });
+
+          document.body.appendChild(form);
+          form.submit();
+
+        },
+        error: (error: any) => {
+          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error creating delegate:', decryptErr);
+          this.ngxService.stop();
+          this.SharedService.ToastPopup(decryptErr['message'],'','error');
+          this.loading = false;
+        }
+      });
+    }
   }
 
   onMobileNumberKeyDown(event: KeyboardEvent , inputValue: any): void {

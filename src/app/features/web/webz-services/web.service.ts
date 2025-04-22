@@ -8,6 +8,7 @@ import { environment } from '../../../../environments/environment';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { EncryptionService } from '../../../shared/services/encryption.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class WebService {
     private _apiEndpointsService: ApiEndpointsService,
     private http: HttpClient,
     private encryptionService: EncryptionService,
+    private sharedService : SharedService
   ) {}
 
   getSpeakers(): Observable<any[]> {
@@ -2116,4 +2118,22 @@ export class WebService {
     return this._apiHttpService.post(this._apiEndpointsService.getLiveStreamEndpoint(),body);
 
   }
+
+  getAllCountrycode() {
+    return this._apiHttpService.get(this._apiEndpointsService.getAllCountrycodeEndpoint());
+  }
+
+  getPeacekeeper_Badge(id: any) {
+    return this._apiHttpService.get(this._apiEndpointsService.getPeacekeeper_Badge_Data(id));
+
+  }
+
+  postPeaceBookPayMP(body: any): Observable<any> {
+    const jwtToken = this.sharedService.getJWTToken();
+  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${jwtToken}`, // Make sure the backend expects 'Authtoken' and not 'Authorization'
+    });
+      return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body, {headers});
+    }
 }

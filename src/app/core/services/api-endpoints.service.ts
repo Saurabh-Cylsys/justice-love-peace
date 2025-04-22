@@ -349,7 +349,7 @@ export class ApiEndpointsService {
   public postCreateDelegateOnlineMPEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP_ENCRYPT);
   }
-
+  
   public getDataByTransactionIdEndpoint(transactionId: any): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID + '/' + transactionId);
   }
@@ -391,4 +391,9 @@ export class ApiEndpointsService {
   public getLiveStreamEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_LIVE_STREAM);
   }
+
+  public postCreatePeaceBookMPEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP_ENCRYPT);
+  }
+  
 }
