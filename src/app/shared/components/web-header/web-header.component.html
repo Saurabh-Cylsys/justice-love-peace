@@ -31,7 +31,7 @@
     </ul>
     <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
-        <h2 class="accordion-header">
+        <!-- <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
             type="button"
@@ -48,8 +48,8 @@
               The Summit</a
             >
           </button>
-        </h2>
-        <div
+        </h2> -->
+        <!-- <div
           id="flush-collapseOne"
           class="accordion-collapse collapse"
           data-bs-parent="#accordionFlushExample"
@@ -57,7 +57,6 @@
           <div class="accordion-body">
             <ul>
               <li *ngFor="let link of summitLinks">
-                <!-- (click)="refreshPage('summit',link.fragment)" -->
 
                 <a
                   [routerLink]="['/the-summit']"
@@ -71,9 +70,10 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
       </div>
-      <div class="accordion-item">
+
+      <!-- <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
@@ -91,6 +91,7 @@
             >
           </button>
         </h2>
+
         <div
           id="flush-collapseTwo"
           class="accordion-collapse collapse"
@@ -112,8 +113,10 @@
             </ul>
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
+
+      </div> -->
+
+      <!-- <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
@@ -131,6 +134,7 @@
             >
           </button>
         </h2>
+
         <div
           id="flush-collapseThree"
           class="accordion-collapse collapse"
@@ -149,19 +153,12 @@
                   {{ link.label }}
                 </a>
               </li>
-              <!-- <li>
-                <a
-                  [routerLink]="['/committee']"
-                  aria-label="Close"
-                  data-bs-dismiss="offcanvas"
-                >
-                  Committee
-                </a>
-              </li> -->
             </ul>
           </div>
         </div>
-      </div>
+
+      </div> -->
+
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
@@ -222,30 +219,31 @@
           Chairman's Corner</a
         >
       </li>
-      <li>
+      <!-- <li>
         <a
           [routerLink]="['/contact-us']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Contact Us</a
         >
-      </li>
-      <li style="display: flex">
-        <a
+      </li> -->
+      <li style="display: flex pt-4">
+        <!-- <a
           type="btn"
           class="btn btn-success"
           [routerLink]="['/DownloadCenter']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Download Center</a
-        >
+        > -->
         <a
           type="btn"
-          class="btn btn-success ms-2"
-          (click)="navigateUrl()"
+          class="btn btn-success w-50"
+          [routerLink]="['/contact-us']"
+          style="border: 1px solid white; border-radius: 20px;"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
-          >Register As a Delegate</a
+          >Contact US</a
         >
       </li>
     </ul>
@@ -263,44 +261,29 @@
     <div class="row align-items-center">
       <div class="col-lg-2 col-md-1 col-1" *ngIf="!isMobileView">
         <div class="position-relative">
-          <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+          <!-- *ngIf="isHomePage" -->
           <a
             class="navbar-brand logo"
             [routerLink]="['/home']"
-            *ngIf="!isHomePage"
+
           >
-            <video autoplay loop muted style="width: 34%; border-radius: 50%;">
+            <!-- <video autoplay loop muted style="width: 34%; border-radius: 50%;">
               <source
                 src="assets/UIComponents/images/logo.webm"
                 type="video/webm"
               />
               Your browser does not support the video tag.
-            </video>
+            </video> -->
+            <img src="assets/UIComponents/images/logo.gif" alt="logo" class="img-fluid" width="34%" height="100%" loading="lazy" />
           </a>
-          <!-- <img
-          loading="lazy"
-          src="assets/UIComponents/images/logo.gif"
-          alt="attach images"
-          id="logo"
-          *ngIf="isHomePage"
-          /> -->
-          <video *ngIf="isHomePage" autoplay loop muted id="logo" style="border-radius: 50%;">
-            <source
-              src="assets/UIComponents/images/logo.webm"
-              type="video/webm"
-            />
-            Your browser does not support the video tag.
-          </video>
-          <!-- [ngClass]="{ 'small-logo': isScrolled }" -->
+
         </div>
       </div>
       <div class="col-ld col-md">
         <ul
-          class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
+          class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-center py-4"
         >
-          <!-- <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/home']">Home</a>
-          </li> -->
+
           <li
             class="nav-item"
             routerLinkActive="active"
@@ -308,7 +291,7 @@
           >
             <a class="nav-link" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" routerLinkActive="active">
+          <!-- <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
               <button
                 class="dropbtn"
@@ -318,13 +301,7 @@
                 The Summit
               </button>
               <div class="hover-dropdown-content">
-                <!-- <a
-                  *ngFor="let link of summitLinks"
-                  [routerLink]="['/the-summit']"
-                  [fragment]="link.fragment || undefined"
-                >
-                  {{ link.label }}
-                </a> -->
+
                 <a
                   *ngFor="let link of summitLinks"
                   (click)="navigateToSection(link.fragment)"
@@ -335,8 +312,8 @@
                 </a>
               </div>
             </div>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
+          </li> -->
+          <!-- <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
               <button class="dropbtn" [routerLink]="['/partners']">
                 Partners
@@ -352,8 +329,8 @@
                 </a>
               </div>
             </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <div class="hover-dropdown" routerLinkActive="active">
               <button
                 class="dropbtn"
@@ -371,14 +348,10 @@
                 >
                   {{ link.label }}
                 </a>
-                <!-- <a
-                  [routerLink]="['/committee']"
-                >
-                  Committee
-                </a> -->
+
               </div>
             </div>
-          </li>
+          </li> -->
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
               <button
@@ -404,30 +377,7 @@
               <button class="dropbtn" [routerLink]="['/media/videos']">
                 Media
               </button>
-              <!-- <div class="hover-dropdown-content">
-                <button
-                  class="btn btn-success"
-                  [routerLink]="['/download-brochure']"
-                  style="
-                    font-size: 14px;
-                    margin: 0 0;
-                    text-align: center;
-                    width: 100%;
-                    border-radius: 0;
-                  "
-                >
-                  Download Brochure
-                </button>
-                <a
-                  *ngFor="let link of downloadLinks"
-                  [routerLink]="['/DownloadCenter']"
-                  (click)="navigateToSection(link.fragment)"
-                  fragment="{{ link.fragment }}"
-                >
-                  {{ link.label }}
-                </a>
-                
-              </div> -->
+
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
@@ -440,30 +390,25 @@
               >
             </div>
           </li>
-          <li class="nav-item" routerLinkActive="active">
+          <!-- <li class="nav-item" routerLinkActive="active">
             <a
               class="nav-link"
               routerLinkActive="active"
               [routerLink]="['/contact-us']"
               >Contact Us</a
             >
-          </li>
+          </li> -->
         </ul>
       </div>
       <div class="col-lg-2 col-md-2">
         <form class="d-flex justify-content-end" role="search">
-          <!-- [routerLink]="['/delegate-registration']" -->
-          <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
-            >Register As a Delegate</a
+
+          <a type="btn" class="btn btn-success me-2 justify-content-center w-75" routerLinkActive="active"
+          [routerLink]="['/contact-us']" style="border: 1px solid white; border-radius: 20px;"
+            >Contact Us</a
           >
-          <!-- <select
-            name=""
-            id=""
-            class="form-select w-auto bg-transparent text-white"
-          >
-            <option value="">Eng</option>
-          </select> -->
-          <a
+
+          <!-- <a
             class="nav-link"
             routerLinkActive="active"
             style="
@@ -486,9 +431,11 @@
               width="46"
               height="33"
           />
-        </a>
+        </a> -->
         </form>
       </div>
+
+
     </div>
   </div>
 </header>
@@ -506,13 +453,6 @@
           alt="attach image"
           class="col-lg-12 col-md-12 col-6"
         />
-        <!-- <video autoplay loop muted class="col-lg-12 col-md-12 col-6">
-          <source
-            src="assets/UIComponents/images/logo.webm"
-            type="video/webm"
-          />
-          Your browser does not support the video tag.
-        </video> -->
       </a>
       <button
         class="navbar-toggler border-white list"
@@ -526,7 +466,7 @@
       >
         <i class="bi bi-list text-white"></i>
       </button>
-      <!-- <div class="collapse navbar-collapse py-3" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse py-3" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto">
           <li class="nav-item">
             <a
@@ -536,7 +476,8 @@
               >Home</a
             >
           </li>
-          <li class="nav-item">
+
+          <!-- <li class="nav-item">
 
             <div class="hover-dropdown">
               <button class="dropbtn" [routerLink]="['/the-summit']">
@@ -559,8 +500,9 @@
                 <a [routerLink]="['/the-summit']" fragment="12">Venue</a>
               </div>
             </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+
+          <!-- <li class="nav-item">
             <div class="hover-dropdown">
               <button class="dropbtn" [routerLink]="['/partners']">
                 Partners
@@ -581,8 +523,9 @@
                 >
               </div>
             </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+
+          <!-- <li class="nav-item">
 
             <div class="hover-dropdown">
               <button
@@ -599,7 +542,8 @@
                 >
               </div>
             </div>
-          </li>
+          </li> -->
+
           <li class="nav-item">
             <div class="hover-dropdown">
               <button
@@ -610,9 +554,9 @@
                 I-am-Peacekeeper Movement
               </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/world-peacekeepers-movement']"
+                <!-- <a [routerLink]="['/world-peacekeepers-movement']"
                   >The Movement</a
-                >
+                > -->
                 <a [routerLink]="['/world-peacekeepers-movement']" fragment="2"
                   >I am Peacekeeper</a
                 >
@@ -628,7 +572,8 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+
+          <!-- <li class="nav-item">
             <div class="hover-dropdown">
               <button
                 class="dropbtn"
@@ -682,28 +627,32 @@
                 >
               </div>
             </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+
+          <!-- <li class="nav-item">
             <a
               class="nav-link"
               routerLinkActive="active"
               [routerLink]="['/contact-us']"
               >Contact Us</a
             >
-          </li>
+          </li> -->
+
         </ul>
         <form class="d-flex" role="search">
           <a
             type="btn"
             class="btn btn-success me-2"
-            (click)="navigateUrl()"
-            >Register As a Delegate</a
+            routerLinkActive="active"
+              [routerLink]="['/contact-us']"
+              style="border: 1px solid white; border-radius: 20px;"
+            >Contact Us</a
           >
-          <select name="" id="" class="">
+          <!-- <select name="" id="" class="">
             <option value="">Eng</option>
-          </select>
+          </select> -->
         </form>
-      </div> -->
+      </div>
     </div>
   </nav>
 </header>

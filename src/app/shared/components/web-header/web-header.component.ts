@@ -43,7 +43,7 @@ export class WebHeaderComponent implements OnInit {
   ];
   peacekeeperLinks = [
     { label: 'Sign Up Now', fragment: undefined },
-    { label: 'The Movement', fragment: 'pe2' },
+    // { label: 'The Movement', fragment: 'pe2' },
     { label: 'I am Peacekeeper', fragment: 'pe3' },
     { label: '7 Human Values', fragment: 'pe4' },
     { label: 'Song and Graphics', fragment: 'pe5' },

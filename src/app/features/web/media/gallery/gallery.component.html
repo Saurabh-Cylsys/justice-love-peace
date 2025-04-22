@@ -1,0 +1,442 @@
+<section class="section5 p-md-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <app-media-header></app-media-header>
+      </div>
+
+      <!-- Loading indicator -->
+      <div
+        class="col-md-12 text-center loading-container"
+        *ngIf="!imagesLoaded"
+      >
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading media content...</p>
+      </div>
+
+      <div class="col-md-12 mt-5" [class.fade-in]="imagesLoaded">
+        <div class="row" [@staggeredFade]="imagesLoaded ? 'in' : 'out'">
+          <div class="col-md-7">
+            <a
+              href="https://www.khaleejtimes.com/uae/dubai-to-host-worlds-largest-summit-on-justice-peace-with-nearly-3000-attendees"
+              target="_blank"
+              rel="noopener noreferrer"
+              *ngIf="imagesLoaded"
+            >
+              <img
+                src="assets/UIComponents/images/media/newspaper1.webp"
+                class="img-fluid h-100"
+                alt="..."
+                width="100%"
+                [@fadeIn]
+                [@hoverEffect]="imageStates['newspaper1']"
+                (mouseenter)="onMouseEnter('newspaper1')"
+                (mouseleave)="onMouseLeave('newspaper1')"
+            /></a>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-6 animated-container">
+                <a
+                  href="https://www.facebook.com/story.php?story_fbid=1019835283521997&id=100064866033528&_rdr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  *ngIf="imagesLoaded"
+                >
+                  <img
+                    src="assets/UIComponents/images/media/newspaper4.webp"
+                    class="img-fluid h-100"
+                    alt="..."
+                    width="100%"
+                    [@scaleIn]
+                    [@hoverEffect]="imageStates['newspaper4']"
+                    (mouseenter)="onMouseEnter('newspaper4')"
+                    (mouseleave)="onMouseLeave('newspaper4')"
+                /></a>
+              </div>
+              <div class="col-md-6 animated-container">
+                <img
+                  *ngIf="imagesLoaded"
+                  src="assets/UIComponents/images/media/newspaper3.webp"
+                  class="img-fluid h-100"
+                  alt="..."
+                  width="100%"
+                  [@scaleIn]
+                  [@hoverEffect]="imageStates['newspaper3']"
+                  (mouseenter)="onMouseEnter('newspaper3')"
+                  (mouseleave)="onMouseLeave('newspaper3')"
+                />
+              </div>
+              <div class="col-md-12 animated-container">
+                <a
+                  href="https://www.zawya.com/en/press-release/events-and-conferences/dubai-to-host-the-worlds-largest-global-summit-on-justice-love-and-peace-jyozimez"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  *ngIf="imagesLoaded"
+                >
+                  <img
+                    src="assets/UIComponents/images/media/newspaper2.webp"
+                    class="img-fluid h-100"
+                    alt="..."
+                    width="100%"
+                    [@fadeIn]
+                    [@hoverEffect]="imageStates['newspaper2']"
+                    (mouseenter)="onMouseEnter('newspaper2')"
+                    (mouseleave)="onMouseLeave('newspaper2')"
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 my-4">
+        <div class="row align-items-end">
+          <div class="col-md-8">
+            <hr class="m-0" />
+          </div>
+          <div class="col-md-4">
+            <h2 class="text-end col-12 m-0"><span>Don't Miss</span></h2>
+            <hr class="m-0" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="news">
+          <div class="row">
+            <!-- <div class="col-md-6">
+              <a
+                href="https://www.aninews.in/news/world/asia/violence-is-not-the-solution-of-the-wise-says-uaes-global-imams-council-leader20250412160451/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="text-decoration: none"
+              >
+                <img
+                  src="assets/UIComponents/images/media/ANI-20250412103343.webp"
+                  alt=""
+                  class="img-fluid h-50"
+                  width="100%"
+                />
+                <p class="date">Updated: 12-04-2025 16:04 IST</p>
+                <p class="title">
+                  "Violence is not the solution of the wise," says UAE's Global Imams Council leader
+                </p>
+                <p class="description">
+                  Dubai [UAE], April 12 (ANI): Imam M Tawhidi, Senior Imam of the Global Imams Council,
+                  said that extremism and violence are not the solution of the wise.
+                </p>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a
+                href="https://gulfnews.com/uae/dubai-global-justice-love-and-peace-summit-kicks-off-with-call-for-a-new-global-order-1.500091986"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="text-decoration: none"
+              >
+                <img
+                  src="assets/UIComponents/images/media/gulfnews_2025-04-12_njtl6wfd_peace-conferecne.jpg"
+                  alt=""
+                  class="img-fluid h-50"
+                  width="100%"
+                />
+                <p class="date">Updated: 12-04-2025 18:06 IST</p>
+                <p class="title">
+                  Dubai: Global Justice, Love and Peace Summit kicks off with
+                  call for a new global order
+                </p>
+                <p class="description">
+                  Dubai: The Global Justice, Love and Peace Summit, dubbed as
+                  the world’s largest peace conference, opened on Saturday at
+                  Expo City Dubai, with a call for a new global order of unity
+                  and shared responsibility to shape a future where justice,
+                  peace, and love are not mere aspirations, but lived realities.
+                </p>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a
+                href="https://www.gulftoday.ae/news/2025/04/12/dubai-set-to-create-history-by-hosting-12-nobel-peace-prize-laureates-on-single-stage"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="text-decoration: none"
+              >
+                <img
+                  src="assets/UIComponents/images/media/950850.webp"
+                  alt=""
+                  class="img-fluid h-50"
+                  width="100%"
+                />
+                <p class="date">Updated: 12-04-2025 18:06 IST</p>
+                <p class="title">
+                  Dubai set to create history by hosting 12 Nobel Peace Prize
+                  laureates on single stage
+                </p>
+                <p class="description">
+                  Global Justice, Love & Peace summit, the world’s largest peace
+                  summit, commenced at Expo City Dubai on Saturday for two days
+                  of discussions by 12 Nobel Peace Prize laureates, royalties,
+                  heads of state, chief justices, business leaders, religious
+                  and spiritual leaders, sports champions and film stars with a
+                  mission to foster justice, love and peace in the world.
+                </p>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a
+                href="https://www.metrovaartha.com/news/pravasi/global-justice-love-peace-global-summit-kicks-off-in-dubai"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="text-decoration: none"
+              >
+                <img
+                  src="assets/UIComponents/images/media/metrovaartha_2025-04-12_bey7uoac_00.webp"
+                  alt=""
+                  class="img-fluid h-50"
+                  width="100%"
+                />
+                <p class="date">Updated: 12-04-2025 10:14 P.M</p>
+                <p class="title">
+                  'ഗ്ലോബൽ ജസ്റ്റിസ്, ലവ് & പീസ്' ആഗോള ഉച്ചകോടിക്ക് ദുബായിൽ തുടക്കം
+                </p>
+                <p class="description">
+                  ദുബായ്: ലോകത്തിലെ ഏറ്റവും വലിയ സമാധാന ഉച്ചകോടിയായ 'ഗ്ലോബൽ ജസ്റ്റിസ്, ലവ് & പീസ് സമ്മിറ്റ്' ദുബായ് എക്സ്പോ സിറ്റിയിൽ ആരംഭിച്ചു. 12 സമാധാന നോബൽ സമ്മാന ജേതാക്കൾ, രാജകുടുംബങ്ങൾ, രാഷ്ട്രത്തലവന്മാർ, ചീഫ് ജസ്റ്റിസുമാർ, ബിസിനസ് പ്രമുഖർ , മത-ആത്മീയ ആചാര്യന്മാർ, സ്പോർട്സ് താരങ്ങൾ , സിനിമാ താരങ്ങൾ തുടങ്ങിയവർ പങ്കെടുക്കും. ലോകത്ത് നീതി, സ്നേഹം, സമാധാനം എന്നിവ വളർത്തുക എന്ന ലക്ഷ്യത്തോടെയാണ് ദ്വിദിന ഉച്ചകോടി സംഘടിപ്പിച്ചിരിക്കുന്നത്. ഞായറാഴ്ച 'വൺ പ്ലാനെറ്റ്, വൺ വോയ്‌സ്: ഗ്ലോബൽ ജസ്റ്റിസ്, ലവ് ആൻഡ് പീസ്' എന്ന വിഷയത്തിൽ ഒരുക്കുന്ന ചർച്ചയിലാണ് 12 നോബൽ സമാധാന സമ്മാന ജേതാക്കൾ ഒരേ വേദിയിൽ എത്തുന്നത്.
+                </p>
+              </a>
+            </div> -->
+            <div class="col-md-6">
+              <a
+                href="https://www.devdiscourse.com/article/entertainment/3251984-global-peace-summit-in-uae-a-call-for-harmony?amp"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="text-decoration: none"
+              >
+                <img
+                  src="assets/UIComponents/images/media/newspaper5.png"
+                  alt=""
+                  class="img-fluid h-50"
+                  width="100%"
+                />
+                <p class="date">
+                  Updated: 06-02-2025 18:06 IST | Created: 06-02-2025 18:06 IST
+                </p>
+                <p class="title">
+                  Global Justice, Love & Peace Summit Unites World Leaders in
+                  Dubai
+                </p>
+                <p class="description">
+                  The Global Justice, Love & Peace Summit featuring Sheikh
+                  Nahayan bin Mabarak Al Nahayan as Chief Guest aims to gather
+                  global thought leaders in Dubai in April 2025. The event marks
+                  the launch of the 'I am Peacekeeper' movement, seeking to
+                  recruit 1 million Peacekeepers by September 2025.
+                </p>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a
+                href="https://www.ibc24.in/world/satyarthi-baba-ramdev-to-attend-peace-summit-in-dubai-2930182.html/amp"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="text-decoration: none"
+              >
+                <img
+                  src="assets/UIComponents/images/media/newspaper6.png"
+                  alt=""
+                  class="img-fluid h-50"
+                  width="100%"
+                />
+                <p class="date">
+                  Publish Date - February 4, 2025 / 06:39 PM IST, Updated On -
+                  February 4, 2025 / 06:39 PM IST
+                </p>
+                <p class="title">
+                  दुबई में शांति शिखर सम्मेलन में भाग लेंगे सत्यार्थी, बाबा
+                  रामदेव
+                </p>
+                <p class="description">
+                  नोबेल पुरस्कार विजेता कैलाश सत्यार्थी और योग गुरु रामदेव उन
+                  प्रमुख भारतीय हस्तियों में शामिल हैं, जो अगले महीने यहां
+                  वैश्विक शांति शिखर सम्मेलन में भाग लेने वाले हैं आई एम पीसकीपर
+                  मूवमेंट' के अध्यक्ष डॉ. हुजैफा खोराकीवाला ने 12-13 अप्रैल को
+                  होने वाले शिखर सम्मेलन की घोषणा करते हुए कहा कि शिखर सम्मेलन
+                  कैबिनेट सदस्य और सहिष्णुता व सह-अस्तित्व मंत्री शेख नहयान
+                  मबारक अल नहयान की देखरेख में आयोजित किया जाएगा, जो मुख्य अतिथि
+                  भी होंगे।
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="table-responsive h-50 left-scrollbar">
+          <table class="table table-borderless bg-transparent">
+            <tbody>
+              <!-- <tr>
+                <td>
+                  <img
+                    src="assets/UIComponents/images/media/theTribuneLogo.webp"
+                    alt=""
+                    class="img-fluid h-100"
+                  />
+                </td>
+                <td>
+                  <p class="date">
+                    <span>THE TRIBUNE - </span>April 12, 2025
+                  </p>
+                  <a
+                    href="https://www.wam.ae/a/bj5381w"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="title"
+                  >
+                  "Violence is not the solution of the wise," says UAE's Global Imams Council leader
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="assets/UIComponents/images/media/enawLogo.png"
+                    alt=""
+                    class="img-fluid h-100"
+                  />
+                </td>
+                <td>
+                  <p class="date">
+                    <span>EMIRATES NEWS AGENCY-WAM - </span>April 12, 2025
+                  </p>
+                  <a
+                    href="https://www.wam.ae/a/bj5381w"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="title"
+                  >
+                  بمشاركة 12 من حائزي نوبل للسلام.. انطلاق قمة "العدالة والحب والسلام "
+                  </a>
+                </td>
+              </tr> -->
+              <tr>
+                <td>
+                  <img
+                    src="assets/UIComponents/images/media/newsLogo1.png"
+                    alt=""
+                    class="img-fluid h-100"
+                  />
+                </td>
+                <td>
+                  <p class="date">
+                    <span>UAE NEWS247 - </span>February 4, 2025
+                  </p>
+                  <a
+                    href="https://menews247.com/dubai-to-host-the-worlds-largest-global-summit-on-justice-love-peace-2/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="title"
+                  >
+                    Dubai to Host the World's Largest Global Summit on Justice,
+                    Love & Peace
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="assets/UIComponents/images/media/newsLogo2.png"
+                    alt=""
+                    class="img-fluid h-100"
+                  />
+                </td>
+                <td>
+                  <p class="date">
+                    <span>Devdiscourse - </span>February 6, 2025
+                  </p>
+                  <a
+                    href="https://www.devdiscourse.com/article/entertainment/3255258-global-justice-love-peace-summit-unites-world-leaders-in-dubai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="title"
+                  >
+                    The only thing that overcomes hard luck is hard work
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="assets/UIComponents/images/media/newsLogo3.png"
+                    alt=""
+                    class="img-fluid h-100"
+                  />
+                </td>
+                <td>
+                  <p class="date">
+                    <span>Sinrauli Mirror - </span>February 5, 2025
+                  </p>
+                  <a
+                    href="https://www.mudukulathur.com/?p=20377"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="title"
+                  >
+                    Global Justice Summit in Dubai to host 2,800 Peacekeepers &
+                    Nobel Laureates
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="assets/UIComponents/images/media/newsLogo4.png"
+                    alt=""
+                    class="img-fluid h-100"
+                  />
+                </td>
+                <td>
+                  <p class="date">
+                    <span>WN/Gulf News - </span>February 5, 2025
+                  </p>
+                  <a
+                    href="https://article.wn.com/view/2025/02/05/Dubai_to_unite_1_million_peacekeepers_host_global_summit_on_/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="title"
+                  >
+                    At Value-Focused Hotels, the Free Breakfast Gets Bigger
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="assets/UIComponents/images/media/newsLogo5.png"
+                    alt=""
+                    class="img-fluid h-100"
+                  />
+                </td>
+                <td>
+                  <p class="date">
+                    <span>Mudukulathur - </span>February 4, 2025
+                  </p>
+                  <a
+                    href="https://www.mudukulathur.com/?p=20377"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="title"
+                  >
+                    துபாயில் உலகின் மிகப்பெரிய நீதி,அன்பு மற்றும் அமைதி தொடர்பான
+                    உச்சி மாநாடு
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -36,41 +36,42 @@ import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { MetroRouteComponent } from './metro-route/metro-route.component';
 import { AuctionComponent } from './auction/auction.component';
+import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
 const routes: Routes = [
   {
     path: '',
     component: WebMainComponent,
 
     children: [
-      { path: 'home', redirectTo: '', pathMatch: 'full' }, // Redirect /home to /
-
-      { path: '', component: WebHomeComponent, data: { metaKey: 'home' } },
-      // {path:'home',component:WebHomeComponent,
+      { path: 'stay-tuned', redirectTo: '', pathMatch: 'full' }, // Redirect /home to /
+      { path: '', component: StayTunedComponent, data: { metaKey: 'home' } },
+      // { path: '', component: WebHomeComponent, data: { metaKey: 'home' } },
+      {path:'home',component:StayTunedComponent,
+        data: {
+          metaKey: 'home'
+        },
+      },
+      // {
+      //   path: 'the-summit',
+      //   component: TheSummitComponent,
       //   data: {
-      //     metaKey: 'home'
+      //     metaKey: 'the-summit',
       //   },
       // },
-      {
-        path: 'the-summit',
-        component: TheSummitComponent,
-        data: {
-          metaKey: 'the-summit',
-        },
-      },
-      {
-        path: 'partners',
-        component: PartnersComponent,
-        data: {
-          metaKey: 'partners',
-        },
-      },
-      {
-        path: 'awards',
-        component: AwardsComponent,
-        data: {
-          metaKey: 'awards',
-        },
-      },
+      // {
+      //   path: 'partners',
+      //   component: PartnersComponent,
+      //   data: {
+      //     metaKey: 'partners',
+      //   },
+      // },
+      // {
+      //   path: 'awards',
+      //   component: AwardsComponent,
+      //   data: {
+      //     metaKey: 'awards',
+      //   },
+      // },
       {
         path: 'world-peacekeepers-movement',
         component: WorldPeacekeepersMovementComponent,
@@ -78,13 +79,13 @@ const routes: Routes = [
           metaKey: 'world-peacekeepers-movement',
         },
       },
-      {
-        path: 'DownloadCenter',
-        component: DownloadCenterComponent,
-        data: {
-          metaKey: 'DownloadCenter',
-        },
-      },
+      // {
+      //   path: 'DownloadCenter',
+      //   component: DownloadCenterComponent,
+      //   data: {
+      //     metaKey: 'DownloadCenter',
+      //   },
+      // },
       {
         path: 'chairman-corner',
         component: ChairmanCornerComponent,
@@ -92,7 +93,6 @@ const routes: Routes = [
           metaKey: 'chairman-corner',
         },
       },
-      // { path: 'download-brochure', component: DownloadBrochureComponent },
 
       {
         path: 'contact-us',
@@ -102,72 +102,70 @@ const routes: Routes = [
         },
       },
 
-      //footer
+      // {
+      //   path: 'privacy-policy',
+      //   component: PrivacyPolicyComponent,
+      //   data: {
+      //     metaKey: 'privacy-policy',
+      //   },
+      // },
+      // {
+      //   path: 'accessibility',
+      //   component: AccessibilityComponent,
+      //   data: {
+      //     metaKey: 'accessibility',
+      //   },
+      // },
+      // {
+      //   path: 'cookie-policy',
+      //   component: CookiePolicyComponent,
+      //   data: {
+      //     metaKey: 'cookie-policy',
+      //   },
+      // },
+      // {
+      //   path: 'terms-of-use',
+      //   component: TermsOfUseComponent,
+      //   data: {
+      //     metaKey: 'terms-of-use',
+      //   },
+      // },
+      // {
+      //   path: 'visitor-terms-conditions',
+      //   component: VisitorTermsOnditionsComponent,
+      //   data: {
+      //     metaKey: 'visitor-terms-conditions',
+      //   },
+      // },
 
-      {
-        path: 'privacy-policy',
-        component: PrivacyPolicyComponent,
-        data: {
-          metaKey: 'privacy-policy',
-        },
-      },
-      {
-        path: 'accessibility',
-        component: AccessibilityComponent,
-        data: {
-          metaKey: 'accessibility',
-        },
-      },
-      {
-        path: 'cookie-policy',
-        component: CookiePolicyComponent,
-        data: {
-          metaKey: 'cookie-policy',
-        },
-      },
-      {
-        path: 'terms-of-use',
-        component: TermsOfUseComponent,
-        data: {
-          metaKey: 'terms-of-use',
-        },
-      },
-      {
-        path: 'visitor-terms-conditions',
-        component: VisitorTermsOnditionsComponent,
-        data: {
-          metaKey: 'visitor-terms-conditions',
-        },
-      },
-
-      {
-        path: 'blog/human-values',
-        component: HumanValuesComponent,
-      },
-      {
-        path: 'blog/how-to-use-social-media',
-        component: HowToUseSocialMediaComponent,
-      },
-      {
-        path: 'sitemap',
-        component: SitemapComponent,
-      },
-      {
-        path: 'download-applications',
-        component: DownloadApplicationsComponent,
-      },
-      {
-        path: 'peacekeeper-preselect',
-        component: PeacekeeperPreselectComponent,
-      },
-      {
-        path: 'request-account-deletion',
-        component: RequestAccountDeletionsComponent,
-      },
-      {
-        path: 'contact-us/working-committee',
-        component: CommitteeComponent,
-      },
+      // {
+      //   path: 'blog/human-values',
+      //   component: HumanValuesComponent,
+      // },
+      // {
+      //   path: 'blog/how-to-use-social-media',
+      //   component: HowToUseSocialMediaComponent,
+      // },
+      // {
+      //   path: 'sitemap',
+      //   component: SitemapComponent,
+      // },
+      // {
+      //   path: 'download-applications',
+      //   component: DownloadApplicationsComponent,
+      // },
+      // {
+      //   path: 'peacekeeper-preselect',
+      //   component: PeacekeeperPreselectComponent,
+      // },
+      // {
+      //   path: 'request-account-deletion',
+      //   component: RequestAccountDeletionsComponent,
+      // },
+      // {
+      //   path: 'contact-us/working-committee',
+      //   component: CommitteeComponent,
+      // },
 
       {
         path: 'media/videos',
@@ -177,60 +175,56 @@ const routes: Routes = [
         path: 'media/photos',
         component: PhotosComponent,
       },
-      // {
-      //   path: 'media/articles',
-      //   component: ArticlesComponent,
-      // },
       {
         path: 'media/news-paper',
         component: NewsPaperComponent,
       },
 
-      {
-        path: 'speaker-details',
-        component: SpeakerDetailsComponent
-      },
-      {
-        path: 'speaker-details/:speakerId/:speakerName',
-        component: SpeakersProfileComponent
-      },
-      {
-        path: 'peace-shop',
-        component: PeaceShopComponent,
-      },
-      {
-        path: 'peace-menu',
-        component: PeaceMenuComponent,
-      },
-      {
-        path: 'peace-fashion',
-        component: PeaceFashionComponent,
-      },
-      {
-        path: 'about-us',
-        component: AboutUsComponent,
-      },
+      // {
+      //   path: 'speaker-details',
+      //   component: SpeakerDetailsComponent
+      // },
+      // {
+      //   path: 'speaker-details/:speakerId/:speakerName',
+      //   component: SpeakersProfileComponent
+      // },
+      // {
+      //   path: 'peace-shop',
+      //   component: PeaceShopComponent,
+      // },
+      // {
+      //   path: 'peace-menu',
+      //   component: PeaceMenuComponent,
+      // },
+      // {
+      //   path: 'peace-fashion',
+      //   component: PeaceFashionComponent,
+      // },
+      // {
+      //   path: 'about-us',
+      //   component: AboutUsComponent,
+      // },
 
-      {
-        path: 'metro-route',
-        component: MetroRouteComponent,
-      },
-      {
-        path: 'auction',
-        component: AuctionComponent,
-      },
+      // {
+      //   path: 'metro-route',
+      //   component: MetroRouteComponent,
+      // },
+      // {
+      //   path: 'auction',
+      //   component: AuctionComponent,
+      // },
 
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'stay-tuned', pathMatch: 'full' },
     ],
   },
-  {
-    path: '',
-    component: PaymentMainComponent,
-    children: [
-      { path: 'payment-status', component: PaymentComponent },
-      { path: 'success', component: SuccessComponent },
-    ],
-  },
+  // {
+  //   path: '',
+  //   component: PaymentMainComponent,
+  //   children: [
+  //     { path: 'payment-status', component: PaymentComponent },
+  //     { path: 'success', component: SuccessComponent },
+  //   ],
+  // },
 ];
 
 @NgModule({
