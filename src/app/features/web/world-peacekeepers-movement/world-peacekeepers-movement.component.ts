@@ -105,7 +105,11 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   currentSection = 'pe1';
   loading = false;
   payload: any;
-
+  onlineDiscount: any;
+  peaceKeeperDiscount: any;
+  peaceKeeperDescription:any;
+  offlineDiscount: any;
+  isStrip: string = "";
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -150,11 +154,12 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   contentTemplate!: TemplateRef<any>;
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     // this.setMetaTags();
     // this.setCanonicalUrl(
     //   'https://www.justice-love-peace.com/world-peacekeepers-movement'
     // );
+    await this.fnValidateCoupon(0);
 
     this.checkWindowSize();
     this.getAllCountrycode();
@@ -754,11 +759,11 @@ onDateChange(event: string): void {
           this.loading = false;
           this.ngxService.stop();
           // this.peacekeeperBadgeResponse = response.QR_code
-          this.peacekeeperBadgeResponse =
-            'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png';
-          this.peacekeeperBadge = decryptData.batch;
+          // this.peacekeeperBadgeResponse =
+          //   'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png';
+          // this.peacekeeperBadge = decryptData.batch;
 
-          this.peacekeeperBadgeId = decryptData.peacekeeper_id;
+          // this.peacekeeperBadgeId = decryptData.peacekeeper_id;
           this.is_selectedFile = false;
           this.peacekeepersForm.reset();
 
@@ -841,6 +846,8 @@ onDateChange(event: string): void {
       });
     }
   }
+
+
 
   onMobileNumberKeyDown(event: KeyboardEvent , inputValue: any): void {
 
@@ -1092,5 +1099,54 @@ onDateChange(event: string): void {
     if (activeDot) {
       activeDot.classList.add('active');
     }
+  }
+
+
+  async fnValidateCoupon(referalCode: string | any) {
+    this.ngxService.start();
+    await this.SharedService.getDiscountAmountByCouponCode(referalCode).subscribe({
+      next: (response: any) => {
+        let decryptData = this.encryptionService.decrypt(response.encryptedData);
+        let resDecrypt = JSON.parse(decryptData);
+
+        if(resDecrypt && resDecrypt.success) {
+
+          this.isStrip = resDecrypt.isStripe;
+
+          if(this.isStrip == "false") {
+
+            // This is for Magneti
+
+            this.ngxService.stop();
+            resDecrypt.data.forEach((item:any) => {
+              if (item.p_type === "PEACEKEEPER") {
+                this.onlineDiscount = item.dollar_aed;
+                this.peaceKeeperDescription = item.amount_description;
+              }
+            });
+          }
+          else if(this.isStrip == "true") {
+
+            // this is for stripe
+
+            this.ngxService.stop();
+
+            resDecrypt.data.forEach((item:any) => {
+              if (item.p_type === "PEACEKEEPER") {
+                this.onlineDiscount = item.discount_amount;
+                this.peaceKeeperDescription = item.amount_description;
+              }
+            });
+          }
+        }
+      },
+      error: (error: any) => {
+        this.ngxService.stop();
+        let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error :', decryptErr);
+        this.SharedService.ToastPopup(decryptErr['error'],'','error');
+      }
+    });
   }
 }
