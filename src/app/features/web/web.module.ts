@@ -52,6 +52,7 @@ import { MetroRouteComponent } from './metro-route/metro-route.component';
 import { AuctionComponent } from './auction/auction.component';
 import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
 import { GalleryComponent } from './media/gallery/gallery.component';
+import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { GalleryComponent } from './media/gallery/gallery.component';
     MetroRouteComponent,
     AuctionComponent,
     StayTunedComponent,
-    GalleryComponent
+    GalleryComponent,
+    PhotoGalleryComponent
   ],
   imports: [
     CommonModule,

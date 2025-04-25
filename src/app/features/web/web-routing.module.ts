@@ -37,6 +37,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { MetroRouteComponent } from './metro-route/metro-route.component';
 import { AuctionComponent } from './auction/auction.component';
 import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
+import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 const routes: Routes = [
   {
     path: '',
@@ -178,6 +179,10 @@ const routes: Routes = [
       {
         path: 'media/news-paper',
         component: NewsPaperComponent,
+      },
+      {
+        path: 'photo-gallery',
+        component: PhotoGalleryComponent,
       },
 
       // {
