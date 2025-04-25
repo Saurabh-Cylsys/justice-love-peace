@@ -735,6 +735,25 @@ onDateChange(event: string): void {
       );
     }
 
+
+        // // Create FormData object
+        // const formData = new FormData();
+
+        // // Append all form fields except the file
+        // Object.keys(this.peacekeepersForm.value).forEach((key) => {
+        //   formData.append(key, this.peacekeepersForm.value[key]);
+        // });
+    
+        // // Append the selected file
+        // if (this.selectedFile) {
+        //   formData.append(
+        //     'profile_picture',
+        //     this.selectedFile,
+        //     this.selectedFile.name
+        //   );
+        // }
+        // formData.append('url', environment.domainUrl);
+
  
     // Show loader
     this.ngxService.start();
@@ -750,7 +769,7 @@ onDateChange(event: string): void {
           this.SharedService.ToastPopup('', decryptData.message, 'success');
           // this.btnDisabled = false;
           setTimeout(async () => {
-            if (decryptData.isStripe  == "true")
+            if (decryptData.IsStripe  == "true")
               await this.fnStripePG(decryptData, this.payload);
             else
               await this.fnMagnatiPG(decryptData, this.payload);
@@ -790,8 +809,8 @@ onDateChange(event: string): void {
   }
 
   private async fnStripePG(response: any, payload: any) {
-    if (response.success && response.gatewayUrl) {
-      window.location.href = response.gatewayUrl;
+    if (response.success && response.discount_url) {
+      window.location.href = response.discount_url;
     } else {
       this.SharedService.ToastPopup('Error', response.message || 'Payment failed', 'error');
     }
@@ -1103,6 +1122,7 @@ onDateChange(event: string): void {
 
 
   async fnValidateCoupon(referalCode: string | any) {
+    debugger
     this.ngxService.start();
     await this.SharedService.getDiscountAmountByCouponCode(referalCode).subscribe({
       next: (response: any) => {

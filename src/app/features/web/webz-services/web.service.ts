@@ -2127,7 +2127,9 @@ export class WebService {
     return this._apiHttpService.get(this._apiEndpointsService.getPeacekeeper_Badge_Data(id));
 
   }
-
+  postVerifyPeaceBookSession(body: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifyPeaceBookSessionEndpoint(),body);
+  }
   postPeaceBookPayMP(body: any): Observable<any> {
     const jwtToken = this.sharedService.getJWTToken();
   

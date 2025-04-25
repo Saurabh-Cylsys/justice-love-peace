@@ -52,6 +52,8 @@ import { MetroRouteComponent } from './metro-route/metro-route.component';
 import { AuctionComponent } from './auction/auction.component';
 import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
 import { GalleryComponent } from './media/gallery/gallery.component';
+import { PeacekeeperPaymentSuccessComponent } from './peacekeeper-payment-success/peacekeeper-payment-success.component';
+import { PeacekeeperPaymentFailComponent } from './peacekeeper-payment-fail/peacekeeper-payment-fail.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +97,9 @@ import { GalleryComponent } from './media/gallery/gallery.component';
     MetroRouteComponent,
     AuctionComponent,
     StayTunedComponent,
-    GalleryComponent
+    GalleryComponent,
+    PeacekeeperPaymentSuccessComponent,
+    PeacekeeperPaymentFailComponent,
   ],
   imports: [
     CommonModule,

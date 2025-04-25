@@ -178,7 +178,7 @@ export class ApiEndpointsService {
   }
 
   public peacekeeperEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER_ENCRYPT);
+    return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER);
   }
 
   public checkEmailAndMobileEndpoint(): string {
@@ -281,6 +281,9 @@ export class ApiEndpointsService {
   }
   public postVerifySessionEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION_ENCRYPT);
+  }
+  public postVerifyPeaceBookSessionEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_PEACEBOOK_SESSION);
   }
 
   public getAllCountryForDelegatesEndpoint() {

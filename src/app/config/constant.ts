@@ -13,7 +13,7 @@ export class Constants {
     public readonly API_ENDPOINT_CONTECT_US: string = 'contact_us'
     public readonly API_ENDPOINT_CONTECT_US_ENCRYPT: string = 'contact_us/encryption'
     
-    public readonly API_ENDPOINT_PEACEKEEPER: string = 'create-peacekeeper'
+    public readonly API_ENDPOINT_PEACEKEEPER: string = 'create_peacekeeper'
     public readonly API_ENDPOINT_PEACEKEEPER_ENCRYPT: string = 'create-peacekeeper/encryption'
    
     public readonly API_ENDPOINT_DOWNLOAD_PEACEKEEPER_BADGE: string = 'peacekeeper/'
@@ -24,6 +24,7 @@ export class Constants {
 
     public readonly API_ENDPOINT_VERIFY_SESSION: string = 'verify_session_stripe_payment_new'
     public readonly API_ENDPOINT_VERIFY_SESSION_ENCRYPT: string = 'verify_session_stripe_payment_new/encryption'
+    public readonly API_ENDPOINT_VERIFY_PEACEBOOK_SESSION: string = 'verify_peacekeeper'
 
     
     public readonly API_ENDPOINT_checkEmailAndMobile: string = 'registration/delegate/already'

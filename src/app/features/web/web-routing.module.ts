@@ -37,6 +37,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { MetroRouteComponent } from './metro-route/metro-route.component';
 import { AuctionComponent } from './auction/auction.component';
 import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
+import { PeacekeeperPaymentSuccessComponent } from './peacekeeper-payment-success/peacekeeper-payment-success.component';
+import { PeacekeeperPaymentFailComponent } from './peacekeeper-payment-fail/peacekeeper-payment-fail.component';
 const routes: Routes = [
   {
     path: '',
@@ -213,6 +215,8 @@ const routes: Routes = [
       //   path: 'auction',
       //   component: AuctionComponent,
       // },
+      {path:'peacekeeper-payment-success',component:PeacekeeperPaymentSuccessComponent},
+      {path:'peacekeeper-payment-fail',component:PeacekeeperPaymentFailComponent},
 
       { path: '', redirectTo: 'stay-tuned', pathMatch: 'full' },
     ],
@@ -225,6 +229,8 @@ const routes: Routes = [
   //     { path: 'success', component: SuccessComponent },
   //   ],
   // },
+
+
 ];
 
 @NgModule({

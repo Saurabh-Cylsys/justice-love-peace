@@ -435,12 +435,12 @@
               <div class="row">
                 <div class="col-md text-center" >
                   <div style="border: 1px black; border-radius: 5px;">
-                    <span>Stand for peace—join the Peacekeeper Movement today for only</span>
+                    <!-- <span>Stand for peace—join the Peacekeeper Movement today for only</span> -->
+                    <p>{{ peaceKeeperDescription }}</p>
                     <h4 class="text-dark fw-bold mt-2">
                       <span *ngIf="this.isStrip == 'true'">$ {{ onlineDiscount }}</span>
                       <span *ngIf="this.isStrip == 'false'"> {{ onlineDiscount }}</span>
                     </h4>
-                    <!-- <p>{{ peaceKeeperDescription }}</p> -->
                   </div>
                   <p class="fs-6">
                     By clicking Save, I express my solidarity to spread World
@@ -449,6 +449,7 @@
                   </p>
                   
                   <button
+                  [disabled]="submitted"
                     (click)="isCorrect()"
                     type="button"
                     class="btn btn-success text-white text-center px-5 mb-lg-0 mb-4 "
