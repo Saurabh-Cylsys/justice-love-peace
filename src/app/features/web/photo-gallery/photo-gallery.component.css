@@ -1,0 +1,11 @@
+.carousel-item img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+.img-fluid {
+  width: 250px;
+}

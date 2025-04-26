@@ -236,6 +236,14 @@
           >Contact Us</a
         >
       </li> -->
+      <li>
+          <a
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+            [routerLink]="['/photo-gallery']"
+            >Photo Gallery</a
+          >
+      </li>
       <li style="display: flex pt-4">
         <!-- <a
           type="btn"
@@ -396,6 +404,16 @@
                 routerLinkActive="active"
                 [routerLink]="['/chairman-corner']"
                 >Chairman’s Corner</a
+              >
+            </div>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <div class="hover-dropdown">
+              <a
+                class="nav-link"
+                routerLinkActive="active"
+                [routerLink]="['/photo-gallery']"
+                >Photo Gallery</a
               >
             </div>
           </li>

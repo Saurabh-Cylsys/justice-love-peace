@@ -54,8 +54,8 @@ import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
 import { GalleryComponent } from './media/gallery/gallery.component';
 import { PeacekeeperPaymentSuccessComponent } from './peacekeeper-payment-success/peacekeeper-payment-success.component';
 import { PeacekeeperPaymentFailComponent } from './peacekeeper-payment-fail/peacekeeper-payment-fail.component';
-// import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { IAmPeacekeeperMovementComponent } from './i-am-peacekeeper-movement/i-am-peacekeeper-movement.component';
+import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 
 @NgModule({
   declarations: [
@@ -102,8 +102,8 @@ import { IAmPeacekeeperMovementComponent } from './i-am-peacekeeper-movement/i-a
     GalleryComponent,
     PeacekeeperPaymentSuccessComponent,
     PeacekeeperPaymentFailComponent,
-    // PhotoGalleryComponent,
-    IAmPeacekeeperMovementComponent
+    IAmPeacekeeperMovementComponent,
+    PhotoGalleryComponent
   ],
   imports: [
     CommonModule,
