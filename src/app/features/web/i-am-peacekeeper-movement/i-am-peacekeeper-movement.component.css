@@ -1,0 +1,17 @@
+.section7-title h1{
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.section7-title h2{
+  color: #000;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: left;
+  margin: 0;
+}
+.section7-title p{
+  color: #000;
+  
+}

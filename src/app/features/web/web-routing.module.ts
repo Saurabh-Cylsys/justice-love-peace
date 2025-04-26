@@ -39,6 +39,7 @@ import { AuctionComponent } from './auction/auction.component';
 import { StayTunedComponent } from './stay-tuned/stay-tuned.component';
 import { PeacekeeperPaymentSuccessComponent } from './peacekeeper-payment-success/peacekeeper-payment-success.component';
 import { PeacekeeperPaymentFailComponent } from './peacekeeper-payment-fail/peacekeeper-payment-fail.component';
+import { IAmPeacekeeperMovementComponent } from './i-am-peacekeeper-movement/i-am-peacekeeper-movement.component';
 const routes: Routes = [
   {
     path: '',
@@ -180,6 +181,11 @@ const routes: Routes = [
       {
         path: 'media/news-paper',
         component: NewsPaperComponent,
+      },
+      
+      {
+        path: 'i-am-a-peacekeeper-movement',
+        component: IAmPeacekeeperMovementComponent,
       },
 
       // {

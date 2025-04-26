@@ -159,7 +159,7 @@
 
       </div> -->
 
-      <div class="accordion-item">
+      <!-- <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
@@ -170,7 +170,7 @@
             aria-controls="flush-collapseFour"
           >
             <a
-              [routerLink]="['/world-peacekeepers-movement']"
+              [routerLink]="['/i-am-a-peacekeeper-movement']"
               aria-label="Close"
               data-bs-dismiss="offcanvas"
               >I-am-Peacekeeper Movement</a
@@ -198,9 +198,18 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <ul>
+      <li>
+        <a
+        [routerLink]="['/i-am-a-peacekeeper-movement']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+        >
+        I-am-Peacekeeper Movement</a
+        >
+      </li>
       <li>
         <a
         [routerLink]="['/media/videos']"
@@ -356,11 +365,11 @@
             <div class="hover-dropdown">
               <button
                 class="dropbtn"
-                [routerLink]="['/world-peacekeepers-movement']"
+                [routerLink]="['/i-am-a-peacekeeper-movement']"
               >
                 I-am-Peacekeeper Movement
               </button>
-              <div class="hover-dropdown-content">
+              <!-- <div class="hover-dropdown-content">
                 <a
                   *ngFor="let link of peacekeeperLinks"
                   [routerLink]="['/world-peacekeepers-movement']"
@@ -369,7 +378,7 @@
                 >
                   {{ link.label }}
                 </a>
-              </div>
+              </div> -->
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
