@@ -105,7 +105,7 @@
       </div>
 
       <div class="ui-card-container mb-2 mt-1">
-        <div class="ui-card ui-card1" (click)="goToDelegatePage()">
+        <!-- <div class="ui-card ui-card1" (click)="goToDelegatePage()">
           <div class="price-ribbon">
             <span *ngIf="this.isStrip == 'true'"
               >$ {{ this.offlineDiscount }}</span
@@ -129,13 +129,9 @@
             </h4>
             <p>{{ delegateOfflineDescription }}</p>
           </div>
-          <!-- <div class="ui-card-buttons">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#userdelegate" aria-expanded="true" aria-controls="userdelegate">Know More</button>
-      <button>Register</button>
-      </div> -->
-        </div>
-
-        <div class="ui-card ui-card2" (click)="goToChildNomination()">
+  
+        </div> -->
+<!--         <div class="ui-card ui-card2" (click)="goToChildNomination()">
           <div class="price-ribbon">
             <span *ngIf="this.isStrip == 'true'"
               >$ {{ childNominationDiscount }}</span
@@ -159,10 +155,7 @@
             </h4>
             <p>{{ peaceStudentDescription }}</p>
           </div>
-          <!-- <div class="ui-card-buttons">
-      <button class="accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#studentdelegate" aria-expanded="true" aria-controls="studentdelegate">Know More</button>
-      <button>Register</button>
-      </div> -->
+  
         </div>
 
         <div *ngIf="isOnline == 1" class="ui-card ui-card3" (click)="goToOnlineDelegate()">
@@ -181,6 +174,34 @@
             </h4>
             <p>{{ delegateOnlineDescription }}</p>
           </div>
+        </div> -->
+
+
+        <div class="ui-card ui-card4" (click)="goToPeacekeeper()">
+          <div class="price-ribbon">
+            <span *ngIf="this.isStrip == 'true'"
+              >$ {{ peacekeeperDiscount }}</span
+            >
+            <span *ngIf="this.isStrip == 'false'">
+              {{ peacekeeperDiscount }}</span
+            >
+          </div>
+          <div class="ui-card-image"></div>
+          <div class="ui-card-text">
+            <a class="btn btn-success" (click)="goToPeacekeeper()"
+              >As a Peacekeeper</a
+            >
+            <h4 class="text-dark fw-bold mt-2">
+              <span *ngIf="this.isStrip == 'true'"
+                >$ {{ peacekeeperDiscount }}</span
+              >
+              <span *ngIf="this.isStrip == 'false'">
+                {{ peacekeeperDiscount }}</span
+              >
+            </h4>
+            <p>{{ peacekeeperDescription }}</p>
+          </div>
+  
         </div>
 
       </div>

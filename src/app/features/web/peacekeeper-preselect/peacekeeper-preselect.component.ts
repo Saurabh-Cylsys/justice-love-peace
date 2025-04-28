@@ -16,11 +16,13 @@ export class PeacekeeperPreselectComponent {
   onlinepackageAmt: number = 280;
   onlineDiscount: any;
   childNominationDiscount: any;
+  peacekeeperDiscount: any;
   offlineDiscount: any;
   isStrip: string = "";
   delegateOfflineDescription : string = "";
   peaceStudentDescription : string = "";
   delegateOnlineDescription : string = "";
+  peacekeeperDescription : string = "";
   isMobileView = false;
   isOnline: number=0;
 
@@ -98,6 +100,9 @@ export class PeacekeeperPreselectComponent {
               } else if (item.p_type === "DELEGATE_OFFLINE") {
                 this.offlineDiscount = item.dollar_aed;
                 this.delegateOfflineDescription = item.amount_description;
+              } else if (item.p_type === "PEACEKEEPER") {
+                this.peacekeeperDiscount = item.dollar_aed;
+                this.peacekeeperDescription = item.amount_description;
               }
             });
           }
@@ -118,6 +123,9 @@ export class PeacekeeperPreselectComponent {
               } else if (item.p_type === "DELEGATE_OFFLINE") {
                 this.offlineDiscount = item.discount_amount;
                 this.delegateOfflineDescription = item.amount_description;
+              } else if (item.p_type === "PEACEKEEPER") {
+                this.peacekeeperDiscount = item.discount_amount;
+                this.peacekeeperDescription = item.amount_description;
               }
             });
           }
@@ -202,6 +210,18 @@ export class PeacekeeperPreselectComponent {
     });
   }
 
+
+  goToPeacekeeper() {
+    let params = {
+     dType: 'offline',
+     code: this.referralCode
+     };
+     const encryptedParams = this.encryptionService.encryptData(params);
+ 
+     this.router.navigate(['/world-peacekeepers-movement'], {
+       queryParams: { code: this.referralCode }
+     });
+   }
   // goToOnlineDelegate() {
   //   if (this.referralCode) {
   //     this.router.navigate(['/delegate-online'], {

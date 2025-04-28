@@ -158,10 +158,10 @@ const routes: Routes = [
       //   path: 'download-applications',
       //   component: DownloadApplicationsComponent,
       // },
-      // {
-      //   path: 'peacekeeper-preselect',
-      //   component: PeacekeeperPreselectComponent,
-      // },
+      {
+        path: 'peacekeeper-preselect',
+        component: PeacekeeperPreselectComponent,
+      },
       // {
       //   path: 'request-account-deletion',
       //   component: RequestAccountDeletionsComponent,

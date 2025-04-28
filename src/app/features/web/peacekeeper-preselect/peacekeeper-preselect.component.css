@@ -507,6 +507,19 @@ h5 {
   background: rgb(0, 189, 63);
 }
 
+.ui-card4 .ui-card-image {
+  background: url("../../../../assets/UIComponents/images/pre-select/I_am_Peacekeeper.png") center/contain;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+.ui-card4 .ui-card-text .date {
+  color: rgb(0, 189, 63);
+}
+.ui-card4 .ui-card-stats {
+  background: rgb(0, 189, 63);
+}
+
 /* 🌟 Responsive Design */
 @media (min-width: 320px) {
   /* Mobile */

@@ -109,6 +109,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   peaceKeeperDiscount: any;
   peaceKeeperDescription:any;
   offlineDiscount: any;
+  referralCode: string = '';
   isStrip: string = "";
 
   changePreferredCountries() {
@@ -128,6 +129,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private route: ActivatedRoute,
+    private router: Router,
     private encryptionService: EncryptionService,
     @Inject(DOCUMENT) private document: Document,
     private renderer : Renderer2
@@ -159,7 +161,26 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     // this.setCanonicalUrl(
     //   'https://www.justice-love-peace.com/world-peacekeepers-movement'
     // );
-    await this.fnValidateCoupon(0);
+
+    this.route.queryParams.subscribe(async (params: any) => {
+      if (params != undefined && Object.keys(params).length > 0) {
+        this.referralCode = params.code || null; ;
+        if (params.code) {
+
+          if (this.referralCode) {
+            await this.fnValidateCoupon(this.referralCode);
+
+          }
+          // this.router.navigate(['/world-peacekeepers-movement'], {
+          //   queryParams: this.referralCode ? { code: this.referralCode } : {}, // Pass query params
+          //   queryParamsHandling: 'merge', // Preserve existing query params (optional)
+          //   relativeTo: this.route, // Stay on the same route
+          // })
+        }
+    } else{
+      await this.fnValidateCoupon(0);
+    }
+  });
 
     this.checkWindowSize();
     this.getAllCountrycode();
@@ -717,6 +738,7 @@ onDateChange(event: string): void {
       mobile_number: this.peacekeepersForm.value.mobile_number,
       email_id: this.peacekeepersForm.value.email_id,
       is_active: this.peacekeepersForm.value.is_active,
+      reference_no: this.referralCode? this.referralCode : "",
       Check_email: this.peacekeepersForm.value.Check_email == true ? 1 : 0,
       url: environment.domainUrl,
     };
@@ -1084,27 +1106,27 @@ onDateChange(event: string): void {
   }
 
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll() {
-    const sections = ['pe1', 'pe2', 'pe3', 'pe4', 'pe5'];
-    let currentSection = '';
+  // @HostListener('window:scroll', ['$event'])
+  // onScroll() {
+  //   const sections = ['pe1', 'pe2', 'pe3', 'pe4', 'pe5'];
+  //   let currentSection = '';
     
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          currentSection = section;
-          break;
-        }
-      }
-    }
+  //   for (const section of sections) {
+  //     const element = document.getElementById(section);
+  //     if (element) {
+  //       const rect = element.getBoundingClientRect();
+  //       if (rect.top <= 150 && rect.bottom >= 150) {
+  //         currentSection = section;
+  //         break;
+  //       }
+  //     }
+  //   }
     
-    if (currentSection && this.currentSection !== currentSection) {
-      this.currentSection = currentSection;
-      this.updateActiveDot();
-    }
-  }
+  //   if (currentSection && this.currentSection !== currentSection) {
+  //     this.currentSection = currentSection;
+  //     this.updateActiveDot();
+  //   }
+  // }
 
   updateActiveDot() {
     // Remove active class from all dots
@@ -1122,7 +1144,6 @@ onDateChange(event: string): void {
 
 
   async fnValidateCoupon(referalCode: string | any) {
-    debugger
     this.ngxService.start();
     await this.SharedService.getDiscountAmountByCouponCode(referalCode).subscribe({
       next: (response: any) => {
@@ -1140,7 +1161,7 @@ onDateChange(event: string): void {
             this.ngxService.stop();
             resDecrypt.data.forEach((item:any) => {
               if (item.p_type === "PEACEKEEPER") {
-                this.onlineDiscount = item.dollar_aed;
+                this.peaceKeeperDiscount = item.dollar_aed;
                 this.peaceKeeperDescription = item.amount_description;
               }
             });
@@ -1153,7 +1174,7 @@ onDateChange(event: string): void {
 
             resDecrypt.data.forEach((item:any) => {
               if (item.p_type === "PEACEKEEPER") {
-                this.onlineDiscount = item.discount_amount;
+                this.peaceKeeperDiscount = item.discount_amount;
                 this.peaceKeeperDescription = item.amount_description;
               }
             });
