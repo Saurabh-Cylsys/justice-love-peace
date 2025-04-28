@@ -177,6 +177,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
           //   relativeTo: this.route, // Stay on the same route
           // })
         }
+        else{
+          await this.fnValidateCoupon(0);
+        }
     } else{
       await this.fnValidateCoupon(0);
     }
