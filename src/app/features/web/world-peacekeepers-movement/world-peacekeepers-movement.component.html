@@ -421,6 +421,19 @@
                 </div>
 
                 <div class="col-md-12 my-3 my-lg-3">
+                  <div class="col-md-4">
+                    <label class="col-md-12 no-padding p-0" for="profession2">Reference Number:</label>
+                    <input type="text" name="reference_no" maxlength="50" id="profession2"
+                      placeholder="Enter reference no." class="form-control p-0 w-100" [readonly]="
+                        this.referralCode
+                          ? this.referralCode
+                          : ''
+                      " formControlName="reference_no" minlength="3" autocomplete="off"
+                      (input)="onInput($event, 'reference_no')" />
+                  </div>
+                </div>
+
+                <div class="col-md-12 my-3 my-lg-3">
                   <label class="containerCheck">
                     <input type="checkbox" formControlName="Check_email" />
                     <span class="checkmark"></span>

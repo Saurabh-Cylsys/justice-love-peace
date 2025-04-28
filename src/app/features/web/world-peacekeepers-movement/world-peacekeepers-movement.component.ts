@@ -231,6 +231,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         ],
       ],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
+      reference_no: [this.referralCode ? this.referralCode : ''],
       is_active: 1,
       Check_email: [''],
       // File: ['', [Validators.required]],
@@ -741,7 +742,7 @@ onDateChange(event: string): void {
       mobile_number: this.peacekeepersForm.value.mobile_number,
       email_id: this.peacekeepersForm.value.email_id,
       is_active: this.peacekeepersForm.value.is_active,
-      reference_no: this.referralCode? this.referralCode : "",
+      reference_no: this.referralCode? this.referralCode : this.peacekeepersForm.value.reference_no,
       Check_email: this.peacekeepersForm.value.Check_email == true ? 1 : 0,
       url: environment.domainUrl,
     };
