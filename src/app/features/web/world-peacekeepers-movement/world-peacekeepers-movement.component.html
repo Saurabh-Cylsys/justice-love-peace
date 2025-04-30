@@ -420,10 +420,16 @@
                   </p>
                 </div>
 
-                <div class="col-md-12 my-3 my-lg-3">
+                <div class="col-md-12 d-flex my-3 my-lg-3">
                   <div class="col-md-4">
-                    <label class="col-md-12 no-padding p-0" for="profession2">Reference Number:</label>
-                    <input type="text" name="reference_no" maxlength="50" id="profession2"
+                    <label class="col-md-12 no-padding p-0" for="profession2">Reference Number: <span
+                      class="form-label-span"
+                      style="color: #ff0000"
+                    >
+                      *</span
+                    ></label>
+                    <input type="text" name="reference_no" maxlength="50" id="reference_no"
+                    #reference_no
                       placeholder="Enter reference no." class="form-control p-0 w-100" [readonly]="
                         this.referralCode
                           ? this.referralCode
@@ -431,6 +437,15 @@
                       " formControlName="reference_no" minlength="3" autocomplete="off"
                       (input)="onInput($event, 'reference_no')" />
                   </div>
+                  <button *ngIf="!referralCode"
+                  [disabled]="isCheckReference"
+                    (click)="checkRefNo()"
+                    type="button"
+                    class="btn btn-success text-white text-center mb-lg-0 mt-3 h-100"
+                  >
+                    Check Reference Number
+                  </button>
+
                 </div>
 
                 <div class="col-md-12 my-3 my-lg-3">
