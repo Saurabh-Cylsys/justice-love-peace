@@ -1,0 +1,45 @@
+[
+  {
+    "category": "Category 1",
+    "images": [
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/1.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/2.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/3.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/4.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/5.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/6.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/7.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/8.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/9.jpg" }
+    ]
+  },
+  {
+    "category": "Category 2",
+    "images": [
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/10.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/11.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/12.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/13.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/14.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/15.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/16.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/17.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/18.jpg" }
+    ]
+  },
+  {
+    "category": "Category 3",
+    "images": [
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/19.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/20.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/21.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/22.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/23.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/24.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/25.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/26.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/27.jpg" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/28.jpg" }
+    ]
+  }
+]
