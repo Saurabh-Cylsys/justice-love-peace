@@ -1,0 +1,45 @@
+[
+  {
+    "category": "Category 1",
+    "images": [
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/1.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/2.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/3.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/4.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/5.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/6.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/7.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/8.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/9.webp" }
+    ]
+  },
+  {
+    "category": "Category 2",
+    "images": [
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/10.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/11.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/12.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/13.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/14.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/15.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/16.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/17.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/18.webp" }
+    ]
+  },
+  {
+    "category": "Category 3",
+    "images": [
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/19.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/20.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/21.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/22.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/23.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/24.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/25.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/26.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/27.webp" },
+      { "path": "assets/UIComponents/images/28 Clips GJLPS- 2025 _ 12-13 April/28.webp" }
+    ]
+  }
+]

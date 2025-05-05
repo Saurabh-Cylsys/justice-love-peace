@@ -8,6 +8,7 @@ import { IntlInputPhoneModule } from 'intl-input-phone';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { SwiperModule } from 'swiper/angular';
+import { HttpClientModule } from '@angular/common/http';
 
 import { WebRoutingModule } from './web-routing.module';
 import { WebHomeComponent } from './web-home/web-home.component';
@@ -117,7 +118,8 @@ import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
     IntlInputPhoneModule,
     ImageCropperModule,
     SwiperModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    HttpClientModule
   ]
 })
 export class WebModule { }
