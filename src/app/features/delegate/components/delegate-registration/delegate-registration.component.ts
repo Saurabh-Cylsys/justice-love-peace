@@ -166,6 +166,15 @@ export class DelegateRegistrationComponent {
           // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
 
           window.location.href = tinyUrlWithParams;
+        }else if (params.medium == -1 && params.code ) {
+          const params = new URLSearchParams();
+          params.set('code', this.referralCode);
+
+          const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+
+          // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
+
+          window.location.href = tinyUrlWithParams;
         }
       }
     });

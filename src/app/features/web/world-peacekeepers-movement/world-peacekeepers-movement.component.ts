@@ -97,21 +97,21 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   transform: ImageTransform = {}; // Object for applying transformations
   disabledDates: Date[] = [];
   formattedDate: string = '';
-  maxDate1 : any;
-  minDate1 : any;
+  maxDate1: any;
+  minDate1: any;
   colorTheme: string = 'theme-dark-blue';
-  btnDisabled : boolean = false;
-  peacebookwebAppurl : string = environment.peacebookWebAppUrl;
+  btnDisabled: boolean = false;
+  peacebookwebAppurl: string = environment.peacebookWebAppUrl;
   currentSection = 'pe1';
   loading = false;
   payload: any;
   onlineDiscount: any;
   peaceKeeperDiscount: any;
-  peaceKeeperDescription:any;
+  peaceKeeperDescription: any;
   offlineDiscount: any;
   referralCode: string = '';
   isStrip: string = "";
-
+  isCheckReference: boolean = true;
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
@@ -132,7 +132,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private router: Router,
     private encryptionService: EncryptionService,
     @Inject(DOCUMENT) private document: Document,
-    private renderer : Renderer2
+    private renderer: Renderer2
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
@@ -164,7 +164,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
     this.route.queryParams.subscribe(async (params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
-        this.referralCode = params.code || null; ;
+        this.referralCode = params.code || null;;
         if (params.code) {
 
           if (this.referralCode) {
@@ -177,13 +177,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
           //   relativeTo: this.route, // Stay on the same route
           // })
         }
-        else{
+        else {
           await this.fnValidateCoupon(0);
         }
-    } else{
-      await this.fnValidateCoupon(0);
-    }
-  });
+      } else {
+        await this.fnValidateCoupon(0);
+      }
+    });
 
     this.checkWindowSize();
     this.getAllCountrycode();
@@ -215,10 +215,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   }
 
-  createPeacekeeperForm(){
+  createPeacekeeperForm() {
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
-      dob: ['', [Validators.required,this.ageValidator]],
+      dob: ['', [Validators.required, this.ageValidator]],
       country: ['', [Validators.required]],
       country_code: [''],
       mobile_number: [
@@ -231,7 +231,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         ],
       ],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      reference_no: [this.referralCode ? this.referralCode : ''],
+      reference_no: [this.referralCode ? this.referralCode : '', [Validators.required]],
       is_active: 1,
       Check_email: [''],
       // File: ['', [Validators.required]],
@@ -262,71 +262,71 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     };
   }
 
-ageValidator(control: FormControl) {
-  const selectedDate = new Date(control.value);
+  ageValidator(control: FormControl) {
+    const selectedDate = new Date(control.value);
 
-  // If the selected date is invalid, return an error
-  if (isNaN(selectedDate.getTime())) {
-    return { invalidDate: true }; // Invalid date format
+    // If the selected date is invalid, return an error
+    if (isNaN(selectedDate.getTime())) {
+      return { invalidDate: true }; // Invalid date format
+    }
+
+    const today = new Date();
+    const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+    // If selected date is after or on the date 18 years ago, it's invalid
+    if (selectedDate > eighteenYearsAgo) {
+      return { ageError: 'Date must be at least 18 years ago' };
+    }
+
+    return null; // Valid date
   }
 
-  const today = new Date();
-  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block pasting
+    const text = event.clipboardData?.getData('text') || '';
 
-  // If selected date is after or on the date 18 years ago, it's invalid
-  if (selectedDate > eighteenYearsAgo) {
-    return { ageError: 'Date must be at least 18 years ago' };
+    // Allow only alphabets and spaces
+    if (/^[a-zA-Z\s]*$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
 
-  return null; // Valid date
-}
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
 
-onPaste(event: ClipboardEvent) {
-  event.preventDefault(); // Block pasting
-  const text = event.clipboardData?.getData('text') || '';
-
-  // Allow only alphabets and spaces
-  if (/^[a-zA-Z\s]*$/.test(text)) {
-    const input = event.target as HTMLInputElement;
-    input.value += text; // Append only valid text
-    input.dispatchEvent(new Event('input')); // Update Angular form control
+    // Allow only numbers (0-9)
+    if (/^\d+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid numbers
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
-}
 
-onPasteMobileNumber(event: ClipboardEvent) {
-  event.preventDefault(); // Block default paste action
-  const text = event.clipboardData?.getData('text') || '';
+  onEmailPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
 
-  // Allow only numbers (0-9)
-  if (/^\d+$/.test(text)) {
-    const input = event.target as HTMLInputElement;
-    input.value += text; // Append only valid numbers
-    input.dispatchEvent(new Event('input')); // Update Angular form control
+    // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
+    if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid characters
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
-}
 
-onEmailPaste(event: ClipboardEvent) {
-  event.preventDefault(); // Block default paste action
-  const text = event.clipboardData?.getData('text') || '';
-
-  // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
-  if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
-    const input = event.target as HTMLInputElement;
-    input.value += text; // Append only valid characters
-    input.dispatchEvent(new Event('input')); // Update Angular form control
+  disableManualInput(event: KeyboardEvent): void {
+    event.preventDefault();
   }
-}
 
-disableManualInput(event: KeyboardEvent): void {
-  event.preventDefault();
-}
+  onDateChange(event: string): void {
+    // Convert the date format
+    const parsedDate = new Date(event);
+    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
 
-onDateChange(event: string): void {
-  // Convert the date format
-  const parsedDate = new Date(event);
-  this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-}
+  }
 
   get dob() {
     return this.peacekeepersForm.get('dob');
@@ -335,18 +335,18 @@ onDateChange(event: string): void {
   downloadImage() {
     if (this.peacekeeperBadge) {
       fetch(this.peacekeeperBadge)
-      .then(response => response.blob())  // Convert response to Blob
-      .then(blob => {
-        const url = URL.createObjectURL(blob); // Create an object URL for the blob
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url); // Clean up the object URL
-      })
-      .catch(error => console.error('Error downloading the image:', error));
+        .then(response => response.blob())  // Convert response to Blob
+        .then(blob => {
+          const url = URL.createObjectURL(blob); // Create an object URL for the blob
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url); // Clean up the object URL
+        })
+        .catch(error => console.error('Error downloading the image:', error));
     }
 
 
@@ -363,7 +363,7 @@ onDateChange(event: string): void {
         this.peacekeeperData = res.data;
         this.qrCodeImg = res.QR_code;
         this.fileUrl = this.peacekeeperData.file_urls[0];
-          });
+      });
     }
 
     this.showPopup = true;
@@ -379,29 +379,29 @@ onDateChange(event: string): void {
 
   isCorrect() {
 
-    if(!this.peacekeepersForm.value.full_name?.trim() || this.peacekeepersForm.value.full_name.trim().length < 3){
+    if (!this.peacekeepersForm.value.full_name?.trim() || this.peacekeepersForm.value.full_name.trim().length < 3) {
       this.renderer.selectRootElement('#fullName').focus();
-      this.SharedService.ToastPopup("Full Name must be at least 3 characters long",'','error');
+      this.SharedService.ToastPopup("Full Name must be at least 3 characters long", '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.dob == "" || this.peacekeepersForm.value.dob == undefined) {
+    else if (this.peacekeepersForm.value.dob == "" || this.peacekeepersForm.value.dob == undefined) {
       this.renderer.selectRootElement('#dob').focus();
-      this.SharedService.ToastPopup("Please Select Date Of Birth",'','error');
+      this.SharedService.ToastPopup("Please Select Date Of Birth", '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.country == "" || this.peacekeepersForm.value.country == undefined) {
+    else if (this.peacekeepersForm.value.country == "" || this.peacekeepersForm.value.country == undefined) {
       setTimeout(() => {
         const countryElement = this.renderer.selectRootElement('#country', true);
         if (countryElement) {
           countryElement.focus();
         }
       }, 100);
-      this.SharedService.ToastPopup("Please select country",'','error');
+      this.SharedService.ToastPopup("Please select country", '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.email_id == "" || this.peacekeepersForm.value.email_id == undefined) {
+    else if (this.peacekeepersForm.value.email_id == "" || this.peacekeepersForm.value.email_id == undefined) {
       this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      this.SharedService.ToastPopup("Please Enter Email ID", '', 'error');
       return;
     }
     else if (this.peacekeepersForm.controls['email_id'].invalid) {
@@ -409,7 +409,7 @@ onDateChange(event: string): void {
       this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.mobile_number == "" || this.peacekeepersForm.value.mobile_number == undefined || this.peacekeepersForm.value.mobile_number == null) {
+    else if (this.peacekeepersForm.value.mobile_number == "" || this.peacekeepersForm.value.mobile_number == undefined || this.peacekeepersForm.value.mobile_number == null) {
       setTimeout(() => {
         const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
         if (inputElement) {
@@ -418,23 +418,28 @@ onDateChange(event: string): void {
           console.error("Could not find mobile number input field");
         }
       }, 100);
-      this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+      this.SharedService.ToastPopup("Please Enter  Mobile Number", '', 'error');
       return;
     }
-   else if (this.peacekeepersForm.controls['mobile_number'].errors && !this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
-    setTimeout(() => {
-      const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
-      if (inputElement) {
-        inputElement.focus();
-      } else {
-        console.error("Could not find mobile number input field");
-      }
-    }, 100);
-    this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
-    return;
-  }
-    else if(this.selectedFile == null || this.selectedFile == undefined ) {
-      this.SharedService.ToastPopup("Please upload image",'','error');
+    else if (this.peacekeepersForm.controls['mobile_number'].errors && !this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
+      setTimeout(() => {
+        const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error("Could not find mobile number input field");
+        }
+      }, 100);
+      this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country", '', 'error');
+      return;
+    }
+    else if (this.selectedFile == null || this.selectedFile == undefined) {
+      this.SharedService.ToastPopup("Please upload image", '', 'error');
+      return;
+    }
+    else if (this.peacekeepersForm.value.reference_no == "" || this.peacekeepersForm.value.reference_no == undefined) {
+      this.renderer.selectRootElement('#reference_no').focus();
+      this.SharedService.ToastPopup("Please Enter Reference Number", '', 'error');
       return;
     }
 
@@ -447,14 +452,69 @@ onDateChange(event: string): void {
     this.showPopup = true;
     this.isPeaceOn = 1;
   }
+
+
+  async checkRefNo() {
+    if (this.peacekeepersForm.value.reference_no.length < 3 || this.peacekeepersForm.value.reference_no == "") {
+      this.SharedService.ToastPopup('Reference Number must contain 3 or more characters, maximum of 16.', '', 'error');
+      return;
+    };
+    if (this.peacekeepersForm.value.reference_no.length > 16) {
+      this.SharedService.ToastPopup('Ensure that Reference Number has no more than 16 characters.', '', 'error');
+      this.peacekeepersForm.controls['reference_no'].reset();
+      return;
+    }
+
+    let obj = {
+      "coupon_code": this.peacekeepersForm.value.reference_no
+    }
+
+
+    const EncryptData = this.encryptionService.encrypt(obj);
+    const encryptedPayload = {
+      encryptedData: EncryptData,
+    };
+
+    console.log("obj", obj);
+    await this.webService.getCouponValidation(encryptedPayload).subscribe({
+      next: async (response: any) => {
+        console.log("response", response);
+        let decryptData = this.encryptionService.decrypt(response.encryptedData);
+        let resDecrypt = JSON.parse(decryptData);
+            if (resDecrypt.success == true && resDecrypt.valid == 1) {
+          this.referralCode = this.peacekeepersForm.value.reference_no;
+          this.isCheckReference = true;
+          await this.fnValidateCoupon(this.referralCode);
+
+          this.peacekeepersForm.patchValue({
+            reference_no: this.referralCode
+          });
+          this.SharedService.ToastPopup('Valid Reference Number', '', 'success');
+
+        }
+        else {
+          this.peacekeepersForm.controls['reference_no'].reset();
+          this.referralCode = '';
+          this.isCheckReference = false;
+          this.SharedService.ToastPopup('Invalid Reference Number', '', 'error');
+        }
+      },
+      error: (error: any) => {
+        this.referralCode = '';
+      }
+    });
+
+  }
+
+
   getAllCountrycode() {
     this.webService.getAllCountrycode().subscribe(
       (res: any) => {
 
         let encryptedData = res.encryptedData;
         let decryptData = this.encryptionService.decrypt(encryptedData);
-        let countryDcrypt = JSON.parse(decryptData);         
-        
+        let countryDcrypt = JSON.parse(decryptData);
+
         this.code = countryDcrypt.data;        // Define the country name you want to find (e.g., "India (+91)")
         const countryToFind = 'India';
 
@@ -492,12 +552,12 @@ onDateChange(event: string): void {
           this.is_selectedFile = false;
           return;
         }
-              // Validate the file size
-      // if (file.size < minSize || file.size > maxSize) {
-      //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-      //   this.is_selectedFile = false;
-      //   return;
-      // }
+        // Validate the file size
+        // if (file.size < minSize || file.size > maxSize) {
+        //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+        //   this.is_selectedFile = false;
+        //   return;
+        // }
       }
       else {
         console.log('No file selected.');
@@ -579,13 +639,13 @@ onDateChange(event: string): void {
         this.is_selectedFile = false;
         return;
       }
-          // Validate the file size
-    // if (file.size < minSize || file.size > maxSize) {
-    //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-    //   event.target.value = ''; // Reset the file input
-    //   this.is_selectedFile = false;
-    //   return;
-    // }
+      // Validate the file size
+      // if (file.size < minSize || file.size > maxSize) {
+      //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+      //   event.target.value = ''; // Reset the file input
+      //   this.is_selectedFile = false;
+      //   return;
+      // }
 
       this.isPeaceOn = 2;
       this.showPopup = true;
@@ -728,13 +788,13 @@ onDateChange(event: string): void {
         this.peacekeepersForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
-        dob: this.formattedDate
+      dob: this.formattedDate
 
     });
 
     // Create FormData object
-     // Create FormData object
-     this.payload = {
+    // Create FormData object
+    this.payload = {
       full_name: this.peacekeepersForm.value.full_name,
       dob: this.peacekeepersForm.value.dob,
       country: this.peacekeepersForm.value.country,
@@ -742,11 +802,11 @@ onDateChange(event: string): void {
       mobile_number: this.peacekeepersForm.value.mobile_number,
       email_id: this.peacekeepersForm.value.email_id,
       is_active: this.peacekeepersForm.value.is_active,
-      reference_no: this.referralCode? this.referralCode : this.peacekeepersForm.value.reference_no,
+      reference_no: this.referralCode ? this.referralCode : this.peacekeepersForm.value.reference_no,
       Check_email: this.peacekeepersForm.value.Check_email == true ? 1 : 0,
       url: environment.domainUrl,
     };
-    
+
 
     const EncryptData = this.encryptionService.encrypt(this.payload);
     const encryptedPayload = new FormData();
@@ -762,32 +822,32 @@ onDateChange(event: string): void {
     }
 
 
-        // // Create FormData object
-        // const formData = new FormData();
+    // // Create FormData object
+    // const formData = new FormData();
 
-        // // Append all form fields except the file
-        // Object.keys(this.peacekeepersForm.value).forEach((key) => {
-        //   formData.append(key, this.peacekeepersForm.value[key]);
-        // });
-    
-        // // Append the selected file
-        // if (this.selectedFile) {
-        //   formData.append(
-        //     'profile_picture',
-        //     this.selectedFile,
-        //     this.selectedFile.name
-        //   );
-        // }
-        // formData.append('url', environment.domainUrl);
+    // // Append all form fields except the file
+    // Object.keys(this.peacekeepersForm.value).forEach((key) => {
+    //   formData.append(key, this.peacekeepersForm.value[key]);
+    // });
 
- 
+    // // Append the selected file
+    // if (this.selectedFile) {
+    //   formData.append(
+    //     'profile_picture',
+    //     this.selectedFile,
+    //     this.selectedFile.name
+    //   );
+    // }
+    // formData.append('url', environment.domainUrl);
+
+
     // Show loader
     this.ngxService.start();
 
     // Call the service to submit data
     this.SharedService.postPeacekeeper(encryptedPayload).subscribe(
       (response: any) => {
-        let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+        let decryptData: any = this.encryptionService.decrypt(response.encryptedData);
         decryptData = JSON.parse(decryptData);
 
         if (decryptData.success) {
@@ -795,7 +855,7 @@ onDateChange(event: string): void {
           this.SharedService.ToastPopup('', decryptData.message, 'success');
           // this.btnDisabled = false;
           setTimeout(async () => {
-            if (decryptData.IsStripe  == "true")
+            if (decryptData.IsStripe == "true")
               await this.fnStripePG(decryptData, this.payload);
             else
               await this.fnMagnatiPG(decryptData, this.payload);
@@ -821,9 +881,9 @@ onDateChange(event: string): void {
         }
       },
       (err) => {
-        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
         decryptErr = JSON.parse(decryptErr);
-          this.peacekeepersForm.patchValue({
+        this.peacekeepersForm.patchValue({
           mobile_number: returnmobileNumber,
           dob: returnDOB,
         });
@@ -859,7 +919,7 @@ onDateChange(event: string): void {
       this.ngxService.start();
       await this.webService.postPeaceBookPayMP(reqBody).subscribe({
         next: (response: any) => {
-          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          let decryptData: any = this.encryptionService.decrypt(response.encryptedData);
           decryptData = JSON.parse(decryptData);
           this.ngxService.stop();
           //window.location.href = response.paymentUrl
@@ -881,11 +941,11 @@ onDateChange(event: string): void {
 
         },
         error: (error: any) => {
-          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
           decryptErr = JSON.parse(decryptErr);
           console.error('Error creating delegate:', decryptErr);
           this.ngxService.stop();
-          this.SharedService.ToastPopup(decryptErr['message'],'','error');
+          this.SharedService.ToastPopup(decryptErr['message'], '', 'error');
           this.loading = false;
         }
       });
@@ -894,7 +954,7 @@ onDateChange(event: string): void {
 
 
 
-  onMobileNumberKeyDown(event: KeyboardEvent , inputValue: any): void {
+  onMobileNumberKeyDown(event: KeyboardEvent, inputValue: any): void {
 
     if (inputValue !== null) {
       // Prevent space at the beginning
@@ -907,8 +967,8 @@ onDateChange(event: string): void {
         return;
       }
 
-       // Allow only numbers and essential keys
-       if (
+      // Allow only numbers and essential keys
+      if (
         !/^[0-9]$/.test(event.key) &&
         !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
           event.key
@@ -1084,6 +1144,15 @@ onDateChange(event: string): void {
   onInput(event: any, controlName: string) {
     const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
     this.peacekeepersForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
+
+    if (this.peacekeepersForm.controls['reference_no'].value) {
+      this.isCheckReference = false;
+      let sanitized = this.peacekeepersForm.controls['reference_no'].value.toUpperCase().replace(/[^A-Z0-9\-]/g, '');
+
+      // Update the input value and form control
+      this.peacekeepersForm.controls['reference_no'].value = sanitized;
+      this.peacekeepersForm.controls['reference_no'].setValue(sanitized);
+    }
   }
 
   handleTabKey(event: KeyboardEvent, nextFieldId: string) {
@@ -1114,7 +1183,7 @@ onDateChange(event: string): void {
   // onScroll() {
   //   const sections = ['pe1', 'pe2', 'pe3', 'pe4', 'pe5'];
   //   let currentSection = '';
-    
+
   //   for (const section of sections) {
   //     const element = document.getElementById(section);
   //     if (element) {
@@ -1125,7 +1194,7 @@ onDateChange(event: string): void {
   //       }
   //     }
   //   }
-    
+
   //   if (currentSection && this.currentSection !== currentSection) {
   //     this.currentSection = currentSection;
   //     this.updateActiveDot();
@@ -1154,29 +1223,29 @@ onDateChange(event: string): void {
         let decryptData = this.encryptionService.decrypt(response.encryptedData);
         let resDecrypt = JSON.parse(decryptData);
 
-        if(resDecrypt && resDecrypt.success) {
+        if (resDecrypt && resDecrypt.success) {
 
           this.isStrip = resDecrypt.isStripe;
 
-          if(this.isStrip == "false") {
+          if (this.isStrip == "false") {
 
             // This is for Magneti
 
             this.ngxService.stop();
-            resDecrypt.data.forEach((item:any) => {
+            resDecrypt.data.forEach((item: any) => {
               if (item.p_type === "PEACEKEEPER") {
                 this.peaceKeeperDiscount = item.dollar_aed;
                 this.peaceKeeperDescription = item.amount_description;
               }
             });
           }
-          else if(this.isStrip == "true") {
+          else if (this.isStrip == "true") {
 
             // this is for stripe
 
             this.ngxService.stop();
 
-            resDecrypt.data.forEach((item:any) => {
+            resDecrypt.data.forEach((item: any) => {
               if (item.p_type === "PEACEKEEPER") {
                 this.peaceKeeperDiscount = item.discount_amount;
                 this.peaceKeeperDescription = item.amount_description;
@@ -1187,10 +1256,10 @@ onDateChange(event: string): void {
       },
       error: (error: any) => {
         this.ngxService.stop();
-        let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+        let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
         decryptErr = JSON.parse(decryptErr);
         console.error('Error :', decryptErr);
-        this.SharedService.ToastPopup(decryptErr['error'],'','error');
+        this.SharedService.ToastPopup(decryptErr['error'], '', 'error');
       }
     });
   }

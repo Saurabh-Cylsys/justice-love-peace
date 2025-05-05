@@ -113,7 +113,7 @@ export class Constants {
 
     public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE_ENCRYPT: string = 'pre_delegate_draft_details/encryption'
 
-    public readonly API_ENDPOINT_VALIDATE_COUPON: string = 'check_coupon'
+    public readonly API_ENDPOINT_VALIDATE_COUPON: string = 'check_coupon/encryption'
 
     public readonly API_ENDPOINT_GET_SPEAKERS_LIST: string = 'get_speaker_list'
 

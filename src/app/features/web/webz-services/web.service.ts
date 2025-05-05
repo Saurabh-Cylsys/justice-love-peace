@@ -2138,4 +2138,8 @@ export class WebService {
     });
       return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body, {headers});
     }
+ 
+    getCouponValidation(code: any): Observable<any> {
+      return this._apiHttpService.post(this._apiEndpointsService.getCouponValidationEndpoint(), code);
+    }
 }

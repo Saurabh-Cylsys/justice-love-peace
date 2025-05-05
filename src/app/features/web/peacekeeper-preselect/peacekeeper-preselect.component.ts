@@ -40,7 +40,6 @@ export class PeacekeeperPreselectComponent {
     }, 2000);
 
     this.route.queryParams.subscribe(async (params: any) => {
-
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code || null; ;
         if (params.medium == 1 && params.code) {
@@ -65,10 +64,21 @@ export class PeacekeeperPreselectComponent {
             queryParams: this.referralCode ? { code: this.referralCode } : {},
           });
         }
+      
+      else if (params.medium == -1) {
+        // console.log('Medium value not found, redirecting...');
+        if (this.referralCode) {
+          await this.fnValidateCoupon(this.referralCode);
+        }
+        this.router.navigate(['/world-peacekeepers-movement'], {
+          queryParams: this.referralCode ? { code: this.referralCode } : {},
+        });
       }
+    
       else {
         await this.fnValidateCoupon(0);
       }
+    }
     });
   }
 
