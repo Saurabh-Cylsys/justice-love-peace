@@ -2,6 +2,6 @@
 <router-outlet></router-outlet>
 <app-web-footer *ngIf="!hideHeaderFooter"></app-web-footer> -->
 
-<app-web-header ></app-web-header>
+<app-web-header *ngIf="!hideHeaderFooter"></app-web-header>
 <router-outlet></router-outlet>
 <!-- <app-web-footer></app-web-footer> -->
