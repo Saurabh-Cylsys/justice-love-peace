@@ -9,7 +9,7 @@
 
   <!-- Success content - only show when not loading and data is available -->
 
-   <div class="col-md-11 mx-auto" *ngIf="!loading && showPaymentSuccess">
+   <!-- <div class="col-md-11 mx-auto" *ngIf="!loading && showPaymentSuccess">
     <div class="row align-items-center">
       <div class="col-md-1">
         <img src="assets/UIComponents/images/i-am-peacekeeper.svg" alt="Peacekeeper Logo" class="img-fluid" width="100">
@@ -22,15 +22,14 @@
         </ul>
       </div>
     </div>
-   </div>
-  <!-- <div *ngIf="!loading && showPaymentSuccess" class="col-md-6"> -->
+   </div> -->
   <div class="col-md-7" *ngIf="!loading && showPaymentSuccess">
-    <!-- <img src="assets/UIComponents/images/payment.gif" alt="Payment Success Image" class="img-fluid" width="100"> -->
+    <!-- <img src="assets/UIComponents/images/payment.gif" alt="Payment Success Image" class="img-fluid" width="100">
     <h1 class="text-center">Payment successful</h1>
-    <p class="text-center thanq">Thank you for completing your registration.</p>
+    <p class="text-center thanq">Thank you for completing your registration.</p> -->
     <div class="card border-1 shadow-lg">
       <div class="card-body text-center">
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-header border-0 bg-transparent text-start">
             <h4 class="">Registration Details</h4>
           </div>
@@ -38,7 +37,6 @@
             <ul class="list-unstyled details-list">
               <li>Full Name <span>John Doe</span></li>
               <li>Email Address <span>john.doe&#64;example.com</span></li>
-              <!-- <li>Badge ID <span>1234567890</span></li> -->
               <li>Transaction ID <span>1234567890</span></li>
               <li>Status <span class="uppercase">Paid</span></li>
             </ul>
@@ -64,8 +62,8 @@
               </ul>
             </div>
           </div>
-        </div>
-        <!-- <div class="success-checkmark mb-4">
+        </div> -->
+        <div class="success-checkmark mb-4">
           <div class="check-icon">
             <span class="icon-line line-tip"></span>
             <span class="icon-line line-long"></span>
@@ -156,7 +154,7 @@
             </a>
           </span>
         </p>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
