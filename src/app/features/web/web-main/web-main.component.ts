@@ -29,7 +29,7 @@ export class WebMainComponent {
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.hideHeaderFooter = this.router.url.includes('peacekeeper-preselect') || this.router.url.includes('/request-account-deletion');
+        this.hideHeaderFooter = this.router.url.includes('peacekeeper-payment-success');
       }
     });
    }
