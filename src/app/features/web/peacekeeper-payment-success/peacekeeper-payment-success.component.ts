@@ -28,7 +28,7 @@ export class PeacekeeperPaymentSuccessComponent {
     showCompleteProfileForm = false;
     paymentSuccess = false;
     paymentLink: SafeResourceUrl | null = null;
-    loading = false;
+    loading:boolean = false;
     sessionId: any;
     isPaymentStatus: any;
     transactionVerified: boolean = false;
