@@ -112,7 +112,7 @@ border-width: 1px;
 gap: 6px;
 padding-top: 3px;
 padding-right: 24px;
-padding-bottom: 3px;
+/* padding-bottom: 3px; */
 padding-left: 24px;
 background-color: #1F514C;
 color: #FFFFFF;
